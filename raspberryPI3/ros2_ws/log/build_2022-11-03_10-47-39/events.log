@@ -1,0 +1,332 @@
+[0.000000] (-) TimerEvent: {}
+[0.000234] (-) JobUnselected: {'identifier': 'can'}
+[0.000279] (-) JobUnselected: {'identifier': 'car_control'}
+[0.000297] (-) JobUnselected: {'identifier': 'carla_msgs'}
+[0.000312] (-) JobUnselected: {'identifier': 'geicar_start'}
+[0.000371] (-) JobUnselected: {'identifier': 'imu_complementary_filter'}
+[0.000406] (-) JobUnselected: {'identifier': 'imu_filter_madgwick'}
+[0.000426] (-) JobUnselected: {'identifier': 'imu_tools'}
+[0.000439] (-) JobUnselected: {'identifier': 'interfaces'}
+[0.000452] (-) JobUnselected: {'identifier': 'rviz_imu_plugin'}
+[0.000489] (-) JobUnselected: {'identifier': 'simulation'}
+[0.000507] (-) JobUnselected: {'identifier': 'system_check'}
+[0.000524] (joystick) JobQueued: {'identifier': 'joystick', 'dependencies': OrderedDict([('interfaces', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces')])}
+[0.000545] (joystick) JobStarted: {'identifier': 'joystick'}
+[0.099203] (-) TimerEvent: {}
+[0.175874] (joystick) JobProgress: {'identifier': 'joystick', 'progress': 'cmake'}
+[0.175928] (joystick) Command: {'cmd': ['/usr/bin/cmake', '/home/leasch/pivoane/raspberryPI3/ros2_ws/src/joystick', '-DCMAKE_INSTALL_PREFIX=/home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick'], 'cwd': '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/joystick', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/root'), ('OLDPWD', '/home/leasch/pivoane/raspberryPI3'), ('ROS_PYTHON_VERSION', '3'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'DARCY'), ('WSL_INTEROP', '/run/WSL/9_interop'), ('PULSE_SERVER', '/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/MATLAB/R2022a/bin:/mnt/c/Users/leasc/AppData/Local/Microsoft/WindowsApps:/mnt/c/MinGW/bin:/mnt/c/Users/leasc/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/joystick'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', ''), ('CMAKE_PREFIX_PATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[0.199454] (-) TimerEvent: {}
+[0.300047] (-) TimerEvent: {}
+[0.383614] (joystick) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.2.0\n'}
+[0.400304] (-) TimerEvent: {}
+[0.500967] (-) TimerEvent: {}
+[0.602205] (-) TimerEvent: {}
+[0.702742] (-) TimerEvent: {}
+[0.803162] (-) TimerEvent: {}
+[0.903660] (-) TimerEvent: {}
+[1.004233] (-) TimerEvent: {}
+[1.078264] (joystick) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.2.0\n'}
+[1.104449] (-) TimerEvent: {}
+[1.204822] (-) TimerEvent: {}
+[1.305292] (-) TimerEvent: {}
+[1.405805] (-) TimerEvent: {}
+[1.506218] (-) TimerEvent: {}
+[1.569440] (joystick) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.606368] (-) TimerEvent: {}
+[1.706746] (-) TimerEvent: {}
+[1.749603] (joystick) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.757022] (joystick) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.757423] (joystick) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.757605] (joystick) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.760002] (joystick) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.806903] (-) TimerEvent: {}
+[1.907636] (-) TimerEvent: {}
+[1.929391] (joystick) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[1.934361] (joystick) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[1.934589] (joystick) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[1.934931] (joystick) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[1.936264] (joystick) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.2 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[2.007788] (-) TimerEvent: {}
+[2.050902] (joystick) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3.10 (found version "3.10.6") found components: Interpreter \n'}
+[2.106870] (joystick) StdoutLine: {'line': b'-- Found rclcpp: 16.0.1 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[2.107982] (-) TimerEvent: {}
+[2.208476] (-) TimerEvent: {}
+[2.309098] (-) TimerEvent: {}
+[2.409673] (-) TimerEvent: {}
+[2.421580] (joystick) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.3 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[2.424248] (joystick) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.3 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[2.429196] (joystick) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.3 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[2.437667] (joystick) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.451966] (joystick) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.500965] (joystick) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.0 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[2.502313] (joystick) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.1 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[2.509944] (-) TimerEvent: {}
+[2.610342] (-) TimerEvent: {}
+[2.710899] (-) TimerEvent: {}
+[2.811441] (-) TimerEvent: {}
+[2.911996] (-) TimerEvent: {}
+[3.012625] (-) TimerEvent: {}
+[3.113339] (-) TimerEvent: {}
+[3.214054] (-) TimerEvent: {}
+[3.314683] (-) TimerEvent: {}
+[3.415204] (-) TimerEvent: {}
+[3.515775] (-) TimerEvent: {}
+[3.616353] (-) TimerEvent: {}
+[3.717035] (-) TimerEvent: {}
+[3.817795] (-) TimerEvent: {}
+[3.918241] (-) TimerEvent: {}
+[4.018660] (-) TimerEvent: {}
+[4.119214] (-) TimerEvent: {}
+[4.219828] (-) TimerEvent: {}
+[4.320360] (-) TimerEvent: {}
+[4.421057] (-) TimerEvent: {}
+[4.521637] (-) TimerEvent: {}
+[4.622168] (-) TimerEvent: {}
+[4.722748] (-) TimerEvent: {}
+[4.823291] (-) TimerEvent: {}
+[4.924002] (-) TimerEvent: {}
+[5.024746] (-) TimerEvent: {}
+[5.026529] (joystick) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[5.125120] (-) TimerEvent: {}
+[5.226484] (-) TimerEvent: {}
+[5.327396] (-) TimerEvent: {}
+[5.427937] (-) TimerEvent: {}
+[5.528541] (-) TimerEvent: {}
+[5.629347] (-) TimerEvent: {}
+[5.730068] (-) TimerEvent: {}
+[5.830881] (-) TimerEvent: {}
+[5.931669] (-) TimerEvent: {}
+[6.032703] (-) TimerEvent: {}
+[6.133449] (-) TimerEvent: {}
+[6.234487] (-) TimerEvent: {}
+[6.335043] (-) TimerEvent: {}
+[6.435596] (-) TimerEvent: {}
+[6.536528] (-) TimerEvent: {}
+[6.637145] (-) TimerEvent: {}
+[6.737600] (-) TimerEvent: {}
+[6.838231] (-) TimerEvent: {}
+[6.941834] (-) TimerEvent: {}
+[7.042377] (-) TimerEvent: {}
+[7.142877] (-) TimerEvent: {}
+[7.243321] (-) TimerEvent: {}
+[7.343813] (-) TimerEvent: {}
+[7.444226] (-) TimerEvent: {}
+[7.544699] (-) TimerEvent: {}
+[7.613243] (joystick) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[7.644865] (-) TimerEvent: {}
+[7.745213] (-) TimerEvent: {}
+[7.845786] (-) TimerEvent: {}
+[7.946230] (-) TimerEvent: {}
+[8.046667] (-) TimerEvent: {}
+[8.147124] (-) TimerEvent: {}
+[8.247948] (-) TimerEvent: {}
+[8.348320] (-) TimerEvent: {}
+[8.448804] (-) TimerEvent: {}
+[8.549345] (-) TimerEvent: {}
+[8.649976] (-) TimerEvent: {}
+[8.750736] (-) TimerEvent: {}
+[8.856681] (-) TimerEvent: {}
+[8.957285] (-) TimerEvent: {}
+[9.057909] (-) TimerEvent: {}
+[9.158603] (-) TimerEvent: {}
+[9.259163] (-) TimerEvent: {}
+[9.360191] (-) TimerEvent: {}
+[9.460906] (-) TimerEvent: {}
+[9.561598] (-) TimerEvent: {}
+[9.662386] (-) TimerEvent: {}
+[9.763006] (-) TimerEvent: {}
+[9.863502] (-) TimerEvent: {}
+[9.964250] (-) TimerEvent: {}
+[10.064740] (-) TimerEvent: {}
+[10.165297] (-) TimerEvent: {}
+[10.266007] (-) TimerEvent: {}
+[10.366708] (-) TimerEvent: {}
+[10.467360] (-) TimerEvent: {}
+[10.568002] (-) TimerEvent: {}
+[10.668608] (-) TimerEvent: {}
+[10.769201] (-) TimerEvent: {}
+[10.869781] (-) TimerEvent: {}
+[10.970577] (-) TimerEvent: {}
+[11.071245] (-) TimerEvent: {}
+[11.172032] (-) TimerEvent: {}
+[11.272735] (-) TimerEvent: {}
+[11.373456] (-) TimerEvent: {}
+[11.474129] (-) TimerEvent: {}
+[11.575023] (-) TimerEvent: {}
+[11.675822] (-) TimerEvent: {}
+[11.776662] (-) TimerEvent: {}
+[11.877498] (-) TimerEvent: {}
+[11.978134] (-) TimerEvent: {}
+[12.078905] (-) TimerEvent: {}
+[12.179565] (-) TimerEvent: {}
+[12.280152] (-) TimerEvent: {}
+[12.380777] (-) TimerEvent: {}
+[12.481429] (-) TimerEvent: {}
+[12.582356] (-) TimerEvent: {}
+[12.683086] (-) TimerEvent: {}
+[12.783689] (-) TimerEvent: {}
+[12.845610] (joystick) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[12.883900] (-) TimerEvent: {}
+[12.962841] (joystick) StdoutLine: {'line': b'-- Found rclpy: 3.3.4 (/opt/ros/humble/share/rclpy/cmake)\n'}
+[12.963206] (joystick) StdoutLine: {'line': b'-- Found interfaces: 0.0.0 (/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake)\n'}
+[12.974520] (joystick) StdoutLine: {'line': b'-- Found sensor_msgs: 4.2.2 (/opt/ros/humble/share/sensor_msgs/cmake)\n'}
+[12.984077] (-) TimerEvent: {}
+[13.084508] (-) TimerEvent: {}
+[13.136873] (joystick) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.4 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[13.184636] (-) TimerEvent: {}
+[13.199876] (joystick) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[13.202824] (joystick) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[13.202966] (joystick) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /home/leasch/pivoane/raspberryPI3/ros2_ws/src/joystick/include\n'}
+[13.203040] (joystick) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[13.204355] (joystick) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[13.204528] (joystick) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[13.204900] (joystick) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[13.205523] (joystick) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[13.205996] (joystick) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[13.206656] (joystick) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[13.206769] (joystick) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[13.207025] (joystick) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[13.207897] (joystick) StdoutLine: {'line': b'-- Configuring done\n'}
+[13.215182] (joystick) StdoutLine: {'line': b'-- Generating done\n'}
+[13.216260] (joystick) StdoutLine: {'line': b'-- Build files have been written to: /home/leasch/pivoane/raspberryPI3/ros2_ws/build/joystick\n'}
+[13.224315] (joystick) CommandEnded: {'returncode': 0}
+[13.226293] (joystick) JobProgress: {'identifier': 'joystick', 'progress': 'build'}
+[13.227022] (joystick) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/joystick', '--', '-j8', '-l8'], 'cwd': '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/joystick', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/root'), ('OLDPWD', '/home/leasch/pivoane/raspberryPI3'), ('ROS_PYTHON_VERSION', '3'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'DARCY'), ('WSL_INTEROP', '/run/WSL/9_interop'), ('PULSE_SERVER', '/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/MATLAB/R2022a/bin:/mnt/c/Users/leasc/AppData/Local/Microsoft/WindowsApps:/mnt/c/MinGW/bin:/mnt/c/Users/leasc/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/joystick'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', ''), ('CMAKE_PREFIX_PATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[13.260725] (joystick) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/joystick_to_cmd.dir/src/joystick_to_cmd_node.cpp.o\x1b[0m\n'}
+[13.273118] (joystick) StdoutLine: {'line': b'[ 50%] Built target ament_cmake_python_copy_joystick\n'}
+[13.284876] (-) TimerEvent: {}
+[13.385290] (-) TimerEvent: {}
+[13.428114] (joystick) StdoutLine: {'line': b'running egg_info\n'}
+[13.428437] (joystick) StdoutLine: {'line': b'creating joystick.egg-info\n'}
+[13.428884] (joystick) StdoutLine: {'line': b'writing joystick.egg-info/PKG-INFO\n'}
+[13.429085] (joystick) StdoutLine: {'line': b'writing dependency_links to joystick.egg-info/dependency_links.txt\n'}
+[13.429311] (joystick) StdoutLine: {'line': b'writing top-level names to joystick.egg-info/top_level.txt\n'}
+[13.429560] (joystick) StdoutLine: {'line': b"writing manifest file 'joystick.egg-info/SOURCES.txt'\n"}
+[13.431083] (joystick) StdoutLine: {'line': b"reading manifest file 'joystick.egg-info/SOURCES.txt'\n"}
+[13.431295] (joystick) StdoutLine: {'line': b"writing manifest file 'joystick.egg-info/SOURCES.txt'\n"}
+[13.452163] (joystick) StdoutLine: {'line': b'[ 50%] Built target ament_cmake_python_build_joystick_egg\n'}
+[13.485604] (-) TimerEvent: {}
+[13.586157] (-) TimerEvent: {}
+[13.686622] (-) TimerEvent: {}
+[13.787097] (-) TimerEvent: {}
+[13.887560] (-) TimerEvent: {}
+[13.988028] (-) TimerEvent: {}
+[14.088493] (-) TimerEvent: {}
+[14.188937] (-) TimerEvent: {}
+[14.289395] (-) TimerEvent: {}
+[14.389850] (-) TimerEvent: {}
+[14.490423] (-) TimerEvent: {}
+[14.590865] (-) TimerEvent: {}
+[14.691490] (-) TimerEvent: {}
+[14.791977] (-) TimerEvent: {}
+[14.892433] (-) TimerEvent: {}
+[14.992874] (-) TimerEvent: {}
+[15.093342] (-) TimerEvent: {}
+[15.193806] (-) TimerEvent: {}
+[15.294266] (-) TimerEvent: {}
+[15.394748] (-) TimerEvent: {}
+[15.495163] (-) TimerEvent: {}
+[15.595612] (-) TimerEvent: {}
+[15.696082] (-) TimerEvent: {}
+[15.796576] (-) TimerEvent: {}
+[15.897205] (-) TimerEvent: {}
+[15.997688] (-) TimerEvent: {}
+[16.098193] (-) TimerEvent: {}
+[16.198690] (-) TimerEvent: {}
+[16.299151] (-) TimerEvent: {}
+[16.399694] (-) TimerEvent: {}
+[16.500272] (-) TimerEvent: {}
+[16.600853] (-) TimerEvent: {}
+[16.701427] (-) TimerEvent: {}
+[16.801966] (-) TimerEvent: {}
+[16.902419] (-) TimerEvent: {}
+[17.003000] (-) TimerEvent: {}
+[17.103441] (-) TimerEvent: {}
+[17.203932] (-) TimerEvent: {}
+[17.304428] (-) TimerEvent: {}
+[17.404812] (-) TimerEvent: {}
+[17.505246] (-) TimerEvent: {}
+[17.605663] (-) TimerEvent: {}
+[17.706169] (-) TimerEvent: {}
+[17.806622] (-) TimerEvent: {}
+[17.907137] (-) TimerEvent: {}
+[18.007808] (-) TimerEvent: {}
+[18.108354] (-) TimerEvent: {}
+[18.208842] (-) TimerEvent: {}
+[18.309365] (-) TimerEvent: {}
+[18.409851] (-) TimerEvent: {}
+[18.510491] (-) TimerEvent: {}
+[18.610984] (-) TimerEvent: {}
+[18.711602] (-) TimerEvent: {}
+[18.812026] (-) TimerEvent: {}
+[18.912486] (-) TimerEvent: {}
+[19.012981] (-) TimerEvent: {}
+[19.113482] (-) TimerEvent: {}
+[19.214194] (-) TimerEvent: {}
+[19.314755] (-) TimerEvent: {}
+[19.415168] (-) TimerEvent: {}
+[19.515562] (-) TimerEvent: {}
+[19.616094] (-) TimerEvent: {}
+[19.716728] (-) TimerEvent: {}
+[19.817223] (-) TimerEvent: {}
+[19.917688] (-) TimerEvent: {}
+[19.982176] (joystick) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable joystick_to_cmd\x1b[0m\n'}
+[20.017991] (-) TimerEvent: {}
+[20.118759] (-) TimerEvent: {}
+[20.219390] (-) TimerEvent: {}
+[20.319854] (-) TimerEvent: {}
+[20.420348] (-) TimerEvent: {}
+[20.462938] (joystick) StdoutLine: {'line': b'[100%] Built target joystick_to_cmd\n'}
+[20.476737] (joystick) CommandEnded: {'returncode': 0}
+[20.497642] (joystick) JobProgress: {'identifier': 'joystick', 'progress': 'install'}
+[20.503363] (joystick) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/joystick'], 'cwd': '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/joystick', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/root'), ('OLDPWD', '/home/leasch/pivoane/raspberryPI3'), ('ROS_PYTHON_VERSION', '3'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'DARCY'), ('WSL_INTEROP', '/run/WSL/9_interop'), ('PULSE_SERVER', '/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/MATLAB/R2022a/bin:/mnt/c/Users/leasc/AppData/Local/Microsoft/WindowsApps:/mnt/c/MinGW/bin:/mnt/c/Users/leasc/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/joystick'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', ''), ('CMAKE_PREFIX_PATH', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces:/opt/ros/humble')]), 'shell': False}
+[20.508175] (joystick) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[20.508528] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/lib/joystick/joystick_to_cmd\n'}
+[20.510675] (joystick) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/lib/joystick/joystick_to_cmd" to ""\n'}
+[20.510980] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/environment/pythonpath.sh\n'}
+[20.511109] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/environment/pythonpath.dsv\n'}
+[20.511402] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick-0.0.0-py3.10.egg-info\n'}
+[20.511889] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[20.512151] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[20.512219] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[20.512459] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[20.512586] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick\n'}
+[20.512671] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/inputs.py\n'}
+[20.512940] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/__init__.py\n'}
+[20.513028] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/README.md\n'}
+[20.513072] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/CONTRIBUTING.md\n'}
+[20.513155] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/package.xml\n'}
+[20.513335] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/resource\n'}
+[20.513409] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/resource/joystick_ros2\n'}
+[20.513512] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/input_example.py\n'}
+[20.513623] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/joystick_ros2.py\n'}
+[20.513743] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/images\n'}
+[20.513836] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/images/mac_settings.png\n'}
+[20.514130] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/LICENSE\n'}
+[20.520585] (-) TimerEvent: {}
+[20.547247] (joystick) StdoutLine: {'line': b"Listing '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick'...\n"}
+[20.547409] (joystick) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/__init__.py'...\n"}
+[20.547469] (joystick) StdoutLine: {'line': b"Listing '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/images'...\n"}
+[20.547519] (joystick) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/input_example.py'...\n"}
+[20.547568] (joystick) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/inputs.py'...\n"}
+[20.547617] (joystick) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/joystick_ros2.py'...\n"}
+[20.547666] (joystick) StdoutLine: {'line': b"Listing '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/local/lib/python3.10/dist-packages/joystick/resource'...\n"}
+[20.550659] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/lib/joystick/joystick_ros2.py\n'}
+[20.551279] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/ament_index/resource_index/package_run_dependencies/joystick\n'}
+[20.551628] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/ament_index/resource_index/parent_prefix_path/joystick\n'}
+[20.551826] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/environment/ament_prefix_path.sh\n'}
+[20.552134] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/environment/ament_prefix_path.dsv\n'}
+[20.552248] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/environment/path.sh\n'}
+[20.552519] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/environment/path.dsv\n'}
+[20.552646] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/local_setup.bash\n'}
+[20.552918] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/local_setup.sh\n'}
+[20.553017] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/local_setup.zsh\n'}
+[20.553265] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/local_setup.dsv\n'}
+[20.553546] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/package.dsv\n'}
+[20.553626] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/ament_index/resource_index/packages/joystick\n'}
+[20.553943] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/cmake/joystickConfig.cmake\n'}
+[20.554053] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/cmake/joystickConfig-version.cmake\n'}
+[20.554109] (joystick) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/joystick/share/joystick/package.xml\n'}
+[20.558928] (joystick) CommandEnded: {'returncode': 0}
+[20.595151] (joystick) JobEnded: {'identifier': 'joystick', 'rc': 0}
+[20.596050] (-) EventReactorShutdown: {}

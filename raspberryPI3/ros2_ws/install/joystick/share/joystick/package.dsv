@@ -1,0 +1,8 @@
+source;share/joystick/hook/cmake_prefix_path.ps1
+source;share/joystick/hook/cmake_prefix_path.dsv
+source;share/joystick/hook/cmake_prefix_path.sh
+source;share/joystick/local_setup.bash
+source;share/joystick/local_setup.dsv
+source;share/joystick/local_setup.ps1
+source;share/joystick/local_setup.sh
+source;share/joystick/local_setup.zsh

@@ -1,0 +1,28 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from interfaces/msg/MotorsOrder.msg
+// generated code does not contain a copyright notice
+
+
+module interfaces {
+  module msg {
+    struct MotorsOrder {
+      @verbatim (language="comment", text=
+        "PWM")
+      @default (value=50)
+      @unit (value="0;100")
+      int8 right_rear_pwm;
+
+      @verbatim (language="comment", text=
+        "PWM")
+      @default (value=50)
+      @unit (value="0;100")
+      int8 left_rear_pwm;
+
+      @verbatim (language="comment", text=
+        "PWM")
+      @default (value=50)
+      @unit (value="0;100")
+      int8 steering_pwm;
+    };
+  };
+};

@@ -1,0 +1,16 @@
+[0.000000] (-) TimerEvent: {}
+[0.001064] (-) JobUnselected: {'identifier': 'can'}
+[0.001156] (-) JobUnselected: {'identifier': 'car_control'}
+[0.001177] (-) JobUnselected: {'identifier': 'carla_msgs'}
+[0.001231] (-) JobUnselected: {'identifier': 'geicar_start'}
+[0.001270] (-) JobUnselected: {'identifier': 'imu_complementary_filter'}
+[0.001288] (-) JobUnselected: {'identifier': 'imu_filter_madgwick'}
+[0.001303] (-) JobUnselected: {'identifier': 'interfaces'}
+[0.001316] (-) JobUnselected: {'identifier': 'joystick'}
+[0.001329] (-) JobUnselected: {'identifier': 'rviz_imu_plugin'}
+[0.001365] (-) JobUnselected: {'identifier': 'simulation'}
+[0.001381] (-) JobUnselected: {'identifier': 'system_check'}
+[0.001397] (imu_tools) JobQueued: {'identifier': 'imu_tools', 'dependencies': OrderedDict([('imu_complementary_filter', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/imu_complementary_filter'), ('imu_filter_madgwick', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/imu_filter_madgwick'), ('rviz_imu_plugin', '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/rviz_imu_plugin')])}
+[0.001425] (imu_tools) JobStarted: {'identifier': 'imu_tools'}
+[0.014078] (imu_tools) JobEnded: {'identifier': 'imu_tools', 'rc': 1}
+[0.024831] (-) EventReactorShutdown: {}

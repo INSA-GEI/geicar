@@ -1,0 +1,13 @@
+{
+  "package_name": "interfaces",
+  "non_idl_tuples": [
+    "/home/leasch/pivoane/raspberryPI3/ros2_ws/src/interfaces:msg/JoystickOrder.msg",
+    "/home/leasch/pivoane/raspberryPI3/ros2_ws/src/interfaces:msg/MotorsOrder.msg",
+    "/home/leasch/pivoane/raspberryPI3/ros2_ws/src/interfaces:msg/MotorsFeedback.msg",
+    "/home/leasch/pivoane/raspberryPI3/ros2_ws/src/interfaces:msg/GeneralData.msg",
+    "/home/leasch/pivoane/raspberryPI3/ros2_ws/src/interfaces:msg/SteeringCalibration.msg",
+    "/home/leasch/pivoane/raspberryPI3/ros2_ws/src/interfaces:msg/Ultrasonic.msg",
+    "/home/leasch/pivoane/raspberryPI3/ros2_ws/src/interfaces:msg/Gnss.msg",
+    "/home/leasch/pivoane/raspberryPI3/ros2_ws/src/interfaces:msg/SystemCheck.msg"
+  ]
+}

@@ -1,0 +1,16 @@
+msg/GeneralData.idl
+msg/GeneralData.msg
+msg/Gnss.idl
+msg/Gnss.msg
+msg/JoystickOrder.idl
+msg/JoystickOrder.msg
+msg/MotorsFeedback.idl
+msg/MotorsFeedback.msg
+msg/MotorsOrder.idl
+msg/MotorsOrder.msg
+msg/SteeringCalibration.idl
+msg/SteeringCalibration.msg
+msg/SystemCheck.idl
+msg/SystemCheck.msg
+msg/Ultrasonic.idl
+msg/Ultrasonic.msg

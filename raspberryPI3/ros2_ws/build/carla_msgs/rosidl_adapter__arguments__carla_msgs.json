@@ -1,0 +1,6 @@
+{
+  "package_name": "carla_msgs",
+  "non_idl_tuples": [
+    "/home/leasch/pivoane/raspberryPI3/ros2_ws/src/carla_msgs:msg/CarlaEgoVehicleControl.msg"
+  ]
+}

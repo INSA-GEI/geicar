@@ -1,0 +1,22 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from interfaces/msg/Ultrasonic.msg
+// generated code does not contain a copyright notice
+
+
+module interfaces {
+  module msg {
+    struct Ultrasonic {
+      int16 front_left;
+
+      int16 front_center;
+
+      int16 front_right;
+
+      int16 rear_left;
+
+      int16 rear_center;
+
+      int16 rear_right;
+    };
+  };
+};

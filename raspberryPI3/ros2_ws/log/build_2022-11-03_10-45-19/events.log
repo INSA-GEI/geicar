@@ -1,0 +1,697 @@
+[0.000000] (-) TimerEvent: {}
+[0.000887] (-) JobUnselected: {'identifier': 'can'}
+[0.000921] (-) JobUnselected: {'identifier': 'car_control'}
+[0.000936] (-) JobUnselected: {'identifier': 'carla_msgs'}
+[0.000949] (-) JobUnselected: {'identifier': 'geicar_start'}
+[0.000962] (-) JobUnselected: {'identifier': 'imu_complementary_filter'}
+[0.000976] (-) JobUnselected: {'identifier': 'imu_filter_madgwick'}
+[0.000989] (-) JobUnselected: {'identifier': 'imu_tools'}
+[0.001028] (-) JobUnselected: {'identifier': 'joystick'}
+[0.001047] (-) JobUnselected: {'identifier': 'rviz_imu_plugin'}
+[0.001067] (-) JobUnselected: {'identifier': 'simulation'}
+[0.001085] (-) JobUnselected: {'identifier': 'system_check'}
+[0.001100] (interfaces) JobQueued: {'identifier': 'interfaces', 'dependencies': OrderedDict()}
+[0.001118] (interfaces) JobStarted: {'identifier': 'interfaces'}
+[0.016316] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'cmake'}
+[0.016541] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '/home/leasch/pivoane/raspberryPI3/ros2_ws/src/interfaces', '-DCMAKE_INSTALL_PREFIX=/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces'], 'cwd': '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/root'), ('OLDPWD', '/home/leasch/pivoane/raspberryPI3'), ('ROS_PYTHON_VERSION', '3'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'DARCY'), ('WSL_INTEROP', '/run/WSL/9_interop'), ('PULSE_SERVER', '/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/MATLAB/R2022a/bin:/mnt/c/Users/leasc/AppData/Local/Microsoft/WindowsApps:/mnt/c/MinGW/bin:/mnt/c/Users/leasc/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/interfaces'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', ''), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.099431] (-) TimerEvent: {}
+[0.200042] (-) TimerEvent: {}
+[0.302746] (-) TimerEvent: {}
+[0.403370] (-) TimerEvent: {}
+[0.504053] (-) TimerEvent: {}
+[0.546173] (interfaces) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.2.0\n'}
+[0.604281] (-) TimerEvent: {}
+[0.705016] (-) TimerEvent: {}
+[0.805655] (-) TimerEvent: {}
+[0.906306] (-) TimerEvent: {}
+[1.006978] (-) TimerEvent: {}
+[1.107715] (-) TimerEvent: {}
+[1.208595] (-) TimerEvent: {}
+[1.309384] (-) TimerEvent: {}
+[1.410116] (-) TimerEvent: {}
+[1.510904] (-) TimerEvent: {}
+[1.611619] (-) TimerEvent: {}
+[1.613958] (interfaces) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.2.0\n'}
+[1.712086] (-) TimerEvent: {}
+[1.813492] (-) TimerEvent: {}
+[1.914283] (-) TimerEvent: {}
+[2.015126] (-) TimerEvent: {}
+[2.115803] (-) TimerEvent: {}
+[2.216556] (-) TimerEvent: {}
+[2.317185] (-) TimerEvent: {}
+[2.395164] (interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[2.417427] (-) TimerEvent: {}
+[2.518124] (-) TimerEvent: {}
+[2.618842] (-) TimerEvent: {}
+[2.674201] (interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[2.687099] (interfaces) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[2.698785] (interfaces) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[2.700156] (interfaces) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[2.706563] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[2.719109] (-) TimerEvent: {}
+[2.819878] (-) TimerEvent: {}
+[2.920683] (-) TimerEvent: {}
+[3.003176] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[3.014051] (interfaces) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[3.014588] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[3.015391] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[3.020993] (-) TimerEvent: {}
+[3.030809] (interfaces) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.2 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[3.121263] (-) TimerEvent: {}
+[3.221777] (-) TimerEvent: {}
+[3.313400] (interfaces) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3.10 (found version "3.10.6") found components: Interpreter \n'}
+[3.322081] (-) TimerEvent: {}
+[3.422506] (-) TimerEvent: {}
+[3.483980] (interfaces) StdoutLine: {'line': b'-- Found rclcpp: 16.0.1 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[3.522778] (-) TimerEvent: {}
+[3.623220] (-) TimerEvent: {}
+[3.723843] (-) TimerEvent: {}
+[3.824589] (-) TimerEvent: {}
+[3.925346] (-) TimerEvent: {}
+[3.930782] (interfaces) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.3 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[3.940000] (interfaces) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.3 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[3.959275] (interfaces) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.3 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[4.000727] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[4.025538] (-) TimerEvent: {}
+[4.049834] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[4.125690] (-) TimerEvent: {}
+[4.136779] (interfaces) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.0 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[4.140809] (interfaces) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.1 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[4.226045] (-) TimerEvent: {}
+[4.326577] (-) TimerEvent: {}
+[4.427204] (-) TimerEvent: {}
+[4.527809] (-) TimerEvent: {}
+[4.628360] (-) TimerEvent: {}
+[4.728764] (-) TimerEvent: {}
+[4.829229] (-) TimerEvent: {}
+[4.930034] (-) TimerEvent: {}
+[5.030718] (-) TimerEvent: {}
+[5.131514] (-) TimerEvent: {}
+[5.232275] (-) TimerEvent: {}
+[5.333035] (-) TimerEvent: {}
+[5.433687] (-) TimerEvent: {}
+[5.534281] (-) TimerEvent: {}
+[5.634998] (-) TimerEvent: {}
+[5.735588] (-) TimerEvent: {}
+[5.836322] (-) TimerEvent: {}
+[5.936831] (-) TimerEvent: {}
+[6.037330] (-) TimerEvent: {}
+[6.138086] (-) TimerEvent: {}
+[6.238569] (-) TimerEvent: {}
+[6.339098] (-) TimerEvent: {}
+[6.439775] (-) TimerEvent: {}
+[6.540440] (-) TimerEvent: {}
+[6.640980] (-) TimerEvent: {}
+[6.741436] (-) TimerEvent: {}
+[6.842126] (-) TimerEvent: {}
+[6.942957] (-) TimerEvent: {}
+[7.043643] (-) TimerEvent: {}
+[7.052221] (interfaces) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[7.143890] (-) TimerEvent: {}
+[7.244452] (-) TimerEvent: {}
+[7.344912] (-) TimerEvent: {}
+[7.445722] (-) TimerEvent: {}
+[7.546363] (-) TimerEvent: {}
+[7.646884] (-) TimerEvent: {}
+[7.747468] (-) TimerEvent: {}
+[7.848192] (-) TimerEvent: {}
+[7.949070] (-) TimerEvent: {}
+[8.049769] (-) TimerEvent: {}
+[8.150210] (-) TimerEvent: {}
+[8.251056] (-) TimerEvent: {}
+[8.351563] (-) TimerEvent: {}
+[8.452180] (-) TimerEvent: {}
+[8.552809] (-) TimerEvent: {}
+[8.653368] (-) TimerEvent: {}
+[8.753904] (-) TimerEvent: {}
+[8.854481] (-) TimerEvent: {}
+[8.955082] (-) TimerEvent: {}
+[9.055876] (-) TimerEvent: {}
+[9.156481] (-) TimerEvent: {}
+[9.257256] (-) TimerEvent: {}
+[9.357949] (-) TimerEvent: {}
+[9.458629] (-) TimerEvent: {}
+[9.559271] (-) TimerEvent: {}
+[9.659785] (-) TimerEvent: {}
+[9.760365] (-) TimerEvent: {}
+[9.860930] (-) TimerEvent: {}
+[9.961509] (-) TimerEvent: {}
+[10.027611] (interfaces) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[10.061747] (-) TimerEvent: {}
+[10.162499] (-) TimerEvent: {}
+[10.263345] (-) TimerEvent: {}
+[10.363856] (-) TimerEvent: {}
+[10.464551] (-) TimerEvent: {}
+[10.565361] (-) TimerEvent: {}
+[10.665961] (-) TimerEvent: {}
+[10.766771] (-) TimerEvent: {}
+[10.867426] (-) TimerEvent: {}
+[10.968034] (-) TimerEvent: {}
+[11.068784] (-) TimerEvent: {}
+[11.169494] (-) TimerEvent: {}
+[11.270464] (-) TimerEvent: {}
+[11.371296] (-) TimerEvent: {}
+[11.471900] (-) TimerEvent: {}
+[11.572559] (-) TimerEvent: {}
+[11.673219] (-) TimerEvent: {}
+[11.773713] (-) TimerEvent: {}
+[11.874351] (-) TimerEvent: {}
+[11.975188] (-) TimerEvent: {}
+[12.075841] (-) TimerEvent: {}
+[12.176350] (-) TimerEvent: {}
+[12.277669] (-) TimerEvent: {}
+[12.378384] (-) TimerEvent: {}
+[12.478942] (-) TimerEvent: {}
+[12.579571] (-) TimerEvent: {}
+[12.680176] (-) TimerEvent: {}
+[12.780799] (-) TimerEvent: {}
+[12.881547] (-) TimerEvent: {}
+[12.982146] (-) TimerEvent: {}
+[13.082847] (-) TimerEvent: {}
+[13.183565] (-) TimerEvent: {}
+[13.284161] (-) TimerEvent: {}
+[13.384766] (-) TimerEvent: {}
+[13.485495] (-) TimerEvent: {}
+[13.586266] (-) TimerEvent: {}
+[13.687177] (-) TimerEvent: {}
+[13.787951] (-) TimerEvent: {}
+[13.888718] (-) TimerEvent: {}
+[13.989242] (-) TimerEvent: {}
+[14.089837] (-) TimerEvent: {}
+[14.190631] (-) TimerEvent: {}
+[14.291250] (-) TimerEvent: {}
+[14.391976] (-) TimerEvent: {}
+[14.492680] (-) TimerEvent: {}
+[14.593187] (-) TimerEvent: {}
+[14.693941] (-) TimerEvent: {}
+[14.794740] (-) TimerEvent: {}
+[14.895418] (-) TimerEvent: {}
+[14.996237] (-) TimerEvent: {}
+[15.096941] (-) TimerEvent: {}
+[15.197756] (-) TimerEvent: {}
+[15.298559] (-) TimerEvent: {}
+[15.399152] (-) TimerEvent: {}
+[15.499798] (-) TimerEvent: {}
+[15.574582] (interfaces) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[15.600058] (-) TimerEvent: {}
+[15.700583] (-) TimerEvent: {}
+[15.722407] (interfaces) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)\n'}
+[15.800792] (-) TimerEvent: {}
+[15.901233] (-) TimerEvent: {}
+[15.942532] (interfaces) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)\n'}
+[16.001526] (-) TimerEvent: {}
+[16.102008] (-) TimerEvent: {}
+[16.174128] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[16.202268] (-) TimerEvent: {}
+[16.261281] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[16.302755] (-) TimerEvent: {}
+[16.403381] (-) TimerEvent: {}
+[16.504186] (-) TimerEvent: {}
+[16.533717] (interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.6", minimum required is "3.6") \n'}
+[16.546252] (interfaces) StdoutLine: {'line': b'-- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)\n'}
+[16.604604] (-) TimerEvent: {}
+[16.705380] (-) TimerEvent: {}
+[16.806224] (-) TimerEvent: {}
+[16.906910] (-) TimerEvent: {}
+[17.007531] (-) TimerEvent: {}
+[17.108359] (-) TimerEvent: {}
+[17.209109] (-) TimerEvent: {}
+[17.309868] (-) TimerEvent: {}
+[17.380006] (interfaces) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.6", minimum required is "3.5") \n'}
+[17.380269] (interfaces) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[17.380370] (interfaces) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10\n'}
+[17.380454] (interfaces) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so\n'}
+[17.398788] (interfaces) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[17.410179] (-) TimerEvent: {}
+[17.510740] (-) TimerEvent: {}
+[17.524555] (interfaces) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.4 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[17.568984] (interfaces) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[17.571681] (interfaces) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[17.574514] (interfaces) StdoutLine: {'line': b'-- Configuring done\n'}
+[17.607831] (interfaces) StdoutLine: {'line': b'-- Generating done\n'}
+[17.609819] (interfaces) StdoutLine: {'line': b'-- Build files have been written to: /home/leasch/pivoane/raspberryPI3/ros2_ws/build/interfaces\n'}
+[17.610926] (-) TimerEvent: {}
+[17.618562] (interfaces) CommandEnded: {'returncode': 0}
+[17.620733] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'build'}
+[17.620769] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/interfaces', '--', '-j8', '-l8'], 'cwd': '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/root'), ('OLDPWD', '/home/leasch/pivoane/raspberryPI3'), ('ROS_PYTHON_VERSION', '3'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'DARCY'), ('WSL_INTEROP', '/run/WSL/9_interop'), ('PULSE_SERVER', '/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/MATLAB/R2022a/bin:/mnt/c/Users/leasc/AppData/Local/Microsoft/WindowsApps:/mnt/c/MinGW/bin:/mnt/c/Users/leasc/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/interfaces'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', ''), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[17.649632] (interfaces) StdoutLine: {'line': b'[  1%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[17.657100] (interfaces) StdoutLine: {'line': b'[  2%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[17.661075] (interfaces) StdoutLine: {'line': b'[  2%] Built target ament_cmake_python_copy_interfaces\n'}
+[17.711163] (-) TimerEvent: {}
+[17.811529] (-) TimerEvent: {}
+[17.880452] (interfaces) StdoutLine: {'line': b'running egg_info\n'}
+[17.881102] (interfaces) StdoutLine: {'line': b'creating interfaces.egg-info\n'}
+[17.881484] (interfaces) StdoutLine: {'line': b'writing interfaces.egg-info/PKG-INFO\n'}
+[17.881808] (interfaces) StdoutLine: {'line': b'writing dependency_links to interfaces.egg-info/dependency_links.txt\n'}
+[17.881909] (interfaces) StdoutLine: {'line': b'writing top-level names to interfaces.egg-info/top_level.txt\n'}
+[17.882214] (interfaces) StdoutLine: {'line': b"writing manifest file 'interfaces.egg-info/SOURCES.txt'\n"}
+[17.885723] (interfaces) StdoutLine: {'line': b"reading manifest file 'interfaces.egg-info/SOURCES.txt'\n"}
+[17.886116] (interfaces) StdoutLine: {'line': b"writing manifest file 'interfaces.egg-info/SOURCES.txt'\n"}
+[17.908332] (interfaces) StdoutLine: {'line': b'[  2%] Built target ament_cmake_python_build_interfaces_egg\n'}
+[17.911719] (-) TimerEvent: {}
+[18.012149] (-) TimerEvent: {}
+[18.112644] (-) TimerEvent: {}
+[18.213087] (-) TimerEvent: {}
+[18.313632] (-) TimerEvent: {}
+[18.414075] (-) TimerEvent: {}
+[18.514485] (-) TimerEvent: {}
+[18.555792] (interfaces) StdoutLine: {'line': b'[  3%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/joystick_order__functions.c.o\x1b[0m\n'}
+[18.559694] (interfaces) StdoutLine: {'line': b'[  4%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/motors_order__functions.c.o\x1b[0m\n'}
+[18.560748] (interfaces) StdoutLine: {'line': b'[  5%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/motors_feedback__functions.c.o\x1b[0m\n'}
+[18.572329] (interfaces) StdoutLine: {'line': b'[  6%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/general_data__functions.c.o\x1b[0m\n'}
+[18.572548] (interfaces) StdoutLine: {'line': b'[  8%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/steering_calibration__functions.c.o\x1b[0m\n'}
+[18.573328] (interfaces) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/ultrasonic__functions.c.o\x1b[0m\n'}
+[18.576466] (interfaces) StdoutLine: {'line': b'[ 10%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/gnss__functions.c.o\x1b[0m\n'}
+[18.578615] (interfaces) StdoutLine: {'line': b'[ 10%] Built target interfaces__cpp\n'}
+[18.585131] (interfaces) StdoutLine: {'line': b'[ 11%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/system_check__functions.c.o\x1b[0m\n'}
+[18.614595] (-) TimerEvent: {}
+[18.638789] (interfaces) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[18.639109] (interfaces) StdoutLine: {'line': b'[ 14%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[18.639199] (interfaces) StdoutLine: {'line': b'[ 14%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[18.643467] (interfaces) StdoutLine: {'line': b'[ 16%] \x1b[32m\x1b[1mLinking C shared library libinterfaces__rosidl_generator_c.so\x1b[0m\n'}
+[18.714736] (-) TimerEvent: {}
+[18.753629] (interfaces) StdoutLine: {'line': b'[ 16%] Built target interfaces__rosidl_generator_c\n'}
+[18.761067] (interfaces) StdoutLine: {'line': b'[ 17%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[18.762021] (interfaces) StdoutLine: {'line': b'[ 19%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[18.762202] (interfaces) StdoutLine: {'line': b'[ 19%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[18.814867] (-) TimerEvent: {}
+[18.915195] (-) TimerEvent: {}
+[19.015569] (-) TimerEvent: {}
+[19.116013] (-) TimerEvent: {}
+[19.216440] (-) TimerEvent: {}
+[19.316899] (-) TimerEvent: {}
+[19.417306] (-) TimerEvent: {}
+[19.517755] (-) TimerEvent: {}
+[19.618203] (-) TimerEvent: {}
+[19.680234] (interfaces) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/motors_feedback__type_support.cpp.o\x1b[0m\n'}
+[19.680446] (interfaces) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/joystick_order__type_support.cpp.o\x1b[0m\n'}
+[19.680599] (interfaces) StdoutLine: {'line': b'[ 22%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/motors_order__type_support.cpp.o\x1b[0m\n'}
+[19.718309] (-) TimerEvent: {}
+[19.818632] (-) TimerEvent: {}
+[19.821639] (interfaces) StdoutLine: {'line': b'[ 24%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/joystick_order__type_support.cpp.o\x1b[0m\n'}
+[19.896600] (interfaces) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/joystick_order__type_support.cpp.o\x1b[0m\n'}
+[19.913655] (interfaces) StdoutLine: {'line': b'[ 26%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/joystick_order__type_support.cpp.o\x1b[0m\n'}
+[19.918768] (-) TimerEvent: {}
+[19.920374] (interfaces) StdoutLine: {'line': b'[ 27%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/joystick_order__type_support_c.cpp.o\x1b[0m\n'}
+[19.927739] (interfaces) StdoutLine: {'line': b'[ 28%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/motors_order__type_support.cpp.o\x1b[0m\n'}
+[19.957381] (interfaces) StdoutLine: {'line': b'[ 29%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/motors_feedback__type_support.cpp.o\x1b[0m\n'}
+[19.985696] (interfaces) StdoutLine: {'line': b'[ 31%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/general_data__type_support.cpp.o\x1b[0m\n'}
+[19.989311] (interfaces) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/joystick_order__type_support.c.o\x1b[0m\n'}
+[20.016645] (interfaces) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/steering_calibration__type_support.cpp.o\x1b[0m\n'}
+[20.018978] (-) TimerEvent: {}
+[20.021436] (interfaces) StdoutLine: {'line': b'[ 34%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/motors_order__type_support.c.o\x1b[0m\n'}
+[20.044858] (interfaces) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/ultrasonic__type_support.cpp.o\x1b[0m\n'}
+[20.052273] (interfaces) StdoutLine: {'line': b'[ 36%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/motors_feedback__type_support.c.o\x1b[0m\n'}
+[20.053218] (interfaces) StdoutLine: {'line': b'[ 37%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/motors_order__type_support_c.cpp.o\x1b[0m\n'}
+[20.057616] (interfaces) StdoutLine: {'line': b'[ 39%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/general_data__type_support.cpp.o\x1b[0m\n'}
+[20.058030] (interfaces) StdoutLine: {'line': b'[ 40%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/steering_calibration__type_support.cpp.o\x1b[0m\n'}
+[20.073522] (interfaces) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/gnss__type_support.cpp.o\x1b[0m\n'}
+[20.084153] (interfaces) StdoutLine: {'line': b'[ 42%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/general_data__type_support.c.o\x1b[0m\n'}
+[20.100830] (interfaces) StdoutLine: {'line': b'[ 43%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/system_check__type_support.cpp.o\x1b[0m\n'}
+[20.117389] (interfaces) StdoutLine: {'line': b'[ 44%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/steering_calibration__type_support.c.o\x1b[0m\n'}
+[20.119090] (-) TimerEvent: {}
+[20.132769] (interfaces) StdoutLine: {'line': b'[ 45%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_c.so\x1b[0m\n'}
+[20.150794] (interfaces) StdoutLine: {'line': b'[ 47%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/ultrasonic__type_support.c.o\x1b[0m\n'}
+[20.192607] (interfaces) StdoutLine: {'line': b'[ 48%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/gnss__type_support.c.o\x1b[0m\n'}
+[20.219233] (-) TimerEvent: {}
+[20.226998] (interfaces) StdoutLine: {'line': b'[ 49%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/system_check__type_support.c.o\x1b[0m\n'}
+[20.238833] (interfaces) StdoutLine: {'line': b'[ 49%] Built target interfaces__rosidl_typesupport_c\n'}
+[20.246551] (interfaces) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/ultrasonic__type_support.cpp.o\x1b[0m\n'}
+[20.263623] (interfaces) StdoutLine: {'line': b'[ 51%] \x1b[32m\x1b[1mLinking C shared library libinterfaces__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[20.303424] (interfaces) StdoutLine: {'line': b'[ 52%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/motors_order__type_support.cpp.o\x1b[0m\n'}
+[20.319501] (-) TimerEvent: {}
+[20.370635] (interfaces) StdoutLine: {'line': b'[ 52%] Built target interfaces__rosidl_typesupport_introspection_c\n'}
+[20.375347] (interfaces) StdoutLine: {'line': b'[ 54%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/motors_feedback__type_support.cpp.o\x1b[0m\n'}
+[20.378374] (interfaces) StdoutLine: {'line': b'[ 55%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/general_data__type_support.cpp.o\x1b[0m\n'}
+[20.381893] (interfaces) StdoutLine: {'line': b'[ 56%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/gnss__type_support.cpp.o\x1b[0m\n'}
+[20.392514] (interfaces) StdoutLine: {'line': b'[ 57%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/system_check__type_support.cpp.o\x1b[0m\n'}
+[20.419624] (-) TimerEvent: {}
+[20.424553] (interfaces) StdoutLine: {'line': b'[ 58%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/motors_order__type_support.cpp.o\x1b[0m\n'}
+[20.461858] (interfaces) StdoutLine: {'line': b'[ 59%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/motors_feedback__type_support_c.cpp.o\x1b[0m\n'}
+[20.519802] (-) TimerEvent: {}
+[20.571785] (interfaces) StdoutLine: {'line': b'[ 60%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/general_data__type_support_c.cpp.o\x1b[0m\n'}
+[20.619939] (-) TimerEvent: {}
+[20.695654] (interfaces) StdoutLine: {'line': b'[ 62%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/steering_calibration__type_support_c.cpp.o\x1b[0m\n'}
+[20.700223] (interfaces) StdoutLine: {'line': b'[ 63%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[20.720148] (-) TimerEvent: {}
+[20.758557] (interfaces) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/steering_calibration__type_support.cpp.o\x1b[0m\n'}
+[20.807211] (interfaces) StdoutLine: {'line': b'[ 64%] Built target interfaces__rosidl_typesupport_cpp\n'}
+[20.814579] (interfaces) StdoutLine: {'line': b'[ 65%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/ultrasonic__type_support.cpp.o\x1b[0m\n'}
+[20.820279] (-) TimerEvent: {}
+[20.828841] (interfaces) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/gnss__type_support.cpp.o\x1b[0m\n'}
+[20.845917] (interfaces) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/system_check__type_support.cpp.o\x1b[0m\n'}
+[20.874235] (interfaces) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/ultrasonic__type_support_c.cpp.o\x1b[0m\n'}
+[20.898356] (interfaces) StdoutLine: {'line': b'[ 70%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/motors_feedback__type_support.cpp.o\x1b[0m\n'}
+[20.920413] (-) TimerEvent: {}
+[20.987003] (interfaces) StdoutLine: {'line': b'[ 71%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/gnss__type_support_c.cpp.o\x1b[0m\n'}
+[21.020548] (-) TimerEvent: {}
+[21.105675] (interfaces) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/system_check__type_support_c.cpp.o\x1b[0m\n'}
+[21.120690] (-) TimerEvent: {}
+[21.218355] (interfaces) StdoutLine: {'line': b'[ 73%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/general_data__type_support.cpp.o\x1b[0m\n'}
+[21.220812] (-) TimerEvent: {}
+[21.259711] (interfaces) StdoutLine: {'line': b'[ 74%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/steering_calibration__type_support.cpp.o\x1b[0m\n'}
+[21.262280] (interfaces) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/ultrasonic__type_support.cpp.o\x1b[0m\n'}
+[21.274173] (interfaces) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/gnss__type_support.cpp.o\x1b[0m\n'}
+[21.320940] (-) TimerEvent: {}
+[21.326211] (interfaces) StdoutLine: {'line': b'[ 78%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[21.362784] (interfaces) StdoutLine: {'line': b'[ 79%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/system_check__type_support.cpp.o\x1b[0m\n'}
+[21.421082] (-) TimerEvent: {}
+[21.484141] (interfaces) StdoutLine: {'line': b'[ 79%] Built target interfaces__rosidl_typesupport_introspection_cpp\n'}
+[21.521267] (-) TimerEvent: {}
+[21.529808] (interfaces) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[21.621627] (-) TimerEvent: {}
+[21.705855] (interfaces) StdoutLine: {'line': b'[ 80%] Built target interfaces__rosidl_typesupport_fastrtps_c\n'}
+[21.721747] (-) TimerEvent: {}
+[21.811554] (interfaces) StdoutLine: {'line': b'[ 81%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[21.822007] (-) TimerEvent: {}
+[21.922431] (-) TimerEvent: {}
+[22.021691] (interfaces) StdoutLine: {'line': b'[ 81%] Built target interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[22.022567] (-) TimerEvent: {}
+[22.035806] (interfaces) StdoutLine: {'line': b'[ 81%] Built target interfaces\n'}
+[22.051742] (interfaces) StdoutLine: {'line': b'[ 82%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[22.122867] (-) TimerEvent: {}
+[22.223428] (-) TimerEvent: {}
+[22.323850] (-) TimerEvent: {}
+[22.424339] (-) TimerEvent: {}
+[22.524910] (-) TimerEvent: {}
+[22.625355] (-) TimerEvent: {}
+[22.725802] (-) TimerEvent: {}
+[22.826373] (-) TimerEvent: {}
+[22.926874] (-) TimerEvent: {}
+[23.027371] (-) TimerEvent: {}
+[23.127890] (-) TimerEvent: {}
+[23.228336] (-) TimerEvent: {}
+[23.328686] (-) TimerEvent: {}
+[23.429173] (-) TimerEvent: {}
+[23.529576] (-) TimerEvent: {}
+[23.630024] (-) TimerEvent: {}
+[23.730452] (-) TimerEvent: {}
+[23.830873] (-) TimerEvent: {}
+[23.931341] (-) TimerEvent: {}
+[24.015418] (interfaces) StdoutLine: {'line': b'[ 82%] Built target interfaces__py\n'}
+[24.031753] (-) TimerEvent: {}
+[24.034219] (interfaces) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_motors_order_s.c.o\x1b[0m\n'}
+[24.034498] (interfaces) StdoutLine: {'line': b'[ 85%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_general_data_s.c.o\x1b[0m\n'}
+[24.034923] (interfaces) StdoutLine: {'line': b'[ 86%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_steering_calibration_s.c.o\x1b[0m\n'}
+[24.035229] (interfaces) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_motors_feedback_s.c.o\x1b[0m\n'}
+[24.035490] (interfaces) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_joystick_order_s.c.o\x1b[0m\n'}
+[24.043441] (interfaces) StdoutLine: {'line': b'[ 89%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_ultrasonic_s.c.o\x1b[0m\n'}
+[24.046411] (interfaces) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_gnss_s.c.o\x1b[0m\n'}
+[24.051284] (interfaces) StdoutLine: {'line': b'[ 91%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_py.dir/rosidl_generator_py/interfaces/msg/_system_check_s.c.o\x1b[0m\n'}
+[24.131794] (-) TimerEvent: {}
+[24.232185] (-) TimerEvent: {}
+[24.301515] (interfaces) StdoutLine: {'line': b'[ 93%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/libinterfaces__rosidl_generator_py.so\x1b[0m\n'}
+[24.332423] (-) TimerEvent: {}
+[24.395760] (interfaces) StdoutLine: {'line': b'[ 93%] Built target interfaces__rosidl_generator_py\n'}
+[24.408139] (interfaces) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[24.408295] (interfaces) StdoutLine: {'line': b'[ 95%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[24.408347] (interfaces) StdoutLine: {'line': b'[ 96%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[24.432738] (-) TimerEvent: {}
+[24.487792] (interfaces) StdoutLine: {'line': b'[ 97%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[24.532905] (-) TimerEvent: {}
+[24.537584] (interfaces) StdoutLine: {'line': b'[ 98%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[24.546454] (interfaces) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\x1b[0m\n'}
+[24.581595] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_c__pyext\n'}
+[24.630759] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_introspection_c__pyext\n'}
+[24.633010] (-) TimerEvent: {}
+[24.637305] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_fastrtps_c__pyext\n'}
+[24.645178] (interfaces) CommandEnded: {'returncode': 0}
+[24.733372] (-) TimerEvent: {}
+[24.790721] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'install'}
+[24.797601] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/interfaces'], 'cwd': '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/interfaces', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('MOTD_SHOWN', 'update-motd'), ('HOME', '/root'), ('OLDPWD', '/home/leasch/pivoane/raspberryPI3'), ('ROS_PYTHON_VERSION', '3'), ('WSL_DISTRO_NAME', 'Ubuntu'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'DARCY'), ('WSL_INTEROP', '/run/WSL/9_interop'), ('PULSE_SERVER', '/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Program Files/dotnet/:/mnt/c/Program Files/MATLAB/R2022a/bin:/mnt/c/Users/leasc/AppData/Local/Microsoft/WindowsApps:/mnt/c/MinGW/bin:/mnt/c/Users/leasc/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('PWD', '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/interfaces'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', ''), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[24.803619] (interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[24.804128] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/ament_index/resource_index/rosidl_interfaces/interfaces\n'}
+[24.804524] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces\n'}
+[24.804718] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg\n'}
+[24.805018] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/ultrasonic.h\n'}
+[24.805124] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail\n'}
+[24.805404] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__functions.h\n'}
+[24.805906] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__functions.h\n'}
+[24.806063] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__struct.h\n'}
+[24.806177] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__struct.h\n'}
+[24.806434] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__functions.h\n'}
+[24.806572] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__functions.h\n'}
+[24.806683] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__type_support.h\n'}
+[24.806819] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__type_support.h\n'}
+[24.806902] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__functions.c\n'}
+[24.807013] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__functions.h\n'}
+[24.807129] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__functions.h\n'}
+[24.807307] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__type_support.h\n'}
+[24.807550] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__functions.c\n'}
+[24.807686] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__functions.h\n'}
+[24.807784] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__functions.c\n'}
+[24.807920] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__struct.h\n'}
+[24.808082] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__functions.c\n'}
+[24.808201] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__struct.h\n'}
+[24.808429] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__type_support.h\n'}
+[24.808506] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__struct.h\n'}
+[24.808624] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__functions.c\n'}
+[24.808747] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__functions.h\n'}
+[24.808852] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__functions.c\n'}
+[24.809003] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__type_support.h\n'}
+[24.809064] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__struct.h\n'}
+[24.809158] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__struct.h\n'}
+[24.809356] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__type_support.h\n'}
+[24.809431] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__type_support.h\n'}
+[24.809499] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__struct.h\n'}
+[24.809558] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__functions.c\n'}
+[24.809616] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__type_support.h\n'}
+[24.809770] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__functions.c\n'}
+[24.809846] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/gnss.h\n'}
+[24.809945] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/steering_calibration.h\n'}
+[24.810130] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/general_data.h\n'}
+[24.810206] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motors_order.h\n'}
+[24.810274] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/joystick_order.h\n'}
+[24.810343] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/system_check.h\n'}
+[24.810419] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[24.810496] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motors_feedback.h\n'}
+[24.810581] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/environment/library_path.sh\n'}
+[24.810653] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/environment/library_path.dsv\n'}
+[24.810724] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so\n'}
+[24.812897] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so" to ""\n'}
+[24.813249] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces\n'}
+[24.813617] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg\n'}
+[24.813716] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail\n'}
+[24.813989] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__rosidl_typesupport_fastrtps_c.h\n'}
+[24.814143] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__rosidl_typesupport_fastrtps_c.h\n'}
+[24.814204] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__rosidl_typesupport_fastrtps_c.h\n'}
+[24.814330] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__rosidl_typesupport_fastrtps_c.h\n'}
+[24.814487] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__rosidl_typesupport_fastrtps_c.h\n'}
+[24.814761] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__rosidl_typesupport_fastrtps_c.h\n'}
+[24.815092] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__rosidl_typesupport_fastrtps_c.h\n'}
+[24.815175] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__rosidl_typesupport_fastrtps_c.h\n'}
+[24.815238] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[24.815374] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[24.815719] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[24.815809] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces\n'}
+[24.816107] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg\n'}
+[24.816244] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/ultrasonic.hpp\n'}
+[24.816406] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail\n'}
+[24.816499] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__struct.hpp\n'}
+[24.816653] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__traits.hpp\n'}
+[24.816838] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__builder.hpp\n'}
+[24.816999] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__traits.hpp\n'}
+[24.817124] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__struct.hpp\n'}
+[24.817418] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__struct.hpp\n'}
+[24.817612] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__struct.hpp\n'}
+[24.817764] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__traits.hpp\n'}
+[24.817880] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__struct.hpp\n'}
+[24.817987] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__traits.hpp\n'}
+[24.818133] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__traits.hpp\n'}
+[24.818261] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__builder.hpp\n'}
+[24.818449] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__struct.hpp\n'}
+[24.818590] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__traits.hpp\n'}
+[24.818648] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__builder.hpp\n'}
+[24.818776] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__builder.hpp\n'}
+[24.819060] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__builder.hpp\n'}
+[24.819274] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__builder.hpp\n'}
+[24.819424] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__builder.hpp\n'}
+[24.819506] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__struct.hpp\n'}
+[24.819593] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__traits.hpp\n'}
+[24.819767] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__struct.hpp\n'}
+[24.819824] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__builder.hpp\n'}
+[24.819929] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__traits.hpp\n'}
+[24.820042] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/system_check.hpp\n'}
+[24.820107] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motors_feedback.hpp\n'}
+[24.820236] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/gnss.hpp\n'}
+[24.820373] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/general_data.hpp\n'}
+[24.820503] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/steering_calibration.hpp\n'}
+[24.820635] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/motors_order.hpp\n'}
+[24.820782] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/joystick_order.hpp\n'}
+[24.820963] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces\n'}
+[24.821142] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg\n'}
+[24.821255] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail\n'}
+[24.821543] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[24.821680] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[24.821844] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/dds_fastrtps\n'}
+[24.822014] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[24.822182] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[24.822337] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[24.822589] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[24.822761] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[24.822916] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[24.823087] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[24.823248] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[24.823486] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[24.823567] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces\n'}
+[24.823632] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg\n'}
+[24.823706] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[24.823779] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail\n'}
+[24.823847] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__type_support.c\n'}
+[24.823909] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__type_support.c\n'}
+[24.823971] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__type_support.c\n'}
+[24.824039] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__rosidl_typesupport_introspection_c.h\n'}
+[24.824104] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__rosidl_typesupport_introspection_c.h\n'}
+[24.824170] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__type_support.c\n'}
+[24.824239] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__rosidl_typesupport_introspection_c.h\n'}
+[24.824354] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__rosidl_typesupport_introspection_c.h\n'}
+[24.824432] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__type_support.c\n'}
+[24.824489] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__rosidl_typesupport_introspection_c.h\n'}
+[24.824653] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__rosidl_typesupport_introspection_c.h\n'}
+[24.824718] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__type_support.c\n'}
+[24.824781] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__type_support.c\n'}
+[24.824843] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__rosidl_typesupport_introspection_c.h\n'}
+[24.824910] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__type_support.c\n'}
+[24.824980] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__rosidl_typesupport_introspection_c.h\n'}
+[24.825041] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so\n'}
+[24.825704] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so" to ""\n'}
+[24.825958] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so\n'}
+[24.826821] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so" to ""\n'}
+[24.827085] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces\n'}
+[24.827350] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg\n'}
+[24.827547] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail\n'}
+[24.827783] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__rosidl_typesupport_introspection_cpp.hpp\n'}
+[24.827928] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__rosidl_typesupport_introspection_cpp.hpp\n'}
+[24.828081] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__rosidl_typesupport_introspection_cpp.hpp\n'}
+[24.828246] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__type_support.cpp\n'}
+[24.828520] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/joystick_order__type_support.cpp\n'}
+[24.828589] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/gnss__type_support.cpp\n'}
+[24.828631] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__rosidl_typesupport_introspection_cpp.hpp\n'}
+[24.828750] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__rosidl_typesupport_introspection_cpp.hpp\n'}
+[24.829040] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/system_check__rosidl_typesupport_introspection_cpp.hpp\n'}
+[24.829166] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_feedback__type_support.cpp\n'}
+[24.829293] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/steering_calibration__type_support.cpp\n'}
+[24.829406] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/ultrasonic__type_support.cpp\n'}
+[24.829620] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__type_support.cpp\n'}
+[24.829706] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[24.829751] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/general_data__type_support.cpp\n'}
+[24.829790] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/include/interfaces/interfaces/msg/detail/motors_order__rosidl_typesupport_introspection_cpp.hpp\n'}
+[24.829931] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[24.830060] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[24.830110] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so\n'}
+[24.830302] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so" to ""\n'}
+[24.830361] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.sh\n'}
+[24.830466] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.dsv\n'}
+[24.830588] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info\n'}
+[24.831223] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[24.831402] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[24.831636] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[24.831704] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[24.831840] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces\n'}
+[24.831964] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[24.832117] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/libinterfaces__rosidl_generator_py.so\n'}
+[24.832241] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[24.832389] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/__init__.py\n'}
+[24.832512] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg\n'}
+[24.832665] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_feedback.py\n'}
+[24.832782] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_ultrasonic_s.c\n'}
+[24.832910] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_ultrasonic.py\n'}
+[24.833057] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/__init__.py\n'}
+[24.833163] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_joystick_order.py\n'}
+[24.833288] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_feedback_s.c\n'}
+[24.833405] (-) TimerEvent: {}
+[24.833735] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_gnss.py\n'}
+[24.833901] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_order_s.c\n'}
+[24.834042] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_system_check.py\n'}
+[24.837569] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_general_data.py\n'}
+[24.837795] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_steering_calibration.py\n'}
+[24.837872] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_gnss_s.c\n'}
+[24.837934] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_system_check_s.c\n'}
+[24.837996] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_order.py\n'}
+[24.838054] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_joystick_order_s.c\n'}
+[24.838113] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_steering_calibration_s.c\n'}
+[24.838183] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_general_data_s.c\n'}
+[24.838251] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[24.838319] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[24.838366] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_c.c\n'}
+[24.838417] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[24.899364] (interfaces) StdoutLine: {'line': b"Listing '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces'...\n"}
+[24.899570] (interfaces) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/__init__.py'...\n"}
+[24.899645] (interfaces) StdoutLine: {'line': b"Listing '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg'...\n"}
+[24.899690] (interfaces) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/__init__.py'...\n"}
+[24.899730] (interfaces) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_general_data.py'...\n"}
+[24.899771] (interfaces) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_gnss.py'...\n"}
+[24.899816] (interfaces) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_joystick_order.py'...\n"}
+[24.899862] (interfaces) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_feedback.py'...\n"}
+[24.899925] (interfaces) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_motors_order.py'...\n"}
+[24.899970] (interfaces) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_steering_calibration.py'...\n"}
+[24.900015] (interfaces) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_system_check.py'...\n"}
+[24.900062] (interfaces) StdoutLine: {'line': b"Compiling '/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/msg/_ultrasonic.py'...\n"}
+[24.903285] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[24.903552] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[24.903861] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[24.904025] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[24.904269] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[24.904388] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/local/lib/python3.10/dist-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""\n'}
+[24.904539] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_py.so\n'}
+[24.904765] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_py.so" to ""\n'}
+[24.904974] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/JoystickOrder.idl\n'}
+[24.905116] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/MotorsOrder.idl\n'}
+[24.905304] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/MotorsFeedback.idl\n'}
+[24.905360] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/GeneralData.idl\n'}
+[24.905533] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/SteeringCalibration.idl\n'}
+[24.905697] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/Ultrasonic.idl\n'}
+[24.905892] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/Gnss.idl\n'}
+[24.905982] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/SystemCheck.idl\n'}
+[24.906071] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/JoystickOrder.msg\n'}
+[24.906118] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/MotorsOrder.msg\n'}
+[24.906230] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/MotorsFeedback.msg\n'}
+[24.906351] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/GeneralData.msg\n'}
+[24.906549] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/SteeringCalibration.msg\n'}
+[24.906606] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/Ultrasonic.msg\n'}
+[24.906736] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/Gnss.msg\n'}
+[24.906783] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/msg/SystemCheck.msg\n'}
+[24.906841] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/ament_index/resource_index/package_run_dependencies/interfaces\n'}
+[24.906970] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/ament_index/resource_index/parent_prefix_path/interfaces\n'}
+[24.907014] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.sh\n'}
+[24.907160] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.dsv\n'}
+[24.907274] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/environment/path.sh\n'}
+[24.907395] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/environment/path.dsv\n'}
+[24.907600] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/local_setup.bash\n'}
+[24.907658] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/local_setup.sh\n'}
+[24.907737] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/local_setup.zsh\n'}
+[24.907855] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/local_setup.dsv\n'}
+[24.908028] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/package.dsv\n'}
+[24.908230] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/ament_index/resource_index/packages/interfaces\n'}
+[24.908306] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cExport.cmake\n'}
+[24.908441] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[24.908639] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[24.908695] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[24.908752] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_cppExport.cmake\n'}
+[24.908905] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[24.909015] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[24.909255] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[24.909374] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[24.909487] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport.cmake\n'}
+[24.909684] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[24.909795] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[24.909895] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[24.910107] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[24.910165] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[24.910286] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_pyExport.cmake\n'}
+[24.910400] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/export_interfaces__rosidl_generator_pyExport-noconfig.cmake\n'}
+[24.910517] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[24.910728] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[24.910847] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[24.910964] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[24.911076] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[24.911191] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[24.911304] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[24.911497] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig.cmake\n'}
+[24.911556] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig-version.cmake\n'}
+[24.911600] (interfaces) StdoutLine: {'line': b'-- Installing: /home/leasch/pivoane/raspberryPI3/ros2_ws/install/interfaces/share/interfaces/package.xml\n'}
+[24.912906] (interfaces) CommandEnded: {'returncode': 0}
+[24.933663] (-) TimerEvent: {}
+[25.034058] (-) TimerEvent: {}
+[25.080801] (interfaces) JobEnded: {'identifier': 'interfaces', 'rc': 0}
+[25.081172] (-) EventReactorShutdown: {}

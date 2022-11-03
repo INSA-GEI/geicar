@@ -118,12 +118,13 @@ private:
     void updateCmd(){
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
+        int i;
 
         if (!start){    //Car stopped
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
-
+            i = 0;
 
         }else{ //Car started
 
@@ -137,7 +138,18 @@ private:
 
             //Autonomous Mode
             } else if (mode==1){
-                //...
+                if(i<=100){
+                    leftRearPwmCmd = 55;
+                    rightRearPwmCmd = 55;
+                    steeringPwmCmd = 50;
+                    i+=1;
+                }
+                else{
+                    leftRearPwmCmd = 0;
+                    rightRearPwmCmd = 0;
+                    steeringPwmCmd = 50;
+                }
+                
             }
         }
 

@@ -1,0 +1,4 @@
+source;share/joystick/local_setup.bash
+source;share/joystick/local_setup.dsv
+source;share/joystick/local_setup.sh
+source;share/joystick/local_setup.zsh
