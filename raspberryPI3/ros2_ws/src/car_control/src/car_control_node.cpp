@@ -109,9 +109,9 @@ private:
             COMPTEUR+=1;
         }
         else{
-            leftRearPwmCmd = 50;
-            rightRearPwmCmd = 50;
-            steeringPwmCmd = 50;
+            leftRearPwmCmd = STOP;
+            rightRearPwmCmd = STOP;
+            steeringPwmCmd = STOP;
         }
     }
 
@@ -125,9 +125,9 @@ private:
             COMPTEUR+=1;
         }
         else{
-            leftRearPwmCmd = 50;
-            rightRearPwmCmd = 50;
-            steeringPwmCmd = 50;
+            leftRearPwmCmd = STOP;
+            rightRearPwmCmd = STOP;
+            steeringPwmCmd = STOP;
         }        
     }
 
@@ -148,9 +148,9 @@ private:
             COMPTEUR+=1;            
         }
         else{
-            leftRearPwmCmd = 50;
-            rightRearPwmCmd = 50;
-            steeringPwmCmd = 50;
+            leftRearPwmCmd = STOP;
+            rightRearPwmCmd = STOP;
+            steeringPwmCmd = STOP;
         }             
     }
 
