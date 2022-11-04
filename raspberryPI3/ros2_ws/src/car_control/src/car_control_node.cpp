@@ -65,6 +65,9 @@ private:
     * This function is called when a message is published on the "/joystick_order" topic
     * 
     */
+
+    int compteur = 0;
+
     void joystickOrderCallback(const interfaces::msg::JoystickOrder & joyOrder) {
 
         if (joyOrder.start != start){
@@ -101,12 +104,12 @@ private:
 
     void go_forward(){
 
-        if(COMPTEUR<=20*TIME){
+        if(compteur<=20*TIME){
             leftRearPwmCmd = 55;
             rightRearPwmCmd = 55;
             steeringPwmCmd = 50;
 
-            COMPTEUR+=1;
+            compteur+=1;
         }
         else{
             leftRearPwmCmd = STOP;
@@ -117,12 +120,12 @@ private:
 
     void go_backward(){
 
-        if(COMPTEUR<=20*TIME){
+        if(compteur<=20*TIME){
             leftRearPwmCmd = 45;
             rightRearPwmCmd = 45;
             steeringPwmCmd = 50;
 
-            COMPTEUR+=1;
+            compteur+=1;
         }
         else{
             leftRearPwmCmd = STOP;
@@ -133,19 +136,19 @@ private:
 
     void accel_decel_stop(){
 
-        if(COMPTEUR <= 5*TIME){
+        if(compteur <= 5*TIME){
             leftRearPwmCmd = 100;
             rightRearPwmCmd = 100;
             steeringPwmCmd = 50;
 
-            COMPTEUR+=1;
+            compteur+=1;
         }
-        else if(5*TIME < COMPTEUR <= 10*TIME){
+        else if((5*TIME < compteur) && (compteur <= 10*TIME)){
             leftRearPwmCmd = 75;
             rightRearPwmCmd = 75;
             steeringPwmCmd = 50;
 
-            COMPTEUR+=1;            
+            compteur+=1;            
         }
         else{
             leftRearPwmCmd = STOP;
