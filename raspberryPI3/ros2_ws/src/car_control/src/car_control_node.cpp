@@ -104,11 +104,9 @@ private:
 
     void go_forward(){
 
-        auto motorsOrder = interfaces::msg::MotorsOrder();
-
         if(compteur<=20*TIME){
-            leftRearPwmCmd = 55;
-            rightRearPwmCmd = 55;
+            leftRearPwmCmd = 100;
+            rightRearPwmCmd = 100;
             steeringPwmCmd = 50;
 
             compteur+=1;
@@ -118,23 +116,14 @@ private:
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
         }
-
-        motorsOrder.left_rear_pwm = leftRearPwmCmd;
-        motorsOrder.right_rear_pwm = rightRearPwmCmd;
-        motorsOrder.steering_pwm = steeringPwmCmd;
-
-        publisher_can_->publish(motorsOrder);
     }
 
     void go_backward(){
 
-        auto motorsOrder = interfaces::msg::MotorsOrder();
-
         if(compteur<=20*TIME){
-            leftRearPwmCmd = 45;
-            rightRearPwmCmd = 45;
+            leftRearPwmCmd = 25;
+            rightRearPwmCmd = 25;
             steeringPwmCmd = 50;
-
             compteur+=1;
         }
         else{
@@ -142,18 +131,10 @@ private:
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
         }  
-        
-        motorsOrder.left_rear_pwm = leftRearPwmCmd;
-        motorsOrder.right_rear_pwm = rightRearPwmCmd;
-        motorsOrder.steering_pwm = steeringPwmCmd;
-
-        publisher_can_->publish(motorsOrder);    
 
     }
 
     void accel_decel_stop(){
-
-        auto motorsOrder = interfaces::msg::MotorsOrder();
         
         if(compteur <= 5*TIME){
             leftRearPwmCmd = 100;
@@ -174,12 +155,7 @@ private:
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
         }  
-
-        motorsOrder.left_rear_pwm = leftRearPwmCmd;
-        motorsOrder.right_rear_pwm = rightRearPwmCmd;
-        motorsOrder.steering_pwm = steeringPwmCmd;
-
-        publisher_can_->publish(motorsOrder);           
+        
     }
 
     /* Update currentAngle from motors feedback [callback function]  :
@@ -215,16 +191,13 @@ private:
             if (mode==0){
                 
                 manualPropulsionCmd(requestedThrottle, reverse, leftRearPwmCmd,rightRearPwmCmd);
-
                 steeringCmd(requestedSteerAngle,currentAngle, steeringPwmCmd);
 
+                compteur = 0;
 
             //Autonomous Mode
             } else if (mode==1){
-                //go_forward();
-                leftRearPwmCmd = 100;
-                rightRearPwmCmd = 100;
-                steeringPwmCmd = 50;
+                go_forward();
             }
         }
 
