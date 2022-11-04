@@ -1,8 +1,0 @@
-setup.py
-carla_msgs/__init__.py
-carla_msgs.egg-info/PKG-INFO
-carla_msgs.egg-info/SOURCES.txt
-carla_msgs.egg-info/dependency_links.txt
-carla_msgs.egg-info/top_level.txt
-carla_msgs/msg/__init__.py
-carla_msgs/msg/_carla_ego_vehicle_control.py

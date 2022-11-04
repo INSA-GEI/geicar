@@ -1,4 +1,0 @@
-source;share/can/local_setup.bash
-source;share/can/local_setup.dsv
-source;share/can/local_setup.sh
-source;share/can/local_setup.zsh

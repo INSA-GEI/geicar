@@ -1,4 +1,0 @@
-Invoking command in '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/carla_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/leasch/pivoane/raspberryPI3/ros2_ws/build/carla_msgs -- -j8 -l8
-Invoked command in '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/carla_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/leasch/pivoane/raspberryPI3/ros2_ws/build/carla_msgs -- -j8 -l8
-Invoking command in '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/carla_msgs': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/leasch/pivoane/raspberryPI3/ros2_ws/build/carla_msgs
-Invoked command in '/home/leasch/pivoane/raspberryPI3/ros2_ws/build/carla_msgs' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/leasch/pivoane/raspberryPI3/ros2_ws/build/carla_msgs
