@@ -104,6 +104,8 @@ private:
 
     void go_forward(){
 
+        auto motorsOrder = interfaces::msg::MotorsOrder();
+
         if(compteur<=20*TIME){
             leftRearPwmCmd = 55;
             rightRearPwmCmd = 55;
@@ -116,9 +118,17 @@ private:
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
         }
+
+        motorsOrder.left_rear_pwm = leftRearPwmCmd;
+        motorsOrder.right_rear_pwm = rightRearPwmCmd;
+        motorsOrder.steering_pwm = steeringPwmCmd;
+
+        publisher_can_->publish(motorsOrder);
     }
 
     void go_backward(){
+
+        auto motorsOrder = interfaces::msg::MotorsOrder();
 
         if(compteur<=20*TIME){
             leftRearPwmCmd = 45;
@@ -131,11 +141,20 @@ private:
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
-        }        
+        }  
+        
+        motorsOrder.left_rear_pwm = leftRearPwmCmd;
+        motorsOrder.right_rear_pwm = rightRearPwmCmd;
+        motorsOrder.steering_pwm = steeringPwmCmd;
+
+        publisher_can_->publish(motorsOrder);    
+
     }
 
     void accel_decel_stop(){
 
+        auto motorsOrder = interfaces::msg::MotorsOrder();
+        
         if(compteur <= 5*TIME){
             leftRearPwmCmd = 100;
             rightRearPwmCmd = 100;
@@ -154,7 +173,13 @@ private:
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
-        }             
+        }  
+
+        motorsOrder.left_rear_pwm = leftRearPwmCmd;
+        motorsOrder.right_rear_pwm = rightRearPwmCmd;
+        motorsOrder.steering_pwm = steeringPwmCmd;
+
+        publisher_can_->publish(motorsOrder);           
     }
 
     /* Update currentAngle from motors feedback [callback function]  :
