@@ -9,6 +9,14 @@
 
 #define STOP 50 //PWM value to stop motors
 
+#define COMPTEUR 0
 
+#define TIME 1000 //we suppose 1000 is equal to 1s
+
+void go_forward(); //test : car moving forward for 20 meters
+
+void go_backward(); //test : car moving backward for 20 meters
+
+void accel_decel_stop(); //test : acceleration 5 meters full speed - deceleration 5 meters half speed - stop
 
 #endif /*__ car_control_node_H */

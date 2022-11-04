@@ -97,6 +97,63 @@ private:
         }
     }
 
+    /* added functions by team Beth*/
+
+    void go_forward(){
+
+        if(COMPTEUR<=20*TIME){
+            leftRearPwmCmd = 55;
+            rightRearPwmCmd = 55;
+            steeringPwmCmd = 50;
+
+            COMPTEUR+=1;
+        }
+        else{
+            leftRearPwmCmd = 50;
+            rightRearPwmCmd = 50;
+            steeringPwmCmd = 50;
+        }
+    }
+
+    void go_backward(){
+
+        if(COMPTEUR<=20*TIME){
+            leftRearPwmCmd = 45;
+            rightRearPwmCmd = 45;
+            steeringPwmCmd = 50;
+
+            COMPTEUR+=1;
+        }
+        else{
+            leftRearPwmCmd = 50;
+            rightRearPwmCmd = 50;
+            steeringPwmCmd = 50;
+        }        
+    }
+
+    void accel_decel_stop(){
+
+        if(COMPTEUR <= 5*TIME){
+            leftRearPwmCmd = 100;
+            rightRearPwmCmd = 100;
+            steeringPwmCmd = 50;
+
+            COMPTEUR+=1;
+        }
+        else if(5*TIME < COMPTEUR <= 10*TIME){
+            leftRearPwmCmd = 75;
+            rightRearPwmCmd = 75;
+            steeringPwmCmd = 50;
+
+            COMPTEUR+=1;            
+        }
+        else{
+            leftRearPwmCmd = 50;
+            rightRearPwmCmd = 50;
+            steeringPwmCmd = 50;
+        }             
+    }
+
     /* Update currentAngle from motors feedback [callback function]  :
     *
     * This function is called when a message is published on the "/motors_feedback" topic
@@ -118,13 +175,11 @@ private:
     void updateCmd(){
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
-        int i;
 
         if (!start){    //Car stopped
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             steeringPwmCmd = STOP;
-            i = 0;
 
         }else{ //Car started
 
@@ -138,18 +193,7 @@ private:
 
             //Autonomous Mode
             } else if (mode==1){
-                if(i<=100){
-                    leftRearPwmCmd = 55;
-                    rightRearPwmCmd = 55;
-                    steeringPwmCmd = 50;
-                    i+=1;
-                }
-                else{
-                    leftRearPwmCmd = 0;
-                    rightRearPwmCmd = 0;
-                    steeringPwmCmd = 50;
-                }
-                
+                go_forward();
             }
         }
 
