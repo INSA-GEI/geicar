@@ -221,7 +221,10 @@ private:
 
             //Autonomous Mode
             } else if (mode==1){
-                go_forward();
+                //go_forward();
+                leftRearPwmCmd = 55;
+                rightRearPwmCmd = 55;
+                steeringPwmCmd = 50;
             }
         }
 
