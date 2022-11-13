@@ -6,6 +6,7 @@
 #include "interfaces/msg/motors_order.hpp"
 #include "interfaces/msg/motors_feedback.hpp"
 #include "interfaces/msg/steering_calibration.hpp"
+#include "interfaces/msg/ultrasonic.hpp"
 #include "interfaces/msg/joystick_order.hpp"
 
 #include "std_srvs/srv/empty.hpp"
@@ -44,6 +45,9 @@ public:
 
         subscription_steering_calibration_ = this->create_subscription<interfaces::msg::SteeringCalibration>(
         "steering_calibration", 10, std::bind(&car_control::steeringCalibrationCallback, this, _1));
+
+        subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
+        "us_data", 10, std::bind(&car_control::usDataCallback, this, _1));
 
 
         
@@ -158,6 +162,26 @@ private:
         
     }
 
+<<<<<<< Updated upstream
+=======
+    void straight_Traj(float RPM_R, float RPM_L, float rpm_target) {
+        int pwm_max = 100;
+        float rpm_max_l = 62.169998;
+        float rpm_max_r = 61.27;
+
+        float error_l = rpm_target - RPM_L;
+        float error_r = rpm_target - RPM_R;
+
+        float correction_l = ((error_l / rpm_max_l) /2) * float(pwm_max)*0.3;
+        float correction_r = ((error_r / rpm_max_r) /2) * float(pwm_max)*0.3;
+
+        leftRearPwmCmd = uint8_t(min(float(100), max(float(50), float(leftRearPwmCmd)+correction_l)));
+        rightRearPwmCmd = uint8_t(min(float(100), max(float(50), float(rightRearPwmCmd)+correction_r)));
+        steeringPwmCmd = 50;
+    }  
+
+   
+>>>>>>> Stashed changes
     /* Update currentAngle from motors feedback [callback function]  :
     *
     * This function is called when a message is published on the "/motors_feedback" topic
@@ -165,6 +189,12 @@ private:
     */
     void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback & motorsFeedback){
         currentAngle = motorsFeedback.steering_angle;
+    }
+
+    void usDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
+        CenterObstacle = ultrasonic.front_center;
+        RightObstacle = ultrasonic.front_right;
+        LeftObstacle = ultrasonic.front_left;
     }
 
 
@@ -197,7 +227,20 @@ private:
 
             //Autonomous Mode
             } else if (mode==1){
+<<<<<<< Updated upstream
                 go_forward();
+=======
+               speed(currentRPM_L, currentRPM_R, 40);
+
+               if (CenterObstacle <= 100)
+               RCLCPP_INFO(this->get_logger(), "Front obstacle");
+
+               if (LeftObstacle <= 30)
+               RCLCPP_INFO(this->get_logger(), "Left Obstacle");
+
+               if (RightObstacle <= 30)
+               RCLCPP_INFO(this->get_logger(), "Right Obstacle");
+>>>>>>> Stashed changes
             }
         }
 
@@ -276,6 +319,11 @@ private:
     //Motors feedback variables
     float currentAngle;
 
+    //Ultrasonic feedback variables
+    float LeftObstacle;
+    float RightObstacle;
+    float CenterObstacle;
+
     //Manual Mode variables (with joystick control)
     bool reverse;
     float requestedThrottle;
@@ -294,6 +342,7 @@ private:
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
+    rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
 
     //Timer
     rclcpp::TimerBase::SharedPtr timer_;
