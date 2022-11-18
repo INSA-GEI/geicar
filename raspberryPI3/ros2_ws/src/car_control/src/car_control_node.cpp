@@ -141,11 +141,7 @@ private:
         if (compteur_ramp<n_micro_step){
             compteur_ramp++;
         }
-
-
         ramp_cmd_RearSpeed = previous_currentRPM + compteur_ramp * micro_step_rpm_target;*/
-
-        ramp_cmd_RearSpeed = previous_currentRPM;
 
         //Calcul de l'erreur pour le gain Kp
         speedErrorLeft = cmd_RearSpeed - currentRPM_L;
@@ -164,21 +160,8 @@ private:
         */
 
         //Calcul de la commande à envoyer à chacun des moteurs (gauche et droite)
-        leftPwmCmd = speedErrorLeft * 1 + sumIntegralLeft * 0.01;
-        rightPwmCmd = speedErrorRight * 1 + sumIntegralRight * 0.01;
-
-        //Pour éviter de casser le moteur,
-        // on évite de le retour en arrière du moteur en empêchant une commande < 50
-        if(leftPwmCmd < 0)
-            leftPwmCmd = 0;
-        else if(leftPwmCmd > 50)
-            leftPwmCmd = 50;
-
-        if(rightPwmCmd < 0)
-            rightPwmCmd = 0;
-        else if(rightPwmCmd > 50)
-            rightPwmCmd = 50;
-
+        leftPwmCmd = min( max(0.0, (speedErrorLeft * 1 + sumIntegralLeft * 0.01)), 50.0);
+        rightPwmCmd = min( max(0.0, (speedErrorRight * 1 + sumIntegralRight * 0.01)), 50.0);
         leftPwmCmd += 50;
         rightPwmCmd += 50;
 
@@ -270,7 +253,7 @@ private:
                 else if((LeftObstacle <= 20.0)){
                     if(a!=4){
                         RCLCPP_INFO(this->get_logger(), "Obstacle on the left = %f cm", LeftObstacle);
-                        a = 1;
+                        a = 4;
                     }
                     speed(0.0);
                 }
@@ -280,7 +263,7 @@ private:
                 else if((RightObstacle <= 20.0)){
                     if(a!=5){
                         RCLCPP_INFO(this->get_logger(), "Obstacle on the right = %f cm", RightObstacle);
-                        a = 1;
+                        a = 5;
                     }
                     speed(0.0); 
                 }
