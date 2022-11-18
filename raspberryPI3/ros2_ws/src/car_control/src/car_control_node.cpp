@@ -72,20 +72,18 @@ private:
 
     int compteur = 0;
     int compteur_ramp = 0;
-    int iErrorL = 0;
-    int iErrorR = 0;
-    float deltaErrorRight;
-    float deltaErrorLeft;
-    float rpmErrorLeft;
-    float rpmErrorRight;
-    float previousrpmErrorLeft ;
-    float previousrpmErrorRight;
+    
+    /* si amélioration du PID : variables pour le Kd*/
+
+    //float deltaErrorRight;
+    //float deltaErrorLeft;
+    //float previousSpeedErrorLeft;
+    //float previousSpeedErrorRight;
+
     float micro_step_rpm_target;
     float ramp_cmd_RearSpeed;
     int n_micro_step;
 
-    float previousSpeedErrorLeft;
-    float previousSpeedErrorRight;
     float sumIntegralLeft = 0;
     float sumIntegralRight = 0;
     float leftPwmCmd ;
@@ -185,38 +183,6 @@ private:
 
     }
 
-    void go_forward(){
-
-        if(compteur<=20*TIME){
-            leftRearPwmCmd = 100;
-            rightRearPwmCmd = 100;
-            steeringPwmCmd = 50;
-
-            compteur+=1;
-        }
-        else{
-            leftRearPwmCmd = STOP;
-            rightRearPwmCmd = STOP;
-            steeringPwmCmd = STOP;
-        }
-    }
-
-    void go_backward(){
-
-        if(compteur<=20*TIME){
-            leftRearPwmCmd = 25;
-            rightRearPwmCmd = 25;
-            steeringPwmCmd = 50;
-            compteur+=1;
-        }
-        else{
-            leftRearPwmCmd = STOP;
-            rightRearPwmCmd = STOP;
-            steeringPwmCmd = STOP;
-        }  
-
-    }
-
     void accel_decel_stop(){
         
         if(compteur <= 5*TIME){
@@ -282,16 +248,21 @@ private:
 
             //Autonomous Mode
             } else if (mode==1){
-               go_forward();
+               if (CenterObstacle <= 50){
+                RCLCPP_INFO(this->get_logger(), "Front obstacle = %f cm", CenterObstacle);
+                speed(0);
+               }else if(CenterObstacle > 50 && CenterObstacle <= 100){
+                RCLCPP_INFO(this->get_logger(), "Front obstacle = %f cm", CenterObstacle);
+                speed(25);
+               }else{
+                speed(50);
+               }
 
-               if (CenterObstacle <= 100)
-               RCLCPP_INFO(this->get_logger(), "Front obstacle");
-
-               if (LeftObstacle <= 30)
+               /*if (LeftObstacle <= 30)
                RCLCPP_INFO(this->get_logger(), "Left Obstacle");
 
                if (RightObstacle <= 30)
-               RCLCPP_INFO(this->get_logger(), "Right Obstacle");
+               RCLCPP_INFO(this->get_logger(), "Right Obstacle");*/
             }
         }
 
