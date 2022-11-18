@@ -91,6 +91,10 @@ private:
     float speedErrorLeft;
     float speedErrorRight;
 
+    /* test us sensors*/
+
+    int a = 0;
+
     void joystickOrderCallback(const interfaces::msg::JoystickOrder & joyOrder) {
 
         if (joyOrder.start != start){
@@ -248,14 +252,24 @@ private:
 
             //Autonomous Mode
             } else if (mode==1){
-               if (CenterObstacle <= 50){
-                RCLCPP_INFO(this->get_logger(), "Front obstacle = %f cm", CenterObstacle);
-                speed(0);
-               }else if(CenterObstacle > 50 && CenterObstacle <= 100){
-                RCLCPP_INFO(this->get_logger(), "Front obstacle = %f cm", CenterObstacle);
-                speed(25);
+               if (CenterObstacle <= 50.0){
+                if(a!=1){
+                RCLCPP_INFO(this->get_logger(), "Front obstacle near = %f cm", CenterObstacle);
+                a = 1;
+                }
+                speed(0.0);
+               }else if(CenterObstacle > 50.0 && CenterObstacle <= 100.0){
+                if(a!=2){
+                RCLCPP_INFO(this->get_logger(), "Front obstacle far = %f cm", CenterObstacle);
+                a = 2;
+                }
+                speed(25.0);
                }else{
-                speed(50);
+                if(a!=3){
+                RCLCPP_INFO(this->get_logger(), "No obstacle");
+                a = 3;
+                }
+                speed(50.0);
                }
 
                /*if (LeftObstacle <= 30)
