@@ -240,7 +240,7 @@ private:
 
             //obstacle au centre à moins de 50cm : stop
 
-                if ((CenterObstacle <= 50.0) || (RightObstacle <= 20.0)){
+                if ((CenterObstacle <= 50.0)){
                     if(a!=1){
                         RCLCPP_INFO(this->get_logger(), "Front obstacle near = %f cm", CenterObstacle);
                         a = 1;
