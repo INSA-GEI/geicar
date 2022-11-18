@@ -148,8 +148,8 @@ private:
         ramp_cmd_RearSpeed = previous_currentRPM;
 
         //Calcul de l'erreur pour le gain Kp
-        speedErrorLeft = ramp_cmd_RearSpeed - currentRPM_L;
-        speedErrorRight = ramp_cmd_RearSpeed - currentRPM_R;
+        speedErrorLeft = cmd_RearSpeed - currentRPM_L;
+        speedErrorRight = cmd_RearSpeed - currentRPM_R;
 
         //Calcul de l'erreur pour le gain Ki
         sumIntegralLeft += speedErrorLeft;
