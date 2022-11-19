@@ -6,13 +6,14 @@
 #include "interfaces/msg/motors_order.hpp"
 #include "interfaces/msg/motors_feedback.hpp"
 #include "interfaces/msg/steering_calibration.hpp"
-#include "interfaces/msg/ultrasonic.hpp"
 #include "interfaces/msg/joystick_order.hpp"
+#include "interfaces/msg/obstacles.hpp"
 
 #include "std_srvs/srv/empty.hpp"
 
 #include "../include/car_control/steeringCmd.h"
 #include "../include/car_control/propulsionCmd.h"
+#include "../include/car_control/speedCmd.h"
 #include "../include/car_control/car_control_node.h"
 
 using namespace std;
@@ -46,11 +47,9 @@ public:
         subscription_steering_calibration_ = this->create_subscription<interfaces::msg::SteeringCalibration>(
         "steering_calibration", 10, std::bind(&car_control::steeringCalibrationCallback, this, _1));
 
-        subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
-        "us_data", 10, std::bind(&car_control::usDataCallback, this, _1));
+        subscription_obstacles_ = this->create_subscription<interfaces::msg::Obstacles>(
+        "obstacles", 10, std::bind(&car_control::obstaclesCallback, this, _1));
 
-
-        
 
         server_calibration_ = this->create_service<std_srvs::srv::Empty>(
                             "steering_calibration", std::bind(&car_control::steeringCalibration, this, std::placeholders::_1, std::placeholders::_2));
@@ -86,18 +85,7 @@ private:
     int n_micro_step;
     */
 
-    float sumIntegralLeft = 0;
-    float sumIntegralRight = 0;
-    float leftPwmCmd ;
-    float rightPwmCmd;
-    float speedErrorLeft;
-    float speedErrorRight;
-
-    /* test us sensors*/
-
-    int a = 0;
-
-    void joystickOrderCallback(const interfaces::msg::JoystickOrder & joyOrder) {
+        void joystickOrderCallback(const interfaces::msg::JoystickOrder & joyOrder) {
 
         if (joyOrder.start != start){
             start = joyOrder.start;
@@ -203,10 +191,8 @@ private:
         currentRPM_L = motorsFeedback.left_rear_speed;
     }
 
-    void usDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
-        CenterObstacle = ultrasonic.front_center;
-        RightObstacle = ultrasonic.front_right;
-        LeftObstacle = ultrasonic.front_left;
+    void obstaclesCallback(const interfaces::msg::Obstacles & obstacles){
+        speed_order = obstacles.speed_order;
     }
 
 
@@ -239,56 +225,18 @@ private:
 
             //Autonomous Mode
             }else if (mode==1){
-
-            //obstacle au centre à moins de 50cm : stop
-
-                if ((CenterObstacle <= 50.0)){
-                    if(a!=1){
-                        RCLCPP_INFO(this->get_logger(), "Front obstacle near = %f cm", CenterObstacle);
-                        a = 1;
-                    }
+                /*
+                if ((speed_order == 0)){
                     speed(0.0);
                }
-
-            //obstacle à gauche à moins de 20 cm
-
-                else if((LeftObstacle <= 20.0)){
-                    if(a!=4){
-                        RCLCPP_INFO(this->get_logger(), "Obstacle on the left = %f cm", LeftObstacle);
-                        a = 4;
-                    }
-                    speed(0.0);
+                else if((speed_order == 1)){
+                    speed(30.0);
                 }
-
-            //obstacle à droite à moins de 20 cm
-
-                else if((RightObstacle <= 20.0)){
-                    if(a!=5){
-                        RCLCPP_INFO(this->get_logger(), "Obstacle on the right = %f cm", RightObstacle);
-                        a = 5;
-                    }
-                    speed(0.0); 
+                else if((speed_order == 2)){
+                    speed(60.0); 
                 }
-
-            //obstacle au centre entre 50cm et 1m : half speed   
-
-               else if(CenterObstacle > 50.0 && CenterObstacle <= 100.0){
-                    if(a!=2){
-                        RCLCPP_INFO(this->get_logger(), "Front obstacle far = %f cm", CenterObstacle);
-                        a = 2;
-                    }
-                    speed(25.0);
-               }
-
-            //pas d'obstacle à moins d'1m
-
-                else{
-                    if(a!=3){
-                        RCLCPP_INFO(this->get_logger(), "No obstacle");
-                        a = 3;
-                    }
-                    speed(50.0);
-                }
+                */
+                adaptSpeed(speed_order, leftRearPwmCmd, rightRearPwmCmd, currentRPM_L, currentRPM_R);
             }
         }
 
@@ -370,11 +318,6 @@ private:
     float currentRPM_L;
     float previous_currentRPM;
 
-    //Ultrasonic feedback variables
-    float LeftObstacle;
-    float RightObstacle;
-    float CenterObstacle;
-
     //Manual Mode variables (with joystick control)
     bool reverse;
     float requestedThrottle;
@@ -385,6 +328,18 @@ private:
     uint8_t rightRearPwmCmd;
     uint8_t steeringPwmCmd;
 
+    //Obstacle variable
+    uint8_t speed_order;
+
+    //PID variables
+    float sumIntegralLeft = 0;
+    float sumIntegralRight = 0;
+    float leftPwmCmd ;
+    float rightPwmCmd;
+    float speedErrorLeft;
+    float speedErrorRight;
+
+
     //Publishers
     rclcpp::Publisher<interfaces::msg::MotorsOrder>::SharedPtr publisher_can_;
     rclcpp::Publisher<interfaces::msg::SteeringCalibration>::SharedPtr publisher_steeringCalibration_;
@@ -393,7 +348,7 @@ private:
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
-    rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
+    rclcpp::Subscription<interfaces::msg::Obstacles>::SharedPtr subscription_obstacles_;
 
     //Timer
     rclcpp::TimerBase::SharedPtr timer_;
