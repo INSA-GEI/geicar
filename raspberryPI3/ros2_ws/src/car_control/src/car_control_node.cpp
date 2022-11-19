@@ -71,7 +71,6 @@ private:
     */
 
     int compteur = 0;
-    int compteur_ramp = 0;
     
     /* si amélioration du PID : variables pour le Kd*/
 
@@ -80,9 +79,12 @@ private:
     //float previousSpeedErrorLeft;
     //float previousSpeedErrorRight;
 
+    /* Variables rampes
+    int compteur_ramp = 0;
     float micro_step_rpm_target;
     float ramp_cmd_RearSpeed;
     int n_micro_step;
+    */
 
     float sumIntegralLeft = 0;
     float sumIntegralRight = 0;
