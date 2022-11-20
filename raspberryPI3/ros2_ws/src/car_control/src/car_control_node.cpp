@@ -120,6 +120,7 @@ private:
     void obstaclesCallback(const interfaces::msg::Obstacles & obstacles){
         if (obstacles.speed_order != speed_order){ //if speed order change
         speed_order = obstacles.speed_order;
+        RCLCPP_INFO(this->get_logger(), "Get data from topic speed");
         }
     }
 
@@ -225,15 +226,15 @@ private:
             }else if (mode==1){
                 
                 if ((speed_order == 0)){
-                    //RCLCPP_INFO(this->get_logger(), "Stop");
+                    RCLCPP_INFO(this->get_logger(), "Stop");
                     speed(0.0);
                }
                 else if((speed_order == 1)){
-                    //RCLCPP_INFO(this->get_logger(), "Half speed");
+                    RCLCPP_INFO(this->get_logger(), "Half speed");
                     speed(30.0);
                 }
                 else if((speed_order == 2)){
-                    //RCLCPP_INFO(this->get_logger(), "Full speed");
+                    RCLCPP_INFO(this->get_logger(), "Full speed");
                     speed(60.0); 
                 }
                 

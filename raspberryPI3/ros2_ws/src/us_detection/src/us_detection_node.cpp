@@ -17,7 +17,7 @@ class us_detection : public rclcpp::Node
 {
 public:
   us_detection()
-  : Node("us_detection_node"), count_(0)
+  : Node("us_detection_node")
   {
     publisher_ = this->create_publisher<interfaces::msg::Obstacles>("Obstacles", 10);
 
@@ -26,11 +26,13 @@ public:
     
     
     timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&us_detection::Object_detection, this));
+
+    RCLCPP_INFO(this->get_logger(), "car_control_node READY");
   }
 
 private:
 
-  int a = 2;
+  int a = 0;
 
   void usDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
     CenterObstacle = ultrasonic.front_center;
@@ -41,6 +43,8 @@ private:
   void Object_detection() {
 
     auto Obstacles = interfaces::msg::Obstacles();
+
+    /*
     if ((CenterObstacle <= 50.0)){
       if(a!=1){
           RCLCPP_INFO(this->get_logger(), "Front obstacle near = %f cm", CenterObstacle);
@@ -91,10 +95,13 @@ private:
       RCLCPP_INFO(this->get_logger(), "No obstacle");
       speed_order = 2;
     }
+    */
 
-    RCLCPP_INFO(this->get_logger(), "a = %i", a);
+    //RCLCPP_INFO(this->get_logger(), "a = %i", a);
 
-  Obstacles.speed_order = speed_order;
+  //Obstacles.speed_order = speed_order;
+
+  Obstacles.speed_order = 2;
 
   publisher_->publish(Obstacles);
 
