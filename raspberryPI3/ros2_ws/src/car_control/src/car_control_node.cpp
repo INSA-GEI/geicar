@@ -85,7 +85,7 @@ private:
     int n_micro_step;
     */
 
-        void joystickOrderCallback(const interfaces::msg::JoystickOrder & joyOrder) {
+    void joystickOrderCallback(const interfaces::msg::JoystickOrder & joyOrder) {
 
         if (joyOrder.start != start){
             start = joyOrder.start;
@@ -115,6 +115,11 @@ private:
             requestedSteerAngle = joyOrder.steer;
             reverse = joyOrder.reverse;
         }
+    }
+
+    void obstaclesCallback(const interfaces::msg::Obstacles & obstacles){
+        if (obstacles.speed_order != speed_order){ //if speed order change
+        speed_order = obstacles.speed_order;
     }
 
     /* added functions by team Beth*/
@@ -155,6 +160,8 @@ private:
         leftPwmCmd += 50;
         rightPwmCmd += 50;
 
+        RCLCPP_INFO(this->get_logger(), "PWM left : %f", leftPwmCmd);
+
         leftRearPwmCmd = leftPwmCmd;
         rightRearPwmCmd = rightPwmCmd;
     }
@@ -188,11 +195,6 @@ private:
         currentRPM_L = motorsFeedback.left_rear_speed;
     }
 
-    void obstaclesCallback(const interfaces::msg::Obstacles & obstacles){
-        speed_order = obstacles.speed_order;
-    }
-
-
     /* Update PWM commands : leftRearPwmCmd, rightRearPwmCmd, steeringPwmCmd
     *
     * This function is called periodically by the timer [see PERIOD_UPDATE_CMD in "car_control_node.h"]
@@ -224,15 +226,15 @@ private:
             }else if (mode==1){
                 
                 if ((speed_order == 0)){
-                    RCLCPP_INFO(this->get_logger(), "Stop");
+                    //RCLCPP_INFO(this->get_logger(), "Stop");
                     speed(0.0);
                }
                 else if((speed_order == 1)){
-                    RCLCPP_INFO(this->get_logger(), "Half speed");
+                    //RCLCPP_INFO(this->get_logger(), "Half speed");
                     speed(30.0);
                 }
                 else if((speed_order == 2)){
-                    RCLCPP_INFO(this->get_logger(), "Full speed");
+                    //RCLCPP_INFO(this->get_logger(), "Full speed");
                     speed(60.0); 
                 }
                 
