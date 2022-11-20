@@ -58,6 +58,8 @@ private:
           RCLCPP_INFO(this->get_logger(), "Front obstacle near = %f cm", CenterObstacle);
           a = 1;
       }
+      
+      RCLCPP_INFO(this->get_logger(), "Front obstacle near = %f cm", CenterObstacle);
       speed_order = 0;
     }
 
@@ -69,11 +71,12 @@ private:
             a = 4;
         }
       speed_order = 0;
+      RCLCPP_INFO(this->get_logger(), "Obstacle on the left = %f cm", LeftObstacle);
     }
 
   //obstacle à droite à moins de 20 cm
 
-    else if((RightObstacle <= 20.0 && a!=5)){
+    else if((RightObstacle <= 20.0)){
       RCLCPP_INFO(this->get_logger(), "Obstacle on the right = %f cm", RightObstacle);
       a = 5;
       speed_order = 0; 
@@ -86,6 +89,7 @@ private:
           RCLCPP_INFO(this->get_logger(), "Front obstacle far = %f cm", CenterObstacle);
           a = 2;
       }
+      RCLCPP_INFO(this->get_logger(), "Front obstacle far = %f cm", CenterObstacle);
       speed_order = 1;
     }
 
@@ -96,8 +100,11 @@ private:
           RCLCPP_INFO(this->get_logger(), "No obstacle");
           a = 3;
       }
+      RCLCPP_INFO(this->get_logger(), "No obstacle");
       speed_order = 2;
     }
+
+    RCLCPP_INFO(this->get_logger(), "a = %i", a);
 
   Obstacles.speed_order = speed_order;
 
