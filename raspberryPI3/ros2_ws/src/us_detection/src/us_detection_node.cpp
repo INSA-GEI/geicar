@@ -1,6 +1,8 @@
 
 
 #include "rclcpp/rclcpp.hpp"
+#include <cstdio>
+
 #include "interfaces/msg/ultrasonic.hpp"
 #include "interfaces/msg/obstacles.hpp"
 
@@ -13,38 +15,84 @@ using placeholders::_1;
 /* This example creates a subclass of Node and uses std::bind() to register a
  * member function as a callback from the timer. */
 
-class us_detection : public rclcpp::Node
-{
-public:
-  us_detection()
-  : Node("us_detection_node")
-  {
-    publisher_ = this->create_publisher<interfaces::msg::Obstacles>("Obstacles", 10);
+class us_detection : public rclcpp::Node {
+  public:
+    us_detection()
+    : Node("us_detection_node")
+    {
+      publisher_obstacle_ = this->create_publisher<interfaces::msg::Obstacles>("Obstacles", 10);
 
-    subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
+      subscription_ultrasonic_sensor_ = this->create_subscription<interfaces::msg::Ultrasonic>(
         "us_data", 10, std::bind(&us_detection::usDataCallback, this, _1));
     
-    
-    timer_ = this->create_wall_timer(PERIOD_UPDATE_CMD, std::bind(&us_detection::Object_detection, this));
+      RCLCPP_INFO(this->get_logger(), "car_control_node READY");
+    }
 
-    RCLCPP_INFO(this->get_logger(), "car_control_node READY");
-  }
-
-private:
-
-  int a = 0;
+  private:
+    int a = 0;
 
   void usDataCallback(const interfaces::msg::Ultrasonic & ultrasonic){
-    CenterObstacle = ultrasonic.front_center;
-    RightObstacle = ultrasonic.front_right;
-    LeftObstacle = ultrasonic.front_left;
+    
+    auto Obstacles = interfaces::msg::Obstacles();
+
+    if ((ultrasonic.front_center <= 50.0)){
+      if(a!=1){
+          RCLCPP_INFO(this->get_logger(), "Front obstacle near = %f cm", ultrasonic.front_center);
+          a = 1;
+      }
+      speed_order = 0;
+    }
+
+    //obstacle à gauche à moins de 20 cm
+
+    else if((ultrasonic.front_left <= 20.0)){
+        if(a!=4){
+            RCLCPP_INFO(this->get_logger(), "Obstacle on the left = %f cm", ultrasonic.front_left);
+            a = 4;
+        }
+      speed_order = 0;
+    }
+
+    //obstacle à droite à moins de 20 cm
+
+    else if((ultrasonic.front_right <= 20.0)){
+      RCLCPP_INFO(this->get_logger(), "Obstacle on the right = %f cm", ultrasonic.front_right);
+      a = 5;
+      speed_order = 0; 
+    }
+
+    //obstacle au centre entre 50cm et 1m : half speed   
+
+    else if(ultrasonic.front_center > 50.0 && ultrasonic.front_center <= 100.0){
+      if(a!=2){
+          RCLCPP_INFO(this->get_logger(), "Front obstacle far = %f cm", ultrasonic.front_center);
+          a = 2;
+      }
+      speed_order = 1;
+    }
+
+    //pas d'obstacle à moins d'1m
+
+    else{
+      if(a!=3){
+          RCLCPP_INFO(this->get_logger(), "No obstacle");
+          a = 3;
+      }
+      speed_order = 2;
+    }
+
+  Obstacles.speed_order = speed_order;
+
+  publisher_obstacle_->publish(Obstacles);
+
   }
 
+  /*
   void Object_detection() {
 
     auto Obstacles = interfaces::msg::Obstacles();
 
-    /*
+    
     if ((CenterObstacle <= 50.0)){
       if(a!=1){
           RCLCPP_INFO(this->get_logger(), "Front obstacle near = %f cm", CenterObstacle);
@@ -95,7 +143,7 @@ private:
       RCLCPP_INFO(this->get_logger(), "No obstacle");
       speed_order = 2;
     }
-    */
+    
 
     //RCLCPP_INFO(this->get_logger(), "a = %i", a);
 
@@ -106,24 +154,24 @@ private:
   publisher_->publish(Obstacles);
 
   }
+  */
 
-    //Ultrasonic feedback variables
-    float LeftObstacle;
-    float RightObstacle;
-    float CenterObstacle;
+  //Ultrasonic feedback variables
+  float LeftObstacle;
+  float RightObstacle;
+  float CenterObstacle;
 
-    //Speed variable
-    uint8_t speed_order;
+  //Speed variable
+  uint8_t speed_order;
 
   rclcpp::TimerBase::SharedPtr timer_;
 
   //Publisher
-  rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_;
+  rclcpp::Publisher<interfaces::msg::Obstacles>::SharedPtr publisher_obstacle_;
 
   //Subscriber
   rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_ultrasonic_sensor_;
 
-  size_t count_;
 };
 
 int main(int argc, char * argv[])

@@ -36,7 +36,7 @@ def generate_launch_description():
         emulate_tty=True
     )
 
-    car_control_node = Node(
+    us_detection_node = Node(
         package="us_detection",
         executable="us_detection_node",
         emulate_tty=True
@@ -65,8 +65,8 @@ def generate_launch_description():
     ld.add_action(can_rx_node)
     ld.add_action(can_tx_node)
     ld.add_action(car_control_node)
-    ld.add_action(us_detection_node)
     ld.add_action(imu_filter_madgwick_node)
+    ld.add_action(us_detection_node)
     ld.add_action(system_check_node)
 
     return ld

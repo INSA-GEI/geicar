@@ -13,6 +13,12 @@ find_package(interfaces REQUIRED)
 add_executable(us_detection_node src/us_detection_node.cpp)
 
 ament_target_dependencies(us_detection_node rclcpp interfaces)
+ament_export_include_directories(include)
+
+target_include_directories(us_detection_node PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+target_compile_features(us_detection_node PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
 install(TARGETS us_detection_node
   DESTINATION lib/${PROJECT_NAME})
