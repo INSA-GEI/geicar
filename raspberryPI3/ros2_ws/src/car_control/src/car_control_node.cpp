@@ -120,6 +120,7 @@ private:
     void obstaclesCallback(const interfaces::msg::Obstacles & obstacles){
         if (obstacles.speed_order != speed_order){ //if speed order change
         speed_order = obstacles.speed_order;
+        }
     }
 
     /* added functions by team Beth*/
