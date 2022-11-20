@@ -73,11 +73,9 @@ private:
 
   //obstacle à droite à moins de 20 cm
 
-    else if((RightObstacle <= 20.0)){
-        if(a!=5){
-            RCLCPP_INFO(this->get_logger(), "Obstacle on the right = %f cm", RightObstacle);
-            a = 5;
-        }
+    else if((RightObstacle <= 20.0 && a!=5)){
+      RCLCPP_INFO(this->get_logger(), "Obstacle on the right = %f cm", RightObstacle);
+      a = 5;
       speed_order = 0; 
     }
 

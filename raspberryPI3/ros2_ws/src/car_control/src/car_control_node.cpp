@@ -155,11 +155,8 @@ private:
         leftPwmCmd += 50;
         rightPwmCmd += 50;
 
-
         leftRearPwmCmd = leftPwmCmd;
         rightRearPwmCmd = rightPwmCmd;
-
-
     }
 
     void accel_decel_stop(){
