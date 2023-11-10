@@ -30,3 +30,15 @@
 *.exe
 *.out
 *.app
+*.bin
+*.hex
+*.elf
+
+# Derived files from compilation
+*.List
+*.map
+
+nucleoF103/firmware/Debug/
+nucleoF103/firmware/Release/
+nucleoL476/firmware/Debug/
+nucleoL476/firmware/Release/

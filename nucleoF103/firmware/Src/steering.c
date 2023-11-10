@@ -59,15 +59,15 @@ int steering_get_angle(void){
 
 
 int steering_is_a_button_pressed(){
-	return ((!HAL_GPIO_ReadPin(GPIOB, pin_bt_right_front_wheel)) || (!HAL_GPIO_ReadPin(GPIOB, pin_bt_left_front_wheel)));
+	return ((!HAL_GPIO_ReadPin(GPIOB, RightSteeringButton_Pin)) || (!HAL_GPIO_ReadPin(GPIOB, LeftSteeringButton_Pin)));
 }	
 
 //move steering with L/R buttons
 void steering_move_with_button(void){
     static int previous_value_right = GPIO_PIN_RESET;
     static int previous_value_left = GPIO_PIN_RESET;
-    int current_value_right = !HAL_GPIO_ReadPin(GPIOB, pin_bt_right_front_wheel);
-    int current_value_left = !HAL_GPIO_ReadPin(GPIOB, pin_bt_left_front_wheel);
+    int current_value_right = !HAL_GPIO_ReadPin(GPIOB, RightSteeringButton_Pin);
+    int current_value_left = !HAL_GPIO_ReadPin(GPIOB, LeftSteeringButton_Pin);
     
     if (
 				((current_value_right == GPIO_PIN_SET) && (current_value_left == GPIO_PIN_SET))

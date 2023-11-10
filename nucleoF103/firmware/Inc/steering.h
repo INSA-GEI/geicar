@@ -13,8 +13,8 @@
 
 #define NO_STEERING 50
 
-#define pin_bt_right_front_wheel GPIO_PIN_14
-#define pin_bt_left_front_wheel GPIO_PIN_15
+//#define RightSteeringButton_Pin GPIO_PIN_14
+//#define LeftSteeringButton_Pin GPIO_PIN_15
 
 #define ANGLE_LEFT_VALUE 	0
 #define ANGLE_CENTER_VALUE 	100
