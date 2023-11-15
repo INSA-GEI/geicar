@@ -138,6 +138,9 @@ private:
             //Autonomous Mode
             } else if (mode==1){
                 //...
+                leftRearPwmCmd = 70;
+                rightRearPwmCmd = 70;
+                steeringPwmCmd = 0;
             }
         }
 
