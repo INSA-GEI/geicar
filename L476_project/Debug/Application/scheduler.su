@@ -1,2 +1,3 @@
 ../Application/scheduler.c:20:5:sign	16	static
-../Application/scheduler.c:89:6:task_send_values_GPS	112	static
+../Application/scheduler.c:88:6:task_update_gps	8	static
+../Application/scheduler.c:97:6:task_send_values_GPS	112	static

@@ -12,4 +12,8 @@ uint32_t SCHEDULER_Init(void);
 
 void SCHEDULER_Run(void);
 
+void task_update_gps(void);
+
+void task_send_values_GPS (void);
+
 #endif /* INC_SCHEDULER_H_ */

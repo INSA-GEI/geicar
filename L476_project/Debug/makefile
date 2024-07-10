@@ -69,8 +69,8 @@ all: main-build
 main-build: L476_project.elf secondary-outputs
 
 # Tool invocations
-L476_project.elf L476_project.map: $(OBJS) $(USER_OBJS) C:\Users\hamd\STM32CubeIDE\workspace_1.12.1\L476_project\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "L476_project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\hamd\STM32CubeIDE\workspace_1.12.1\L476_project\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="L476_project.map" -Wl,--gc-sections -static -u_scanf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+L476_project.elf L476_project.map: $(OBJS) $(USER_OBJS) U:\Windows\Bureau\STAGE_4A\git\geicar\L476_project\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "L476_project.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"U:\Windows\Bureau\STAGE_4A\git\geicar\L476_project\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="L476_project.map" -Wl,--gc-sections -static -u_scanf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

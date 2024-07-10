@@ -49,14 +49,24 @@ ADC_HandleTypeDef hadc3;
 
 CAN_HandleTypeDef hcan1;
 
+COMP_HandleTypeDef hcomp2;
+
 I2C_HandleTypeDef hi2c2;
+
+SPI_HandleTypeDef hspi2;
+SPI_HandleTypeDef hspi3;
+
+SWPMI_HandleTypeDef hswpmi1;
 
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim3;
+TIM_HandleTypeDef htim6;
+TIM_HandleTypeDef htim7;
 TIM_HandleTypeDef htim8;
 
 UART_HandleTypeDef huart4;
 UART_HandleTypeDef huart5;
+UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart3;
 
@@ -93,6 +103,13 @@ static void MX_UART4_Init(void);
 static void MX_USART3_UART_Init(void);
 static void MX_I2C2_Init(void);
 static void MX_UART5_Init(void);
+static void MX_COMP2_Init(void);
+static void MX_SPI2_Init(void);
+static void MX_SPI3_Init(void);
+static void MX_SWPMI1_Init(void);
+static void MX_TIM6_Init(void);
+static void MX_TIM7_Init(void);
+static void MX_USART1_UART_Init(void);
 void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
@@ -149,6 +166,13 @@ int main(void)
   MX_USART3_UART_Init();
   MX_I2C2_Init();
   MX_UART5_Init();
+  MX_COMP2_Init();
+  MX_SPI2_Init();
+  MX_SPI3_Init();
+  MX_SWPMI1_Init();
+  MX_TIM6_Init();
+  MX_TIM7_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   GLOBVAR_Init();
 
@@ -180,29 +204,29 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
-  osThreadDef(IMU, StartIMU, osPriorityAboveNormal, 0, 64);
+  osThreadDef(IMU, StartIMU, osPriorityAboveNormal, 0, 1024);
   IMUHandle = osThreadCreate(osThread(IMU), NULL);
 
   osThreadDef(GPS, StartGPS, osPriorityNormal, 0, 64);
   GPSHandle = osThreadCreate(osThread(GPS), NULL);
 
-  osThreadDef(LIDAR, StartLidar, osPriorityNormal, 0, 64);
+  /*osThreadDef(LIDAR, StartLidar, osPriorityBelowNormal, 0, 64);
   LIDARHandle = osThreadCreate(osThread(LIDAR), NULL);
 
-  osThreadDef(Batterie, StartBatterie, osPriorityNormal, 0, 64);
-  BatterieHandle = osThreadCreate(osThread(Batterie), NULL);
+  osThreadDef(Batterie, StartBatterie, osPriorityBelowNormal, 0, 64);
+  BatterieHandle = osThreadCreate(osThread(Batterie), NULL);*/
 
-  osThreadDef(UART, StartUart, osPriorityNormal, 0, 64);
+  osThreadDef(UART, StartUart, osPriorityBelowNormal, 0, 64);
   UARTHandle = osThreadCreate(osThread(UART), NULL);
 
-  osThreadDef(CAN, StartCAN, osPriorityNormal, 0, 64);
+  /*osThreadDef(CAN, StartCAN, osPriorityBelowNormal, 0, 64);
   CANHandle = osThreadCreate(osThread(CAN), NULL);
 
-  osThreadDef(I2C, StartI2C, osPriorityNormal, 0, 64);
+  osThreadDef(I2C, StartI2C, osPriorityBelowNormal, 0, 64);
   I2CHandle = osThreadCreate(osThread(I2C), NULL);
 
-  osThreadDef(SPI, StartSPI, osPriorityNormal, 0, 64);
-  SPIHandle = osThreadCreate(osThread(SPI), NULL);
+  osThreadDef(SPI, StartSPI, osPriorityBelowNormal, 0, 64);
+  SPIHandle = osThreadCreate(osThread(SPI), NULL);*/
 
   /* USER CODE END RTOS_THREADS */
 
@@ -365,6 +389,40 @@ static void MX_CAN1_Init(void)
 }
 
 /**
+  * @brief COMP2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_COMP2_Init(void)
+{
+
+  /* USER CODE BEGIN COMP2_Init 0 */
+
+  /* USER CODE END COMP2_Init 0 */
+
+  /* USER CODE BEGIN COMP2_Init 1 */
+
+  /* USER CODE END COMP2_Init 1 */
+  hcomp2.Instance = COMP2;
+  hcomp2.Init.InvertingInput = COMP_INPUT_MINUS_IO2;
+  hcomp2.Init.NonInvertingInput = COMP_INPUT_PLUS_IO1;
+  hcomp2.Init.OutputPol = COMP_OUTPUTPOL_NONINVERTED;
+  hcomp2.Init.Hysteresis = COMP_HYSTERESIS_NONE;
+  hcomp2.Init.BlankingSrce = COMP_BLANKINGSRC_NONE;
+  hcomp2.Init.Mode = COMP_POWERMODE_HIGHSPEED;
+  hcomp2.Init.WindowMode = COMP_WINDOWMODE_DISABLE;
+  hcomp2.Init.TriggerMode = COMP_TRIGGERMODE_NONE;
+  if (HAL_COMP_Init(&hcomp2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN COMP2_Init 2 */
+
+  /* USER CODE END COMP2_Init 2 */
+
+}
+
+/**
   * @brief I2C2 Initialization Function
   * @param None
   * @retval None
@@ -409,6 +467,115 @@ static void MX_I2C2_Init(void)
   /* USER CODE BEGIN I2C2_Init 2 */
 
   /* USER CODE END I2C2_Init 2 */
+
+}
+
+/**
+  * @brief SPI2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI2_Init(void)
+{
+
+  /* USER CODE BEGIN SPI2_Init 0 */
+
+  /* USER CODE END SPI2_Init 0 */
+
+  /* USER CODE BEGIN SPI2_Init 1 */
+
+  /* USER CODE END SPI2_Init 1 */
+  /* SPI2 parameter configuration*/
+  hspi2.Instance = SPI2;
+  hspi2.Init.Mode = SPI_MODE_MASTER;
+  hspi2.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi2.Init.DataSize = SPI_DATASIZE_4BIT;
+  hspi2.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi2.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi2.Init.NSS = SPI_NSS_SOFT;
+  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi2.Init.CRCPolynomial = 7;
+  hspi2.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
+  hspi2.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
+  if (HAL_SPI_Init(&hspi2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI2_Init 2 */
+
+  /* USER CODE END SPI2_Init 2 */
+
+}
+
+/**
+  * @brief SPI3 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SPI3_Init(void)
+{
+
+  /* USER CODE BEGIN SPI3_Init 0 */
+
+  /* USER CODE END SPI3_Init 0 */
+
+  /* USER CODE BEGIN SPI3_Init 1 */
+
+  /* USER CODE END SPI3_Init 1 */
+  /* SPI3 parameter configuration*/
+  hspi3.Instance = SPI3;
+  hspi3.Init.Mode = SPI_MODE_SLAVE;
+  hspi3.Init.Direction = SPI_DIRECTION_2LINES;
+  hspi3.Init.DataSize = SPI_DATASIZE_4BIT;
+  hspi3.Init.CLKPolarity = SPI_POLARITY_LOW;
+  hspi3.Init.CLKPhase = SPI_PHASE_1EDGE;
+  hspi3.Init.NSS = SPI_NSS_SOFT;
+  hspi3.Init.FirstBit = SPI_FIRSTBIT_MSB;
+  hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
+  hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
+  hspi3.Init.CRCPolynomial = 7;
+  hspi3.Init.CRCLength = SPI_CRC_LENGTH_DATASIZE;
+  hspi3.Init.NSSPMode = SPI_NSS_PULSE_DISABLE;
+  if (HAL_SPI_Init(&hspi3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SPI3_Init 2 */
+
+  /* USER CODE END SPI3_Init 2 */
+
+}
+
+/**
+  * @brief SWPMI1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_SWPMI1_Init(void)
+{
+
+  /* USER CODE BEGIN SWPMI1_Init 0 */
+
+  /* USER CODE END SWPMI1_Init 0 */
+
+  /* USER CODE BEGIN SWPMI1_Init 1 */
+
+  /* USER CODE END SWPMI1_Init 1 */
+  hswpmi1.Instance = SWPMI1;
+  hswpmi1.Init.VoltageClass = SWPMI_VOLTAGE_CLASS_B;
+  hswpmi1.Init.BitRate = 19;
+  hswpmi1.Init.TxBufferingMode = SWPMI_TX_NO_SOFTWAREBUFFER;
+  hswpmi1.Init.RxBufferingMode = SWPMI_RX_NO_SOFTWAREBUFFER;
+  if (HAL_SWPMI_Init(&hswpmi1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN SWPMI1_Init 2 */
+
+  /* USER CODE END SWPMI1_Init 2 */
 
 }
 
@@ -531,6 +698,82 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 2 */
   HAL_TIM_MspPostInit(&htim3);
+
+}
+
+/**
+  * @brief TIM6 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM6_Init(void)
+{
+
+  /* USER CODE BEGIN TIM6_Init 0 */
+
+  /* USER CODE END TIM6_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM6_Init 1 */
+
+  /* USER CODE END TIM6_Init 1 */
+  htim6.Instance = TIM6;
+  htim6.Init.Prescaler = 0;
+  htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim6.Init.Period = 65535;
+  htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim6) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim6, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM6_Init 2 */
+
+  /* USER CODE END TIM6_Init 2 */
+
+}
+
+/**
+  * @brief TIM7 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM7_Init(void)
+{
+
+  /* USER CODE BEGIN TIM7_Init 0 */
+
+  /* USER CODE END TIM7_Init 0 */
+
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM7_Init 1 */
+
+  /* USER CODE END TIM7_Init 1 */
+  htim7.Instance = TIM7;
+  htim7.Init.Prescaler = 0;
+  htim7.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim7.Init.Period = 65535;
+  htim7.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim7) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim7, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM7_Init 2 */
+
+  /* USER CODE END TIM7_Init 2 */
 
 }
 
@@ -697,6 +940,41 @@ static void MX_UART5_Init(void)
 }
 
 /**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 115200;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+  huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
   * @brief USART2 Initialization Function
   * @param None
   * @retval None
@@ -809,8 +1087,6 @@ static void MX_GPIO_Init(void)
 void IMU_Receive_Transmit_Data()
 {
 	IMU_GetData();
-
-
 }
 
 void GetData_GPS(void)
@@ -821,7 +1097,7 @@ void GetData_GPS(void)
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
-    if (huart -> Instance == UART4)
+    /*if (huart -> Instance == UART4)
     {
     	if(message_index < sizeof(messages))
     	{
@@ -852,7 +1128,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
     		message_index=0;
     	}
 
-    }
+    }*/
 }
 
 
@@ -885,20 +1161,62 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 			  rx_buffer[rx_index++] = rxBufferGps; // Copy to buffer and increment
 			}
 
+
     	HAL_UART_Receive_IT(&huart2, &rxBufferGps, 1);
     }
+}
+
+void Transmit_data_to_usb(void)
+{
+	MESSAGE_Typedef trame_gps = MESSAGE_ReadMailboxNoDelay(GPS_Mailbox);
+	MESSAGE_Typedef message_imu = MESSAGE_ReadMailboxNoDelay(IMU_Mailbox);
+	if (trame_gps.id == MSG_ID_GPS)
+	{
+		HAL_UART_Transmit_IT(&huart4, message_temp, sizeof(message_temp));
+	}
+
+	if(message_imu.id  == MSG_ID_IMU_TEMP)
+	{
+		HAL_UART_Transmit_IT(&huart4, message_temp, sizeof(message_temp));
+	}
+	else if (message_imu.id  == MSG_ID_IMU_HUM)
+	{
+		HAL_UART_Transmit_IT(&huart4, message_hum, sizeof(message_temp));
+	}
+	else if (message_imu.id  == MSG_ID_IMU_PRESS)
+	{
+		HAL_UART_Transmit_IT(&huart4, message_press, sizeof(message_temp));
+	}
+	else if(message_imu.id  == MSG_ID_IMU_ACC)
+	{
+		HAL_UART_Transmit_IT(&huart4, message_acc1, sizeof(message_temp));
+	}
+	else if(message_imu.id  == MSG_ID_IMU_MAG)
+	{
+		HAL_UART_Transmit_IT(&huart4, message_mag, sizeof(message_temp));
+	}
+	else if(message_imu.id  == MSG_ID_IMU_GYR)
+	{
+		HAL_UART_Transmit_IT(&huart4, message_gyro,sizeof(message_temp));
+	}
 }
 
 void StartUart(void const * argument)
 {
   /* USER CODE BEGIN 5 */
+	//tache pour l'envoie de donnees via l'USB
+	//utilisation mailbox pour envoyer les donnees
   /* Infinite loop */
   for(;;)
   {
-    osDelay(800);
+
+	  Transmit_data_to_usb();
+	  osDelay(800);
   }
   /* USER CODE END 5 */
 }
+
+
 
 void StartSPI(void const * argument)
 {
@@ -950,8 +1268,8 @@ void StartGPS(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  //GetData_GPS();
-	  osDelay(900);
+	  GetData_GPS();
+	  osDelay(1);
   }
   /* USER CODE END 5 */
 }
@@ -964,7 +1282,7 @@ void StartIMU(void const * argument)
   for(;;)
   {
 	IMU_Receive_Transmit_Data();
-    //osDelay(4000);
+    osDelay(10);
   }
   /* USER CODE END 5 */
 }
@@ -979,6 +1297,8 @@ void StartI2C(void const * argument)
   }
   /* USER CODE END 5 */
 }
+
+
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -991,10 +1311,12 @@ void StartI2C(void const * argument)
 void StartDefaultTask(void const * argument)
 {
   /* USER CODE BEGIN 5 */
+	//tache pour l'envoie de donnees via l'USB
+	//utilisation mailbox pour envoyer les donnees
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    osDelay(800);
   }
   /* USER CODE END 5 */
 }

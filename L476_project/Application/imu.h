@@ -17,6 +17,7 @@
 #include "lsm6dsl.h"
 #include "lsm6dsl_reg.h"
 #include "globalvar.h"
+#include "message.h"
 
 void IMU_init(void);
 

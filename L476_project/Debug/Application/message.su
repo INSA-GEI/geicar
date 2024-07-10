@@ -1,0 +1,5 @@
+../Application/message.c:10:7:MESSAGE_Init	8	static
+../Application/message.c:21:17:MESSAGE_ReadMailbox	40	static
+../Application/message.c:46:17:MESSAGE_ReadMailboxNoDelay	40	static
+../Application/message.c:67:6:MESSAGE_SendMailbox	40	static
+../Application/message.c:92:6:MESSAGE_SendMailboxFromISR	40	static

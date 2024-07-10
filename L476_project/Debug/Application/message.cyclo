@@ -1,0 +1,5 @@
+message.c:10:7:MESSAGE_Init	1
+message.c:21:17:MESSAGE_ReadMailbox	3
+message.c:46:17:MESSAGE_ReadMailboxNoDelay	2
+message.c:67:6:MESSAGE_SendMailbox	2
+message.c:92:6:MESSAGE_SendMailboxFromISR	1

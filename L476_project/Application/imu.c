@@ -166,11 +166,17 @@ void IMU_GetData(void)
 	 LSM6DSL_GYRO_GetAxes(&Handler_lsm6dsl, &current_angular_rate_mdps);
 
 	 snprintf((char*)message_temp,35,"temperature = %d\r\n",(int)current_temperature_degC);
+	 MESSAGE_SendMailbox(IMU_Mailbox, MSG_ID_IMU_TEMP, IMU_Mailbox,message_temp);
 	 snprintf((char*)message_hum,35,"humidite = %d\r\n",(int)current_humidity_perc);
+	 MESSAGE_SendMailbox(IMU_Mailbox, MSG_ID_IMU_HUM, IMU_Mailbox,message_hum);
 	 snprintf((char*)message_press,35,"pression = %d\r\n",(int)current_pressure_hPa);
+	 MESSAGE_SendMailbox(IMU_Mailbox, MSG_ID_IMU_PRESS, IMU_Mailbox,message_press);
 	 snprintf((char*)message_acc1,50,"accelerometre : x =%d y=%d z=%d\r\n", (int)current_acceleration_mg.x, (int)current_acceleration_mg.y, (int)current_acceleration_mg.z);
+	 MESSAGE_SendMailbox(IMU_Mailbox, MSG_ID_IMU_ACC, IMU_Mailbox,message_acc1);
 	 snprintf((char*)message_gyro,50,"gyroscope : x =%d y=%d z=%d\r\n",(int)current_angular_rate_mdps.x, (int)current_angular_rate_mdps.y, (int)current_angular_rate_mdps.z);
+	 MESSAGE_SendMailbox(IMU_Mailbox, MSG_ID_IMU_GYR, IMU_Mailbox,message_gyro);
 	 snprintf((char*)message_mag,50,"magnétomètre : x =%d y=%d z=%d\r\n",(int)current_magnetic_mG.x, (int)current_magnetic_mG.y, (int)current_magnetic_mG.z);
+	 MESSAGE_SendMailbox(IMU_Mailbox, MSG_ID_IMU_MAG, IMU_Mailbox,message_mag);
 
 	 /*messages[0]= message_temp;
 	 messages[1]= message_hum;
@@ -180,6 +186,7 @@ void IMU_GetData(void)
 	 messages[5]= message_mag;*/
 
 
-	 HAL_UART_Transmit_IT(&huart4, message_temp, sizeof(message_temp));
+
+	//HAL_UART_Transmit_IT(&huart4, message_temp, sizeof(message_temp));
 
 }

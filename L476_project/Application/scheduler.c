@@ -85,6 +85,14 @@ int sign(float n){
 
 
 }*/
+void task_update_gps(void) {
+	if (nmeaFrameValid){
+		ProcessNMEALine(nmeaFrame,&gpsCoords, &gpsQuality);
+		gpsSend = 1;
+		nmeaFrameValid = 0;
+	}
+
+}
 
 void task_send_values_GPS (void) {
 
@@ -115,7 +123,7 @@ void task_send_values_GPS (void) {
 		gps_data[5] = Lat2;
 		gps_data[6] = Lat1;
 		gps_data[7] = Lat0;
-		HAL_UART_Transmit(&huart4,gps_data,sizeof(gps_data),100);
+		HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
 
 		//Longitude
 		computing = gpsCoords.lon;
@@ -143,7 +151,7 @@ void task_send_values_GPS (void) {
 		gps_data[5] = Lon2;
 		gps_data[6] = Lon1;
 		gps_data[7] = Lon0;
-		HAL_UART_Transmit(&huart4,gps_data,sizeof(gps_data),100);
+		HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
 
 		//Altitude
 		computing = gpsCoords.alt;
@@ -171,18 +179,7 @@ void task_send_values_GPS (void) {
 		gps_data[5] = Alt2;
 		gps_data[6] = Alt1;
 		gps_data[7] = Alt0;
-		HAL_UART_Transmit(&huart4,gps_data,sizeof(gps_data),100);
-
-
-		/*//Status
-		gps_data[0] = gpsQuality;
-		gps_data[1] = (ubx_nav_pvt_msg.hAcc & 0xff0000) >> 16;
-		gps_data[2] = (ubx_nav_pvt_msg.hAcc & 0xff00) >> 8;
-		gps_data[3] = ubx_nav_pvt_msg.hAcc & 0xff;
-		gps_data[4] = (ubx_nav_pvt_msg.vAcc & 0xff0000) >> 16;
-		gps_data[5] = (ubx_nav_pvt_msg.vAcc & 0xff00) >> 8;
-		gps_data[6] = ubx_nav_pvt_msg.vAcc & 0xff;
-		HAL_UART_Transmit(huart4,gps_data,100);*/
+		HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
 
 		gpsSend = 0;
 	}
