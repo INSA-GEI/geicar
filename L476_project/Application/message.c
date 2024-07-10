@@ -2,19 +2,21 @@
 
 
 
-#define QUEUE_SIZE 16
+#define QUEUE_SIZE 32
 
-QueueHandle_t IMU_Mailbox;
-QueueHandle_t GPS_Mailbox;
+//QueueHandle_t IMU_Mailbox;
+//QueueHandle_t GPS_Mailbox;
+QueueHandle_t Appli_Mailbox;
 
 void  MESSAGE_Init(void) {
-	IMU_Mailbox = xQueueCreate(QUEUE_SIZE, sizeof(MESSAGE_Typedef));
-	GPS_Mailbox = xQueueCreate(QUEUE_SIZE, sizeof(MESSAGE_Typedef));
-
+	//IMU_Mailbox = xQueueCreate(QUEUE_SIZE, sizeof(MESSAGE_Typedef));
+	//GPS_Mailbox = xQueueCreate(QUEUE_SIZE, sizeof(MESSAGE_Typedef));
+	Appli_Mailbox = xQueueCreate(QUEUE_SIZE, sizeof(MESSAGE_Typedef));
 
 	/* Add queues to registry in order to view them in stm32cube ide */
-	vQueueAddToRegistry(IMU_Mailbox,"IMU Mailbox");
-	vQueueAddToRegistry(GPS_Mailbox,"GPS Mailbox");
+	//vQueueAddToRegistry(IMU_Mailbox,"IMU Mailbox");
+	//vQueueAddToRegistry(GPS_Mailbox,"GPS Mailbox");
+	vQueueAddToRegistry(Appli_Mailbox,"Appli Mailbox");
 }
 
 

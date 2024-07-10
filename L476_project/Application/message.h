@@ -14,6 +14,7 @@ typedef struct {
 
 extern QueueHandle_t IMU_Mailbox;
 extern QueueHandle_t GPS_Mailbox;
+extern QueueHandle_t Appli_Mailbox;
 
 #define MSG_ID_NO_MESSAGE			0x00
 #define MSG_ID_IMU_TEMP					0x20

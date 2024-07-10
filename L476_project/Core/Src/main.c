@@ -176,6 +176,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
   GLOBVAR_Init();
 
+  MESSAGE_Init();
+
   IMU_init();
   IMU_enable();
 
@@ -204,22 +206,23 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
-  osThreadDef(IMU, StartIMU, osPriorityAboveNormal, 0, 1024);
+  osThreadDef(UART, StartUart, osPriorityNormal, 0, 64);
+  UARTHandle = osThreadCreate(osThread(UART), NULL);
+
+  osThreadDef(IMU, StartIMU, osPriorityHigh, 0, 1024);
   IMUHandle = osThreadCreate(osThread(IMU), NULL);
 
-  osThreadDef(GPS, StartGPS, osPriorityNormal, 0, 64);
+  osThreadDef(GPS, StartGPS, osPriorityBelowNormal, 0, 64);
   GPSHandle = osThreadCreate(osThread(GPS), NULL);
 
   /*osThreadDef(LIDAR, StartLidar, osPriorityBelowNormal, 0, 64);
   LIDARHandle = osThreadCreate(osThread(LIDAR), NULL);
 
   osThreadDef(Batterie, StartBatterie, osPriorityBelowNormal, 0, 64);
-  BatterieHandle = osThreadCreate(osThread(Batterie), NULL);*/
+  BatterieHandle = osThreadCreate(osThread(Batterie), NULL);
 
-  osThreadDef(UART, StartUart, osPriorityBelowNormal, 0, 64);
-  UARTHandle = osThreadCreate(osThread(UART), NULL);
 
-  /*osThreadDef(CAN, StartCAN, osPriorityBelowNormal, 0, 64);
+  osThreadDef(CAN, StartCAN, osPriorityBelowNormal, 0, 64);
   CANHandle = osThreadCreate(osThread(CAN), NULL);
 
   osThreadDef(I2C, StartI2C, osPriorityBelowNormal, 0, 64);
@@ -1168,38 +1171,37 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 void Transmit_data_to_usb(void)
 {
-	MESSAGE_Typedef trame_gps = MESSAGE_ReadMailboxNoDelay(GPS_Mailbox);
-	MESSAGE_Typedef message_imu = MESSAGE_ReadMailboxNoDelay(IMU_Mailbox);
-	if (trame_gps.id == MSG_ID_GPS)
-	{
-		HAL_UART_Transmit_IT(&huart4, message_temp, sizeof(message_temp));
-	}
+	//MESSAGE_Typedef trame_gps = MESSAGE_ReadMailboxNoDelay(GPS_Mailbox);
+	MESSAGE_Typedef message_appli;
+	message_appli = MESSAGE_ReadMailboxNoDelay(Appli_Mailbox);
+	switch(message_appli.id){
 
-	if(message_imu.id  == MSG_ID_IMU_TEMP)
-	{
+	case MSG_ID_GPS :
 		HAL_UART_Transmit_IT(&huart4, message_temp, sizeof(message_temp));
-	}
-	else if (message_imu.id  == MSG_ID_IMU_HUM)
-	{
+		break;
+	case MSG_ID_IMU_TEMP :
+		HAL_UART_Transmit_IT(&huart4, message_temp, sizeof(message_temp));
+		break;
+	case MSG_ID_IMU_HUM :
 		HAL_UART_Transmit_IT(&huart4, message_hum, sizeof(message_temp));
-	}
-	else if (message_imu.id  == MSG_ID_IMU_PRESS)
-	{
+		break;
+	case MSG_ID_IMU_PRESS :
 		HAL_UART_Transmit_IT(&huart4, message_press, sizeof(message_temp));
-	}
-	else if(message_imu.id  == MSG_ID_IMU_ACC)
-	{
+		break;
+	case MSG_ID_IMU_ACC :
 		HAL_UART_Transmit_IT(&huart4, message_acc1, sizeof(message_temp));
-	}
-	else if(message_imu.id  == MSG_ID_IMU_MAG)
-	{
+		break;
+	case MSG_ID_IMU_MAG :
 		HAL_UART_Transmit_IT(&huart4, message_mag, sizeof(message_temp));
-	}
-	else if(message_imu.id  == MSG_ID_IMU_GYR)
-	{
+		break;
+	case MSG_ID_IMU_GYR :
 		HAL_UART_Transmit_IT(&huart4, message_gyro,sizeof(message_temp));
+		break;
+	default :
+		break;
 	}
 }
+
 
 void StartUart(void const * argument)
 {
@@ -1211,11 +1213,35 @@ void StartUart(void const * argument)
   {
 
 	  Transmit_data_to_usb();
-	  osDelay(800);
+	  osDelay(200);
   }
   /* USER CODE END 5 */
 }
 
+void StartIMU(void const * argument)
+{
+  /* USER CODE BEGIN 5 */
+
+  /* Infinite loop */
+  for(;;)
+  {
+	IMU_Receive_Transmit_Data();
+    osDelay(200);
+  }
+  /* USER CODE END 5 */
+}
+
+void StartGPS(void const * argument)
+{
+  /* USER CODE BEGIN 5 */
+  /* Infinite loop */
+  for(;;)
+  {
+	  //GetData_GPS();
+	  osDelay(200);
+  }
+  /* USER CODE END 5 */
+}
 
 
 void StartSPI(void const * argument)
@@ -1258,42 +1284,6 @@ void StartLidar(void const * argument)
   for(;;)
   {
     osDelay(600);
-  }
-  /* USER CODE END 5 */
-}
-
-void StartGPS(void const * argument)
-{
-  /* USER CODE BEGIN 5 */
-  /* Infinite loop */
-  for(;;)
-  {
-	  GetData_GPS();
-	  osDelay(1);
-  }
-  /* USER CODE END 5 */
-}
-
-void StartIMU(void const * argument)
-{
-  /* USER CODE BEGIN 5 */
-
-  /* Infinite loop */
-  for(;;)
-  {
-	IMU_Receive_Transmit_Data();
-    osDelay(10);
-  }
-  /* USER CODE END 5 */
-}
-
-void StartI2C(void const * argument)
-{
-  /* USER CODE BEGIN 5 */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(100);
   }
   /* USER CODE END 5 */
 }
