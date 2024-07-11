@@ -10,7 +10,17 @@ extern UART_HandleTypeDef huart3;
 
 int gpsSend = 0;
 
-uint8_t gps_data[8] = {0,0,0,0,0,0,0,0};
+struct imu_data {
+	uint8_t gps_data_lat[8];
+	uint8_t gps_data_long[8];
+	uint8_t gps_data_alt[8];
+};
+
+struct imu_data imu_data1 = {
+	.gps_data_lat = {0,0,0,0,0,0,0,0},
+	.gps_data_long = {0,0,0,0,0,0,0,0},
+	.gps_data_alt = {0,0,0,0,0,0,0,0}
+};
 
 uint8_t IMU1[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 uint8_t IMU2[8] = {0, 0, 0, 0, 0, 0, 0, 0};
@@ -115,15 +125,15 @@ void task_send_values_GPS (void) {
 		computing = 100.0*(computing-(double)Lat1);
 		int Lat0 = floor(computing);
 
-		gps_data[0] = Lat7;
-		gps_data[1] = Lat6;
-		gps_data[2] = Lat5;
-		gps_data[3] = Lat4;
-		gps_data[4] = Lat3;
-		gps_data[5] = Lat2;
-		gps_data[6] = Lat1;
-		gps_data[7] = Lat0;
-		HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
+		imu_data1.gps_data_lat[0] = Lat7;
+		imu_data1.gps_data_lat[1] = Lat6;
+		imu_data1.gps_data_lat[2] = Lat5;
+		imu_data1.gps_data_lat[3] = Lat4;
+		imu_data1.gps_data_lat[4] = Lat3;
+		imu_data1.gps_data_lat[5] = Lat2;
+		imu_data1.gps_data_lat[6] = Lat1;
+		imu_data1.gps_data_lat[7] = Lat0;
+		//HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
 
 		//Longitude
 		computing = gpsCoords.lon;
@@ -143,15 +153,16 @@ void task_send_values_GPS (void) {
 		computing = 100.0*(computing-(double)Lon1);
 		int Lon0 = floor(computing);
 
-		gps_data[0] = Lon7;
-		gps_data[1] = Lon6;
-		gps_data[2] = Lon5;
-		gps_data[3] = Lon4;
-		gps_data[4] = Lon3;
-		gps_data[5] = Lon2;
-		gps_data[6] = Lon1;
-		gps_data[7] = Lon0;
-		HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
+		imu_data1.gps_data_long[0] = Lon7;
+		imu_data1.gps_data_long[1] = Lon6;
+		imu_data1.gps_data_long[2] = Lon5;
+		imu_data1.gps_data_long[3] = Lon4;
+		imu_data1.gps_data_long[4] = Lon3;
+		imu_data1.gps_data_long[5] = Lon2;
+		imu_data1.gps_data_long[6] = Lon1;
+		imu_data1.gps_data_long[7] = Lon0;
+
+		//HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
 
 		//Altitude
 		computing = gpsCoords.alt;
@@ -171,15 +182,17 @@ void task_send_values_GPS (void) {
 		computing = 100.0*(computing-(double)Alt1);
 		int Alt0 = floor(computing);
 
-		gps_data[0] = Alt7;
-		gps_data[1] = Alt6;
-		gps_data[2] = Alt5;
-		gps_data[3] = Alt4;
-		gps_data[4] = Alt3;
-		gps_data[5] = Alt2;
-		gps_data[6] = Alt1;
-		gps_data[7] = Alt0;
-		HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
+		imu_data1.gps_data_alt[0] = Alt7;
+		imu_data1.gps_data_alt[1] = Alt6;
+		imu_data1.gps_data_alt[2] = Alt5;
+		imu_data1.gps_data_alt[3] = Alt4;
+		imu_data1.gps_data_alt[4] = Alt3;
+		imu_data1.gps_data_alt[5] = Alt2;
+		imu_data1.gps_data_alt[6] = Alt1;
+		imu_data1.gps_data_alt[7] = Alt0;
+
+		MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_GPS, NULL,&imu_data1);
+		//HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
 
 		gpsSend = 0;
 	}

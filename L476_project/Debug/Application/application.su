@@ -1,0 +1,13 @@
+../Application/application.c:27:6:Tasks_Init	128	static
+../Application/application.c:55:6:IMU_Receive_Transmit_Data	8	static
+../Application/application.c:60:6:GetData_GPS	8	static
+../Application/application.c:66:6:HAL_UART_TxCpltCallback	16	static
+../Application/application.c:103:6:HAL_UART_RxCpltCallback	16	static
+../Application/application.c:137:6:Transmit_data_to_usb	24	static
+../Application/application.c:172:6:StartUart	24	static
+../Application/application.c:193:6:StartIMU	24	static
+../Application/application.c:213:6:StartGPS	24	static
+../Application/application.c:232:6:StartSPI	16	static
+../Application/application.c:243:6:StartBatterie	16	static
+../Application/application.c:254:6:StartCAN	16	static
+../Application/application.c:265:6:StartLidar	144	static

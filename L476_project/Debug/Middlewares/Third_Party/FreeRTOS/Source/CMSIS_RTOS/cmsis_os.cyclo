@@ -43,7 +43,7 @@ cmsis_os.c:1432:10:osThreadSuspend	1
 cmsis_os.c:1448:10:osThreadResume	3
 cmsis_os.c:1472:10:osThreadSuspendAll	1
 cmsis_os.c:1483:10:osThreadResumeAll	2
-cmsis_os.c:1500:10:osDelayUntil	1
+cmsis_os.c:1500:10:osDelayUntil	2
 cmsis_os.c:1520:10:osAbortDelay	1
 cmsis_os.c:1541:10:osThreadList	1
 cmsis_os.c:1555:9:osMessagePeek	7

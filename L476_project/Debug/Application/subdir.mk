@@ -5,22 +5,28 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Application/application.c \
 ../Application/globalvar.c \
 ../Application/imu.c \
+../Application/lidar.c \
 ../Application/message.c \
 ../Application/scheduler.c \
 ../Application/trames_nmea.c 
 
 OBJS += \
+./Application/application.o \
 ./Application/globalvar.o \
 ./Application/imu.o \
+./Application/lidar.o \
 ./Application/message.o \
 ./Application/scheduler.o \
 ./Application/trames_nmea.o 
 
 C_DEPS += \
+./Application/application.d \
 ./Application/globalvar.d \
 ./Application/imu.d \
+./Application/lidar.d \
 ./Application/message.d \
 ./Application/scheduler.d \
 ./Application/trames_nmea.d 
@@ -33,7 +39,7 @@ Application/%.o Application/%.su Application/%.cyclo: ../Application/%.c Applica
 clean: clean-Application
 
 clean-Application:
-	-$(RM) ./Application/globalvar.cyclo ./Application/globalvar.d ./Application/globalvar.o ./Application/globalvar.su ./Application/imu.cyclo ./Application/imu.d ./Application/imu.o ./Application/imu.su ./Application/message.cyclo ./Application/message.d ./Application/message.o ./Application/message.su ./Application/scheduler.cyclo ./Application/scheduler.d ./Application/scheduler.o ./Application/scheduler.su ./Application/trames_nmea.cyclo ./Application/trames_nmea.d ./Application/trames_nmea.o ./Application/trames_nmea.su
+	-$(RM) ./Application/application.cyclo ./Application/application.d ./Application/application.o ./Application/application.su ./Application/globalvar.cyclo ./Application/globalvar.d ./Application/globalvar.o ./Application/globalvar.su ./Application/imu.cyclo ./Application/imu.d ./Application/imu.o ./Application/imu.su ./Application/lidar.cyclo ./Application/lidar.d ./Application/lidar.o ./Application/lidar.su ./Application/message.cyclo ./Application/message.d ./Application/message.o ./Application/message.su ./Application/scheduler.cyclo ./Application/scheduler.d ./Application/scheduler.o ./Application/scheduler.su ./Application/trames_nmea.cyclo ./Application/trames_nmea.d ./Application/trames_nmea.o ./Application/trames_nmea.su
 
 .PHONY: clean-Application
 

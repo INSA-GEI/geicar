@@ -1,5 +1,7 @@
+"./Application/application.o"
 "./Application/globalvar.o"
 "./Application/imu.o"
+"./Application/lidar.o"
 "./Application/message.o"
 "./Application/scheduler.o"
 "./Application/trames_nmea.o"

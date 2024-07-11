@@ -54,11 +54,5 @@ void GLOBVAR_Init(void) {
 	gpsCoords.lat=0.0;
 	gpsCoords.lon=0.0;
 
-	messages[0]=0;
-	messages[1]=0;
-	messages[2]=0;
-	messages[3]=0;
-	messages[4]=0;
-	messages[5]=0;
 
 }

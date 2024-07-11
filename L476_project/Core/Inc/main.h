@@ -28,10 +28,11 @@ extern "C" {
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l4xx_hal.h"
-#include "message.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "message.h"
+#include "application.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

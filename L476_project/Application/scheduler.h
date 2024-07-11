@@ -7,6 +7,7 @@
 #include <string.h>
 #include <math.h>
 #include "globalvar.h"
+#include "message.h"
 
 uint32_t SCHEDULER_Init(void);
 
