@@ -2,6 +2,10 @@
 #ifndef INC_LIDAR_H_
 #define INC_LIDAR_H_
 
+#include <stdio.h>
+#include <math.h>
+#include <string.h>
+
 typedef struct __attribute__ ((packed))
 {
 	float angle;
@@ -51,6 +55,8 @@ static const uint8_t CrcTable[256] =
 
 uint8_t CalCRC8(uint8_t package[], uint8_t len);
 LiDARFrameTypeDef AssignValues(uint8_t package[]);
+
+void TransmitLiDARFrame(LiDARFrameTypeDef *frame);
 //void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 
 #endif

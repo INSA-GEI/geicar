@@ -19,10 +19,31 @@
 #include "globalvar.h"
 #include "message.h"
 
+#pragma pack(push, 1)
+typedef struct __attribute__((packed))
+{
+	float temperature;
+	float humidity;
+	float pressure;
+	int32_t magnetic_x;
+	int32_t magnetic_y;
+	int32_t magnetic_z;
+	int32_t acceleration_x;
+	int32_t acceleration_y;
+	int32_t acceleration_z;
+	int32_t gyro_x;
+	int32_t gyro_y;
+	int32_t gyro_z;
+
+}IMUFrameTypeDef;
+#pragma pack(pop)
+
 void IMU_init(void);
 
 void IMU_enable(void);
 
 void IMU_GetData(void);
+
+void TransmitIMUFrame(IMUFrameTypeDef *frame);
 
 #endif

@@ -157,6 +157,7 @@ void IMU_enable(void)
 
 void IMU_GetData(void)
 {
+	 IMUFrameTypeDef imu_frame;
 
 	 HTS221_HUM_GetHumidity(&Handler_hts221, &current_humidity_perc);
 	 HTS221_TEMP_GetTemperature(&Handler_hts221, &current_temperature_degC);
@@ -165,7 +166,22 @@ void IMU_GetData(void)
 	 LPS22HB_PRESS_GetPressure(&Handler_lps22hb, &current_pressure_hPa);
 	 LSM6DSL_GYRO_GetAxes(&Handler_lsm6dsl, &current_angular_rate_mdps);
 
-	 snprintf((char*)message_temp,35,"temperature = %d\r\n",(int)current_temperature_degC);
+	 imu_frame.humidity = current_humidity_perc;
+	 imu_frame.temperature = current_temperature_degC;
+	 imu_frame.pressure = current_pressure_hPa;
+	 imu_frame.magnetic_x = current_magnetic_mG.x;
+	 imu_frame.magnetic_y = current_magnetic_mG.y;
+	 imu_frame.magnetic_z = current_magnetic_mG.z;
+	 imu_frame.acceleration_x = current_acceleration_mg.x;
+	 imu_frame.acceleration_y = current_acceleration_mg.y;
+	 imu_frame.acceleration_z = current_acceleration_mg.z;
+	 imu_frame.gyro_x = current_angular_rate_mdps.x;
+	 imu_frame.gyro_y = current_angular_rate_mdps.y;
+	 imu_frame.gyro_z = current_angular_rate_mdps.z;
+
+	 MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_IMU, NULL,&imu_frame);
+
+	 /*snprintf((char*)message_temp,35,"temperature = %d\r\n",(int)current_temperature_degC);
 	 MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_IMU_TEMP, NULL,message_temp);
 	 snprintf((char*)message_hum,35,"humidite = %d\r\n",(int)current_humidity_perc);
 	 MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_IMU_HUM, NULL,message_hum);
@@ -176,6 +192,15 @@ void IMU_GetData(void)
 	 snprintf((char*)message_gyro,50,"gyroscope : x =%d y=%d z=%d\r\n",(int)current_angular_rate_mdps.x, (int)current_angular_rate_mdps.y, (int)current_angular_rate_mdps.z);
 	 MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_IMU_GYR, NULL,message_gyro);
 	 snprintf((char*)message_mag,50,"magnétomètre : x =%d y=%d z=%d\r\n",(int)current_magnetic_mG.x, (int)current_magnetic_mG.y, (int)current_magnetic_mG.z);
-	 MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_IMU_MAG, NULL,message_mag);
+	 MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_IMU_MAG, NULL,message_mag);*/
 
+}
+
+void TransmitIMUFrame(IMUFrameTypeDef *frame) {
+    // Convertir la structure en un tableau de bytes
+    uint8_t buffer[sizeof(IMUFrameTypeDef)];
+    memcpy(buffer, frame, sizeof(IMUFrameTypeDef));
+
+    // Transmettre le tableau de bytes via UART
+    HAL_UART_Transmit_IT(&huart4, buffer, sizeof(IMUFrameTypeDef));
 }

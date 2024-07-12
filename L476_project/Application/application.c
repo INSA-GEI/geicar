@@ -35,8 +35,8 @@ void Tasks_Init(void)
 	osThreadDef(GPS, StartGPS, osPriorityAboveNormal, 0, 64);
 	GPSHandle = osThreadCreate(osThread(GPS), NULL);
 
-	osThreadDef(LIDAR, StartLidar, osPriorityBelowNormal, 0, 64);
-	LIDARHandle = osThreadCreate(osThread(LIDAR), NULL);
+	//osThreadDef(LIDAR, StartLidar, osPriorityBelowNormal, 0, 64);
+	//LIDARHandle = osThreadCreate(osThread(LIDAR), NULL);
 
 	/*osThreadDef(Batterie, StartBatterie, osPriorityBelowNormal, 0, 64);
 	BatterieHandle = osThreadCreate(osThread(Batterie), NULL);
@@ -63,40 +63,25 @@ void GetData_GPS(void)
 	HAL_UART_Receive_IT(&huart2,&rxBufferGps,1);
 }
 
+void LIDAR_Receive_Transmit_Data(void){
+	HAL_StatusTypeDef status = HAL_UART_Receive_IT(&huart3, data_buffer, LIDAR_DATA_LENGTH);
+
+	if(status == HAL_OK)
+	{
+		// Vérifiez le CRC
+		if(CalCRC8(data_buffer, LIDAR_DATA_LENGTH - 1) == data_buffer[LIDAR_DATA_LENGTH - 1])
+		{
+		   // Assigner les valeurs
+		     LiDARFrameTypeDef frame = AssignValues(data_buffer);
+		     MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_LIDAR, NULL,&frame);
+
+		 }
+	}
+}
+
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
-    /*if (huart -> Instance == UART4)
-    {
-    	if(message_index < sizeof(messages))
-    	{
-    		switch(message_index)
-    		{
-    			case 1 :
-    				HAL_UART_Transmit_IT(&huart4, message_hum, sizeof(message_hum));
-    				break;
-    			case 2 :
-    				HAL_UART_Transmit_IT(&huart4, message_press, sizeof(message_press));
-    				break;
-    			case 3 :
-    				HAL_UART_Transmit_IT(&huart4, message_acc1, sizeof(message_acc1));
-    				break;
-    			case 4 :
-    				HAL_UART_Transmit_IT(&huart4, message_gyro, sizeof(message_gyro));
-    				break;
-    			case 5 :
-    				HAL_UART_Transmit_IT(&huart4, message_mag, sizeof(message_mag));
-    				break;
-    			default :;
-    		}
-    		message_index = message_index + 1;
 
-    	}
-    	else
-    	{
-    		message_index=0;
-    	}
-
-    }*/
 }
 
 
@@ -132,6 +117,11 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
     	HAL_UART_Receive_IT(&huart2, &rxBufferGps, 1);
     }
+
+    if (huart -> Instance == USART3)
+    {
+
+    }
 }
 
 void Transmit_data_to_usb(void)
@@ -140,13 +130,18 @@ void Transmit_data_to_usb(void)
 	message_appli = MESSAGE_ReadMailboxNoDelay(Appli_Mailbox);
 	switch(message_appli.id){
 
-	/*case MSG_ID_GPS :
-		HAL_UART_Transmit_IT(&huart4, message_temp, sizeof(message_temp));
-		break;*/
-	case MSG_ID_LIDAR :
-		HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data,30);
+	case MSG_ID_GPS :
+		TransmitGPSFrame(message_appli.data);
+		//HAL_UART_Transmit_IT(&huart4, message_appli.data, sizeof(message_appli.data));
 		break;
-	case MSG_ID_IMU_TEMP :
+	case MSG_ID_IMU :
+		   TransmitIMUFrame(message_appli.data);
+		break;
+	case MSG_ID_LIDAR :
+		TransmitLiDARFrame(message_appli.data);
+		//HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data,30);
+		break;
+	/*case MSG_ID_IMU_TEMP :
 		HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data,30);
 		break;
 	case MSG_ID_IMU_HUM :
@@ -163,7 +158,7 @@ void Transmit_data_to_usb(void)
 		break;
 	case MSG_ID_IMU_GYR :
 		HAL_UART_Transmit_IT(&huart4,(uint8_t*)message_appli.data, 50);
-		break;
+		break;*/
 	default :
 		break;
 	}
@@ -222,6 +217,8 @@ void StartGPS(void const * argument)
   for(;;)
   {
 	  GetData_GPS();
+	  task_update_gps();
+	  task_send_values_GPS();
 	  vTaskDelayUntil(&xLastWakeTime, xFrequency);
 	  //osDelay(10);
   }
@@ -273,19 +270,7 @@ void StartLidar(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  HAL_StatusTypeDef status = HAL_UART_Receive(&huart3, data_buffer, LIDAR_DATA_LENGTH, HAL_MAX_DELAY);
-
-	  if(status == HAL_OK)
-	  {
-	      // Vérifiez le CRC
-		  if(CalCRC8(data_buffer, LIDAR_DATA_LENGTH - 1) == data_buffer[LIDAR_DATA_LENGTH - 1])
-	      {
-	          // Assigner les valeurs
-	          LiDARFrameTypeDef frame = AssignValues(data_buffer);
-	          MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_LIDAR, NULL,&frame);
-
-	       }
-	   }
+	  LIDAR_Receive_Transmit_Data();
 
 	vTaskDelayUntil(&xLastWakeTime, xFrequency);
     //osDelay(600);

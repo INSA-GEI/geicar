@@ -1,2 +1,3 @@
 lidar.c:6:9:CalCRC8	2
 lidar.c:17:19:AssignValues	3
+lidar.c:52:6:TransmitLiDARFrame	1

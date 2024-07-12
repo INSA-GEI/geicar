@@ -1,3 +1,4 @@
-scheduler.c:30:5:sign	2
-scheduler.c:98:6:task_update_gps	2
-scheduler.c:107:6:task_send_values_GPS	2
+scheduler.c:24:5:sign	2
+scheduler.c:34:6:task_update_gps	2
+scheduler.c:43:6:task_send_values_GPS	2
+scheduler.c:139:6:TransmitGPSFrame	1

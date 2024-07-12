@@ -17,12 +17,14 @@ extern QueueHandle_t GPS_Mailbox;
 extern QueueHandle_t Appli_Mailbox;
 
 #define MSG_ID_NO_MESSAGE			0x00
-#define MSG_ID_IMU_TEMP				0x20
-#define MSG_ID_IMU_HUM				0x21
-#define MSG_ID_IMU_GYR				0x22
-#define MSG_ID_IMU_MAG				0x23
-#define MSG_ID_IMU_ACC				0x24
-#define MSG_ID_IMU_PRESS			0x25
+
+#define MSG_ID_IMU					0x20
+#define MSG_ID_IMU_TEMP				0x21
+#define MSG_ID_IMU_HUM				0x22
+#define MSG_ID_IMU_GYR				0x23
+#define MSG_ID_IMU_MAG				0x24
+#define MSG_ID_IMU_ACC				0x25
+#define MSG_ID_IMU_PRESS			0x26
 
 
 #define MSG_ID_GPS					0x30

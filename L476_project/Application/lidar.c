@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <math.h>
-#include <string.h>
 #include "lidar.h"
+#include "stm32l4xx_hal.h"
+
+extern UART_HandleTypeDef huart4;
 
 uint8_t CalCRC8(uint8_t package[], uint8_t len)
 {
@@ -47,6 +47,15 @@ LiDARFrameTypeDef AssignValues(uint8_t package[]){
 		}
 	}
 	return lf;
+}
+
+void TransmitLiDARFrame(LiDARFrameTypeDef *frame) {
+    // Convertir la structure en un tableau de bytes
+    uint8_t buffer[sizeof(LiDARFrameTypeDef)];
+    memcpy(buffer, frame, sizeof(LiDARFrameTypeDef));
+
+    // Transmettre le tableau de bytes via UART
+    HAL_UART_Transmit_IT(&huart4, buffer, sizeof(LiDARFrameTypeDef));
 }
 
 //void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)

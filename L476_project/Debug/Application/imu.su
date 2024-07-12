@@ -1,3 +1,4 @@
 ../Application/imu.c:39:6:IMU_init	8	static
 ../Application/imu.c:128:6:IMU_enable	8	static
-../Application/imu.c:158:6:IMU_GetData	16	static
+../Application/imu.c:158:6:IMU_GetData	56	static
+../Application/imu.c:199:6:TransmitIMUFrame	80	static

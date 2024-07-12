@@ -255,3 +255,4 @@ void ProcessNMEALine(char *s, GPS_Coords_t * coords, int * quality)
   }
   return;
 }
+

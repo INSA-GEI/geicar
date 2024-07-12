@@ -10,13 +10,7 @@ extern UART_HandleTypeDef huart3;
 
 int gpsSend = 0;
 
-struct imu_data {
-	uint8_t gps_data_lat[8];
-	uint8_t gps_data_long[8];
-	uint8_t gps_data_alt[8];
-};
-
-struct imu_data imu_data1 = {
+GPSFrameTypeDef gps_data1 = {
 	.gps_data_lat = {0,0,0,0,0,0,0,0},
 	.gps_data_long = {0,0,0,0,0,0,0,0},
 	.gps_data_alt = {0,0,0,0,0,0,0,0}
@@ -37,64 +31,6 @@ int sign(float n){
 
 
 
-/*/void task_send_values_IMU (void) {
-
-	//IMU1 : Magnetic field
-	IMU1[6] = 4*sign(current_magnetic_mG.x) + 2*sign(current_magnetic_mG.y) + 1*sign(current_magnetic_mG.z);
-
-	int mag_x = abs(current_magnetic_mG.x);
-	int mag_y = abs(current_magnetic_mG.y);
-	int mag_z = abs(current_magnetic_mG.z);
-
-	IMU1[0]= (mag_x & 0xff00)>>8;
-	IMU1[1]= (mag_x & 0xff);
-	IMU1[2]= (mag_y & 0xff00)>>8;
-	IMU1[3]= (mag_y & 0xff);
-	IMU1[4]= (mag_z & 0xff00)>>8;
-	IMU1[5]= (mag_z & 0xff);
-
-	//IMU2 : Angular velocity
-	IMU2[6] = 4*sign(current_angular_rate_mdps.x) + 2*sign(current_angular_rate_mdps.y) + 1*sign(current_angular_rate_mdps.z);
-
-	int ang_x = abs(current_angular_rate_mdps.x);
-	int ang_y = abs(current_angular_rate_mdps.y);
-	int ang_z = abs(current_angular_rate_mdps.z);
-
-	IMU2[0]= (ang_x & 0xff00)>>8;
-	IMU2[1]= (ang_x & 0xff);
-	IMU2[2]= (ang_y & 0xff00)>>8;
-	IMU2[3]= (ang_y & 0xff);
-	IMU2[4]= (ang_z & 0xff00)>>8;
-	IMU2[5]= (ang_z & 0xff);
-
-
-	//IMU3 : Linear acceleration
-	IMU3[6] = 4*sign(current_acceleration_mg.x) + 2*sign(current_acceleration_mg.y) + 1*sign(current_acceleration_mg.z);
-
-	int acc_x = abs(current_acceleration_mg.x);
-	int acc_y = abs(current_acceleration_mg.y);
-	int acc_z = abs(current_acceleration_mg.z);
-
-	IMU3[0]= (acc_x & 0xff00)>>8;
-	IMU3[1]= (acc_x & 0xff);
-	IMU3[2]= (acc_y & 0xff00)>>8;
-	IMU3[3]= (acc_y & 0xff);
-	IMU3[4]= (acc_z & 0xff00)>>8;
-	IMU3[5]= (acc_z & 0xff);
-
-	//IMU4 : General (temperature, pressure, humidity)
-	int temp = (int)current_temperature_degC*10;
-	int pressure = current_pressure_hPa;
-	int humidity = current_humidity_perc;
-
-	IMU4[0] = (temp >> 8) & 0xff;
-	IMU4[1] = temp & 0xff;
-	IMU4[2] = (pressure >> 8) & 0xff;
-	IMU4[3] = pressure & 0xff;
-	IMU4[4] = humidity & 0xff;
-
-
-}*/
 void task_update_gps(void) {
 	if (nmeaFrameValid){
 		ProcessNMEALine(nmeaFrame,&gpsCoords, &gpsQuality);
@@ -125,14 +61,14 @@ void task_send_values_GPS (void) {
 		computing = 100.0*(computing-(double)Lat1);
 		int Lat0 = floor(computing);
 
-		imu_data1.gps_data_lat[0] = Lat7;
-		imu_data1.gps_data_lat[1] = Lat6;
-		imu_data1.gps_data_lat[2] = Lat5;
-		imu_data1.gps_data_lat[3] = Lat4;
-		imu_data1.gps_data_lat[4] = Lat3;
-		imu_data1.gps_data_lat[5] = Lat2;
-		imu_data1.gps_data_lat[6] = Lat1;
-		imu_data1.gps_data_lat[7] = Lat0;
+		gps_data1.gps_data_lat[0] = Lat7;
+		gps_data1.gps_data_lat[1] = Lat6;
+		gps_data1.gps_data_lat[2] = Lat5;
+		gps_data1.gps_data_lat[3] = Lat4;
+		gps_data1.gps_data_lat[4] = Lat3;
+		gps_data1.gps_data_lat[5] = Lat2;
+		gps_data1.gps_data_lat[6] = Lat1;
+		gps_data1.gps_data_lat[7] = Lat0;
 		//HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
 
 		//Longitude
@@ -153,14 +89,14 @@ void task_send_values_GPS (void) {
 		computing = 100.0*(computing-(double)Lon1);
 		int Lon0 = floor(computing);
 
-		imu_data1.gps_data_long[0] = Lon7;
-		imu_data1.gps_data_long[1] = Lon6;
-		imu_data1.gps_data_long[2] = Lon5;
-		imu_data1.gps_data_long[3] = Lon4;
-		imu_data1.gps_data_long[4] = Lon3;
-		imu_data1.gps_data_long[5] = Lon2;
-		imu_data1.gps_data_long[6] = Lon1;
-		imu_data1.gps_data_long[7] = Lon0;
+		gps_data1.gps_data_long[0] = Lon7;
+		gps_data1.gps_data_long[1] = Lon6;
+		gps_data1.gps_data_long[2] = Lon5;
+		gps_data1.gps_data_long[3] = Lon4;
+		gps_data1.gps_data_long[4] = Lon3;
+		gps_data1.gps_data_long[5] = Lon2;
+		gps_data1.gps_data_long[6] = Lon1;
+		gps_data1.gps_data_long[7] = Lon0;
 
 		//HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
 
@@ -182,20 +118,29 @@ void task_send_values_GPS (void) {
 		computing = 100.0*(computing-(double)Alt1);
 		int Alt0 = floor(computing);
 
-		imu_data1.gps_data_alt[0] = Alt7;
-		imu_data1.gps_data_alt[1] = Alt6;
-		imu_data1.gps_data_alt[2] = Alt5;
-		imu_data1.gps_data_alt[3] = Alt4;
-		imu_data1.gps_data_alt[4] = Alt3;
-		imu_data1.gps_data_alt[5] = Alt2;
-		imu_data1.gps_data_alt[6] = Alt1;
-		imu_data1.gps_data_alt[7] = Alt0;
+		gps_data1.gps_data_alt[0] = Alt7;
+		gps_data1.gps_data_alt[1] = Alt6;
+		gps_data1.gps_data_alt[2] = Alt5;
+		gps_data1.gps_data_alt[3] = Alt4;
+		gps_data1.gps_data_alt[4] = Alt3;
+		gps_data1.gps_data_alt[5] = Alt2;
+		gps_data1.gps_data_alt[6] = Alt1;
+		gps_data1.gps_data_alt[7] = Alt0;
 
-		MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_GPS, NULL,&imu_data1);
+		MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_GPS, NULL,&gps_data1);
 		//HAL_UART_Transmit_IT(&huart4,gps_data,sizeof(gps_data));
 
 		gpsSend = 0;
 	}
 
 
+}
+
+void TransmitGPSFrame(GPSFrameTypeDef *frame) {
+    // Convertir la structure en un tableau de bytes
+    uint8_t buffer[sizeof(GPSFrameTypeDef)];
+    memcpy(buffer, frame, sizeof(GPSFrameTypeDef));
+
+    // Transmettre le tableau de bytes via UART
+    HAL_UART_Transmit_IT(&huart4, buffer, sizeof(GPSFrameTypeDef));
 }
