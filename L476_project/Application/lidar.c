@@ -50,12 +50,19 @@ LiDARFrameTypeDef AssignValues(uint8_t package[]){
 }
 
 void TransmitLiDARFrame(LiDARFrameTypeDef *frame) {
-    // Convertir la structure en un tableau de bytes
-    uint8_t buffer[sizeof(LiDARFrameTypeDef)];
-    memcpy(buffer, frame, sizeof(LiDARFrameTypeDef));
+	uint8_t buffer[sizeof(API_FrameTypeDef_LIDAR)];
+	API_FrameTypeDef_LIDAR api_frame;
+	api_frame.header = API_HEADER;
+	api_frame.length = sizeof(LiDARFrameTypeDef);
+	api_frame.frame_type = MSG_ID_LIDAR;
 
-    // Transmettre le tableau de bytes via UART
-    HAL_UART_Transmit_IT(&huart4, buffer, sizeof(LiDARFrameTypeDef));
+	memcpy(&(api_frame.data), frame, sizeof(LiDARFrameTypeDef));
+	api_frame.crc = CalCRC8((uint8_t*)&(api_frame.data), sizeof(LiDARFrameTypeDef));
+	memcpy(buffer,&api_frame, sizeof(API_FrameTypeDef_LIDAR));
+
+	// Transmettre le tableau de bytes via UART
+	HAL_UART_Transmit_IT(&huart4, buffer, sizeof(API_FrameTypeDef_LIDAR));
+
 }
 
 //void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)

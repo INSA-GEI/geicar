@@ -19,7 +19,6 @@ extern UART_HandleTypeDef huart4;
 extern UART_HandleTypeDef huart5;
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
-#define LIDAR_DATA_LENGTH 47
 
 #define LIDAR_DATA_LENGTH 47
 uint8_t data_buffer[LIDAR_DATA_LENGTH] = {0};

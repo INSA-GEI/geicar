@@ -27,6 +27,7 @@
 #include "../../Application/trames_nmea.h"
 #include "../../Application/imu.h"
 #include "../../Application/globalvar.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

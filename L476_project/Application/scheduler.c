@@ -137,10 +137,17 @@ void task_send_values_GPS (void) {
 }
 
 void TransmitGPSFrame(GPSFrameTypeDef *frame) {
-    // Convertir la structure en un tableau de bytes
-    uint8_t buffer[sizeof(GPSFrameTypeDef)];
-    memcpy(buffer, frame, sizeof(GPSFrameTypeDef));
+	uint8_t buffer[sizeof(API_FrameTypeDef_GPS)];
+	API_FrameTypeDef_GPS api_frame;
+	api_frame.header = API_HEADER;
+	api_frame.length = sizeof(GPSFrameTypeDef);
+	api_frame.frame_type = MSG_ID_GPS;
 
-    // Transmettre le tableau de bytes via UART
-    HAL_UART_Transmit_IT(&huart4, buffer, sizeof(GPSFrameTypeDef));
+	memcpy(&(api_frame.data), frame, sizeof(GPSFrameTypeDef));
+	api_frame.crc = CalculateCRC((uint8_t*)&(api_frame.data), sizeof(GPSFrameTypeDef));
+	memcpy(buffer,&api_frame, sizeof(API_FrameTypeDef_GPS));
+
+	// Transmettre le tableau de bytes via UART
+	HAL_UART_Transmit_IT(&huart4, buffer, sizeof(API_FrameTypeDef_GPS));
+
 }

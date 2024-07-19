@@ -1,4 +1,5 @@
-imu.c:39:6:IMU_init	11
-imu.c:128:6:IMU_enable	8
-imu.c:158:6:IMU_GetData	1
-imu.c:199:6:TransmitIMUFrame	2
+imu.c:37:9:CalculateCRC	2
+imu.c:45:6:IMU_init	11
+imu.c:134:6:IMU_enable	8
+imu.c:164:6:IMU_GetData	1
+imu.c:205:6:TransmitIMUFrame	2

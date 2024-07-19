@@ -18,6 +18,16 @@ typedef struct __attribute__((packed))
 }GPSFrameTypeDef;
 #pragma pack(pop)
 
+typedef struct {
+	uint8_t header;
+	uint16_t length;
+	uint8_t frame_type;
+	GPSFrameTypeDef data;
+	uint8_t crc;
+}API_FrameTypeDef_GPS;
+
+#define API_HEADER 0x7E
+
 uint32_t SCHEDULER_Init(void);
 
 void SCHEDULER_Run(void);

@@ -34,7 +34,13 @@ float humidite;
 float temperature;
 
 
-
+uint8_t CalculateCRC(uint8_t *data, uint8_t len) {
+    uint8_t crc = 0;
+    for (uint8_t i = 0; i < len; i++) {
+        crc ^= data[i];
+    }
+    return crc;
+}
 
 void IMU_init(void)
 {
@@ -198,9 +204,18 @@ void IMU_GetData(void)
 
 void TransmitIMUFrame(IMUFrameTypeDef *frame) {
     // Convertir la structure en un tableau de bytes
-    uint8_t buffer[sizeof(IMUFrameTypeDef)];
-    memcpy(buffer, frame, sizeof(IMUFrameTypeDef));
+	uint8_t buffer[sizeof(API_FrameTypeDef_IMU)];
+	API_FrameTypeDef_IMU api_frame;
+	api_frame.header = API_HEADER;
+	api_frame.length = sizeof(IMUFrameTypeDef);
+	api_frame.frame_type = MSG_ID_IMU;
+
+	memcpy(&(api_frame.data), frame, sizeof(IMUFrameTypeDef));
+	api_frame.crc = CalculateCRC((uint8_t*)&(api_frame.data), sizeof(IMUFrameTypeDef));
+    //uint8_t buffer[sizeof(IMUFrameTypeDef)];
+    //memcpy(buffer, frame, sizeof(IMUFrameTypeDef));
+	memcpy(buffer,&api_frame, sizeof(API_FrameTypeDef_IMU));
 
     // Transmettre le tableau de bytes via UART
-    HAL_UART_Transmit_IT(&huart4, buffer, sizeof(IMUFrameTypeDef));
+    HAL_UART_Transmit_IT(&huart4, buffer, sizeof(API_FrameTypeDef_IMU));
 }

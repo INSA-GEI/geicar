@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include "message.h"
 
 typedef struct __attribute__ ((packed))
 {
@@ -25,6 +26,18 @@ typedef struct __attribute__((packed))
 	uint8_t crc8;
 	uint32_t distance_average;
 }LiDARFrameTypeDef;
+
+typedef struct {
+	uint8_t header;
+	uint16_t length;
+	uint8_t frame_type;
+	LiDARFrameTypeDef data;
+	uint8_t crc;
+}API_FrameTypeDef_LIDAR;
+
+#define API_HEADER 0x7E
+
+uint8_t CalCRC8(uint8_t package[], uint8_t len);
 
 static const uint8_t CrcTable[256] =
 {
@@ -53,7 +66,7 @@ static const uint8_t CrcTable[256] =
 };
 
 
-uint8_t CalCRC8(uint8_t package[], uint8_t len);
+
 LiDARFrameTypeDef AssignValues(uint8_t package[]);
 
 void TransmitLiDARFrame(LiDARFrameTypeDef *frame);

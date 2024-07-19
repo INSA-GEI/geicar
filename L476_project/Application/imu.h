@@ -38,6 +38,20 @@ typedef struct __attribute__((packed))
 }IMUFrameTypeDef;
 #pragma pack(pop)
 
+typedef struct {
+	uint8_t header;
+	uint16_t length;
+	uint8_t frame_type;
+	IMUFrameTypeDef data;
+	uint8_t crc;
+}API_FrameTypeDef_IMU;
+
+
+#define API_HEADER 0x7E
+
+uint8_t CalculateCRC(uint8_t *data, uint8_t len);
+
+
 void IMU_init(void);
 
 void IMU_enable(void);
