@@ -24,6 +24,7 @@ uint8_t message_acc2[50] ={'\0'};
 uint8_t message_gyro[50] ={'\0'};
 uint8_t message_mag[50] ={'\0'};
 
+uint8_t *adresse_buffer = NULL;
 
 GPS_Coords_t gpsCoords;
 int gpsQuality;

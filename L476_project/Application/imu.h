@@ -46,6 +46,7 @@ typedef struct {
 	uint8_t crc;
 }API_FrameTypeDef_IMU;
 
+extern IMUFrameTypeDef imu_frame;
 
 #define API_HEADER 0x7E
 

@@ -5,6 +5,7 @@
 #include "lsm303agr.h"
 #include "lsm6dsl.h"
 #include "stm32l4xx_hal.h"
+#include "imu.h"
 //#include "iks01a2.h"
 
 extern I2C_HandleTypeDef hi2c1;
@@ -27,6 +28,8 @@ extern uint8_t message_acc1[50];
 extern uint8_t message_acc2[50];
 extern uint8_t message_gyro[50];
 extern uint8_t message_mag[50] ;
+
+extern uint8_t *adresse_buffer ;
 
 extern GPS_Coords_t gpsCoords;
 extern int gpsQuality;

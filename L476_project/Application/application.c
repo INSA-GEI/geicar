@@ -20,6 +20,8 @@ extern UART_HandleTypeDef huart5;
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
 
+extern osMutexId mutex_uartHandle;
+
 #define LIDAR_DATA_LENGTH 47
 uint8_t data_buffer[LIDAR_DATA_LENGTH] = {0};
 
@@ -80,6 +82,19 @@ void LIDAR_Receive_Transmit_Data(void){
 
 void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 {
+	 BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+	 if (huart -> Instance == UART4)
+	 {
+		 if (adresse_buffer != NULL) {
+		             free(adresse_buffer);
+		             adresse_buffer = NULL; // Bonne pratique pour éviter les double free
+		         }
+
+		 //vTaskNotifyGiveFromISR(, &xHigherPriorityTaskWoken);
+
+		 //osMutexRelease(mutex_uartHandle);
+
+	 }
 
 }
 
@@ -123,43 +138,28 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     }
 }
 
+
+
 void Transmit_data_to_usb(void)
 {
-	MESSAGE_Typedef message_appli;
-	message_appli = MESSAGE_ReadMailboxNoDelay(Appli_Mailbox);
-	switch(message_appli.id){
+	if(osMutexWait(mutex_uartHandle,10)== osOK){
+		MESSAGE_Typedef message_appli;
+		message_appli = MESSAGE_ReadMailboxNoDelay(Appli_Mailbox);
+		switch(message_appli.id){
 
-	case MSG_ID_GPS :
-		TransmitGPSFrame(message_appli.data);
-		//HAL_UART_Transmit_IT(&huart4, message_appli.data, sizeof(message_appli.data));
-		break;
-	case MSG_ID_IMU :
-		   TransmitIMUFrame(message_appli.data);
-		break;
-	case MSG_ID_LIDAR :
-		TransmitLiDARFrame(message_appli.data);
-		//HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data,30);
-		break;
-	/*case MSG_ID_IMU_TEMP :
-		HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data,30);
-		break;
-	case MSG_ID_IMU_HUM :
-		HAL_UART_Transmit_IT(&huart4,(uint8_t*)message_appli.data, 30);
-		break;
-	case MSG_ID_IMU_PRESS :
-		HAL_UART_Transmit_IT(&huart4,(uint8_t*)message_appli.data, 30);
-		break;
-	case MSG_ID_IMU_ACC :
-		HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data, 50);
-		break;
-	case MSG_ID_IMU_MAG :
-		HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data, 50);
-		break;
-	case MSG_ID_IMU_GYR :
-		HAL_UART_Transmit_IT(&huart4,(uint8_t*)message_appli.data, 50);
-		break;*/
-	default :
-		break;
+		case MSG_ID_GPS :
+			TransmitGPSFrame(message_appli.data);
+			break;
+		case MSG_ID_IMU :
+			TransmitIMUFrame(message_appli.data);
+			break;
+		case MSG_ID_LIDAR :
+			TransmitLiDARFrame(message_appli.data);
+			break;
+
+		default :
+			break;
+		}
 	}
 }
 
