@@ -72,8 +72,6 @@ UART_HandleTypeDef huart2;
 UART_HandleTypeDef huart3;
 
 osThreadId defaultTaskHandle;
-osMutexId mutex_uartHandle;
-osSemaphoreId Sem_uartHandle;
 /* USER CODE BEGIN PV */
 
 uint8_t rxBufferGps;
@@ -81,7 +79,8 @@ char nmeaFrame[200];	//Frame received from UART
 int nmeaFrameValid = 0;
 int ubxFrameValid = 0;
 
-
+SemaphoreHandle_t xHandleSemaphoreTX = NULL;
+StaticSemaphore_t xSemaphoreTX;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -170,22 +169,13 @@ int main(void)
 
   /* USER CODE END 2 */
 
-  /* Create the mutex(es) */
-  /* definition and creation of mutex_uart */
-  osMutexDef(mutex_uart);
-  mutex_uartHandle = osMutexCreate(osMutex(mutex_uart));
-
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
 
-  /* Create the semaphores(s) */
-  /* definition and creation of Sem_uart */
-  osSemaphoreDef(Sem_uart);
-  Sem_uartHandle = osSemaphoreCreate(osSemaphore(Sem_uart), 1);
-
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
+
   /* USER CODE END RTOS_SEMAPHORES */
 
   /* USER CODE BEGIN RTOS_TIMERS */

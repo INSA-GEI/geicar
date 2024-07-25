@@ -9,6 +9,7 @@
 #include "task.h"
 #include "lidar.h"
 #include <stm32l4xx_hal.h>
+#include "semphr.h"
 
 void Tasks_Init(void);
 void IMU_Receive_Transmit_Data(void);

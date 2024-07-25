@@ -25,15 +25,18 @@ extern osMutexId mutex_uartHandle;
 #define LIDAR_DATA_LENGTH 47
 uint8_t data_buffer[LIDAR_DATA_LENGTH] = {0};
 
+extern SemaphoreHandle_t xHandleSemaphoreTX;
+extern StaticSemaphore_t xSemaphoreTX;
+
 void Tasks_Init(void)
 {
 	osThreadDef(UART, StartUart, osPriorityNormal, 0, 64);
 	UARTHandle = osThreadCreate(osThread(UART), NULL);
 
-	osThreadDef(IMU, StartIMU, osPriorityHigh, 0, 512);
+	osThreadDef(IMU, StartIMU, osPriorityNormal, 0, 512);
 	IMUHandle = osThreadCreate(osThread(IMU), NULL);
 
-	osThreadDef(GPS, StartGPS, osPriorityAboveNormal, 0, 64);
+	osThreadDef(GPS, StartGPS, osPriorityNormal, 0, 64);
 	GPSHandle = osThreadCreate(osThread(GPS), NULL);
 
 	//osThreadDef(LIDAR, StartLidar, osPriorityBelowNormal, 0, 64);
@@ -88,9 +91,9 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 		 if (adresse_buffer != NULL) {
 		             free(adresse_buffer);
 		             adresse_buffer = NULL; // Bonne pratique pour éviter les double free
-		         }
+		  }
 
-		 //vTaskNotifyGiveFromISR(, &xHigherPriorityTaskWoken);
+		 xSemaphoreGiveFromISR(xHandleSemaphoreTX, &xHigherPriorityTaskWoken);
 
 		 //osMutexRelease(mutex_uartHandle);
 
@@ -142,11 +145,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 void Transmit_data_to_usb(void)
 {
-	if(osMutexWait(mutex_uartHandle,10)== osOK){
 		MESSAGE_Typedef message_appli;
 		message_appli = MESSAGE_ReadMailboxNoDelay(Appli_Mailbox);
 		switch(message_appli.id){
-
 		case MSG_ID_GPS :
 			TransmitGPSFrame(message_appli.data);
 			break;
@@ -156,19 +157,19 @@ void Transmit_data_to_usb(void)
 		case MSG_ID_LIDAR :
 			TransmitLiDARFrame(message_appli.data);
 			break;
-
 		default :
 			break;
 		}
-	}
 }
 
 void StartUart(void const * argument)
 {
   /* USER CODE BEGIN 5 */
 	TickType_t xLastWakeTime;
-	const TickType_t xFrequency = pdMS_TO_TICKS(100);
-
+	const TickType_t xFrequency = pdMS_TO_TICKS(200);
+	xHandleSemaphoreTX = xSemaphoreCreateBinaryStatic( &xSemaphoreTX );
+	xSemaphoreGive(xHandleSemaphoreTX);
+	//xSemaphore = xSemaphoreCreateBinary();
 	// Initialise the xLastWakeTime variable with the current time.
 	xLastWakeTime = xTaskGetTickCount();
 	//tache pour l'envoie de donnees via l'USB
@@ -176,10 +177,11 @@ void StartUart(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-
-	  Transmit_data_to_usb();
-	  vTaskDelayUntil(&xLastWakeTime, xFrequency);
-	  //osDelay(100);
+	  if( xSemaphoreTake( xHandleSemaphoreTX, 0xffff ) == pdTRUE ){
+		  Transmit_data_to_usb();
+		  vTaskDelayUntil(&xLastWakeTime, xFrequency);
+		  //osDelay(100);
+	  }
   }
   /* USER CODE END 5 */
 }
@@ -188,7 +190,7 @@ void StartIMU(void const * argument)
 {
   /* USER CODE BEGIN 5 */
 	TickType_t xLastWakeTime;
-	const TickType_t xFrequency = pdMS_TO_TICKS(500);
+	const TickType_t xFrequency = pdMS_TO_TICKS(600);
 
 	// Initialise the xLastWakeTime variable with the current time.
 	xLastWakeTime = xTaskGetTickCount();
@@ -208,7 +210,7 @@ void StartGPS(void const * argument)
 {
   /* USER CODE BEGIN 5 */
 	TickType_t xLastWakeTime;
-	const TickType_t xFrequency = pdMS_TO_TICKS(100);
+	const TickType_t xFrequency = pdMS_TO_TICKS(200);
 
 	// Initialise the xLastWakeTime variable with the current time.
 	xLastWakeTime = xTaskGetTickCount();
