@@ -1,5 +1,6 @@
 #include <scheduler.h>
 #include "stm32l4xx_hal.h"
+#include "trames_nmea.h"
 
 extern char nmeaFrame[200];
 extern int nmeaFrameValid;

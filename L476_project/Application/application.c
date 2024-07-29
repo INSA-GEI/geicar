@@ -33,7 +33,7 @@ void Tasks_Init(void)
 	osThreadDef(UART, StartUart, osPriorityNormal, 0, 64);
 	UARTHandle = osThreadCreate(osThread(UART), NULL);
 
-	osThreadDef(IMU, StartIMU, osPriorityNormal, 0, 512);
+	osThreadDef(IMU, StartIMU, osPriorityHigh, 0, 512);
 	IMUHandle = osThreadCreate(osThread(IMU), NULL);
 
 	osThreadDef(GPS, StartGPS, osPriorityNormal, 0, 64);
@@ -75,6 +75,7 @@ void LIDAR_Receive_Transmit_Data(void){
 		// Vérifiez le CRC
 		if(CalCRC8(data_buffer, LIDAR_DATA_LENGTH - 1) == data_buffer[LIDAR_DATA_LENGTH - 1])
 		{
+
 		   // Assigner les valeurs
 		     LiDARFrameTypeDef frame = AssignValues(data_buffer);
 		     MESSAGE_SendMailbox(Appli_Mailbox, MSG_ID_LIDAR, NULL,&frame);
@@ -94,8 +95,7 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart)
 		  }
 
 		 xSemaphoreGiveFromISR(xHandleSemaphoreTX, &xHigherPriorityTaskWoken);
-
-		 //osMutexRelease(mutex_uartHandle);
+		 portYIELD_FROM_ISR(xHigherPriorityTaskWoken); // Assurer un changement de contexte si nécessaire
 
 	 }
 
@@ -166,10 +166,9 @@ void StartUart(void const * argument)
 {
   /* USER CODE BEGIN 5 */
 	TickType_t xLastWakeTime;
-	const TickType_t xFrequency = pdMS_TO_TICKS(200);
+	const TickType_t xFrequency = pdMS_TO_TICKS(300);
 	xHandleSemaphoreTX = xSemaphoreCreateBinaryStatic( &xSemaphoreTX );
 	xSemaphoreGive(xHandleSemaphoreTX);
-	//xSemaphore = xSemaphoreCreateBinary();
 	// Initialise the xLastWakeTime variable with the current time.
 	xLastWakeTime = xTaskGetTickCount();
 	//tache pour l'envoie de donnees via l'USB
@@ -177,10 +176,10 @@ void StartUart(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	  if( xSemaphoreTake( xHandleSemaphoreTX, 0xffff ) == pdTRUE ){
+	  if( xSemaphoreTake( xHandleSemaphoreTX, (TickType_t)10 ) == pdTRUE ){
 		  Transmit_data_to_usb();
 		  vTaskDelayUntil(&xLastWakeTime, xFrequency);
-		  //osDelay(100);
+
 	  }
   }
   /* USER CODE END 5 */
@@ -190,7 +189,7 @@ void StartIMU(void const * argument)
 {
   /* USER CODE BEGIN 5 */
 	TickType_t xLastWakeTime;
-	const TickType_t xFrequency = pdMS_TO_TICKS(600);
+	const TickType_t xFrequency = pdMS_TO_TICKS(200);
 
 	// Initialise the xLastWakeTime variable with the current time.
 	xLastWakeTime = xTaskGetTickCount();
@@ -199,7 +198,7 @@ void StartIMU(void const * argument)
   for(;;)
   {
 
-	  IMU_Receive_Transmit_Data();
+	IMU_Receive_Transmit_Data();
 	vTaskDelayUntil(&xLastWakeTime, xFrequency);
     //osDelay(400);
   }
@@ -210,7 +209,7 @@ void StartGPS(void const * argument)
 {
   /* USER CODE BEGIN 5 */
 	TickType_t xLastWakeTime;
-	const TickType_t xFrequency = pdMS_TO_TICKS(200);
+	const TickType_t xFrequency = pdMS_TO_TICKS(100);
 
 	// Initialise the xLastWakeTime variable with the current time.
 	xLastWakeTime = xTaskGetTickCount();

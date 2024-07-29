@@ -1,5 +1,5 @@
 ../Application/imu.c:73:9:CalculateCRC	24	static
-../Application/imu.c:85:6:IMU_init	8	static
-../Application/imu.c:174:6:IMU_enable	8	static
-../Application/imu.c:204:6:IMU_GetData	8	static
-../Application/imu.c:245:6:TransmitIMUFrame	96	static
+../Application/imu.c:83:6:IMU_init	8	static
+../Application/imu.c:172:6:IMU_enable	8	static
+../Application/imu.c:202:6:IMU_GetData	8	static
+../Application/imu.c:243:6:TransmitIMUFrame	96	static

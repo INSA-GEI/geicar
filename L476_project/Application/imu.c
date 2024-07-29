@@ -73,11 +73,9 @@ static const uint8_t CrcTable[256] =
 uint8_t CalculateCRC(uint8_t package[], uint8_t len)
 {
 	uint8_t crc = 0;
-	uint16_t i;
-	for (i = 0; i < len; i++)
+	for (uint16_t i = 0; i < len; i++)
 	{
 		crc += package[i];
-		//crc = CrcTable[(crc ^ package[i]) & 0xff];
 	}
 	return 0xFF - crc;
 }
@@ -247,7 +245,7 @@ void TransmitIMUFrame(IMUFrameTypeDef *frame) {
 	uint8_t *buffer = (uint8_t *)malloc(sizeof(API_FrameTypeDef_IMU));
     //uint8_t buffer[sizeof(API_FrameTypeDef_IMU)];
 	if (buffer == NULL) {
-		// Gérer l'erreur d'allocation de mémoire
+		// Gerer l'erreur d'allocation de mémoire
 		return;
 	}
     API_FrameTypeDef_IMU api_frame = {
@@ -263,5 +261,8 @@ void TransmitIMUFrame(IMUFrameTypeDef *frame) {
 
     adresse_buffer = buffer;
     // Transmettre le tableau de bytes via UART
-    HAL_UART_Transmit_IT(&huart4, buffer, sizeof(API_FrameTypeDef_IMU));
+    if(HAL_UART_Transmit_IT(&huart4, buffer, sizeof(API_FrameTypeDef_IMU))!=HAL_OK){
+    	free(buffer);
+
+    }
 }

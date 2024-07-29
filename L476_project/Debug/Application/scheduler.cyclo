@@ -1,4 +1,4 @@
-scheduler.c:24:5:sign	2
-scheduler.c:34:6:task_update_gps	2
-scheduler.c:43:6:task_send_values_GPS	2
-scheduler.c:139:6:TransmitGPSFrame	1
+../Application/scheduler.c:25:5:sign	2
+../Application/scheduler.c:35:6:task_update_gps	2
+../Application/scheduler.c:44:6:task_send_values_GPS	2
+../Application/scheduler.c:140:6:TransmitGPSFrame	1

@@ -1,7 +1,6 @@
 #ifndef INC_SCHEDULER_H_
 #define INC_SCHEDULER_H_
 
-#include "trames_nmea.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
