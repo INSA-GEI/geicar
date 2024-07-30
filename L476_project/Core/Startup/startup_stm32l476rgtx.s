@@ -61,6 +61,20 @@ defined in linker script */
 Reset_Handler:
   ldr   sp, =_estack    /* Set stack pointer */
 
+ /*************************/
+ /* Enable Fault handlers */
+ /*************************/
+        .set     SHCSR, 0xE000ED24
+        .set     FAULT_MASK, (0x1<<18) + (0x1<<17) + (0x1<<16)
+
+        ldr      r0, =SHCSR
+        ldr      r1, [r0]
+        orr      r1, r1,#FAULT_MASK
+        str      r1, [r0]
+
+        dsb
+        isb
+
 /* Call the clock system initialization function.*/
 	    bl  SystemInit
 

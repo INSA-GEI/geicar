@@ -1,0 +1,6 @@
+*.cyclo
+*.su
+
+Debug/
+Release/
+
