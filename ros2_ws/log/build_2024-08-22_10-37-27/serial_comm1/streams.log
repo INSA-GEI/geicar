@@ -1,0 +1,28 @@
+[0.007s] Invoking command in '/home/sonia/ros2_ws/build/serial_comm1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/serial_comm1 -- -j1 -l1
+[0.082s] [35m[1mConsolidate compiler generated dependencies of target talker[0m
+[0.129s] [ 25%] [32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o[0m
+[7.425s] [ 50%] [32m[1mLinking CXX executable talker[0m
+[7.650s] [ 50%] Built target talker
+[7.693s] [100%] Built target listener
+[7.715s] Invoked command in '/home/sonia/ros2_ws/build/serial_comm1' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/serial_comm1 -- -j1 -l1
+[7.734s] Invoking command in '/home/sonia/ros2_ws/build/serial_comm1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/build/serial_comm1
+[7.739s] -- Install configuration: ""
+[7.739s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/talker
+[7.742s] -- Set runtime path of "/home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/talker" to ""
+[7.742s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/listener
+[7.743s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/ament_index/resource_index/package_run_dependencies/serial_comm1
+[7.743s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/ament_index/resource_index/parent_prefix_path/serial_comm1
+[7.743s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/ament_prefix_path.sh
+[7.744s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/ament_prefix_path.dsv
+[7.744s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/path.sh
+[7.744s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/path.dsv
+[7.744s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.bash
+[7.744s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.sh
+[7.744s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.zsh
+[7.744s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.dsv
+[7.745s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/package.dsv
+[7.745s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/ament_index/resource_index/packages/serial_comm1
+[7.745s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/cmake/serial_comm1Config.cmake
+[7.746s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/cmake/serial_comm1Config-version.cmake
+[7.746s] -- Up-to-date: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/package.xml
+[7.758s] Invoked command in '/home/sonia/ros2_ws/build/serial_comm1' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/build/serial_comm1

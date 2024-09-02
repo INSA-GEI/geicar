@@ -1,0 +1,4 @@
+[31mCMake Error at CMakeLists.txt:21 (install):
+  install TARGETS given target "serial_publisher" which does not exist.
+
+[0m

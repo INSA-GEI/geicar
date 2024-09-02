@@ -1,0 +1,54 @@
+[0.003s] Invoking command in '/home/sonia/ros2_ws/src/build/serial_comm': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/serial_comm -- -j1 -l1
+[0.022s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.099s] -- Found rclcpp: 16.0.9 (/opt/ros/humble/share/rclcpp/cmake)
+[0.120s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.122s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.130s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.137s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.145s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.189s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.190s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.260s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.381s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system 
+[0.432s] -- Configuring done
+[0.446s] -- Generating done
+[0.449s] -- Build files have been written to: /home/sonia/ros2_ws/src/build/serial_comm
+[0.481s] [35m[1mConsolidate compiler generated dependencies of target talker[0m
+[0.502s] [ 25%] [32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o[0m
+[1.900s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:50:3:[m[K [01;31m[Kerror: [m[K‘[01m[Kio_service[m[K’ does not name a type; did you mean ‘[01m[Krmw_service_t[m[K’?
+[1.900s]    50 |   [01;31m[Kio_service[m[K io;
+[1.900s]       |   [01;31m[K^~~~~~~~~~[m[K
+[1.900s]       |   [32m[Krmw_service_t[m[K
+[1.902s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:51:3:[m[K [01;31m[Kerror: [m[K‘[01m[Kserial_port[m[K’ does not name a type
+[1.902s]    51 |   [01;31m[Kserial_port[m[K serial;
+[1.902s]       |   [01;31m[K^~~~~~~~~~~[m[K
+[1.905s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:[m[K In constructor ‘[01m[KSerialPublisher::SerialPublisher()[m[K’:
+[1.905s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:32:31:[m[K [01;31m[Kerror: [m[Kclass ‘[01m[KSerialPublisher[m[K’ does not have any field named ‘[01m[Kio[m[K’
+[1.905s]    32 |   : Node("serial_publisher"), [01;31m[Kio[m[K(),serial(io,"COM8")
+[1.906s]       |                               [01;31m[K^~[m[K
+[1.906s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:32:36:[m[K [01;31m[Kerror: [m[Kclass ‘[01m[KSerialPublisher[m[K’ does not have any field named ‘[01m[Kserial[m[K’
+[1.906s]    32 |   : Node("serial_publisher"), io(),[01;31m[Kserial[m[K(io,"COM8")
+[1.906s]       |                                    [01;31m[K^~~~~~[m[K
+[1.909s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:32:43:[m[K [01;31m[Kerror: [m[K‘[01m[Kio[m[K’ was not declared in this scope
+[1.909s]    32 |   : Node("serial_publisher"), io(),serial([01;31m[Kio[m[K,"COM8")
+[1.910s]       |                                           [01;31m[K^~[m[K
+[1.913s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:34:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kserial[m[K’ was not declared in this scope
+[1.913s]    34 |     [01;31m[Kserial[m[K.set_option(serial_port_base::baud_rate(115200));
+[1.913s]       |     [01;31m[K^~~~~~[m[K
+[1.914s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:34:23:[m[K [01;31m[Kerror: [m[K‘[01m[Kserial_port_base[m[K’ has not been declared
+[1.914s]    34 |     serial.set_option([01;31m[Kserial_port_base[m[K::baud_rate(115200));
+[1.914s]       |                       [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[1.921s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:[m[K In member function ‘[01m[Kvoid SerialPublisher::timer_callback()[m[K’:
+[1.922s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:44:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kboost[m[K’ has not been declared
+[1.922s]    44 |     [01;31m[Kboost[m[K::asio::read_until(serial, boost::asio::dynamic_buffer(line),'\n');
+[1.922s]       |     [01;31m[K^~~~~[m[K
+[1.925s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:44:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kserial[m[K’ was not declared in this scope
+[1.926s]    44 |     boost::asio::read_until([01;31m[Kserial[m[K, boost::asio::dynamic_buffer(line),'\n');
+[1.926s]       |                             [01;31m[K^~~~~~[m[K
+[1.926s] [01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:44:37:[m[K [01;31m[Kerror: [m[K‘[01m[Kboost[m[K’ has not been declared
+[1.926s]    44 |     boost::asio::read_until(serial, [01;31m[Kboost[m[K::asio::dynamic_buffer(line),'\n');
+[1.927s]       |                                     [01;31m[K^~~~~[m[K
+[2.499s] gmake[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/serial_publisher.cpp.o] Error 1
+[2.499s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Error 2
+[2.499s] gmake: *** [Makefile:146: all] Error 2
+[2.500s] Invoked command in '/home/sonia/ros2_ws/src/build/serial_comm' returned '2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/serial_comm -- -j1 -l1

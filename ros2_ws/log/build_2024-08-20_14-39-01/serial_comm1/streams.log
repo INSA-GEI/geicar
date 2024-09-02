@@ -1,0 +1,12 @@
+[0.019s] Invoking command in '/home/sonia/ros2_ws/build/serial_comm1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/serial_comm1 -- -j1 -l1
+[0.076s] [35m[1mConsolidate compiler generated dependencies of target talker[0m
+[0.104s] [ 25%] [32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o[0m
+[8.339s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:[m[K In function ‘[01m[Kstd::vector<unsigned char, std::allocator<unsigned char> > readFrame(boost::asio::serial_port&)[m[K’:
+[8.339s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:43:29:[m[K [01;31m[Kerror: [m[K‘[01m[Klengt_bytes[m[K’ was not declared in this scope; did you mean ‘[01m[Klength_bytes[m[K’?
+[8.339s]    43 |   std::swap(length_bytes[0],[01;31m[Klengt_bytes[m[K[1]); //inverser les deux octets de longueur
+[8.339s]       |                             [01;31m[K^~~~~~~~~~~[m[K
+[8.339s]       |                             [32m[Klength_bytes[m[K
+[10.729s] gmake[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/serial_publisher.cpp.o] Error 1
+[10.730s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Error 2
+[10.730s] gmake: *** [Makefile:146: all] Error 2
+[10.750s] Invoked command in '/home/sonia/ros2_ws/build/serial_comm1' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/serial_comm1 -- -j1 -l1

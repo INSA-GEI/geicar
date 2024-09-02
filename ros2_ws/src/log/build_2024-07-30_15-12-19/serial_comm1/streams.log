@@ -1,0 +1,7 @@
+[0.021s] Invoking command in '/home/sonia/ros2_ws/src/build/serial_comm1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/serial_comm1 -- -j1 -l1
+[0.092s] [35m[1mConsolidate compiler generated dependencies of target talker[0m
+[0.145s] [ 25%] [32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o[0m
+[7.752s] gmake[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/serial_publisher.cpp.o] Interrupt
+[7.752s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Interrupt
+[7.752s] gmake: *** [Makefile:146: all] Interrupt
+[7.776s] Invoked command in '/home/sonia/ros2_ws/src/build/serial_comm1' returned '-2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/serial_comm1 -- -j1 -l1

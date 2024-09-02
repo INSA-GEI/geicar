@@ -1,0 +1,5 @@
+[35m[1mConsolidate compiler generated dependencies of target talker[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o[0m
+gmake[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/serial_publisher.cpp.o] Interrupt
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Interrupt
+gmake: *** [Makefile:146: all] Interrupt

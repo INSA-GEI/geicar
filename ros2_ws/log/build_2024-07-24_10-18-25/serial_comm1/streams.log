@@ -1,0 +1,66 @@
+[0.004s] Invoking command in '/home/sonia/ros2_ws/build/serial_comm1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/serial_comm1 -- -j1 -l1
+[0.046s] [35m[1mConsolidate compiler generated dependencies of target talker[0m
+[0.067s] [ 25%] [32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o[0m
+[3.254s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[3.254s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:94:26:[m[K [01;31m[Kerror: [m[Kassuming pointer to member ‘[01m[Kstd::shared_ptr<PublisherT> rclcpp::Node::create_publisher(const string&, const rclcpp::QoS&, const rclcpp::PublisherOptionsWithAllocator<AllocatorT>&) [with MessageT = std_msgs::msg::String_<std::allocator<void> >; AllocatorT = std::allocator<void>; PublisherT = rclcpp::Publisher<std_msgs::msg::String_<std::allocator<void> >, std::allocator<void> >; std::string = std::__cxx11::basic_string<char>][m[K’ [[01;31m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive-fpermissive]8;;[m[K]
+[3.254s]    94 |   auto publisher = node->[01;31m[Kcreate_publisher<std_msgs::msg::String>[m[K;
+[3.254s]       |                          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[3.255s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:94:26:[m[K [01;36m[Knote: [m[K(a pointer to member can only be formed with ‘[01m[K&rclcpp::Node::create_publisher<std_msgs::msg::String_<std::allocator<void> > >[m[K’)
+[3.281s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:108:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kstd_string[m[K’ was not declared in this scope
+[3.281s]   108 |         [01;31m[Kstd_string[m[K frame_str(frame.begin(),frame.end());
+[3.281s]       |         [01;31m[K^~~~~~~~~~[m[K
+[3.291s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:110:21:[m[K [01;31m[Kerror: [m[K‘[01m[Kframe_str[m[K’ was not declared in this scope
+[3.291s]   110 |         msg->data = [01;31m[Kframe_str[m[K;
+[3.291s]       |                     [01;31m[K^~~~~~~~~[m[K
+[3.291s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:111:18:[m[K [01;31m[Kerror: [m[Kbase operand of ‘[01m[K->[m[K’ is not a pointer
+[3.291s]   111 |         publisher[01;31m[K->[m[Kpublish(*msg);
+[3.291s]       |                  [01;31m[K^~[m[K
+[3.291s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:113:15:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K->[m[K’ token
+[3.291s]   113 |         rclcpp[01;31m[K->[m[K publish(*msg);
+[3.291s]       |               [01;31m[K^~[m[K
+[3.302s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[3.302s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[3.302s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[3.302s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[3.302s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[3.302s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[3.302s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[3.302s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[3.303s]                  from [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:20[m[K:
+[3.303s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:118:24:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing element_type = class rclcpp::Node[m[K’ {aka ‘[01m[Kclass rclcpp::Node[m[K’} has no member named ‘[01m[Kfet_logger[m[K’; did you mean ‘[01m[Kget_logger[m[K’?
+[3.303s]   118 |     RCLCPP_ERROR(node->[01;31m[Kfet_logger[m[K(),"Erreur system: %s", ex.what());
+[3.303s]       |                        [01;31m[K^~~~~~~~~~[m[K
+[3.303s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:118:24:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing element_type = class rclcpp::Node[m[K’ {aka ‘[01m[Kclass rclcpp::Node[m[K’} has no member named ‘[01m[Kfet_logger[m[K’; did you mean ‘[01m[Kget_logger[m[K’?
+[3.303s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:118:5:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+[3.303s]   118 |     [01;31m[KRCLCPP_ERROR[m[K(node->fet_logger(),"Erreur system: %s", ex.what());
+[3.303s]       |     [01;31m[K^~~~~~~~~~~~[m[K
+[3.303s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:118:5:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+[3.303s]   118 |     [01;31m[KRCLCPP_ERROR[m[K(node->fet_logger(),"Erreur system: %s", ex.what());
+[3.303s]       |     [01;31m[K^~~~~~~~~~~~[m[K
+[3.303s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:118:5:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+[3.303s]   118 |     [01;31m[KRCLCPP_ERROR[m[K(node->fet_logger(),"Erreur system: %s", ex.what());
+[3.303s]       |     [01;31m[K^~~~~~~~~~~~[m[K
+[3.303s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[3.303s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[3.303s]                  from [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:20[m[K:
+[3.303s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:118:24:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing element_type = class rclcpp::Node[m[K’ {aka ‘[01m[Kclass rclcpp::Node[m[K’} has no member named ‘[01m[Kfet_logger[m[K’; did you mean ‘[01m[Kget_logger[m[K’?
+[3.303s]   118 |     RCLCPP_ERROR(node->[01;31m[Kfet_logger[m[K(),"Erreur system: %s", ex.what());
+[3.303s]       |                        [01;31m[K^~~~~~~~~~[m[K
+[3.303s] [01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:118:24:[m[K [01;31m[Kerror: [m[K‘[01m[Kusing element_type = class rclcpp::Node[m[K’ {aka ‘[01m[Kclass rclcpp::Node[m[K’} has no member named ‘[01m[Kfet_logger[m[K’; did you mean ‘[01m[Kget_logger[m[K’?
+[3.303s]   118 |     RCLCPP_ERROR(node->[01;31m[Kfet_logger[m[K(),"Erreur system: %s", ex.what());
+[3.303s]       |                        [01;31m[K^~~~~~~~~~[m[K
+[5.567s] gmake[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/serial_publisher.cpp.o] Error 1
+[5.567s] gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Error 2
+[5.568s] gmake: *** [Makefile:146: all] Error 2
+[5.568s] Invoked command in '/home/sonia/ros2_ws/build/serial_comm1' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/serial_comm1 -- -j1 -l1

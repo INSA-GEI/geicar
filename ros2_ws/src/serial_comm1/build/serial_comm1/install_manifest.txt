@@ -1,0 +1,17 @@
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/lib/serial_comm1/talker
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/lib/serial_comm1/listener
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/ament_index/resource_index/package_run_dependencies/serial_comm1
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/ament_index/resource_index/parent_prefix_path/serial_comm1
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/environment/ament_prefix_path.sh
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/environment/ament_prefix_path.dsv
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/environment/path.sh
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/environment/path.dsv
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/local_setup.bash
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/local_setup.sh
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/local_setup.zsh
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/local_setup.dsv
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/package.dsv
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/ament_index/resource_index/packages/serial_comm1
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/cmake/serial_comm1Config.cmake
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/cmake/serial_comm1Config-version.cmake
+/home/sonia/ros2_ws/src/serial_comm1/install/serial_comm1/share/serial_comm1/package.xml

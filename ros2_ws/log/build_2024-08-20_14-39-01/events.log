@@ -1,0 +1,111 @@
+[0.000000] (-) TimerEvent: {}
+[0.000169] (-) JobUnselected: {'identifier': 'cpp_pubsub'}
+[0.000225] (-) JobUnselected: {'identifier': 'serial_comm'}
+[0.000268] (-) JobUnselected: {'identifier': 'turtlesim'}
+[0.000311] (serial_comm1) JobQueued: {'identifier': 'serial_comm1', 'dependencies': OrderedDict()}
+[0.000507] (serial_comm1) JobStarted: {'identifier': 'serial_comm1'}
+[0.011938] (serial_comm1) JobProgress: {'identifier': 'serial_comm1', 'progress': 'cmake'}
+[0.014061] (serial_comm1) JobProgress: {'identifier': 'serial_comm1', 'progress': 'build'}
+[0.019385] (serial_comm1) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/sonia/ros2_ws/build/serial_comm1', '--', '-j1', '-l1'], 'cwd': '/home/sonia/ros2_ws/build/serial_comm1', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/sonia/ros2_ws/install/turtlesim/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1412'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/sonia/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1375,unix/sonia-VirtualBox:/tmp/.ICE-unix/1375'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/c76e341e_d98d_4ac1_930d_b52cd229b936'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.PJI6S2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.103'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/sonia/ros2_ws/install/turtlesim:/home/sonia/ros2_ws/install/serial_comm1:/home/sonia/ros2_ws/install/serial_comm:/home/sonia/ros2_ws/install/cpp_pubsub:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/serial_comm1'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/sonia/ros2_ws/install/turtlesim:/home/sonia/ros2_ws/install/serial_comm1:/home/sonia/ros2_ws/install/serial_comm:/home/sonia/ros2_ws/install/cpp_pubsub:/opt/ros/humble')]), 'shell': False}
+[0.075994] (serial_comm1) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target talker\x1b[0m\n'}
+[0.099810] (-) TimerEvent: {}
+[0.104352] (serial_comm1) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o\x1b[0m\n'}
+[0.199946] (-) TimerEvent: {}
+[0.327916] (-) TimerEvent: {}
+[0.436958] (-) TimerEvent: {}
+[0.556076] (-) TimerEvent: {}
+[0.665493] (-) TimerEvent: {}
+[0.766543] (-) TimerEvent: {}
+[0.881400] (-) TimerEvent: {}
+[0.994273] (-) TimerEvent: {}
+[1.100563] (-) TimerEvent: {}
+[1.216491] (-) TimerEvent: {}
+[1.330050] (-) TimerEvent: {}
+[1.465536] (-) TimerEvent: {}
+[1.584011] (-) TimerEvent: {}
+[1.760336] (-) TimerEvent: {}
+[1.871263] (-) TimerEvent: {}
+[1.987825] (-) TimerEvent: {}
+[2.114368] (-) TimerEvent: {}
+[2.224859] (-) TimerEvent: {}
+[2.327977] (-) TimerEvent: {}
+[2.464514] (-) TimerEvent: {}
+[2.568656] (-) TimerEvent: {}
+[2.720867] (-) TimerEvent: {}
+[2.853793] (-) TimerEvent: {}
+[2.988265] (-) TimerEvent: {}
+[3.118161] (-) TimerEvent: {}
+[3.260862] (-) TimerEvent: {}
+[3.388607] (-) TimerEvent: {}
+[3.491598] (-) TimerEvent: {}
+[3.622727] (-) TimerEvent: {}
+[3.725354] (-) TimerEvent: {}
+[3.829752] (-) TimerEvent: {}
+[3.934171] (-) TimerEvent: {}
+[4.062486] (-) TimerEvent: {}
+[4.205608] (-) TimerEvent: {}
+[4.307231] (-) TimerEvent: {}
+[4.428521] (-) TimerEvent: {}
+[4.551848] (-) TimerEvent: {}
+[4.653636] (-) TimerEvent: {}
+[4.766057] (-) TimerEvent: {}
+[4.874460] (-) TimerEvent: {}
+[4.978670] (-) TimerEvent: {}
+[5.116522] (-) TimerEvent: {}
+[5.218659] (-) TimerEvent: {}
+[5.322817] (-) TimerEvent: {}
+[5.426190] (-) TimerEvent: {}
+[5.549681] (-) TimerEvent: {}
+[5.664775] (-) TimerEvent: {}
+[5.783186] (-) TimerEvent: {}
+[5.893530] (-) TimerEvent: {}
+[6.043496] (-) TimerEvent: {}
+[6.209718] (-) TimerEvent: {}
+[6.327997] (-) TimerEvent: {}
+[6.429002] (-) TimerEvent: {}
+[6.561986] (-) TimerEvent: {}
+[6.711951] (-) TimerEvent: {}
+[6.879813] (-) TimerEvent: {}
+[7.049289] (-) TimerEvent: {}
+[7.198853] (-) TimerEvent: {}
+[7.311067] (-) TimerEvent: {}
+[7.420169] (-) TimerEvent: {}
+[7.546878] (-) TimerEvent: {}
+[7.656214] (-) TimerEvent: {}
+[7.765897] (-) TimerEvent: {}
+[7.875614] (-) TimerEvent: {}
+[8.016604] (-) TimerEvent: {}
+[8.155977] (-) TimerEvent: {}
+[8.276321] (-) TimerEvent: {}
+[8.339130] (serial_comm1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kstd::vector<unsigned char, std::allocator<unsigned char> > readFrame(boost::asio::serial_port&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[8.339290] (serial_comm1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:43:29:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Klengt_bytes\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Klength_bytes\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[8.339327] (serial_comm1) StderrLine: {'line': b'   43 |   std::swap(length_bytes[0],\x1b[01;31m\x1b[Klengt_bytes\x1b[m\x1b[K[1]); //inverser les deux octets de longueur\n'}
+[8.339358] (serial_comm1) StderrLine: {'line': b'      |                             \x1b[01;31m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[8.339383] (serial_comm1) StderrLine: {'line': b'      |                             \x1b[32m\x1b[Klength_bytes\x1b[m\x1b[K\n'}
+[8.396564] (-) TimerEvent: {}
+[8.496851] (-) TimerEvent: {}
+[8.635493] (-) TimerEvent: {}
+[8.810693] (-) TimerEvent: {}
+[8.920380] (-) TimerEvent: {}
+[9.034630] (-) TimerEvent: {}
+[9.147555] (-) TimerEvent: {}
+[9.249536] (-) TimerEvent: {}
+[9.353053] (-) TimerEvent: {}
+[9.480803] (-) TimerEvent: {}
+[9.581699] (-) TimerEvent: {}
+[9.684326] (-) TimerEvent: {}
+[9.818482] (-) TimerEvent: {}
+[9.965591] (-) TimerEvent: {}
+[10.065965] (-) TimerEvent: {}
+[10.170950] (-) TimerEvent: {}
+[10.275115] (-) TimerEvent: {}
+[10.387804] (-) TimerEvent: {}
+[10.495394] (-) TimerEvent: {}
+[10.608141] (-) TimerEvent: {}
+[10.713396] (-) TimerEvent: {}
+[10.729402] (serial_comm1) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/serial_publisher.cpp.o] Error 1\n'}
+[10.729983] (serial_comm1) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Error 2\n'}
+[10.730379] (serial_comm1) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[10.750672] (serial_comm1) CommandEnded: {'returncode': 2}
+[10.792382] (serial_comm1) JobEnded: {'identifier': 'serial_comm1', 'rc': 2}
+[10.797995] (-) EventReactorShutdown: {}

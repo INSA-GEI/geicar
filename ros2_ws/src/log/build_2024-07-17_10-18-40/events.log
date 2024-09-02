@@ -1,0 +1,88 @@
+[0.000000] (-) TimerEvent: {}
+[0.000205] (-) JobUnselected: {'identifier': 'cpp_pubsub'}
+[0.000382] (-) JobUnselected: {'identifier': 'turtlesim'}
+[0.000439] (serial_comm) JobQueued: {'identifier': 'serial_comm', 'dependencies': OrderedDict()}
+[0.000501] (serial_comm) JobStarted: {'identifier': 'serial_comm'}
+[0.015641] (serial_comm) JobProgress: {'identifier': 'serial_comm', 'progress': 'cmake'}
+[0.015717] (serial_comm) Command: {'cmd': ['/usr/bin/cmake', '/home/sonia/ros2_ws/src/serial_comm', '-DCMAKE_INSTALL_PREFIX=/home/sonia/ros2_ws/src/install/serial_comm'], 'cwd': '/home/sonia/ros2_ws/src/build/serial_comm', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia/ros2_ws'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1305'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1277,unix/sonia-VirtualBox:/tmp/.ICE-unix/1277'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3fb0c731_e615_45c9_8964_a8d7f02ba8e8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.BBCBR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/src/build/serial_comm'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.099335] (-) TimerEvent: {}
+[0.104587] (serial_comm) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.176129] (serial_comm) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.189894] (serial_comm) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.199391] (-) TimerEvent: {}
+[0.272984] (serial_comm) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.282700] (serial_comm) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.284444] (serial_comm) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.285495] (serial_comm) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.289306] (serial_comm) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.299509] (-) TimerEvent: {}
+[0.365691] (serial_comm) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.379813] (serial_comm) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.380263] (serial_comm) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.380670] (serial_comm) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.387529] (serial_comm) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[0.399644] (-) TimerEvent: {}
+[0.545733] (-) TimerEvent: {}
+[0.647244] (-) TimerEvent: {}
+[0.670648] (serial_comm) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[0.749018] (-) TimerEvent: {}
+[0.826520] (serial_comm) StdoutLine: {'line': b'-- Found rclcpp: 16.0.9 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[0.849109] (-) TimerEvent: {}
+[0.912473] (serial_comm) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[0.920561] (serial_comm) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[0.931765] (serial_comm) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[0.949261] (-) TimerEvent: {}
+[0.956370] (serial_comm) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.989395] (serial_comm) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.053740] (-) TimerEvent: {}
+[1.107743] (serial_comm) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[1.110436] (serial_comm) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[1.155208] (-) TimerEvent: {}
+[1.256459] (-) TimerEvent: {}
+[1.257555] (serial_comm) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[1.317743] (serial_comm) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[1.356597] (-) TimerEvent: {}
+[1.388227] (serial_comm) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.411428] (serial_comm) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[1.457694] (-) TimerEvent: {}
+[1.549952] (serial_comm) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[1.552328] (serial_comm) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[1.557745] (-) TimerEvent: {}
+[1.653846] (serial_comm) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[1.657733] (serial_comm) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[1.657839] (-) TimerEvent: {}
+[1.761701] (-) TimerEvent: {}
+[1.862026] (-) TimerEvent: {}
+[1.962612] (-) TimerEvent: {}
+[2.014965] (serial_comm) StdoutLine: {'line': b'-- Configuring done\n'}
+[2.016425] (serial_comm) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:15 (add_executable):\n'}
+[2.016542] (serial_comm) StderrLine: {'line': b'  Cannot find source file:\n'}
+[2.016594] (serial_comm) StderrLine: {'line': b'\n'}
+[2.016643] (serial_comm) StderrLine: {'line': b'    src/publish_data.cpp\n'}
+[2.016686] (serial_comm) StderrLine: {'line': b'\n'}
+[2.017852] (serial_comm) StderrLine: {'line': b'  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h\n'}
+[2.017954] (serial_comm) StderrLine: {'line': b'  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc\n'}
+[2.018013] (serial_comm) StderrLine: {'line': b'\n'}
+[2.018077] (serial_comm) StderrLine: {'line': b'\x1b[0m\n'}
+[2.018604] (serial_comm) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:18 (add_executable):\n'}
+[2.018742] (serial_comm) StderrLine: {'line': b'  Cannot find source file:\n'}
+[2.018790] (serial_comm) StderrLine: {'line': b'\n'}
+[2.018836] (serial_comm) StderrLine: {'line': b'    src/subscribe_data.cpp\n'}
+[2.018878] (serial_comm) StderrLine: {'line': b'\n'}
+[2.021637] (serial_comm) StderrLine: {'line': b'  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .mpp .m .M .mm .ixx .cppm .h\n'}
+[2.021711] (serial_comm) StderrLine: {'line': b'  .hh .h++ .hm .hpp .hxx .in .txx .f .F .for .f77 .f90 .f95 .f03 .hip .ispc\n'}
+[2.021757] (serial_comm) StderrLine: {'line': b'\n'}
+[2.021806] (serial_comm) StderrLine: {'line': b'\x1b[0m\n'}
+[2.022102] (serial_comm) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:15 (add_executable):\n'}
+[2.022169] (serial_comm) StderrLine: {'line': b'  No SOURCES given to target: serial_publisher\n'}
+[2.022215] (serial_comm) StderrLine: {'line': b'\n'}
+[2.022264] (serial_comm) StderrLine: {'line': b'\x1b[0m\n'}
+[2.022323] (serial_comm) StderrLine: {'line': b'\x1b[31mCMake Error at CMakeLists.txt:18 (add_executable):\n'}
+[2.022369] (serial_comm) StderrLine: {'line': b'  No SOURCES given to target: serial_subscriber\n'}
+[2.022409] (serial_comm) StderrLine: {'line': b'\n'}
+[2.022456] (serial_comm) StderrLine: {'line': b'\x1b[0m\n'}
+[2.022515] (serial_comm) StderrLine: {'line': b'\x1b[0mCMake Generate step failed.  Build files cannot be regenerated correctly.\x1b[0m\n'}
+[2.041752] (serial_comm) CommandEnded: {'returncode': 1}
+[2.062716] (-) TimerEvent: {}
+[2.071868] (serial_comm) JobEnded: {'identifier': 'serial_comm', 'rc': 1}
+[2.072864] (-) EventReactorShutdown: {}

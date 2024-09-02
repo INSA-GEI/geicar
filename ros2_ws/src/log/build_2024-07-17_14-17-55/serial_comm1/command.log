@@ -1,0 +1,2 @@
+Invoking command in '/home/sonia/ros2_ws/src/build/serial_comm1': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/sonia/ros2_ws/src/serial_comm1 -DCMAKE_INSTALL_PREFIX=/home/sonia/ros2_ws/src/install/serial_comm1
+Invoked command in '/home/sonia/ros2_ws/src/build/serial_comm1' returned '1': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/sonia/ros2_ws/src/serial_comm1 -DCMAKE_INSTALL_PREFIX=/home/sonia/ros2_ws/src/install/serial_comm1

@@ -1,0 +1,237 @@
+[0.000000] (-) TimerEvent: {}
+[0.000646] (-) JobUnselected: {'identifier': 'cpp_pubsub'}
+[0.000712] (-) JobUnselected: {'identifier': 'serial_comm'}
+[0.000757] (-) JobUnselected: {'identifier': 'turtlesim'}
+[0.000801] (serial_comm1) JobQueued: {'identifier': 'serial_comm1', 'dependencies': OrderedDict()}
+[0.000846] (serial_comm1) JobStarted: {'identifier': 'serial_comm1'}
+[0.002983] (serial_comm1) JobProgress: {'identifier': 'serial_comm1', 'progress': 'cmake'}
+[0.004172] (serial_comm1) JobProgress: {'identifier': 'serial_comm1', 'progress': 'build'}
+[0.004247] (serial_comm1) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/sonia/ros2_ws/src/build/serial_comm1', '--', '-j1', '-l1'], 'cwd': '/home/sonia/ros2_ws/src/build/serial_comm1', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/sonia/ros2_ws/install/turtlesim/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('SYSTEMD_EXEC_PID', '1375'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=de922618bc6c4ae68f4ae50766a8e04e'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/sonia/ros2_ws/src/install:/home/sonia/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1375,unix/sonia-VirtualBox:/tmp/.ICE-unix/1375'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/47d9fb03_d166_45ce_a9a8_17492ca41589'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.8ATIR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.139'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/sonia/ros2_ws/src/install/serial_comm1:/home/sonia/ros2_ws/src/install/serial_comm:/home/sonia/ros2_ws/src/install/cpp_pubsub:/home/sonia/ros2_ws/install/turtlesim:/home/sonia/ros2_ws/install/serial_comm1:/home/sonia/ros2_ws/install/serial_comm:/home/sonia/ros2_ws/install/cpp_pubsub:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/src/build/serial_comm1'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=de922618bc6c4ae68f4ae50766a8e04e'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/sonia/ros2_ws/src/install/serial_comm1:/home/sonia/ros2_ws/src/install/serial_comm:/home/sonia/ros2_ws/src/install/cpp_pubsub:/home/sonia/ros2_ws/install/turtlesim:/home/sonia/ros2_ws/install/serial_comm1:/home/sonia/ros2_ws/install/serial_comm:/home/sonia/ros2_ws/install/cpp_pubsub:/opt/ros/humble')]), 'shell': False}
+[0.053610] (serial_comm1) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target talker\x1b[0m\n'}
+[0.082733] (serial_comm1) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o\x1b[0m\n'}
+[0.097968] (-) TimerEvent: {}
+[0.200997] (-) TimerEvent: {}
+[0.303797] (-) TimerEvent: {}
+[0.404328] (-) TimerEvent: {}
+[0.509642] (-) TimerEvent: {}
+[0.611547] (-) TimerEvent: {}
+[0.719962] (-) TimerEvent: {}
+[0.823594] (-) TimerEvent: {}
+[0.929443] (-) TimerEvent: {}
+[1.032238] (-) TimerEvent: {}
+[1.140741] (-) TimerEvent: {}
+[1.243702] (-) TimerEvent: {}
+[1.347785] (-) TimerEvent: {}
+[1.448403] (-) TimerEvent: {}
+[1.556659] (-) TimerEvent: {}
+[1.657979] (-) TimerEvent: {}
+[1.758924] (-) TimerEvent: {}
+[1.863257] (-) TimerEvent: {}
+[1.966950] (-) TimerEvent: {}
+[2.080294] (-) TimerEvent: {}
+[2.182985] (-) TimerEvent: {}
+[2.287682] (-) TimerEvent: {}
+[2.389556] (-) TimerEvent: {}
+[2.495122] (-) TimerEvent: {}
+[2.597978] (-) TimerEvent: {}
+[2.707131] (-) TimerEvent: {}
+[2.807478] (-) TimerEvent: {}
+[2.908577] (-) TimerEvent: {}
+[3.009033] (-) TimerEvent: {}
+[3.118985] (-) TimerEvent: {}
+[3.219350] (-) TimerEvent: {}
+[3.328019] (-) TimerEvent: {}
+[3.431203] (-) TimerEvent: {}
+[3.535263] (-) TimerEvent: {}
+[3.635833] (-) TimerEvent: {}
+[3.736206] (-) TimerEvent: {}
+[3.839131] (-) TimerEvent: {}
+[3.939682] (-) TimerEvent: {}
+[4.045841] (-) TimerEvent: {}
+[4.154687] (-) TimerEvent: {}
+[4.255067] (-) TimerEvent: {}
+[4.357357] (-) TimerEvent: {}
+[4.461803] (-) TimerEvent: {}
+[4.562176] (-) TimerEvent: {}
+[4.663267] (-) TimerEvent: {}
+[4.765833] (-) TimerEvent: {}
+[4.866308] (-) TimerEvent: {}
+[4.969409] (-) TimerEvent: {}
+[5.085785] (-) TimerEvent: {}
+[5.186762] (-) TimerEvent: {}
+[5.292408] (-) TimerEvent: {}
+[5.392725] (-) TimerEvent: {}
+[5.496222] (-) TimerEvent: {}
+[5.597690] (-) TimerEvent: {}
+[5.698940] (-) TimerEvent: {}
+[5.800434] (-) TimerEvent: {}
+[5.900794] (-) TimerEvent: {}
+[6.007612] (-) TimerEvent: {}
+[6.108876] (-) TimerEvent: {}
+[6.211085] (-) TimerEvent: {}
+[6.314974] (-) TimerEvent: {}
+[6.421842] (-) TimerEvent: {}
+[6.533485] (-) TimerEvent: {}
+[6.637031] (-) TimerEvent: {}
+[6.744838] (-) TimerEvent: {}
+[6.859007] (-) TimerEvent: {}
+[6.963279] (-) TimerEvent: {}
+[7.063696] (-) TimerEvent: {}
+[7.166008] (-) TimerEvent: {}
+[7.267304] (-) TimerEvent: {}
+[7.367652] (-) TimerEvent: {}
+[7.468008] (-) TimerEvent: {}
+[7.569288] (-) TimerEvent: {}
+[7.672280] (-) TimerEvent: {}
+[7.776160] (-) TimerEvent: {}
+[7.876459] (-) TimerEvent: {}
+[7.977640] (-) TimerEvent: {}
+[8.085464] (-) TimerEvent: {}
+[8.185969] (-) TimerEvent: {}
+[8.286774] (-) TimerEvent: {}
+[8.388999] (-) TimerEvent: {}
+[8.489522] (-) TimerEvent: {}
+[8.596556] (-) TimerEvent: {}
+[8.696975] (-) TimerEvent: {}
+[8.801274] (-) TimerEvent: {}
+[8.901922] (-) TimerEvent: {}
+[9.004110] (-) TimerEvent: {}
+[9.104954] (-) TimerEvent: {}
+[9.210870] (-) TimerEvent: {}
+[9.312977] (-) TimerEvent: {}
+[9.416178] (-) TimerEvent: {}
+[9.519712] (-) TimerEvent: {}
+[9.620178] (-) TimerEvent: {}
+[9.720571] (-) TimerEvent: {}
+[9.760539] (serial_comm1) StdoutLine: {'line': b'[ 50%] \x1b[32m\x1b[1mLinking CXX executable talker\x1b[0m\n'}
+[9.820698] (-) TimerEvent: {}
+[9.902643] (serial_comm1) StdoutLine: {'line': b'[ 50%] Built target talker\n'}
+[9.920753] (-) TimerEvent: {}
+[9.934093] (serial_comm1) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target listener\x1b[0m\n'}
+[9.960906] (serial_comm1) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/listener.dir/src/serial_subscriber.cpp.o\x1b[0m\n'}
+[10.023419] (-) TimerEvent: {}
+[10.131421] (-) TimerEvent: {}
+[10.231770] (-) TimerEvent: {}
+[10.338093] (-) TimerEvent: {}
+[10.439599] (-) TimerEvent: {}
+[10.547361] (-) TimerEvent: {}
+[10.654905] (-) TimerEvent: {}
+[10.759467] (-) TimerEvent: {}
+[10.872941] (-) TimerEvent: {}
+[10.979216] (-) TimerEvent: {}
+[11.081808] (-) TimerEvent: {}
+[11.186208] (-) TimerEvent: {}
+[11.296183] (-) TimerEvent: {}
+[11.396687] (-) TimerEvent: {}
+[11.497871] (-) TimerEvent: {}
+[11.603814] (-) TimerEvent: {}
+[11.710938] (-) TimerEvent: {}
+[11.815632] (-) TimerEvent: {}
+[11.919995] (-) TimerEvent: {}
+[12.021179] (-) TimerEvent: {}
+[12.134379] (-) TimerEvent: {}
+[12.234835] (-) TimerEvent: {}
+[12.346684] (-) TimerEvent: {}
+[12.457139] (-) TimerEvent: {}
+[12.564090] (-) TimerEvent: {}
+[12.668044] (-) TimerEvent: {}
+[12.768670] (-) TimerEvent: {}
+[12.869015] (-) TimerEvent: {}
+[12.969788] (-) TimerEvent: {}
+[13.070610] (-) TimerEvent: {}
+[13.179202] (-) TimerEvent: {}
+[13.280694] (-) TimerEvent: {}
+[13.383371] (-) TimerEvent: {}
+[13.487349] (-) TimerEvent: {}
+[13.589662] (-) TimerEvent: {}
+[13.694371] (-) TimerEvent: {}
+[13.795249] (-) TimerEvent: {}
+[13.895696] (-) TimerEvent: {}
+[13.999902] (-) TimerEvent: {}
+[14.100673] (-) TimerEvent: {}
+[14.202656] (-) TimerEvent: {}
+[14.304584] (-) TimerEvent: {}
+[14.408116] (-) TimerEvent: {}
+[14.509269] (-) TimerEvent: {}
+[14.612848] (-) TimerEvent: {}
+[14.715195] (-) TimerEvent: {}
+[14.818126] (-) TimerEvent: {}
+[14.921173] (-) TimerEvent: {}
+[15.022154] (-) TimerEvent: {}
+[15.122775] (-) TimerEvent: {}
+[15.224458] (-) TimerEvent: {}
+[15.330701] (-) TimerEvent: {}
+[15.433094] (-) TimerEvent: {}
+[15.533891] (-) TimerEvent: {}
+[15.636147] (-) TimerEvent: {}
+[15.738395] (-) TimerEvent: {}
+[15.840941] (-) TimerEvent: {}
+[15.945308] (-) TimerEvent: {}
+[16.048195] (-) TimerEvent: {}
+[16.153439] (-) TimerEvent: {}
+[16.256141] (-) TimerEvent: {}
+[16.362202] (-) TimerEvent: {}
+[16.463634] (-) TimerEvent: {}
+[16.565016] (-) TimerEvent: {}
+[16.665423] (-) TimerEvent: {}
+[16.769624] (-) TimerEvent: {}
+[16.870277] (-) TimerEvent: {}
+[16.972260] (-) TimerEvent: {}
+[17.074157] (-) TimerEvent: {}
+[17.177529] (-) TimerEvent: {}
+[17.281211] (-) TimerEvent: {}
+[17.381580] (-) TimerEvent: {}
+[17.481985] (-) TimerEvent: {}
+[17.583995] (-) TimerEvent: {}
+[17.684919] (-) TimerEvent: {}
+[17.785851] (-) TimerEvent: {}
+[17.887865] (-) TimerEvent: {}
+[17.988975] (-) TimerEvent: {}
+[18.090294] (-) TimerEvent: {}
+[18.192217] (-) TimerEvent: {}
+[18.295008] (-) TimerEvent: {}
+[18.395584] (-) TimerEvent: {}
+[18.498018] (-) TimerEvent: {}
+[18.598441] (-) TimerEvent: {}
+[18.699220] (-) TimerEvent: {}
+[18.799611] (-) TimerEvent: {}
+[18.899997] (-) TimerEvent: {}
+[19.000392] (-) TimerEvent: {}
+[19.103604] (-) TimerEvent: {}
+[19.206300] (-) TimerEvent: {}
+[19.306649] (-) TimerEvent: {}
+[19.407327] (-) TimerEvent: {}
+[19.502100] (serial_comm1) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable listener\x1b[0m\n'}
+[19.507866] (-) TimerEvent: {}
+[19.610273] (-) TimerEvent: {}
+[19.712208] (-) TimerEvent: {}
+[19.823146] (-) TimerEvent: {}
+[19.878024] (serial_comm1) StdoutLine: {'line': b'[100%] Built target listener\n'}
+[19.902380] (serial_comm1) CommandEnded: {'returncode': 0}
+[19.924042] (-) TimerEvent: {}
+[19.953720] (serial_comm1) JobProgress: {'identifier': 'serial_comm1', 'progress': 'install'}
+[19.972238] (serial_comm1) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/sonia/ros2_ws/src/build/serial_comm1'], 'cwd': '/home/sonia/ros2_ws/src/build/serial_comm1', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/sonia/ros2_ws/install/turtlesim/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('DBUS_STARTER_BUS_TYPE', 'session'), ('SYSTEMD_EXEC_PID', '1375'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus,guid=de922618bc6c4ae68f4ae50766a8e04e'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/sonia/ros2_ws/src/install:/home/sonia/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1375,unix/sonia-VirtualBox:/tmp/.ICE-unix/1375'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/47d9fb03_d166_45ce_a9a8_17492ca41589'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.8ATIR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.139'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/sonia/ros2_ws/src/install/serial_comm1:/home/sonia/ros2_ws/src/install/serial_comm:/home/sonia/ros2_ws/src/install/cpp_pubsub:/home/sonia/ros2_ws/install/turtlesim:/home/sonia/ros2_ws/install/serial_comm1:/home/sonia/ros2_ws/install/serial_comm:/home/sonia/ros2_ws/install/cpp_pubsub:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/src/build/serial_comm1'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('DBUS_STARTER_ADDRESS', 'unix:path=/run/user/1000/bus,guid=de922618bc6c4ae68f4ae50766a8e04e'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/sonia/ros2_ws/src/install/serial_comm1:/home/sonia/ros2_ws/src/install/serial_comm:/home/sonia/ros2_ws/src/install/cpp_pubsub:/home/sonia/ros2_ws/install/turtlesim:/home/sonia/ros2_ws/install/serial_comm1:/home/sonia/ros2_ws/install/serial_comm:/home/sonia/ros2_ws/install/cpp_pubsub:/opt/ros/humble')]), 'shell': False}
+[19.992527] (serial_comm1) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[19.992828] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/src/install/serial_comm1/lib/serial_comm1/talker\n'}
+[19.996057] (serial_comm1) StdoutLine: {'line': b'-- Set runtime path of "/home/sonia/ros2_ws/src/install/serial_comm1/lib/serial_comm1/talker" to ""\n'}
+[19.996267] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/src/install/serial_comm1/lib/serial_comm1/listener\n'}
+[20.002218] (serial_comm1) StdoutLine: {'line': b'-- Set runtime path of "/home/sonia/ros2_ws/src/install/serial_comm1/lib/serial_comm1/listener" to ""\n'}
+[20.002471] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/ament_index/resource_index/package_run_dependencies/serial_comm1\n'}
+[20.002587] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/ament_index/resource_index/parent_prefix_path/serial_comm1\n'}
+[20.002672] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/environment/ament_prefix_path.sh\n'}
+[20.002757] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/environment/ament_prefix_path.dsv\n'}
+[20.002852] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/environment/path.sh\n'}
+[20.002936] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/environment/path.dsv\n'}
+[20.003011] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/local_setup.bash\n'}
+[20.003084] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/local_setup.sh\n'}
+[20.003158] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/local_setup.zsh\n'}
+[20.003231] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/local_setup.dsv\n'}
+[20.003303] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/package.dsv\n'}
+[20.003483] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/ament_index/resource_index/packages/serial_comm1\n'}
+[20.005940] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/cmake/serial_comm1Config.cmake\n'}
+[20.006011] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/cmake/serial_comm1Config-version.cmake\n'}
+[20.006287] (serial_comm1) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/package.xml\n'}
+[20.011056] (serial_comm1) CommandEnded: {'returncode': 0}
+[20.028049] (-) TimerEvent: {}
+[20.115694] (serial_comm1) JobEnded: {'identifier': 'serial_comm1', 'rc': 0}
+[20.116967] (-) EventReactorShutdown: {}

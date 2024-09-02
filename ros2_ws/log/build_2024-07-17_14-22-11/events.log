@@ -1,0 +1,639 @@
+[0.000000] (-) TimerEvent: {}
+[0.000147] (cpp_pubsub) JobQueued: {'identifier': 'cpp_pubsub', 'dependencies': OrderedDict()}
+[0.000202] (serial_comm) JobQueued: {'identifier': 'serial_comm', 'dependencies': OrderedDict()}
+[0.000246] (serial_comm1) JobQueued: {'identifier': 'serial_comm1', 'dependencies': OrderedDict()}
+[0.000287] (turtlesim) JobQueued: {'identifier': 'turtlesim', 'dependencies': OrderedDict()}
+[0.000328] (cpp_pubsub) JobStarted: {'identifier': 'cpp_pubsub'}
+[0.002190] (cpp_pubsub) JobProgress: {'identifier': 'cpp_pubsub', 'progress': 'cmake'}
+[0.012711] (cpp_pubsub) JobProgress: {'identifier': 'cpp_pubsub', 'progress': 'build'}
+[0.012810] (cpp_pubsub) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/sonia/ros2_ws/build/cpp_pubsub', '--', '-j1', '-l1'], 'cwd': '/home/sonia/ros2_ws/build/cpp_pubsub', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1305'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1277,unix/sonia-VirtualBox:/tmp/.ICE-unix/1277'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3fb0c731_e615_45c9_8964_a8d7f02ba8e8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.BBCBR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/cpp_pubsub'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.054600] (cpp_pubsub) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/talker.dir/src/publisher_member_function.cpp.o\x1b[0m\n'}
+[0.096779] (-) TimerEvent: {}
+[0.197213] (-) TimerEvent: {}
+[0.297688] (-) TimerEvent: {}
+[0.398123] (-) TimerEvent: {}
+[0.498529] (-) TimerEvent: {}
+[0.598997] (-) TimerEvent: {}
+[0.699436] (-) TimerEvent: {}
+[0.799902] (-) TimerEvent: {}
+[0.900329] (-) TimerEvent: {}
+[1.000695] (-) TimerEvent: {}
+[1.101027] (-) TimerEvent: {}
+[1.201493] (-) TimerEvent: {}
+[1.301944] (-) TimerEvent: {}
+[1.402448] (-) TimerEvent: {}
+[1.502933] (-) TimerEvent: {}
+[1.603371] (-) TimerEvent: {}
+[1.703806] (-) TimerEvent: {}
+[1.804260] (-) TimerEvent: {}
+[1.904694] (-) TimerEvent: {}
+[2.005116] (-) TimerEvent: {}
+[2.105539] (-) TimerEvent: {}
+[2.205955] (-) TimerEvent: {}
+[2.306402] (-) TimerEvent: {}
+[2.406834] (-) TimerEvent: {}
+[2.507297] (-) TimerEvent: {}
+[2.607838] (-) TimerEvent: {}
+[2.663553] (cpp_pubsub) StdoutLine: {'line': b'[ 50%] \x1b[32m\x1b[1mLinking CXX executable talker\x1b[0m\n'}
+[2.707979] (-) TimerEvent: {}
+[2.781123] (cpp_pubsub) StdoutLine: {'line': b'[ 50%] Built target talker\n'}
+[2.797946] (cpp_pubsub) StdoutLine: {'line': b'[100%] Built target listener\n'}
+[2.808897] (-) TimerEvent: {}
+[2.810591] (cpp_pubsub) CommandEnded: {'returncode': 0}
+[2.825895] (cpp_pubsub) JobProgress: {'identifier': 'cpp_pubsub', 'progress': 'install'}
+[2.830785] (cpp_pubsub) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/sonia/ros2_ws/build/cpp_pubsub'], 'cwd': '/home/sonia/ros2_ws/build/cpp_pubsub', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1305'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1277,unix/sonia-VirtualBox:/tmp/.ICE-unix/1277'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3fb0c731_e615_45c9_8964_a8d7f02ba8e8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.BBCBR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/cpp_pubsub'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[2.836914] (cpp_pubsub) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[2.837855] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/talker\n'}
+[2.844346] (cpp_pubsub) StdoutLine: {'line': b'-- Set runtime path of "/home/sonia/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/talker" to ""\n'}
+[2.845181] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/listener\n'}
+[2.845632] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/package_run_dependencies/cpp_pubsub\n'}
+[2.846002] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/parent_prefix_path/cpp_pubsub\n'}
+[2.846364] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.sh\n'}
+[2.846666] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.dsv\n'}
+[2.846976] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/path.sh\n'}
+[2.847261] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/path.dsv\n'}
+[2.847597] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.bash\n'}
+[2.847899] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.sh\n'}
+[2.848164] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.zsh\n'}
+[2.848407] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.dsv\n'}
+[2.848656] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/package.dsv\n'}
+[2.849218] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/packages/cpp_pubsub\n'}
+[2.849522] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig.cmake\n'}
+[2.849788] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig-version.cmake\n'}
+[2.850057] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/package.xml\n'}
+[2.851424] (cpp_pubsub) CommandEnded: {'returncode': 0}
+[2.880568] (cpp_pubsub) JobEnded: {'identifier': 'cpp_pubsub', 'rc': 0}
+[2.881117] (serial_comm) JobStarted: {'identifier': 'serial_comm'}
+[2.884773] (serial_comm) JobProgress: {'identifier': 'serial_comm', 'progress': 'cmake'}
+[2.885359] (serial_comm) JobProgress: {'identifier': 'serial_comm', 'progress': 'build'}
+[2.885428] (serial_comm) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/sonia/ros2_ws/build/serial_comm', '--', '-j1', '-l1'], 'cwd': '/home/sonia/ros2_ws/build/serial_comm', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1305'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1277,unix/sonia-VirtualBox:/tmp/.ICE-unix/1277'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3fb0c731_e615_45c9_8964_a8d7f02ba8e8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.BBCBR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/serial_comm'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[2.909052] (-) TimerEvent: {}
+[2.916407] (serial_comm) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target talker\x1b[0m\n'}
+[2.942240] (serial_comm) StdoutLine: {'line': b'[ 50%] Built target talker\n'}
+[2.952343] (serial_comm) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target listener\x1b[0m\n'}
+[2.972786] (serial_comm) StdoutLine: {'line': b'[100%] Built target listener\n'}
+[2.984805] (serial_comm) CommandEnded: {'returncode': 0}
+[2.999364] (serial_comm) JobProgress: {'identifier': 'serial_comm', 'progress': 'install'}
+[2.999602] (serial_comm) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/sonia/ros2_ws/build/serial_comm'], 'cwd': '/home/sonia/ros2_ws/build/serial_comm', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1305'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1277,unix/sonia-VirtualBox:/tmp/.ICE-unix/1277'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3fb0c731_e615_45c9_8964_a8d7f02ba8e8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.BBCBR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/serial_comm'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[3.004136] (serial_comm) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[3.004569] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/lib/serial_comm/talker\n'}
+[3.005056] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/lib/serial_comm/listener\n'}
+[3.005443] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/ament_index/resource_index/package_run_dependencies/serial_comm\n'}
+[3.005710] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/ament_index/resource_index/parent_prefix_path/serial_comm\n'}
+[3.005947] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/environment/ament_prefix_path.sh\n'}
+[3.006177] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/environment/ament_prefix_path.dsv\n'}
+[3.006404] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/environment/path.sh\n'}
+[3.006648] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/environment/path.dsv\n'}
+[3.006876] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/local_setup.bash\n'}
+[3.007105] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/local_setup.sh\n'}
+[3.007335] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/local_setup.zsh\n'}
+[3.007765] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/local_setup.dsv\n'}
+[3.008007] (serial_comm) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/package.dsv\n'}
+[3.008338] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/ament_index/resource_index/packages/serial_comm\n'}
+[3.008612] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/cmake/serial_commConfig.cmake\n'}
+[3.008839] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/cmake/serial_commConfig-version.cmake\n'}
+[3.009089] (-) TimerEvent: {}
+[3.009244] (serial_comm) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/serial_comm/share/serial_comm/package.xml\n'}
+[3.010454] (serial_comm) CommandEnded: {'returncode': 0}
+[3.033700] (serial_comm) JobEnded: {'identifier': 'serial_comm', 'rc': 0}
+[3.034227] (serial_comm1) JobStarted: {'identifier': 'serial_comm1'}
+[3.048248] (serial_comm1) JobProgress: {'identifier': 'serial_comm1', 'progress': 'cmake'}
+[3.048313] (serial_comm1) Command: {'cmd': ['/usr/bin/cmake', '/home/sonia/ros2_ws/src/serial_comm1', '-DCMAKE_INSTALL_PREFIX=/home/sonia/ros2_ws/install/serial_comm1'], 'cwd': '/home/sonia/ros2_ws/build/serial_comm1', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1305'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1277,unix/sonia-VirtualBox:/tmp/.ICE-unix/1277'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3fb0c731_e615_45c9_8964_a8d7f02ba8e8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.BBCBR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/serial_comm1'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[3.081892] (serial_comm1) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[3.109249] (-) TimerEvent: {}
+[3.114407] (serial_comm1) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[3.119099] (serial_comm1) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[3.179971] (serial_comm1) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[3.184541] (serial_comm1) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[3.185015] (serial_comm1) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[3.185516] (serial_comm1) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[3.187938] (serial_comm1) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[3.209415] (-) TimerEvent: {}
+[3.244525] (serial_comm1) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[3.252407] (serial_comm1) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[3.252926] (serial_comm1) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[3.253524] (serial_comm1) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[3.255651] (serial_comm1) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[3.309562] (-) TimerEvent: {}
+[3.339555] (serial_comm1) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[3.411450] (-) TimerEvent: {}
+[3.413620] (serial_comm1) StdoutLine: {'line': b'-- Found rclcpp: 16.0.9 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[3.463623] (serial_comm1) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[3.471479] (serial_comm1) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[3.480080] (serial_comm1) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[3.493383] (serial_comm1) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[3.513255] (-) TimerEvent: {}
+[3.513938] (serial_comm1) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[3.594235] (serial_comm1) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[3.599526] (serial_comm1) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[3.613419] (-) TimerEvent: {}
+[3.660374] (serial_comm1) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[3.675494] (serial_comm1) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[3.700586] (serial_comm1) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[3.706179] (serial_comm1) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[3.713555] (-) TimerEvent: {}
+[3.760282] (serial_comm1) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[3.761141] (serial_comm1) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[3.812454] (serial_comm1) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[3.813656] (serial_comm1) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[3.813932] (-) TimerEvent: {}
+[3.912883] (serial_comm1) StdoutLine: {'line': b'-- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system \n'}
+[3.914068] (-) TimerEvent: {}
+[3.961557] (serial_comm1) StdoutLine: {'line': b'-- Configuring done\n'}
+[3.977894] (serial_comm1) StdoutLine: {'line': b'-- Generating done\n'}
+[3.980406] (serial_comm1) StdoutLine: {'line': b'-- Build files have been written to: /home/sonia/ros2_ws/build/serial_comm1\n'}
+[3.986923] (serial_comm1) CommandEnded: {'returncode': 0}
+[3.987457] (serial_comm1) JobProgress: {'identifier': 'serial_comm1', 'progress': 'build'}
+[3.987512] (serial_comm1) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/sonia/ros2_ws/build/serial_comm1', '--', '-j1', '-l1'], 'cwd': '/home/sonia/ros2_ws/build/serial_comm1', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1305'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1277,unix/sonia-VirtualBox:/tmp/.ICE-unix/1277'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3fb0c731_e615_45c9_8964_a8d7f02ba8e8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.BBCBR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/serial_comm1'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[4.014167] (serial_comm1) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o\x1b[0m\n'}
+[4.014480] (-) TimerEvent: {}
+[4.114833] (-) TimerEvent: {}
+[4.215250] (-) TimerEvent: {}
+[4.315662] (-) TimerEvent: {}
+[4.416078] (-) TimerEvent: {}
+[4.516514] (-) TimerEvent: {}
+[4.616957] (-) TimerEvent: {}
+[4.717310] (-) TimerEvent: {}
+[4.817803] (-) TimerEvent: {}
+[4.918274] (-) TimerEvent: {}
+[5.019329] (-) TimerEvent: {}
+[5.119767] (-) TimerEvent: {}
+[5.220159] (-) TimerEvent: {}
+[5.320578] (-) TimerEvent: {}
+[5.421000] (-) TimerEvent: {}
+[5.521468] (-) TimerEvent: {}
+[5.621928] (-) TimerEvent: {}
+[5.722391] (-) TimerEvent: {}
+[5.822955] (-) TimerEvent: {}
+[5.923414] (-) TimerEvent: {}
+[6.023833] (-) TimerEvent: {}
+[6.124257] (-) TimerEvent: {}
+[6.224687] (-) TimerEvent: {}
+[6.325152] (-) TimerEvent: {}
+[6.425615] (-) TimerEvent: {}
+[6.526683] (-) TimerEvent: {}
+[6.627170] (-) TimerEvent: {}
+[6.727602] (-) TimerEvent: {}
+[6.828028] (-) TimerEvent: {}
+[6.928458] (-) TimerEvent: {}
+[7.028836] (-) TimerEvent: {}
+[7.129253] (-) TimerEvent: {}
+[7.229697] (-) TimerEvent: {}
+[7.330087] (-) TimerEvent: {}
+[7.430475] (-) TimerEvent: {}
+[7.530930] (-) TimerEvent: {}
+[7.631349] (-) TimerEvent: {}
+[7.731752] (-) TimerEvent: {}
+[7.811070] (serial_comm1) StdoutLine: {'line': b'[ 50%] \x1b[32m\x1b[1mLinking CXX executable talker\x1b[0m\n'}
+[7.831890] (-) TimerEvent: {}
+[7.932664] (-) TimerEvent: {}
+[7.947133] (serial_comm1) StdoutLine: {'line': b'[ 50%] Built target talker\n'}
+[7.957746] (serial_comm1) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/listener.dir/src/serial_subscriber.cpp.o\x1b[0m\n'}
+[8.032815] (-) TimerEvent: {}
+[8.133228] (-) TimerEvent: {}
+[8.233653] (-) TimerEvent: {}
+[8.334073] (-) TimerEvent: {}
+[8.434541] (-) TimerEvent: {}
+[8.535114] (-) TimerEvent: {}
+[8.635527] (-) TimerEvent: {}
+[8.735944] (-) TimerEvent: {}
+[8.837053] (-) TimerEvent: {}
+[8.937502] (-) TimerEvent: {}
+[9.037943] (-) TimerEvent: {}
+[9.138358] (-) TimerEvent: {}
+[9.238853] (-) TimerEvent: {}
+[9.339330] (-) TimerEvent: {}
+[9.439760] (-) TimerEvent: {}
+[9.540201] (-) TimerEvent: {}
+[9.640616] (-) TimerEvent: {}
+[9.741038] (-) TimerEvent: {}
+[9.841466] (-) TimerEvent: {}
+[9.941896] (-) TimerEvent: {}
+[10.042678] (-) TimerEvent: {}
+[10.143159] (-) TimerEvent: {}
+[10.243655] (-) TimerEvent: {}
+[10.344100] (-) TimerEvent: {}
+[10.444487] (-) TimerEvent: {}
+[10.544924] (-) TimerEvent: {}
+[10.645633] (-) TimerEvent: {}
+[10.746059] (-) TimerEvent: {}
+[10.847111] (-) TimerEvent: {}
+[10.947482] (-) TimerEvent: {}
+[11.047919] (-) TimerEvent: {}
+[11.148350] (-) TimerEvent: {}
+[11.248786] (-) TimerEvent: {}
+[11.349241] (-) TimerEvent: {}
+[11.449727] (-) TimerEvent: {}
+[11.550134] (-) TimerEvent: {}
+[11.650570] (-) TimerEvent: {}
+[11.750974] (-) TimerEvent: {}
+[11.851422] (-) TimerEvent: {}
+[11.951844] (-) TimerEvent: {}
+[12.052223] (-) TimerEvent: {}
+[12.152638] (-) TimerEvent: {}
+[12.253055] (-) TimerEvent: {}
+[12.353836] (-) TimerEvent: {}
+[12.454278] (-) TimerEvent: {}
+[12.554700] (-) TimerEvent: {}
+[12.655583] (-) TimerEvent: {}
+[12.756028] (-) TimerEvent: {}
+[12.857055] (-) TimerEvent: {}
+[12.957472] (-) TimerEvent: {}
+[13.057849] (-) TimerEvent: {}
+[13.158241] (-) TimerEvent: {}
+[13.263408] (-) TimerEvent: {}
+[13.367403] (-) TimerEvent: {}
+[13.467741] (-) TimerEvent: {}
+[13.568144] (-) TimerEvent: {}
+[13.668533] (-) TimerEvent: {}
+[13.768904] (-) TimerEvent: {}
+[13.869355] (-) TimerEvent: {}
+[13.969764] (-) TimerEvent: {}
+[14.070194] (-) TimerEvent: {}
+[14.141804] (serial_comm1) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable listener\x1b[0m\n'}
+[14.170318] (-) TimerEvent: {}
+[14.270756] (-) TimerEvent: {}
+[14.371265] (-) TimerEvent: {}
+[14.410471] (serial_comm1) StdoutLine: {'line': b'[100%] Built target listener\n'}
+[14.421467] (serial_comm1) CommandEnded: {'returncode': 0}
+[14.436918] (serial_comm1) JobProgress: {'identifier': 'serial_comm1', 'progress': 'install'}
+[14.437022] (serial_comm1) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/sonia/ros2_ws/build/serial_comm1'], 'cwd': '/home/sonia/ros2_ws/build/serial_comm1', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1305'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1277,unix/sonia-VirtualBox:/tmp/.ICE-unix/1277'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3fb0c731_e615_45c9_8964_a8d7f02ba8e8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.BBCBR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/serial_comm1'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[14.442629] (serial_comm1) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[14.443155] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/talker\n'}
+[14.446846] (serial_comm1) StdoutLine: {'line': b'-- Set runtime path of "/home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/talker" to ""\n'}
+[14.447163] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/listener\n'}
+[14.450682] (serial_comm1) StdoutLine: {'line': b'-- Set runtime path of "/home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/listener" to ""\n'}
+[14.451208] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/ament_index/resource_index/package_run_dependencies/serial_comm1\n'}
+[14.452088] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/ament_index/resource_index/parent_prefix_path/serial_comm1\n'}
+[14.452939] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/ament_prefix_path.sh\n'}
+[14.453628] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/ament_prefix_path.dsv\n'}
+[14.454334] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/path.sh\n'}
+[14.454866] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/path.dsv\n'}
+[14.455344] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.bash\n'}
+[14.455815] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.sh\n'}
+[14.456262] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.zsh\n'}
+[14.456695] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.dsv\n'}
+[14.457132] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/package.dsv\n'}
+[14.457619] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/ament_index/resource_index/packages/serial_comm1\n'}
+[14.458128] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/cmake/serial_comm1Config.cmake\n'}
+[14.458250] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/cmake/serial_comm1Config-version.cmake\n'}
+[14.459073] (serial_comm1) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/package.xml\n'}
+[14.462807] (serial_comm1) CommandEnded: {'returncode': 0}
+[14.471596] (-) TimerEvent: {}
+[14.483775] (serial_comm1) JobEnded: {'identifier': 'serial_comm1', 'rc': 0}
+[14.484195] (turtlesim) JobStarted: {'identifier': 'turtlesim'}
+[14.487429] (turtlesim) JobProgress: {'identifier': 'turtlesim', 'progress': 'cmake'}
+[14.489636] (turtlesim) JobProgress: {'identifier': 'turtlesim', 'progress': 'build'}
+[14.489704] (turtlesim) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/sonia/ros2_ws/build/turtlesim', '--', '-j1', '-l1'], 'cwd': '/home/sonia/ros2_ws/build/turtlesim', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1305'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1277,unix/sonia-VirtualBox:/tmp/.ICE-unix/1277'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3fb0c731_e615_45c9_8964_a8d7f02ba8e8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.BBCBR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/turtlesim'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[14.530295] (turtlesim) StdoutLine: {'line': b'[  1%] Built target turtlesim__cpp\n'}
+[14.547508] (turtlesim) StdoutLine: {'line': b'[ 11%] Built target turtlesim__rosidl_typesupport_cpp\n'}
+[14.561667] (turtlesim) StdoutLine: {'line': b'[ 21%] Built target turtlesim__rosidl_generator_c\n'}
+[14.572107] (-) TimerEvent: {}
+[14.578457] (turtlesim) StdoutLine: {'line': b'[ 31%] Built target turtlesim__rosidl_typesupport_fastrtps_c\n'}
+[14.602928] (turtlesim) StdoutLine: {'line': b'[ 41%] Built target turtlesim__rosidl_typesupport_fastrtps_cpp\n'}
+[14.622828] (turtlesim) StdoutLine: {'line': b'[ 51%] Built target turtlesim__rosidl_typesupport_introspection_c\n'}
+[14.641291] (turtlesim) StdoutLine: {'line': b'[ 61%] Built target turtlesim__rosidl_typesupport_c\n'}
+[14.658467] (turtlesim) StdoutLine: {'line': b'[ 71%] Built target turtlesim__rosidl_typesupport_introspection_cpp\n'}
+[14.670978] (turtlesim) StdoutLine: {'line': b'[ 71%] Built target turtlesim\n'}
+[14.672240] (-) TimerEvent: {}
+[14.701069] (turtlesim) StdoutLine: {'line': b'[ 71%] Built target ament_cmake_python_copy_turtlesim\n'}
+[14.772381] (-) TimerEvent: {}
+[14.865063] (turtlesim) StdoutLine: {'line': b'running egg_info\n'}
+[14.865225] (turtlesim) StdoutLine: {'line': b'writing turtlesim.egg-info/PKG-INFO\n'}
+[14.865263] (turtlesim) StdoutLine: {'line': b'writing dependency_links to turtlesim.egg-info/dependency_links.txt\n'}
+[14.865293] (turtlesim) StdoutLine: {'line': b'writing top-level names to turtlesim.egg-info/top_level.txt\n'}
+[14.867976] (turtlesim) StdoutLine: {'line': b"reading manifest file 'turtlesim.egg-info/SOURCES.txt'\n"}
+[14.870145] (turtlesim) StdoutLine: {'line': b"writing manifest file 'turtlesim.egg-info/SOURCES.txt'\n"}
+[14.872473] (-) TimerEvent: {}
+[14.907646] (turtlesim) StdoutLine: {'line': b'[ 71%] Built target ament_cmake_python_build_turtlesim_egg\n'}
+[14.929830] (turtlesim) StdoutLine: {'line': b'[ 72%] Built target turtlesim__py\n'}
+[14.957435] (turtlesim) StdoutLine: {'line': b'[ 81%] Built target turtlesim__rosidl_generator_py\n'}
+[14.972627] (-) TimerEvent: {}
+[14.982078] (turtlesim) StdoutLine: {'line': b'[ 83%] Built target turtlesim__rosidl_typesupport_fastrtps_c__pyext\n'}
+[15.010878] (turtlesim) StdoutLine: {'line': b'[ 85%] Built target turtlesim__rosidl_typesupport_introspection_c__pyext\n'}
+[15.038097] (turtlesim) StdoutLine: {'line': b'[ 87%] Built target turtlesim__rosidl_typesupport_c__pyext\n'}
+[15.072770] (-) TimerEvent: {}
+[15.079572] (turtlesim) StdoutLine: {'line': b'[ 93%] Built target turtlesim_node\n'}
+[15.110555] (turtlesim) StdoutLine: {'line': b'[ 95%] Built target turtle_teleop_key\n'}
+[15.139858] (turtlesim) StdoutLine: {'line': b'[ 97%] Built target draw_square\n'}
+[15.171612] (turtlesim) StdoutLine: {'line': b'[100%] Built target mimic\n'}
+[15.172909] (-) TimerEvent: {}
+[15.187433] (turtlesim) CommandEnded: {'returncode': 0}
+[15.273170] (-) TimerEvent: {}
+[15.373489] (-) TimerEvent: {}
+[15.413921] (turtlesim) JobProgress: {'identifier': 'turtlesim', 'progress': 'install'}
+[15.413972] (turtlesim) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/sonia/ros2_ws/build/turtlesim'], 'cwd': '/home/sonia/ros2_ws/build/turtlesim', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1305'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1277,unix/sonia-VirtualBox:/tmp/.ICE-unix/1277'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/3fb0c731_e615_45c9_8964_a8d7f02ba8e8'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.BBCBR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.101'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/turtlesim'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[15.438416] (turtlesim) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[15.438602] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/ament_index/resource_index/rosidl_interfaces/turtlesim\n'}
+[15.438646] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim\n'}
+[15.438676] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[15.438706] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[15.438734] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__type_support.h\n'}
+[15.438763] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__functions.h\n'}
+[15.438790] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__struct.h\n'}
+[15.438815] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__functions.c\n'}
+[15.438841] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/rotate_absolute.h\n'}
+[15.438867] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[15.438894] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[15.438921] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__struct.h\n'}
+[15.438946] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__functions.c\n'}
+[15.438971] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__type_support.h\n'}
+[15.439002] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__type_support.h\n'}
+[15.439028] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__functions.c\n'}
+[15.439053] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__functions.c\n'}
+[15.439079] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__functions.h\n'}
+[15.439111] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__functions.h\n'}
+[15.439138] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__struct.h\n'}
+[15.439164] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__functions.h\n'}
+[15.439189] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__functions.h\n'}
+[15.439214] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__functions.c\n'}
+[15.439238] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__struct.h\n'}
+[15.439262] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__type_support.h\n'}
+[15.439288] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__struct.h\n'}
+[15.439342] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__functions.h\n'}
+[15.439437] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__type_support.h\n'}
+[15.439485] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__struct.h\n'}
+[15.439523] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__functions.c\n'}
+[15.439555] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__type_support.h\n'}
+[15.439582] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/kill.h\n'}
+[15.439610] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/set_pen.h\n'}
+[15.439638] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_relative.h\n'}
+[15.439664] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_absolute.h\n'}
+[15.439692] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/spawn.h\n'}
+[15.439719] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[15.439747] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[15.439772] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__struct.h\n'}
+[15.439800] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__functions.h\n'}
+[15.439827] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__functions.c\n'}
+[15.439855] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__struct.h\n'}
+[15.439879] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__type_support.h\n'}
+[15.439904] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__functions.c\n'}
+[15.439927] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__functions.h\n'}
+[15.439951] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__type_support.h\n'}
+[15.439974] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/color.h\n'}
+[15.439999] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/pose.h\n'}
+[15.440023] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_generator_c__visibility_control.h\n'}
+[15.440046] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/library_path.sh\n'}
+[15.440069] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/library_path.dsv\n'}
+[15.444575] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_generator_c.so\n'}
+[15.444713] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim\n'}
+[15.444758] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[15.444789] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[15.444819] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_fastrtps_c.h\n'}
+[15.444848] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[15.444875] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[15.444903] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_fastrtps_c.h\n'}
+[15.444930] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_fastrtps_c.h\n'}
+[15.444957] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_fastrtps_c.h\n'}
+[15.444983] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_fastrtps_c.h\n'}
+[15.445011] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_fastrtps_c.h\n'}
+[15.445043] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[15.445067] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[15.445096] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_fastrtps_c.h\n'}
+[15.445121] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_fastrtps_c.h\n'}
+[15.445146] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[15.445548] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_fastrtps_c.so\n'}
+[15.445734] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim\n'}
+[15.445821] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[15.445890] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[15.445960] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__builder.hpp\n'}
+[15.446042] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__struct.hpp\n'}
+[15.446111] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__traits.hpp\n'}
+[15.446173] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/rotate_absolute.hpp\n'}
+[15.446231] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[15.446312] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[15.446389] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__traits.hpp\n'}
+[15.446451] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__builder.hpp\n'}
+[15.446513] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__builder.hpp\n'}
+[15.446573] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__struct.hpp\n'}
+[15.446631] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__struct.hpp\n'}
+[15.446690] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__traits.hpp\n'}
+[15.446746] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__struct.hpp\n'}
+[15.446806] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__builder.hpp\n'}
+[15.446864] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__traits.hpp\n'}
+[15.446927] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__traits.hpp\n'}
+[15.446987] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__builder.hpp\n'}
+[15.447046] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__struct.hpp\n'}
+[15.447107] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__traits.hpp\n'}
+[15.447165] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__struct.hpp\n'}
+[15.447232] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__builder.hpp\n'}
+[15.447310] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/spawn.hpp\n'}
+[15.447406] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/set_pen.hpp\n'}
+[15.447473] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_relative.hpp\n'}
+[15.447533] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_absolute.hpp\n'}
+[15.451244] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/kill.hpp\n'}
+[15.451321] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[15.451392] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[15.451464] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__struct.hpp\n'}
+[15.451532] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__builder.hpp\n'}
+[15.451593] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__traits.hpp\n'}
+[15.451652] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__struct.hpp\n'}
+[15.451713] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__traits.hpp\n'}
+[15.451771] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__builder.hpp\n'}
+[15.451832] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/pose.hpp\n'}
+[15.451891] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/color.hpp\n'}
+[15.451984] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim\n'}
+[15.452057] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[15.452155] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[15.452233] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[15.452300] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/dds_fastrtps\n'}
+[15.452368] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[15.452432] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[15.452502] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[15.452567] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[15.452624] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/dds_fastrtps\n'}
+[15.452696] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[15.452756] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[15.452815] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[15.452875] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[15.452940] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[15.453006] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[15.453067] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[15.453141] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/dds_fastrtps\n'}
+[15.453277] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[15.453789] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_fastrtps_cpp.so\n'}
+[15.454012] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim\n'}
+[15.454123] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[15.454199] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[15.454272] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_introspection_c.h\n'}
+[15.454337] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__type_support.c\n'}
+[15.454399] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[15.454489] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[15.454595] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_introspection_c.h\n'}
+[15.454634] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__type_support.c\n'}
+[15.454663] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_introspection_c.h\n'}
+[15.454905] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__type_support.c\n'}
+[15.454946] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_introspection_c.h\n'}
+[15.454976] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__type_support.c\n'}
+[15.455006] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__type_support.c\n'}
+[15.455044] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_introspection_c.h\n'}
+[15.455077] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__type_support.c\n'}
+[15.455102] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_introspection_c.h\n'}
+[15.455128] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[15.455155] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[15.455392] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__type_support.c\n'}
+[15.455445] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_introspection_c.h\n'}
+[15.455474] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__type_support.c\n'}
+[15.455502] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_introspection_c.h\n'}
+[15.455570] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[15.459813] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_introspection_c.so\n'}
+[15.461070] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_c.so\n'}
+[15.461135] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim\n'}
+[15.461206] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action\n'}
+[15.461237] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail\n'}
+[15.461265] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__type_support.cpp\n'}
+[15.461293] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_introspection_cpp.hpp\n'}
+[15.461321] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv\n'}
+[15.461348] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail\n'}
+[15.461376] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__type_support.cpp\n'}
+[15.461401] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_introspection_cpp.hpp\n'}
+[15.461427] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__type_support.cpp\n'}
+[15.461452] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__type_support.cpp\n'}
+[15.461481] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_introspection_cpp.hpp\n'}
+[15.461507] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__type_support.cpp\n'}
+[15.461532] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_introspection_cpp.hpp\n'}
+[15.461556] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__type_support.cpp\n'}
+[15.461581] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_introspection_cpp.hpp\n'}
+[15.461606] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_introspection_cpp.hpp\n'}
+[15.461630] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg\n'}
+[15.461660] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail\n'}
+[15.461685] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_introspection_cpp.hpp\n'}
+[15.461709] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__type_support.cpp\n'}
+[15.461751] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__type_support.cpp\n'}
+[15.461784] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_introspection_cpp.hpp\n'}
+[15.462304] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_introspection_cpp.so\n'}
+[15.463035] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_cpp.so\n'}
+[15.463092] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/pythonpath.sh\n'}
+[15.463124] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/pythonpath.dsv\n'}
+[15.463152] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info\n'}
+[15.463182] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/SOURCES.txt\n'}
+[15.463505] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/top_level.txt\n'}
+[15.463557] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/dependency_links.txt\n'}
+[15.463588] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/PKG-INFO\n'}
+[15.463741] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim\n'}
+[15.463780] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action\n'}
+[15.463826] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/_rotate_absolute_s.c\n'}
+[15.463859] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/__init__.py\n'}
+[15.464161] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/_rotate_absolute.py\n'}
+[15.464200] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/libturtlesim__rosidl_generator_py.so\n'}
+[15.464228] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv\n'}
+[15.464255] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_relative_s.c\n'}
+[15.464282] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_spawn.py\n'}
+[15.464308] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_absolute_s.c\n'}
+[15.464334] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_absolute.py\n'}
+[15.464358] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_set_pen.py\n'}
+[15.464383] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_set_pen_s.c\n'}
+[15.464408] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/__init__.py\n'}
+[15.464432] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_relative.py\n'}
+[15.464457] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_kill_s.c\n'}
+[15.466266] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_spawn_s.c\n'}
+[15.466333] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_kill.py\n'}
+[15.466365] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg\n'}
+[15.466393] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_pose_s.c\n'}
+[15.466421] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_color_s.c\n'}
+[15.466453] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/__init__.py\n'}
+[15.466479] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_pose.py\n'}
+[15.466505] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_color.py\n'}
+[15.466530] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/__init__.py\n'}
+[15.466554] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/_turtlesim_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[15.466580] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/_turtlesim_s.ep.rosidl_typesupport_c.c\n'}
+[15.466607] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/_turtlesim_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[15.466632] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[15.466657] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[15.466682] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[15.473594] (-) TimerEvent: {}
+[15.511421] (turtlesim) StdoutLine: {'line': b"Listing '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim'...\n"}
+[15.511570] (turtlesim) StdoutLine: {'line': b"Listing '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action'...\n"}
+[15.511613] (turtlesim) StdoutLine: {'line': b"Listing '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg'...\n"}
+[15.511644] (turtlesim) StdoutLine: {'line': b"Listing '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv'...\n"}
+[15.519904] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[15.520551] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[15.521143] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[15.522149] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_generator_py.so\n'}
+[15.522267] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/action/RotateAbsolute.idl\n'}
+[15.522305] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/msg/Color.idl\n'}
+[15.522339] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/msg/Pose.idl\n'}
+[15.522367] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Kill.idl\n'}
+[15.522393] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/SetPen.idl\n'}
+[15.522419] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Spawn.idl\n'}
+[15.522446] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportAbsolute.idl\n'}
+[15.522472] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportRelative.idl\n'}
+[15.522499] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/action/RotateAbsolute.action\n'}
+[15.522525] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/msg/Color.msg\n'}
+[15.522551] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/msg/Pose.msg\n'}
+[15.522576] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Kill.srv\n'}
+[15.522600] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Kill_Request.msg\n'}
+[15.522630] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Kill_Response.msg\n'}
+[15.522655] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/SetPen.srv\n'}
+[15.522679] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/SetPen_Request.msg\n'}
+[15.522703] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/SetPen_Response.msg\n'}
+[15.522728] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Spawn.srv\n'}
+[15.522752] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Spawn_Request.msg\n'}
+[15.522780] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Spawn_Response.msg\n'}
+[15.522805] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportAbsolute.srv\n'}
+[15.522829] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportAbsolute_Request.msg\n'}
+[15.522853] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportAbsolute_Response.msg\n'}
+[15.522878] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportRelative.srv\n'}
+[15.522902] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportRelative_Request.msg\n'}
+[15.522926] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportRelative_Response.msg\n'}
+[15.523672] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/turtlesim_node\n'}
+[15.524346] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/turtle_teleop_key\n'}
+[15.525018] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/draw_square\n'}
+[15.525653] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/mimic\n'}
+[15.525855] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images\n'}
+[15.525982] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/bouncy.png\n'}
+[15.526059] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/galactic.png\n'}
+[15.526138] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/foxy.png\n'}
+[15.526199] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/dashing.png\n'}
+[15.526261] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/eloquent.png\n'}
+[15.526322] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/crystal.png\n'}
+[15.526381] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/rolling.png\n'}
+[15.526439] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/ardent.png\n'}
+[15.526497] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/humble.png\n'}
+[15.526584] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/launch\n'}
+[15.526668] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/launch/multisim.launch.py\n'}
+[15.526763] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/ament_index/resource_index/package_run_dependencies/turtlesim\n'}
+[15.526849] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/ament_index/resource_index/parent_prefix_path/turtlesim\n'}
+[15.527423] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/ament_prefix_path.sh\n'}
+[15.527548] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/ament_prefix_path.dsv\n'}
+[15.527638] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/path.sh\n'}
+[15.527723] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/path.dsv\n'}
+[15.527801] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/local_setup.bash\n'}
+[15.529896] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/local_setup.sh\n'}
+[15.530008] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/local_setup.zsh\n'}
+[15.530112] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/local_setup.dsv\n'}
+[15.530192] (turtlesim) StdoutLine: {'line': b'-- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/package.dsv\n'}
+[15.530729] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/ament_index/resource_index/packages/turtlesim\n'}
+[15.531169] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_cExport.cmake\n'}
+[15.531290] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_cExport-noconfig.cmake\n'}
+[15.531757] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[15.531888] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[15.532304] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_cppExport.cmake\n'}
+[15.532637] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[15.532760] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[15.533134] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cExport.cmake\n'}
+[15.533248] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[15.535742] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cExport.cmake\n'}
+[15.535808] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[15.536118] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[15.536175] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[15.536463] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cppExport.cmake\n'}
+[15.536514] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[15.536957] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_pyExport.cmake\n'}
+[15.537036] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_pyExport-noconfig.cmake\n'}
+[15.537070] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/rosidl_cmake-extras.cmake\n'}
+[15.537099] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[15.537127] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[15.537154] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[15.537180] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[15.537206] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[15.537233] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[15.537260] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesimConfig.cmake\n'}
+[15.537285] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesimConfig-version.cmake\n'}
+[15.537311] (turtlesim) StdoutLine: {'line': b'-- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/package.xml\n'}
+[15.544138] (turtlesim) CommandEnded: {'returncode': 0}
+[15.583402] (-) TimerEvent: {}
+[15.683717] (-) TimerEvent: {}
+[15.786085] (-) TimerEvent: {}
+[15.801902] (turtlesim) JobEnded: {'identifier': 'turtlesim', 'rc': 0}
+[15.803899] (-) EventReactorShutdown: {}

@@ -1,0 +1,290 @@
+[0.117s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[0.118s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=1, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x74c797341960>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x74c7973411e0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x74c7973411e0>>, mixin_verb=('build',))
+[0.366s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.366s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.366s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.366s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.366s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[0.366s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.366s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/sonia/ros2_ws/src'
+[0.366s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[0.366s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[0.366s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[0.367s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[0.382s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[0.382s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(cpp_pubsub) by extensions ['ignore', 'ignore_ament_install']
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(cpp_pubsub) by extension 'ignore'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(cpp_pubsub) by extension 'ignore_ament_install'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(cpp_pubsub) by extensions ['colcon_pkg']
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(cpp_pubsub) by extension 'colcon_pkg'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(cpp_pubsub) by extensions ['colcon_meta']
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(cpp_pubsub) by extension 'colcon_meta'
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(cpp_pubsub) by extensions ['ros']
+[0.383s] Level 1:colcon.colcon_core.package_identification:_identify(cpp_pubsub) by extension 'ros'
+[0.390s] DEBUG:colcon.colcon_core.package_identification:Package 'cpp_pubsub' with type 'ros.ament_cmake' and name 'cpp_pubsub'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extensions ['ignore', 'ignore_ament_install']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extension 'ignore'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extension 'ignore_ament_install'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extensions ['colcon_pkg']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extension 'colcon_pkg'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extensions ['colcon_meta']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extension 'colcon_meta'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extensions ['ros']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extension 'ros'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extensions ['cmake', 'python']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extension 'cmake'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extension 'python'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extensions ['python_setup_py']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials) by extension 'python_setup_py'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/ros_tutorials) by extensions ['ignore', 'ignore_ament_install']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/ros_tutorials) by extension 'ignore'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/ros_tutorials) ignored
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/roscpp_tutorials) by extensions ['ignore', 'ignore_ament_install']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/roscpp_tutorials) by extension 'ignore'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/roscpp_tutorials) ignored
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/rospy_tutorials) by extensions ['ignore', 'ignore_ament_install']
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/rospy_tutorials) by extension 'ignore'
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/rospy_tutorials) ignored
+[0.391s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/turtlesim) by extensions ['ignore', 'ignore_ament_install']
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/turtlesim) by extension 'ignore'
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/turtlesim) by extension 'ignore_ament_install'
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/turtlesim) by extensions ['colcon_pkg']
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/turtlesim) by extension 'colcon_pkg'
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/turtlesim) by extensions ['colcon_meta']
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/turtlesim) by extension 'colcon_meta'
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/turtlesim) by extensions ['ros']
+[0.392s] Level 1:colcon.colcon_core.package_identification:_identify(ros_tutorials/turtlesim) by extension 'ros'
+[0.393s] DEBUG:colcon.colcon_core.package_identification:Package 'ros_tutorials/turtlesim' with type 'ros.ament_cmake' and name 'turtlesim'
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm) by extensions ['ignore', 'ignore_ament_install']
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm) by extension 'ignore'
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm) by extension 'ignore_ament_install'
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm) by extensions ['colcon_pkg']
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm) by extension 'colcon_pkg'
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm) by extensions ['colcon_meta']
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm) by extension 'colcon_meta'
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm) by extensions ['ros']
+[0.393s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm) by extension 'ros'
+[0.397s] DEBUG:colcon.colcon_core.package_identification:Package 'serial_comm' with type 'ros.ament_cmake' and name 'serial_comm'
+[0.397s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm1) by extensions ['ignore', 'ignore_ament_install']
+[0.397s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm1) by extension 'ignore'
+[0.397s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm1) by extension 'ignore_ament_install'
+[0.397s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm1) by extensions ['colcon_pkg']
+[0.397s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm1) by extension 'colcon_pkg'
+[0.397s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm1) by extensions ['colcon_meta']
+[0.397s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm1) by extension 'colcon_meta'
+[0.397s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm1) by extensions ['ros']
+[0.397s] Level 1:colcon.colcon_core.package_identification:_identify(serial_comm1) by extension 'ros'
+[0.398s] DEBUG:colcon.colcon_core.package_identification:Package 'serial_comm1' with type 'ros.ament_cmake' and name 'serial_comm1'
+[0.398s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[0.398s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[0.398s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[0.398s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[0.398s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[0.451s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[0.451s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[0.453s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 3 installed packages in /home/sonia/ros2_ws/src/install
+[0.453s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 4 installed packages in /home/sonia/ros2_ws/install
+[0.454s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 294 installed packages in /opt/ros/humble
+[0.455s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[0.506s] WARNING:colcon.colcon_core.package_selection:Some selected packages are already built in one or more underlay workspaces:
+	'turtlesim' is in: /home/sonia/ros2_ws/install/turtlesim, /opt/ros/humble
+If a package in a merged underlay workspace is overridden and it installs headers, then all packages in the overlay must sort their include directories by workspace order. Failure to do so may result in build failures or undefined behavior at run time.
+If the overridden package is used by another package in any underlay, then the overriding package in the overlay must be API and ABI compatible or undefined behavior at run time may occur.
+
+If you understand the risks and want to override a package anyways, add the following to the command line:
+	--allow-overriding turtlesim
+
+This may be promoted to an error in a future release of colcon-override-check.
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'cpp_pubsub' build argument 'cmake_args' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'cpp_pubsub' build argument 'cmake_target' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'cpp_pubsub' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'cpp_pubsub' build argument 'cmake_clean_cache' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'cpp_pubsub' build argument 'cmake_clean_first' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'cpp_pubsub' build argument 'cmake_force_configure' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'cpp_pubsub' build argument 'ament_cmake_args' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'cpp_pubsub' build argument 'catkin_cmake_args' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'cpp_pubsub' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.507s] DEBUG:colcon.colcon_core.verb:Building package 'cpp_pubsub' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sonia/ros2_ws/src/build/cpp_pubsub', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sonia/ros2_ws/src/install/cpp_pubsub', 'merge_install': False, 'path': '/home/sonia/ros2_ws/src/cpp_pubsub', 'symlink_install': False, 'test_result_base': None}
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm' build argument 'cmake_args' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm' build argument 'cmake_target' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm' build argument 'cmake_clean_cache' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm' build argument 'cmake_clean_first' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm' build argument 'cmake_force_configure' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm' build argument 'ament_cmake_args' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm' build argument 'catkin_cmake_args' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.507s] DEBUG:colcon.colcon_core.verb:Building package 'serial_comm' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sonia/ros2_ws/src/build/serial_comm', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sonia/ros2_ws/src/install/serial_comm', 'merge_install': False, 'path': '/home/sonia/ros2_ws/src/serial_comm', 'symlink_install': False, 'test_result_base': None}
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm1' build argument 'cmake_args' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm1' build argument 'cmake_target' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm1' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm1' build argument 'cmake_clean_cache' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm1' build argument 'cmake_clean_first' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm1' build argument 'cmake_force_configure' from command line to 'False'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm1' build argument 'ament_cmake_args' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm1' build argument 'catkin_cmake_args' from command line to 'None'
+[0.507s] Level 5:colcon.colcon_core.verb:set package 'serial_comm1' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.507s] DEBUG:colcon.colcon_core.verb:Building package 'serial_comm1' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sonia/ros2_ws/src/build/serial_comm1', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sonia/ros2_ws/src/install/serial_comm1', 'merge_install': False, 'path': '/home/sonia/ros2_ws/src/serial_comm1', 'symlink_install': False, 'test_result_base': None}
+[0.508s] Level 5:colcon.colcon_core.verb:set package 'turtlesim' build argument 'cmake_args' from command line to 'None'
+[0.508s] Level 5:colcon.colcon_core.verb:set package 'turtlesim' build argument 'cmake_target' from command line to 'None'
+[0.508s] Level 5:colcon.colcon_core.verb:set package 'turtlesim' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[0.508s] Level 5:colcon.colcon_core.verb:set package 'turtlesim' build argument 'cmake_clean_cache' from command line to 'False'
+[0.508s] Level 5:colcon.colcon_core.verb:set package 'turtlesim' build argument 'cmake_clean_first' from command line to 'False'
+[0.508s] Level 5:colcon.colcon_core.verb:set package 'turtlesim' build argument 'cmake_force_configure' from command line to 'False'
+[0.508s] Level 5:colcon.colcon_core.verb:set package 'turtlesim' build argument 'ament_cmake_args' from command line to 'None'
+[0.508s] Level 5:colcon.colcon_core.verb:set package 'turtlesim' build argument 'catkin_cmake_args' from command line to 'None'
+[0.508s] Level 5:colcon.colcon_core.verb:set package 'turtlesim' build argument 'catkin_skip_building_tests' from command line to 'False'
+[0.508s] DEBUG:colcon.colcon_core.verb:Building package 'turtlesim' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/sonia/ros2_ws/src/build/turtlesim', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/sonia/ros2_ws/src/install/turtlesim', 'merge_install': False, 'path': '/home/sonia/ros2_ws/src/ros_tutorials/turtlesim', 'symlink_install': False, 'test_result_base': None}
+[0.508s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[0.512s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[0.512s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/sonia/ros2_ws/src/cpp_pubsub' with build type 'ament_cmake'
+[0.513s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/sonia/ros2_ws/src/cpp_pubsub'
+[0.520s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[0.520s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.520s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.532s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sonia/ros2_ws/src/build/cpp_pubsub': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/cpp_pubsub -- -j1 -l1
+[0.809s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sonia/ros2_ws/src/build/cpp_pubsub' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/cpp_pubsub -- -j1 -l1
+[0.871s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sonia/ros2_ws/src/build/cpp_pubsub': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/src/build/cpp_pubsub
+[0.905s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cpp_pubsub)
+[0.905s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sonia/ros2_ws/src/build/cpp_pubsub' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/src/build/cpp_pubsub
+[0.910s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub' for CMake module files
+[0.910s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub' for CMake config files
+[0.910s] Level 1:colcon.colcon_core.shell:create_environment_hook('cpp_pubsub', 'cmake_prefix_path')
+[0.910s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/hook/cmake_prefix_path.ps1'
+[0.913s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/hook/cmake_prefix_path.dsv'
+[0.913s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/hook/cmake_prefix_path.sh'
+[0.914s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub/lib'
+[0.914s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub/bin'
+[0.914s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub/lib/pkgconfig/cpp_pubsub.pc'
+[0.914s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub/lib/python3.10/site-packages'
+[0.915s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub/bin'
+[0.915s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/package.ps1'
+[0.917s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/package.dsv'
+[0.921s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/package.sh'
+[0.922s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/package.bash'
+[0.923s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/package.zsh'
+[0.924s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sonia/ros2_ws/src/install/cpp_pubsub/share/colcon-core/packages/cpp_pubsub)
+[0.965s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(cpp_pubsub)
+[0.965s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub' for CMake module files
+[0.965s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub' for CMake config files
+[0.965s] Level 1:colcon.colcon_core.shell:create_environment_hook('cpp_pubsub', 'cmake_prefix_path')
+[0.966s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/hook/cmake_prefix_path.ps1'
+[0.966s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/hook/cmake_prefix_path.dsv'
+[0.966s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/hook/cmake_prefix_path.sh'
+[0.966s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub/lib'
+[0.967s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub/bin'
+[0.967s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub/lib/pkgconfig/cpp_pubsub.pc'
+[0.967s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub/lib/python3.10/site-packages'
+[0.967s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/cpp_pubsub/bin'
+[0.967s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/package.ps1'
+[0.967s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/package.dsv'
+[0.968s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/package.sh'
+[0.975s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/package.bash'
+[0.976s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/cpp_pubsub/share/cpp_pubsub/package.zsh'
+[0.976s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sonia/ros2_ws/src/install/cpp_pubsub/share/colcon-core/packages/cpp_pubsub)
+[0.977s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/sonia/ros2_ws/src/serial_comm' with build type 'ament_cmake'
+[0.977s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/sonia/ros2_ws/src/serial_comm'
+[0.977s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[0.977s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[0.993s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sonia/ros2_ws/src/build/serial_comm': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/serial_comm -- -j1 -l1
+[1.199s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sonia/ros2_ws/src/build/serial_comm' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/serial_comm -- -j1 -l1
+[1.254s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sonia/ros2_ws/src/build/serial_comm': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/src/build/serial_comm
+[1.277s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(serial_comm)
+[1.278s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm' for CMake module files
+[1.278s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm' for CMake config files
+[1.278s] Level 1:colcon.colcon_core.shell:create_environment_hook('serial_comm', 'cmake_prefix_path')
+[1.278s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/hook/cmake_prefix_path.ps1'
+[1.282s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/hook/cmake_prefix_path.dsv'
+[1.283s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/hook/cmake_prefix_path.sh'
+[1.283s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sonia/ros2_ws/src/build/serial_comm' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/src/build/serial_comm
+[1.285s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm/lib'
+[1.285s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm/bin'
+[1.285s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm/lib/pkgconfig/serial_comm.pc'
+[1.285s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm/lib/python3.10/site-packages'
+[1.285s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm/bin'
+[1.285s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/package.ps1'
+[1.285s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/package.dsv'
+[1.287s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/package.sh'
+[1.287s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/package.bash'
+[1.287s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/package.zsh'
+[1.287s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sonia/ros2_ws/src/install/serial_comm/share/colcon-core/packages/serial_comm)
+[1.328s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(serial_comm)
+[1.328s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm' for CMake module files
+[1.328s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm' for CMake config files
+[1.328s] Level 1:colcon.colcon_core.shell:create_environment_hook('serial_comm', 'cmake_prefix_path')
+[1.328s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/hook/cmake_prefix_path.ps1'
+[1.338s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/hook/cmake_prefix_path.dsv'
+[1.338s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/hook/cmake_prefix_path.sh'
+[1.340s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm/lib'
+[1.340s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm/bin'
+[1.340s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm/lib/pkgconfig/serial_comm.pc'
+[1.340s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm/lib/python3.10/site-packages'
+[1.340s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm/bin'
+[1.341s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/package.ps1'
+[1.341s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/package.dsv'
+[1.343s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/package.sh'
+[1.343s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/package.bash'
+[1.344s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm/share/serial_comm/package.zsh'
+[1.344s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sonia/ros2_ws/src/install/serial_comm/share/colcon-core/packages/serial_comm)
+[1.345s] INFO:colcon.colcon_ros.task.ament_cmake.build:Building ROS package in '/home/sonia/ros2_ws/src/serial_comm1' with build type 'ament_cmake'
+[1.345s] INFO:colcon.colcon_cmake.task.cmake.build:Building CMake package in '/home/sonia/ros2_ws/src/serial_comm1'
+[1.345s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.345s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.365s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/sonia/ros2_ws/src/build/serial_comm1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/serial_comm1 -- -j1 -l1
+[9.093s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete was interrupted
+[9.096s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete again
+[9.121s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/sonia/ros2_ws/src/build/serial_comm1' returned '-2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/serial_comm1 -- -j1 -l1
+[9.158s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(serial_comm1)
+[9.158s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm1' for CMake module files
+[9.158s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm1' for CMake config files
+[9.158s] Level 1:colcon.colcon_core.shell:create_environment_hook('serial_comm1', 'cmake_prefix_path')
+[9.159s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/hook/cmake_prefix_path.ps1'
+[9.162s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/hook/cmake_prefix_path.dsv'
+[9.163s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/hook/cmake_prefix_path.sh'
+[9.167s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm1/lib'
+[9.167s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm1/bin'
+[9.167s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm1/lib/pkgconfig/serial_comm1.pc'
+[9.167s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm1/lib/python3.10/site-packages'
+[9.167s] Level 1:colcon.colcon_core.environment:checking '/home/sonia/ros2_ws/src/install/serial_comm1/bin'
+[9.167s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/package.ps1'
+[9.168s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/package.dsv'
+[9.169s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/package.sh'
+[9.169s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/package.bash'
+[9.170s] INFO:colcon.colcon_core.shell:Creating package script '/home/sonia/ros2_ws/src/install/serial_comm1/share/serial_comm1/package.zsh'
+[9.170s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/sonia/ros2_ws/src/install/serial_comm1/share/colcon-core/packages/serial_comm1)
+[9.173s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished
+[9.173s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[9.174s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[9.174s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[9.191s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[9.193s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[9.194s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[9.219s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[9.219s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sonia/ros2_ws/src/install/local_setup.ps1'
+[9.220s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/sonia/ros2_ws/src/install/_local_setup_util_ps1.py'
+[9.223s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sonia/ros2_ws/src/install/setup.ps1'
+[9.224s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sonia/ros2_ws/src/install/local_setup.sh'
+[9.227s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/sonia/ros2_ws/src/install/_local_setup_util_sh.py'
+[9.227s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sonia/ros2_ws/src/install/setup.sh'
+[9.230s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sonia/ros2_ws/src/install/local_setup.bash'
+[9.231s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sonia/ros2_ws/src/install/setup.bash'
+[9.232s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/sonia/ros2_ws/src/install/local_setup.zsh'
+[9.233s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/sonia/ros2_ws/src/install/setup.zsh'

@@ -1,0 +1,83 @@
+[0.000000] (-) TimerEvent: {}
+[0.000227] (-) JobUnselected: {'identifier': 'cpp_pubsub'}
+[0.000247] (-) JobUnselected: {'identifier': 'serial_comm'}
+[0.000257] (-) JobUnselected: {'identifier': 'turtlesim'}
+[0.000266] (serial_comm1) JobQueued: {'identifier': 'serial_comm1', 'dependencies': OrderedDict()}
+[0.000276] (serial_comm1) JobStarted: {'identifier': 'serial_comm1'}
+[0.006472] (serial_comm1) JobProgress: {'identifier': 'serial_comm1', 'progress': 'cmake'}
+[0.006886] (serial_comm1) JobProgress: {'identifier': 'serial_comm1', 'progress': 'build'}
+[0.007278] (serial_comm1) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/sonia/ros2_ws/build/serial_comm1', '--', '-j1', '-l1'], 'cwd': '/home/sonia/ros2_ws/build/serial_comm1', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'sonia'), ('XDG_SESSION_TYPE', 'wayland'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/sonia/ros2_ws/install/turtlesim/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/sonia'), ('OLDPWD', '/home/sonia'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('SYSTEMD_EXEC_PID', '1615'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/sonia/ros2_ws/install'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'sonia'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'sonia'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'), ('SESSION_MANAGER', 'local/sonia-VirtualBox:@/tmp/.ICE-unix/1591,unix/sonia-VirtualBox:/tmp/.ICE-unix/1591'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/c33a7cd1_244e_499b_bd60_1298817f2ffa'), ('GNOME_SETUP_DISPLAY', ':1'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.2NMZR2'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.114'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/sonia/ros2_ws/install/turtlesim:/home/sonia/ros2_ws/install/serial_comm1:/home/sonia/ros2_ws/install/serial_comm:/home/sonia/ros2_ws/install/cpp_pubsub:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/sonia/ros2_ws/build/serial_comm1'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/sonia/ros2_ws/install/turtlesim:/home/sonia/ros2_ws/install/serial_comm1:/home/sonia/ros2_ws/install/serial_comm:/home/sonia/ros2_ws/install/cpp_pubsub:/opt/ros/humble')]), 'shell': False}
+[0.075753] (serial_comm1) StdoutLine: {'line': b'\x1b[35m\x1b[1mConsolidate compiler generated dependencies of target talker\x1b[0m\n'}
+[0.092332] (-) TimerEvent: {}
+[0.119187] (serial_comm1) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o\x1b[0m\n'}
+[0.192428] (-) TimerEvent: {}
+[0.292851] (-) TimerEvent: {}
+[0.394520] (-) TimerEvent: {}
+[0.498030] (-) TimerEvent: {}
+[0.599452] (-) TimerEvent: {}
+[0.699773] (-) TimerEvent: {}
+[0.800167] (-) TimerEvent: {}
+[0.906368] (-) TimerEvent: {}
+[1.006845] (-) TimerEvent: {}
+[1.110145] (-) TimerEvent: {}
+[1.210463] (-) TimerEvent: {}
+[1.310790] (-) TimerEvent: {}
+[1.411175] (-) TimerEvent: {}
+[1.511552] (-) TimerEvent: {}
+[1.611916] (-) TimerEvent: {}
+[1.718168] (-) TimerEvent: {}
+[1.822092] (-) TimerEvent: {}
+[1.926746] (-) TimerEvent: {}
+[2.027057] (-) TimerEvent: {}
+[2.127388] (-) TimerEvent: {}
+[2.227807] (-) TimerEvent: {}
+[2.328241] (-) TimerEvent: {}
+[2.428707] (-) TimerEvent: {}
+[2.529148] (-) TimerEvent: {}
+[2.629578] (-) TimerEvent: {}
+[2.729954] (-) TimerEvent: {}
+[2.830387] (-) TimerEvent: {}
+[2.930784] (-) TimerEvent: {}
+[3.034304] (-) TimerEvent: {}
+[3.134690] (-) TimerEvent: {}
+[3.235021] (-) TimerEvent: {}
+[3.338146] (-) TimerEvent: {}
+[3.450171] (-) TimerEvent: {}
+[3.550411] (-) TimerEvent: {}
+[3.574190] (serial_comm1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kint main(int, char**)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[3.574370] (serial_comm1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:94:43:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kstm_msgs\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kstd_msgs\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[3.574435] (serial_comm1) StderrLine: {'line': b'   94 |   auto publisher = node->create_publisher<\x1b[01;31m\x1b[Kstm_msgs\x1b[m\x1b[K::msg::String>\n'}
+[3.574486] (serial_comm1) StderrLine: {'line': b'      |                                           \x1b[01;31m\x1b[K^~~~~~~~\x1b[m\x1b[K\n'}
+[3.574554] (serial_comm1) StderrLine: {'line': b'      |                                           \x1b[32m\x1b[Kstd_msgs\x1b[m\x1b[K\n'}
+[3.574631] (serial_comm1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:94:26:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kparse error in template argument list\n'}
+[3.574681] (serial_comm1) StderrLine: {'line': b'   94 |   auto publisher = node->\x1b[01;31m\x1b[Kcreate_publisher<stm_msgs::msg::String>\x1b[m\x1b[K\n'}
+[3.574728] (serial_comm1) StderrLine: {'line': b'      |                          \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[3.574811] (serial_comm1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:94:26:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kunable to deduce \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99 from \xe2\x80\x98\x1b[01m\x1b[K((std::__shared_ptr_access<rclcpp::Node, __gnu_cxx::_S_atomic, false, false>*)(& node))->std::__shared_ptr_access<rclcpp::Node, __gnu_cxx::_S_atomic, false, false>::operator->()->create_publisher<<expression error> >\x1b[m\x1b[K\xe2\x80\x99\n'}
+[3.574880] (serial_comm1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:94:26:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  couldn\xe2\x80\x99t deduce template parameter \xe2\x80\x98\x1b[01m\x1b[Kauto\x1b[m\x1b[K\xe2\x80\x99\n'}
+[3.574941] (serial_comm1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:96:3:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected \xe2\x80\x98\x1b[01m\x1b[K,\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K;\x1b[m\x1b[K\xe2\x80\x99 before \xe2\x80\x98\x1b[01m\x1b[Ktry\x1b[m\x1b[K\xe2\x80\x99\n'}
+[3.574992] (serial_comm1) StderrLine: {'line': b'   96 |   \x1b[01;31m\x1b[Ktry\x1b[m\x1b[K {\n'}
+[3.575041] (serial_comm1) StderrLine: {'line': b'      |   \x1b[01;31m\x1b[K^~~\x1b[m\x1b[K\n'}
+[3.575103] (serial_comm1) StderrLine: {'line': b'\x1b[01m\x1b[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:117:4:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected primary-expression before \xe2\x80\x98\x1b[01m\x1b[Kcatch\x1b[m\x1b[K\xe2\x80\x99\n'}
+[3.575154] (serial_comm1) StderrLine: {'line': b'  117 |   }\x1b[01;31m\x1b[Kcatch\x1b[m\x1b[K (const boost::system::system_error& ex){\n'}
+[3.575200] (serial_comm1) StderrLine: {'line': b'      |    \x1b[01;31m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[3.650580] (-) TimerEvent: {}
+[3.752958] (-) TimerEvent: {}
+[3.862564] (-) TimerEvent: {}
+[3.968920] (-) TimerEvent: {}
+[4.069667] (-) TimerEvent: {}
+[4.170018] (-) TimerEvent: {}
+[4.273116] (-) TimerEvent: {}
+[4.373365] (-) TimerEvent: {}
+[4.473693] (-) TimerEvent: {}
+[4.582150] (-) TimerEvent: {}
+[4.686149] (-) TimerEvent: {}
+[4.786488] (-) TimerEvent: {}
+[4.890134] (-) TimerEvent: {}
+[4.998135] (-) TimerEvent: {}
+[5.102404] (-) TimerEvent: {}
+[5.123565] (serial_comm1) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/serial_publisher.cpp.o] Error 1\n'}
+[5.127478] (serial_comm1) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Error 2\n'}
+[5.127572] (serial_comm1) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[5.127604] (serial_comm1) CommandEnded: {'returncode': 2}
+[5.181632] (serial_comm1) JobEnded: {'identifier': 'serial_comm1', 'rc': 2}
+[5.182504] (-) EventReactorShutdown: {}

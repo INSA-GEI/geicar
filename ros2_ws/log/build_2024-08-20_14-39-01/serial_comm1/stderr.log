@@ -1,0 +1,8 @@
+[01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:[m[K In function ‘[01m[Kstd::vector<unsigned char, std::allocator<unsigned char> > readFrame(boost::asio::serial_port&)[m[K’:
+[01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:43:29:[m[K [01;31m[Kerror: [m[K‘[01m[Klengt_bytes[m[K’ was not declared in this scope; did you mean ‘[01m[Klength_bytes[m[K’?
+   43 |   std::swap(length_bytes[0],[01;31m[Klengt_bytes[m[K[1]); //inverser les deux octets de longueur
+      |                             [01;31m[K^~~~~~~~~~~[m[K
+      |                             [32m[Klength_bytes[m[K
+gmake[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/serial_publisher.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

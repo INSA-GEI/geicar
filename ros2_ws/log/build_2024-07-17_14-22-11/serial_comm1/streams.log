@@ -1,0 +1,66 @@
+[0.014s] Invoking command in '/home/sonia/ros2_ws/build/serial_comm1': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/sonia/ros2_ws/src/serial_comm1 -DCMAKE_INSTALL_PREFIX=/home/sonia/ros2_ws/install/serial_comm1
+[0.048s] -- The C compiler identification is GNU 11.4.0
+[0.080s] -- The CXX compiler identification is GNU 11.4.0
+[0.085s] -- Detecting C compiler ABI info
+[0.146s] -- Detecting C compiler ABI info - done
+[0.150s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.151s] -- Detecting C compile features
+[0.151s] -- Detecting C compile features - done
+[0.154s] -- Detecting CXX compiler ABI info
+[0.210s] -- Detecting CXX compiler ABI info - done
+[0.218s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.219s] -- Detecting CXX compile features
+[0.219s] -- Detecting CXX compile features - done
+[0.222s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.306s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.379s] -- Found rclcpp: 16.0.9 (/opt/ros/humble/share/rclcpp/cmake)
+[0.429s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.437s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.446s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.459s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.480s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.560s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.565s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.626s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.641s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.667s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.672s] -- Looking for pthread.h
+[0.726s] -- Looking for pthread.h - found
+[0.727s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.778s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[0.780s] -- Found Threads: TRUE  
+[0.879s] -- Found Boost: /usr/lib/x86_64-linux-gnu/cmake/Boost-1.74.0/BoostConfig.cmake (found version "1.74.0") found components: system 
+[0.927s] -- Configuring done
+[0.944s] -- Generating done
+[0.946s] -- Build files have been written to: /home/sonia/ros2_ws/build/serial_comm1
+[0.953s] Invoked command in '/home/sonia/ros2_ws/build/serial_comm1' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/sonia/ros2_ws/src/serial_comm1 -DCMAKE_INSTALL_PREFIX=/home/sonia/ros2_ws/install/serial_comm1
+[0.953s] Invoking command in '/home/sonia/ros2_ws/build/serial_comm1': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/serial_comm1 -- -j1 -l1
+[0.980s] [ 25%] [32mBuilding CXX object CMakeFiles/talker.dir/src/serial_publisher.cpp.o[0m
+[4.777s] [ 50%] [32m[1mLinking CXX executable talker[0m
+[4.913s] [ 50%] Built target talker
+[4.927s] [ 75%] [32mBuilding CXX object CMakeFiles/listener.dir/src/serial_subscriber.cpp.o[0m
+[11.108s] [100%] [32m[1mLinking CXX executable listener[0m
+[11.377s] [100%] Built target listener
+[11.387s] Invoked command in '/home/sonia/ros2_ws/build/serial_comm1' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/serial_comm1 -- -j1 -l1
+[11.403s] Invoking command in '/home/sonia/ros2_ws/build/serial_comm1': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/build/serial_comm1
+[11.409s] -- Install configuration: ""
+[11.409s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/talker
+[11.413s] -- Set runtime path of "/home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/talker" to ""
+[11.413s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/listener
+[11.417s] -- Set runtime path of "/home/sonia/ros2_ws/install/serial_comm1/lib/serial_comm1/listener" to ""
+[11.417s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/ament_index/resource_index/package_run_dependencies/serial_comm1
+[11.418s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/ament_index/resource_index/parent_prefix_path/serial_comm1
+[11.419s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/ament_prefix_path.sh
+[11.419s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/ament_prefix_path.dsv
+[11.420s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/path.sh
+[11.421s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/environment/path.dsv
+[11.421s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.bash
+[11.422s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.sh
+[11.422s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.zsh
+[11.422s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/local_setup.dsv
+[11.423s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/package.dsv
+[11.423s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/ament_index/resource_index/packages/serial_comm1
+[11.424s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/cmake/serial_comm1Config.cmake
+[11.424s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/cmake/serial_comm1Config-version.cmake
+[11.425s] -- Installing: /home/sonia/ros2_ws/install/serial_comm1/share/serial_comm1/package.xml
+[11.429s] Invoked command in '/home/sonia/ros2_ws/build/serial_comm1' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/build/serial_comm1

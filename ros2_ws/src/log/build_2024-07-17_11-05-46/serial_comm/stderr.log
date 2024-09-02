@@ -1,0 +1,30 @@
+[01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:53:3:[m[K [01;31m[Kerror: [m[K‘[01m[Kio_service[m[K’ does not name a type; did you mean ‘[01m[Krmw_service_t[m[K’?
+   53 |   [01;31m[Kio_service[m[K io;
+      |   [01;31m[K^~~~~~~~~~[m[K
+      |   [32m[Krmw_service_t[m[K
+[01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:54:3:[m[K [01;31m[Kerror: [m[K‘[01m[Kserial_port[m[K’ does not name a type
+   54 |   [01;31m[Kserial_port[m[K serial;
+      |   [01;31m[K^~~~~~~~~~~[m[K
+[01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:[m[K In constructor ‘[01m[KSerialPublisher::SerialPublisher()[m[K’:
+[01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:35:31:[m[K [01;31m[Kerror: [m[Kclass ‘[01m[KSerialPublisher[m[K’ does not have any field named ‘[01m[Kio[m[K’
+   35 |   : Node("serial_publisher"), [01;31m[Kio[m[K(),serial(io,"COM8")
+      |                               [01;31m[K^~[m[K
+[01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:35:36:[m[K [01;31m[Kerror: [m[Kclass ‘[01m[KSerialPublisher[m[K’ does not have any field named ‘[01m[Kserial[m[K’
+   35 |   : Node("serial_publisher"), io(),[01;31m[Kserial[m[K(io,"COM8")
+      |                                    [01;31m[K^~~~~~[m[K
+[01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:35:43:[m[K [01;31m[Kerror: [m[K‘[01m[Kio[m[K’ was not declared in this scope
+   35 |   : Node("serial_publisher"), io(),serial([01;31m[Kio[m[K,"COM8")
+      |                                           [01;31m[K^~[m[K
+[01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:37:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kserial[m[K’ was not declared in this scope
+   37 |     [01;31m[Kserial[m[K.set_option(serial_port_base::baud_rate(115200));
+      |     [01;31m[K^~~~~~[m[K
+[01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:37:23:[m[K [01;31m[Kerror: [m[K‘[01m[Kserial_port_base[m[K’ has not been declared
+   37 |     serial.set_option([01;31m[Kserial_port_base[m[K::baud_rate(115200));
+      |                       [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:[m[K In member function ‘[01m[Kvoid SerialPublisher::timer_callback()[m[K’:
+[01m[K/home/sonia/ros2_ws/src/serial_comm/src/serial_publisher.cpp:47:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kserial[m[K’ was not declared in this scope
+   47 |     boost::asio::read_until([01;31m[Kserial[m[K, boost::asio::dynamic_buffer(line),'\n');
+      |                             [01;31m[K^~~~~~[m[K
+gmake[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/serial_publisher.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

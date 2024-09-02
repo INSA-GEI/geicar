@@ -1,0 +1,11 @@
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/uninstall.dir
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/serial_comm_uninstall.dir
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/talker.dir
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/listener.dir
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/test.dir
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/edit_cache.dir
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/rebuild_cache.dir
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/list_install_components.dir
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/install.dir
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/install/local.dir
+/home/sonia/ros2_ws/src/build/serial_comm/CMakeFiles/install/strip.dir

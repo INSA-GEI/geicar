@@ -1,0 +1,515 @@
+[0.007s] Invoking command in '/home/sonia/ros2_ws/build/turtlesim': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/sonia/ros2_ws/src/ros_tutorials/turtlesim -DCMAKE_INSTALL_PREFIX=/home/sonia/ros2_ws/install/turtlesim
+[0.104s] -- The C compiler identification is GNU 11.4.0
+[0.174s] -- The CXX compiler identification is GNU 11.4.0
+[0.181s] -- Detecting C compiler ABI info
+[0.223s] -- Detecting C compiler ABI info - done
+[0.228s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.229s] -- Detecting C compile features
+[0.230s] -- Detecting C compile features - done
+[0.237s] -- Detecting CXX compiler ABI info
+[0.287s] -- Detecting CXX compiler ABI info - done
+[0.291s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.292s] -- Detecting CXX compile features
+[0.292s] -- Detecting CXX compile features - done
+[0.298s] -- Found ament_cmake: 1.3.9 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.391s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[0.456s] -- Found ament_index_cpp: 1.4.0 (/opt/ros/humble/share/ament_index_cpp/cmake)
+[0.458s] -- Found geometry_msgs: 4.2.4 (/opt/ros/humble/share/geometry_msgs/cmake)
+[0.490s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[0.495s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.502s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[0.514s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.530s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.631s] -- Found rclcpp: 16.0.9 (/opt/ros/humble/share/rclcpp/cmake)
+[0.675s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[0.678s] -- Found rmw_fastrtps_cpp: 6.2.6 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[0.745s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[0.760s] -- Found FastRTPS: /opt/ros/humble/include  
+[0.786s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.795s] -- Looking for pthread.h
+[0.846s] -- Looking for pthread.h - found
+[0.847s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.893s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[0.894s] -- Found Threads: TRUE  
+[0.994s] -- Found rclcpp_action: 16.0.9 (/opt/ros/humble/share/rclcpp_action/cmake)
+[1.065s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[1.073s] -- Found std_srvs: 4.2.4 (/opt/ros/humble/share/std_srvs/cmake)
+[1.281s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[1.487s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.563s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.577s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.10.12", minimum required is "3.6") 
+[1.579s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[1.596s] -- Found PythonLibs: /usr/lib/x86_64-linux-gnu/libpython3.10.so (found suitable version "3.10.12", minimum required is "3.5") 
+[1.596s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.596s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[1.596s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[1.609s] -- Found PythonExtra: .so  
+[1.649s] -- Configuring done
+[1.686s] -- Generating done
+[1.688s] -- Build files have been written to: /home/sonia/ros2_ws/build/turtlesim
+[1.696s] Invoked command in '/home/sonia/ros2_ws/build/turtlesim' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/sonia/ros2_ws/src/ros_tutorials/turtlesim -DCMAKE_INSTALL_PREFIX=/home/sonia/ros2_ws/install/turtlesim
+[1.696s] Invoking command in '/home/sonia/ros2_ws/build/turtlesim': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/turtlesim -- -j1 -l1
+[1.724s] [  1%] [34m[1mGenerating C++ code for ROS interfaces[0m
+[2.193s] [  1%] Built target turtlesim__cpp
+[2.199s] [  2%] [34m[1mGenerating C++ type support dispatch for ROS interfaces[0m
+[2.487s] [  3%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/turtlesim/action/rotate_absolute__type_support.cpp.o[0m
+[2.803s] [  4%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/turtlesim/msg/color__type_support.cpp.o[0m
+[2.947s] [  5%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/turtlesim/msg/pose__type_support.cpp.o[0m
+[3.078s] [  6%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/turtlesim/srv/kill__type_support.cpp.o[0m
+[3.211s] [  7%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/turtlesim/srv/set_pen__type_support.cpp.o[0m
+[3.350s] [  8%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/turtlesim/srv/spawn__type_support.cpp.o[0m
+[3.490s] [  9%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/turtlesim/srv/teleport_absolute__type_support.cpp.o[0m
+[3.630s] [ 10%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/turtlesim/srv/teleport_relative__type_support.cpp.o[0m
+[3.767s] [ 11%] [32m[1mLinking CXX shared library libturtlesim__rosidl_typesupport_cpp.so[0m
+[3.795s] [ 11%] Built target turtlesim__rosidl_typesupport_cpp
+[3.800s] [ 12%] [34m[1mGenerating C code for ROS interfaces[0m
+[4.282s] [ 13%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_c.dir/rosidl_generator_c/turtlesim/action/detail/rotate_absolute__functions.c.o[0m
+[4.379s] [ 14%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_c.dir/rosidl_generator_c/turtlesim/msg/detail/color__functions.c.o[0m
+[4.403s] [ 15%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_c.dir/rosidl_generator_c/turtlesim/msg/detail/pose__functions.c.o[0m
+[4.429s] [ 16%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_c.dir/rosidl_generator_c/turtlesim/srv/detail/kill__functions.c.o[0m
+[4.467s] [ 17%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_c.dir/rosidl_generator_c/turtlesim/srv/detail/set_pen__functions.c.o[0m
+[4.501s] [ 18%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_c.dir/rosidl_generator_c/turtlesim/srv/detail/spawn__functions.c.o[0m
+[4.534s] [ 19%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_c.dir/rosidl_generator_c/turtlesim/srv/detail/teleport_absolute__functions.c.o[0m
+[4.569s] [ 20%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_c.dir/rosidl_generator_c/turtlesim/srv/detail/teleport_relative__functions.c.o[0m
+[4.600s] [ 21%] [32m[1mLinking C shared library libturtlesim__rosidl_generator_c.so[0m
+[4.624s] [ 21%] Built target turtlesim__rosidl_generator_c
+[4.629s] [ 22%] [34m[1mGenerating C type support for eProsima Fast-RTPS[0m
+[5.021s] [ 23%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/turtlesim/action/detail/rotate_absolute__type_support_c.cpp.o[0m
+[5.253s] [ 24%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/turtlesim/msg/detail/color__type_support_c.cpp.o[0m
+[5.421s] [ 25%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/turtlesim/msg/detail/pose__type_support_c.cpp.o[0m
+[5.589s] [ 26%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/turtlesim/srv/detail/kill__type_support_c.cpp.o[0m
+[5.777s] [ 27%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/turtlesim/srv/detail/set_pen__type_support_c.cpp.o[0m
+[5.950s] [ 28%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/turtlesim/srv/detail/spawn__type_support_c.cpp.o[0m
+[6.130s] [ 29%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/turtlesim/srv/detail/teleport_absolute__type_support_c.cpp.o[0m
+[6.309s] [ 30%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/turtlesim/srv/detail/teleport_relative__type_support_c.cpp.o[0m
+[6.484s] [ 31%] [32m[1mLinking CXX shared library libturtlesim__rosidl_typesupport_fastrtps_c.so[0m
+[6.537s] [ 31%] Built target turtlesim__rosidl_typesupport_fastrtps_c
+[6.544s] [ 32%] [34m[1mGenerating C++ type support for eProsima Fast-RTPS[0m
+[6.965s] [ 33%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/turtlesim/action/detail/dds_fastrtps/rotate_absolute__type_support.cpp.o[0m
+[7.265s] [ 34%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/turtlesim/msg/detail/dds_fastrtps/color__type_support.cpp.o[0m
+[7.460s] [ 35%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/turtlesim/msg/detail/dds_fastrtps/pose__type_support.cpp.o[0m
+[7.659s] [ 36%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/turtlesim/srv/detail/dds_fastrtps/kill__type_support.cpp.o[0m
+[7.864s] [ 37%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/turtlesim/srv/detail/dds_fastrtps/set_pen__type_support.cpp.o[0m
+[8.070s] [ 38%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/turtlesim/srv/detail/dds_fastrtps/spawn__type_support.cpp.o[0m
+[8.282s] [ 39%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/turtlesim/srv/detail/dds_fastrtps/teleport_absolute__type_support.cpp.o[0m
+[8.487s] [ 40%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/turtlesim/srv/detail/dds_fastrtps/teleport_relative__type_support.cpp.o[0m
+[8.696s] [ 41%] [32m[1mLinking CXX shared library libturtlesim__rosidl_typesupport_fastrtps_cpp.so[0m
+[8.742s] [ 41%] Built target turtlesim__rosidl_typesupport_fastrtps_cpp
+[8.749s] [ 42%] [34m[1mGenerating C introspection for ROS interfaces[0m
+[9.114s] [ 43%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/turtlesim/action/detail/rotate_absolute__type_support.c.o[0m
+[9.153s] [ 44%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/turtlesim/msg/detail/color__type_support.c.o[0m
+[9.174s] [ 45%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/turtlesim/msg/detail/pose__type_support.c.o[0m
+[9.191s] [ 46%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/turtlesim/srv/detail/kill__type_support.c.o[0m
+[9.210s] [ 47%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/turtlesim/srv/detail/set_pen__type_support.c.o[0m
+[9.229s] [ 48%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/turtlesim/srv/detail/spawn__type_support.c.o[0m
+[9.249s] [ 49%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/turtlesim/srv/detail/teleport_absolute__type_support.c.o[0m
+[9.271s] [ 50%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/turtlesim/srv/detail/teleport_relative__type_support.c.o[0m
+[9.293s] [ 51%] [32m[1mLinking C shared library libturtlesim__rosidl_typesupport_introspection_c.so[0m
+[9.315s] [ 51%] Built target turtlesim__rosidl_typesupport_introspection_c
+[9.320s] [ 52%] [34m[1mGenerating C type support dispatch for ROS interfaces[0m
+[9.587s] [ 53%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_c.dir/rosidl_typesupport_c/turtlesim/action/rotate_absolute__type_support.cpp.o[0m
+[9.616s] [ 54%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_c.dir/rosidl_typesupport_c/turtlesim/msg/color__type_support.cpp.o[0m
+[9.632s] [ 55%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_c.dir/rosidl_typesupport_c/turtlesim/msg/pose__type_support.cpp.o[0m
+[9.648s] [ 56%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_c.dir/rosidl_typesupport_c/turtlesim/srv/kill__type_support.cpp.o[0m
+[9.669s] [ 57%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_c.dir/rosidl_typesupport_c/turtlesim/srv/set_pen__type_support.cpp.o[0m
+[9.686s] [ 58%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_c.dir/rosidl_typesupport_c/turtlesim/srv/spawn__type_support.cpp.o[0m
+[9.703s] [ 59%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_c.dir/rosidl_typesupport_c/turtlesim/srv/teleport_absolute__type_support.cpp.o[0m
+[9.719s] [ 60%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_c.dir/rosidl_typesupport_c/turtlesim/srv/teleport_relative__type_support.cpp.o[0m
+[9.736s] [ 61%] [32m[1mLinking CXX shared library libturtlesim__rosidl_typesupport_c.so[0m
+[9.765s] [ 61%] Built target turtlesim__rosidl_typesupport_c
+[9.770s] [ 62%] [34m[1mGenerating C++ introspection for ROS interfaces[0m
+[10.110s] [ 63%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/turtlesim/action/detail/rotate_absolute__type_support.cpp.o[0m
+[10.430s] [ 64%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/turtlesim/msg/detail/color__type_support.cpp.o[0m
+[10.623s] [ 65%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/turtlesim/msg/detail/pose__type_support.cpp.o[0m
+[10.812s] [ 66%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/turtlesim/srv/detail/kill__type_support.cpp.o[0m
+[11.006s] [ 67%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/turtlesim/srv/detail/set_pen__type_support.cpp.o[0m
+[11.201s] [ 68%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/turtlesim/srv/detail/spawn__type_support.cpp.o[0m
+[11.401s] [ 69%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/turtlesim/srv/detail/teleport_absolute__type_support.cpp.o[0m
+[11.593s] [ 70%] [32mBuilding CXX object CMakeFiles/turtlesim__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/turtlesim/srv/detail/teleport_relative__type_support.cpp.o[0m
+[11.788s] [ 71%] [32m[1mLinking CXX shared library libturtlesim__rosidl_typesupport_introspection_cpp.so[0m
+[11.842s] [ 71%] Built target turtlesim__rosidl_typesupport_introspection_cpp
+[11.852s] [ 71%] Built target turtlesim
+[11.870s] [ 71%] Built target ament_cmake_python_copy_turtlesim
+[11.999s] running egg_info
+[11.999s] creating turtlesim.egg-info
+[11.999s] writing turtlesim.egg-info/PKG-INFO
+[12.000s] writing dependency_links to turtlesim.egg-info/dependency_links.txt
+[12.000s] writing top-level names to turtlesim.egg-info/top_level.txt
+[12.000s] writing manifest file 'turtlesim.egg-info/SOURCES.txt'
+[12.002s] reading manifest file 'turtlesim.egg-info/SOURCES.txt'
+[12.002s] writing manifest file 'turtlesim.egg-info/SOURCES.txt'
+[12.017s] [ 71%] Built target ament_cmake_python_build_turtlesim_egg
+[12.027s] [ 72%] [34m[1mGenerating Python code for ROS interfaces[0m
+[12.954s] [ 72%] Built target turtlesim__py
+[12.968s] [ 73%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_py.dir/rosidl_generator_py/turtlesim/action/_rotate_absolute_s.c.o[0m
+[13.067s] [ 74%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_py.dir/rosidl_generator_py/turtlesim/msg/_color_s.c.o[0m
+[13.123s] [ 75%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_py.dir/rosidl_generator_py/turtlesim/msg/_pose_s.c.o[0m
+[13.180s] [ 76%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_py.dir/rosidl_generator_py/turtlesim/srv/_kill_s.c.o[0m
+[13.235s] [ 77%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_py.dir/rosidl_generator_py/turtlesim/srv/_set_pen_s.c.o[0m
+[13.295s] [ 78%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_py.dir/rosidl_generator_py/turtlesim/srv/_spawn_s.c.o[0m
+[13.354s] [ 79%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_py.dir/rosidl_generator_py/turtlesim/srv/_teleport_absolute_s.c.o[0m
+[13.414s] [ 80%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_generator_py.dir/rosidl_generator_py/turtlesim/srv/_teleport_relative_s.c.o[0m
+[13.470s] [ 81%] [32m[1mLinking C shared library rosidl_generator_py/turtlesim/libturtlesim__rosidl_generator_py.so[0m
+[13.512s] [ 81%] Built target turtlesim__rosidl_generator_py
+[13.523s] [ 82%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/turtlesim/_turtlesim_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[13.614s] [ 83%] [32m[1mLinking C shared library rosidl_generator_py/turtlesim/turtlesim_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so[0m
+[13.637s] [ 83%] Built target turtlesim__rosidl_typesupport_fastrtps_c__pyext
+[13.648s] [ 84%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/turtlesim/_turtlesim_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[13.737s] [ 85%] [32m[1mLinking C shared library rosidl_generator_py/turtlesim/turtlesim_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so[0m
+[13.758s] [ 85%] Built target turtlesim__rosidl_typesupport_introspection_c__pyext
+[13.770s] [ 86%] [32mBuilding C object CMakeFiles/turtlesim__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/turtlesim/_turtlesim_s.ep.rosidl_typesupport_c.c.o[0m
+[13.856s] [ 87%] [32m[1mLinking C shared library rosidl_generator_py/turtlesim/turtlesim_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so[0m
+[13.883s] [ 87%] Built target turtlesim__rosidl_typesupport_c__pyext
+[13.888s] [ 88%] [34m[1mGenerating include/turtlesim/moc_turtle_frame.cpp[0m
+[13.956s] [ 89%] [32mBuilding CXX object CMakeFiles/turtlesim_node.dir/src/turtlesim.cpp.o[0m
+[16.721s] [ 90%] [32mBuilding CXX object CMakeFiles/turtlesim_node.dir/src/turtle.cpp.o[0m
+[24.347s] [ 91%] [32mBuilding CXX object CMakeFiles/turtlesim_node.dir/src/turtle_frame.cpp.o[0m
+[31.033s] [ 92%] [32mBuilding CXX object CMakeFiles/turtlesim_node.dir/include/turtlesim/moc_turtle_frame.cpp.o[0m
+[33.344s] [ 93%] [32m[1mLinking CXX executable turtlesim_node[0m
+[34.557s] [ 93%] Built target turtlesim_node
+[34.568s] [ 94%] [32mBuilding CXX object CMakeFiles/turtle_teleop_key.dir/tutorials/teleop_turtle_key.cpp.o[0m
+[37.877s] [ 95%] [32m[1mLinking CXX executable turtle_teleop_key[0m
+[38.029s] [ 95%] Built target turtle_teleop_key
+[38.040s] [ 96%] [32mBuilding CXX object CMakeFiles/draw_square.dir/tutorials/draw_square.cpp.o[0m
+[43.249s] [ 97%] [32m[1mLinking CXX executable draw_square[0m
+[43.503s] [ 97%] Built target draw_square
+[43.518s] [ 98%] [32mBuilding CXX object CMakeFiles/mimic.dir/tutorials/mimic.cpp.o[0m
+[48.389s] [100%] [32m[1mLinking CXX executable mimic[0m
+[48.618s] [100%] Built target mimic
+[48.625s] Invoked command in '/home/sonia/ros2_ws/build/turtlesim' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/turtlesim -- -j1 -l1
+[48.740s] Invoking command in '/home/sonia/ros2_ws/build/turtlesim': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/build/turtlesim
+[48.746s] -- Install configuration: ""
+[48.746s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/ament_index/resource_index/rosidl_interfaces/turtlesim
+[48.746s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim
+[48.746s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action
+[48.746s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail
+[48.746s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__type_support.h
+[48.747s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__functions.h
+[48.747s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__struct.h
+[48.747s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__functions.c
+[48.747s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/rotate_absolute.h
+[48.747s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv
+[48.747s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail
+[48.747s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__struct.h
+[48.747s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__functions.c
+[48.748s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__type_support.h
+[48.748s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__type_support.h
+[48.748s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__functions.c
+[48.748s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__functions.c
+[48.748s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__functions.h
+[48.748s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__functions.h
+[48.748s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__struct.h
+[48.748s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__functions.h
+[48.748s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__functions.h
+[48.748s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__functions.c
+[48.749s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__struct.h
+[48.749s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__type_support.h
+[48.749s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__struct.h
+[48.749s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__functions.h
+[48.749s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__type_support.h
+[48.749s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__struct.h
+[48.749s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__functions.c
+[48.749s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__type_support.h
+[48.749s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/kill.h
+[48.749s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/set_pen.h
+[48.750s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_relative.h
+[48.750s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_absolute.h
+[48.750s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/spawn.h
+[48.750s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg
+[48.750s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail
+[48.750s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__struct.h
+[48.750s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__functions.h
+[48.750s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__functions.c
+[48.750s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__struct.h
+[48.750s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__type_support.h
+[48.751s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__functions.c
+[48.751s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__functions.h
+[48.751s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__type_support.h
+[48.751s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/color.h
+[48.751s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/pose.h
+[48.751s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_generator_c__visibility_control.h
+[48.751s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/library_path.sh
+[48.751s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/library_path.dsv
+[48.752s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_generator_c.so
+[48.752s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_generator_c.so" to ""
+[48.752s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim
+[48.752s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action
+[48.752s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail
+[48.752s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_fastrtps_c.h
+[48.752s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv
+[48.752s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail
+[48.752s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_fastrtps_c.h
+[48.752s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_fastrtps_c.h
+[48.753s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_fastrtps_c.h
+[48.753s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_fastrtps_c.h
+[48.753s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_fastrtps_c.h
+[48.753s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg
+[48.753s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail
+[48.753s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_fastrtps_c.h
+[48.753s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_fastrtps_c.h
+[48.753s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[48.753s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_fastrtps_c.so
+[48.754s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_fastrtps_c.so" to ""
+[48.754s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim
+[48.754s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action
+[48.754s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail
+[48.754s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__builder.hpp
+[48.754s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__struct.hpp
+[48.754s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__traits.hpp
+[48.754s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/rotate_absolute.hpp
+[48.754s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv
+[48.754s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__traits.hpp
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__builder.hpp
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__builder.hpp
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__struct.hpp
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__struct.hpp
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__traits.hpp
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__struct.hpp
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__builder.hpp
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__traits.hpp
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__traits.hpp
+[48.755s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__builder.hpp
+[48.756s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__struct.hpp
+[48.756s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__traits.hpp
+[48.756s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__struct.hpp
+[48.756s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__builder.hpp
+[48.756s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/spawn.hpp
+[48.756s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/set_pen.hpp
+[48.756s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_relative.hpp
+[48.756s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/teleport_absolute.hpp
+[48.756s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/kill.hpp
+[48.756s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg
+[48.757s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail
+[48.757s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__struct.hpp
+[48.757s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__builder.hpp
+[48.757s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__traits.hpp
+[48.757s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__struct.hpp
+[48.757s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__traits.hpp
+[48.757s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__builder.hpp
+[48.757s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/pose.hpp
+[48.757s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/color.hpp
+[48.757s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim
+[48.758s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action
+[48.758s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail
+[48.758s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_fastrtps_cpp.hpp
+[48.758s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/dds_fastrtps
+[48.758s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv
+[48.758s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail
+[48.758s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_fastrtps_cpp.hpp
+[48.758s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_fastrtps_cpp.hpp
+[48.758s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/dds_fastrtps
+[48.758s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_fastrtps_cpp.hpp
+[48.758s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_fastrtps_cpp.hpp
+[48.759s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_fastrtps_cpp.hpp
+[48.759s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg
+[48.759s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail
+[48.759s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_fastrtps_cpp.hpp
+[48.759s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_fastrtps_cpp.hpp
+[48.759s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/dds_fastrtps
+[48.759s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[48.759s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_fastrtps_cpp.so
+[48.760s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_fastrtps_cpp.so" to ""
+[48.760s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim
+[48.760s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action
+[48.760s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail
+[48.760s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_introspection_c.h
+[48.760s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__type_support.c
+[48.760s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv
+[48.760s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail
+[48.760s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_introspection_c.h
+[48.760s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__type_support.c
+[48.761s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_introspection_c.h
+[48.761s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__type_support.c
+[48.761s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_introspection_c.h
+[48.761s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__type_support.c
+[48.761s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__type_support.c
+[48.761s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_introspection_c.h
+[48.761s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__type_support.c
+[48.761s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_introspection_c.h
+[48.761s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg
+[48.761s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail
+[48.761s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__type_support.c
+[48.762s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_introspection_c.h
+[48.762s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__type_support.c
+[48.762s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_introspection_c.h
+[48.762s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[48.762s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_introspection_c.so
+[48.762s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_introspection_c.so" to ""
+[48.762s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_c.so
+[48.763s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_c.so" to ""
+[48.763s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim
+[48.763s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action
+[48.763s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail
+[48.763s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__type_support.cpp
+[48.763s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/action/detail/rotate_absolute__rosidl_typesupport_introspection_cpp.hpp
+[48.763s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv
+[48.763s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail
+[48.763s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__type_support.cpp
+[48.763s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__rosidl_typesupport_introspection_cpp.hpp
+[48.763s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__type_support.cpp
+[48.764s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/spawn__type_support.cpp
+[48.764s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__rosidl_typesupport_introspection_cpp.hpp
+[48.764s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_relative__type_support.cpp
+[48.764s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/set_pen__rosidl_typesupport_introspection_cpp.hpp
+[48.764s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__type_support.cpp
+[48.764s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/teleport_absolute__rosidl_typesupport_introspection_cpp.hpp
+[48.764s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/srv/detail/kill__rosidl_typesupport_introspection_cpp.hpp
+[48.764s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg
+[48.764s] -- Up-to-date: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail
+[48.765s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__rosidl_typesupport_introspection_cpp.hpp
+[48.765s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/color__type_support.cpp
+[48.765s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__type_support.cpp
+[48.765s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/include/turtlesim/turtlesim/msg/detail/pose__rosidl_typesupport_introspection_cpp.hpp
+[48.765s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_introspection_cpp.so
+[48.765s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_introspection_cpp.so" to ""
+[48.765s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_cpp.so
+[48.766s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_typesupport_cpp.so" to ""
+[48.766s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/pythonpath.sh
+[48.766s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/pythonpath.dsv
+[48.766s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info
+[48.766s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/SOURCES.txt
+[48.766s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/top_level.txt
+[48.766s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/dependency_links.txt
+[48.766s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim-1.4.2-py3.10.egg-info/PKG-INFO
+[48.766s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim
+[48.767s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action
+[48.767s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/_rotate_absolute_s.c
+[48.767s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/__init__.py
+[48.767s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/_rotate_absolute.py
+[48.767s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/libturtlesim__rosidl_generator_py.so
+[48.767s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv
+[48.767s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_relative_s.c
+[48.767s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_spawn.py
+[48.767s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_absolute_s.c
+[48.768s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_absolute.py
+[48.768s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_set_pen.py
+[48.768s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_set_pen_s.c
+[48.768s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/__init__.py
+[48.768s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_relative.py
+[48.768s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_kill_s.c
+[48.768s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_spawn_s.c
+[48.768s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_kill.py
+[48.768s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg
+[48.768s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_pose_s.c
+[48.769s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_color_s.c
+[48.769s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/__init__.py
+[48.769s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_pose.py
+[48.769s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_color.py
+[48.769s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/__init__.py
+[48.769s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/_turtlesim_s.ep.rosidl_typesupport_fastrtps_c.c
+[48.769s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/_turtlesim_s.ep.rosidl_typesupport_c.c
+[48.769s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/_turtlesim_s.ep.rosidl_typesupport_introspection_c.c
+[48.770s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[48.770s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[48.770s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[48.797s] Listing '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim'...
+[48.797s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/__init__.py'...
+[48.797s] Listing '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action'...
+[48.797s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/__init__.py'...
+[48.797s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/action/_rotate_absolute.py'...
+[48.797s] Listing '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg'...
+[48.797s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/__init__.py'...
+[48.797s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_color.py'...
+[48.798s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/msg/_pose.py'...
+[48.798s] Listing '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv'...
+[48.798s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/__init__.py'...
+[48.798s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_kill.py'...
+[48.798s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_set_pen.py'...
+[48.798s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_spawn.py'...
+[48.798s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_absolute.py'...
+[48.798s] Compiling '/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/srv/_teleport_relative.py'...
+[48.801s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[48.801s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""
+[48.801s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[48.801s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""
+[48.802s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[48.802s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/local/lib/python3.10/dist-packages/turtlesim/turtlesim_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""
+[48.802s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_generator_py.so
+[48.802s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/libturtlesim__rosidl_generator_py.so" to ""
+[48.802s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/action/RotateAbsolute.idl
+[48.802s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/msg/Color.idl
+[48.803s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/msg/Pose.idl
+[48.803s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Kill.idl
+[48.803s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/SetPen.idl
+[48.803s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Spawn.idl
+[48.803s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportAbsolute.idl
+[48.803s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportRelative.idl
+[48.803s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/action/RotateAbsolute.action
+[48.803s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/msg/Color.msg
+[48.804s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/msg/Pose.msg
+[48.804s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Kill.srv
+[48.804s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Kill_Request.msg
+[48.804s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Kill_Response.msg
+[48.804s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/SetPen.srv
+[48.804s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/SetPen_Request.msg
+[48.804s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/SetPen_Response.msg
+[48.804s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Spawn.srv
+[48.805s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Spawn_Request.msg
+[48.805s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/Spawn_Response.msg
+[48.805s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportAbsolute.srv
+[48.805s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportAbsolute_Request.msg
+[48.805s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportAbsolute_Response.msg
+[48.805s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportRelative.srv
+[48.805s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportRelative_Request.msg
+[48.805s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/srv/TeleportRelative_Response.msg
+[48.806s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/turtlesim_node
+[48.809s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/turtlesim_node" to ""
+[48.809s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/turtle_teleop_key
+[48.810s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/turtle_teleop_key" to ""
+[48.811s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/draw_square
+[48.813s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/draw_square" to ""
+[48.813s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/mimic
+[48.814s] -- Set runtime path of "/home/sonia/ros2_ws/install/turtlesim/lib/turtlesim/mimic" to ""
+[48.815s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images
+[48.815s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/bouncy.png
+[48.815s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/galactic.png
+[48.815s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/foxy.png
+[48.815s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/dashing.png
+[48.815s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/eloquent.png
+[48.815s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/crystal.png
+[48.815s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/rolling.png
+[48.815s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/ardent.png
+[48.815s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/images/humble.png
+[48.816s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/launch
+[48.816s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/launch/multisim.launch.py
+[48.816s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/ament_index/resource_index/package_run_dependencies/turtlesim
+[48.816s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/ament_index/resource_index/parent_prefix_path/turtlesim
+[48.816s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/ament_prefix_path.sh
+[48.816s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/ament_prefix_path.dsv
+[48.816s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/path.sh
+[48.817s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/environment/path.dsv
+[48.817s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/local_setup.bash
+[48.817s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/local_setup.sh
+[48.817s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/local_setup.zsh
+[48.817s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/local_setup.dsv
+[48.817s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/package.dsv
+[48.817s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/ament_index/resource_index/packages/turtlesim
+[48.817s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_cExport.cmake
+[48.818s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_cExport-noconfig.cmake
+[48.818s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cExport.cmake
+[48.818s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[48.818s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_cppExport.cmake
+[48.818s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cppExport.cmake
+[48.818s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[48.818s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cExport.cmake
+[48.818s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[48.819s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cExport.cmake
+[48.819s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cExport-noconfig.cmake
+[48.819s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cppExport.cmake
+[48.819s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[48.819s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cppExport.cmake
+[48.819s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesim__rosidl_typesupport_cppExport-noconfig.cmake
+[48.819s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_pyExport.cmake
+[48.820s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/export_turtlesim__rosidl_generator_pyExport-noconfig.cmake
+[48.820s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/rosidl_cmake-extras.cmake
+[48.820s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_dependencies-extras.cmake
+[48.820s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_include_directories-extras.cmake
+[48.820s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_libraries-extras.cmake
+[48.820s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/ament_cmake_export_targets-extras.cmake
+[48.820s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[48.820s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[48.821s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesimConfig.cmake
+[48.821s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/cmake/turtlesimConfig-version.cmake
+[48.821s] -- Installing: /home/sonia/ros2_ws/install/turtlesim/share/turtlesim/package.xml
+[48.822s] Invoked command in '/home/sonia/ros2_ws/build/turtlesim' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/build/turtlesim

@@ -1,0 +1,19 @@
+[01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:94:43:[m[K [01;31m[Kerror: [m[K‘[01m[Kstm_msgs[m[K’ was not declared in this scope; did you mean ‘[01m[Kstd_msgs[m[K’?
+   94 |   auto publisher = node->create_publisher<[01;31m[Kstm_msgs[m[K::msg::String>
+      |                                           [01;31m[K^~~~~~~~[m[K
+      |                                           [32m[Kstd_msgs[m[K
+[01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:94:26:[m[K [01;31m[Kerror: [m[Kparse error in template argument list
+   94 |   auto publisher = node->[01;31m[Kcreate_publisher<stm_msgs::msg::String>[m[K
+      |                          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:94:26:[m[K [01;31m[Kerror: [m[Kunable to deduce ‘[01m[Kauto[m[K’ from ‘[01m[K((std::__shared_ptr_access<rclcpp::Node, __gnu_cxx::_S_atomic, false, false>*)(& node))->std::__shared_ptr_access<rclcpp::Node, __gnu_cxx::_S_atomic, false, false>::operator->()->create_publisher<<expression error> >[m[K’
+[01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:94:26:[m[K [01;36m[Knote: [m[K  couldn’t deduce template parameter ‘[01m[Kauto[m[K’
+[01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:96:3:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K,[m[K’ or ‘[01m[K;[m[K’ before ‘[01m[Ktry[m[K’
+   96 |   [01;31m[Ktry[m[K {
+      |   [01;31m[K^~~[m[K
+[01m[K/home/sonia/ros2_ws/src/serial_comm1/src/serial_publisher.cpp:117:4:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[Kcatch[m[K’
+  117 |   }[01;31m[Kcatch[m[K (const boost::system::system_error& ex){
+      |    [01;31m[K^~~~~[m[K
+gmake[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/serial_publisher.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

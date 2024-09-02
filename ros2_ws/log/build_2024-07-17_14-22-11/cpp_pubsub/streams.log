@@ -1,0 +1,27 @@
+[0.013s] Invoking command in '/home/sonia/ros2_ws/build/cpp_pubsub': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/cpp_pubsub -- -j1 -l1
+[0.054s] [ 25%] [32mBuilding CXX object CMakeFiles/talker.dir/src/publisher_member_function.cpp.o[0m
+[2.663s] [ 50%] [32m[1mLinking CXX executable talker[0m
+[2.781s] [ 50%] Built target talker
+[2.798s] [100%] Built target listener
+[2.811s] Invoked command in '/home/sonia/ros2_ws/build/cpp_pubsub' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/build/cpp_pubsub -- -j1 -l1
+[2.831s] Invoking command in '/home/sonia/ros2_ws/build/cpp_pubsub': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/build/cpp_pubsub
+[2.837s] -- Install configuration: ""
+[2.838s] -- Installing: /home/sonia/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/talker
+[2.844s] -- Set runtime path of "/home/sonia/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/talker" to ""
+[2.845s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/listener
+[2.845s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/package_run_dependencies/cpp_pubsub
+[2.846s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/parent_prefix_path/cpp_pubsub
+[2.846s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.sh
+[2.846s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.dsv
+[2.847s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/path.sh
+[2.847s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/path.dsv
+[2.847s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.bash
+[2.848s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.sh
+[2.848s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.zsh
+[2.848s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.dsv
+[2.848s] -- Installing: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/package.dsv
+[2.849s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/packages/cpp_pubsub
+[2.849s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig.cmake
+[2.849s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig-version.cmake
+[2.850s] -- Up-to-date: /home/sonia/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/package.xml
+[2.851s] Invoked command in '/home/sonia/ros2_ws/build/cpp_pubsub' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/build/cpp_pubsub

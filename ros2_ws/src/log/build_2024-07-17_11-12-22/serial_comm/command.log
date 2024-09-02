@@ -1,0 +1,4 @@
+Invoking command in '/home/sonia/ros2_ws/src/build/serial_comm': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/serial_comm -- -j1 -l1
+Invoked command in '/home/sonia/ros2_ws/src/build/serial_comm' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/sonia/ros2_ws/src/build/serial_comm -- -j1 -l1
+Invoking command in '/home/sonia/ros2_ws/src/build/serial_comm': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/src/build/serial_comm
+Invoked command in '/home/sonia/ros2_ws/src/build/serial_comm' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/sonia/ros2_ws/src/build/serial_comm
