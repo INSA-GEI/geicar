@@ -20,11 +20,16 @@ extern UART_HandleTypeDef huart5;
 extern UART_HandleTypeDef huart2;
 extern UART_HandleTypeDef huart3;
 
+extern TIM_HandleTypeDef htim3;
+extern TIM_HandleTypeDef htim8;
+
 #define LIDAR_DATA_LENGTH 47
 uint8_t data_buffer[LIDAR_DATA_LENGTH] = {0};
 
 char rx_buffer[LINEMAX];   // Local holding buffer to build line
 int rx_index = 0;
+
+uint8_t buffer_ros[6] = {0,0,0,0,0,0};
 
 void Tasks_Init(void)
 {
@@ -52,6 +57,62 @@ void Tasks_Init(void)
 
 	osThreadDef(SPI, StartSPI, osPriorityBelowNormal, 0, 64);
 	SPIHandle = osThreadCreate(osThread(SPI), NULL);*/
+}
+
+void Process_pwm_frame(uint8_t * frame)
+{
+	uint8_t pwm_num = frame [0];
+	uint8_t channel_num = frame [1];
+	uint32_t pwm_value = (uint32_t)frame[5]<<24 |
+						 (uint32_t)frame[4]<<16 |
+						 (uint32_t)frame[3]<<8 |
+						 (uint32_t)frame[2] ; //passage de little endian a big endian
+
+	TIM_HandleTypeDef htim;
+	uint32_t channel;
+
+	switch(pwm_num){
+		case 3 :
+			htim = htim3;
+			break;
+		case 8 :
+			htim = htim8;
+			break;
+		default:
+			return;
+	}
+
+	switch(channel_num){
+		case 1:
+			channel = TIM_CHANNEL_1;
+			break;
+		case 2:
+			channel = TIM_CHANNEL_2;
+			break;
+		case 3:
+			channel = TIM_CHANNEL_3;
+			break;
+		case 4:
+			channel = TIM_CHANNEL_4;
+			break;
+		default:
+			return;
+	}
+
+	if ((pwm_value >= 0x3f800000)&& (pwm_value < 0x3fc00000))
+	{
+	 	printf("reculer");
+	}
+	else if ((pwm_value >0x3fc00000)&& (pwm_value <=0x40000000))
+	{
+	    printf("avancer");
+	}
+
+	float pwm_value2 = *((float*)&pwm_value); //passer la valeur de uint32_t à float
+	uint32_t ccr_value = (uint32_t)((pwm_value2/20.0)*2000); //ARR = 1999
+
+	__HAL_TIM_SET_COMPARE(&htim,channel, ccr_value); //écrit directement dans le registre du timer pour changer la valeur PWM
+
 }
 
 void IMU_Receive_Transmit_Data()
@@ -119,7 +180,29 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     {
 
     }
+
+    if(huart -> Instance == UART4)
+    {
+    	/*uint8_t tps =0;
+    	for(int i=0; i<2; i++) //changement endian
+    	{
+    		tps = buffer_ros[i+2];
+    		buffer_ros[i+2]= buffer_ros[5-i];
+    		buffer_ros[5-i]= tps;
+    	}*/
+
+    	/*uint32_t test = (uint32_t)buffer_ros[5]<<24 |
+    					(uint32_t)buffer_ros[4]<<16 |
+						(uint32_t)buffer_ros[3]<<8 |
+						(uint32_t)buffer_ros[2] ;*/
+
+    	Process_pwm_frame(buffer_ros);
+
+    	HAL_UART_Receive_IT(&huart4, buffer_ros, 6);
+    }
 }
+
+
 
 void Transmit_data_to_usb(void)
 {
@@ -133,33 +216,20 @@ void Transmit_data_to_usb(void)
 		//HAL_UART_Transmit_IT(&huart4, message_appli.data, sizeof(message_appli.data));
 		break;
 	case MSG_ID_IMU :
-		   TransmitIMUFrame(message_appli.data);
+		TransmitIMUFrame(message_appli.data);
 		break;
 	case MSG_ID_LIDAR :
 		TransmitLiDARFrame(message_appli.data);
 		//HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data,30);
 		break;
-	/*case MSG_ID_IMU_TEMP :
-		HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data,30);
-		break;
-	case MSG_ID_IMU_HUM :
-		HAL_UART_Transmit_IT(&huart4,(uint8_t*)message_appli.data, 30);
-		break;
-	case MSG_ID_IMU_PRESS :
-		HAL_UART_Transmit_IT(&huart4,(uint8_t*)message_appli.data, 30);
-		break;
-	case MSG_ID_IMU_ACC :
-		HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data, 50);
-		break;
-	case MSG_ID_IMU_MAG :
-		HAL_UART_Transmit_IT(&huart4, (uint8_t*)message_appli.data, 50);
-		break;
-	case MSG_ID_IMU_GYR :
-		HAL_UART_Transmit_IT(&huart4,(uint8_t*)message_appli.data, 50);
-		break;*/
 	default :
 		break;
 	}
+}
+
+void Receive_data_from_usb(void)
+{
+	HAL_UART_Receive_IT(&huart4, buffer_ros, 6);
 }
 
 void StartUart(void const * argument)
@@ -177,6 +247,7 @@ void StartUart(void const * argument)
   {
 
 	  Transmit_data_to_usb();
+	  Receive_data_from_usb();
 	  vTaskDelayUntil(&xLastWakeTime, xFrequency);
 	  //osDelay(100);
   }
