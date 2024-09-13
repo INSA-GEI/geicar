@@ -36,3 +36,14 @@ exemple :
 ``colcon build --packages-select serial_comm1``
 
 Cela va permettre de compiler les fichiers serial_publisher.cpp et serial_subscriber.cpp présent dans le projet ``/serial_comm1``.
+
+## Liens entre topics et noeud
+Le nœud serial_comm1 est responsable de la gestion de la communication série avec la carte STM32 L476RG. Ce nœud est chargé de lire des données provenant du périphérique série (dev/ttyUSB0), de les traiter ou de les transmettre à d'autres nœuds.
+
+Les topics sont des canaux de communication où les nœuds publient ou s’abonnent pour échanger des messages de manière asynchrone.
+
+Le nœud ``serial_comm1`` interagit avec deux topics :
+
+  ``serial_in`` : Ce topic reçoit des données en provenance du périphérique série. Le nœud serial_comm1 est abonné à ce topic, ce qui signifie qu'il lit les données qui y sont publiées.
+  
+  ``serial_out`` : Ce topic envoie des données vers le périphérique série. Le nœud serial_comm1 publie des messages sur ce topic, qui sont ensuite transmis vers la sortie série.
