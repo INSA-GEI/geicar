@@ -1,0 +1,32 @@
+name: ROS2 CI
+
+on:
+  push:
+    branches:
+      - ci-test
+  pull_request:
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: ./raspberryPI3/ros2_ws
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Set up ROS 2
+      uses: ros-tooling/setup-ros@v0.7
+      with:
+        ros-distro: humble
+        install-ros-dependencies: true
+
+    - name: Build with colcon
+      run: |
+        colcon build --packages-select interfaces
+        colcon build --packages-skip interfaces rviz_imu_plugin
