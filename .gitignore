@@ -31,3 +31,11 @@
 *.exe
 *.out
 *.app
+
+# Kicad files
+*.lck
+*.zip
+*#
+*.kicad_prl
+fp-info-cache
+

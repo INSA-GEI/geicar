@@ -1,0 +1,133 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "acbeee85-bee7-482c-b859-0ad6bf15d6be")
+	(paper "A4")
+	(title_block
+		(title "Racine (carte-io)")
+		(date "2024-10-09")
+		(rev "1.0")
+		(company "INSA-GEI")
+	)
+	(lib_symbols)
+	(sheet
+		(at 120.65 116.84)
+		(size 67.31 39.37)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "a0428d88-8c4a-4775-8048-a66da608a5ba")
+		(property "Sheetname" "Puissance"
+			(at 120.65 116.1284 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "carte-io_puissance.kicad_sch"
+			(at 120.65 156.7946 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "carte-io"
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 57.15 62.23)
+		(size 55.88 38.1)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "df503f80-fd82-47f1-9d35-38636472ba02")
+		(property "Sheetname" "CPU"
+			(at 57.15 61.5184 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "carte-io-cpu.kicad_sch"
+			(at 57.15 100.9146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "carte-io"
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 172.72 63.5)
+		(size 63.5 35.56)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "e0769f15-5851-4dbe-85c4-fc3863520381")
+		(property "Sheetname" "IO"
+			(at 172.72 62.7884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "carte-io_io.kicad_sch"
+			(at 172.72 99.6446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "carte-io"
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
