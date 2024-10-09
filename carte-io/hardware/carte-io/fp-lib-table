@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "TSW-104-07-G-T")(type "KiCad")(uri "${KIPRJMOD}/libraries/TSW-104-07-G-T")(options "")(descr ""))
+  (lib (name "FTSH-110-01-L-DV-007")(type "KiCad")(uri "${KIPRJMOD}/libraries/FTSH-110-01-L-DV-007")(options "")(descr ""))
+)
