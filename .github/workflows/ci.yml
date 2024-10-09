@@ -12,6 +12,9 @@ defaults:
   run:
     working-directory: ./raspberryPI3/ros2_ws
 
+env:
+  ROS_DISTRO: humble
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,18 +33,36 @@ jobs:
     - name: Set up ROS 2
       uses: ros-tooling/setup-ros@v0.7
       with:
-        ros-distro: humble
+        required-ros-distributions: humble
         install-ros-dependencies: true
 
-    - name: Get ROS 2 dependencies
+    - name: Initialize rosdep
+      run: |
+        sudo rosdep init || echo "rosdep already initialized"
+        rosdep update
+
+    - name: Source ROS 2 Environment
+      run: |
+        source /opt/ros/humble/setup.bash
+
+    - name: Install Additional Dependencies
       run: |
         sudo apt update
-        sudo apt install ros-humble-rviz2 -y
+        sudo apt install ros-humble-rviz2 ros-humble-rosidl-default-generators -y
+
+    - name: Install Workspace Dependencies
+      run: |
+        rosdep install --from-paths src --ignore-src -r -y
+
+    - name: Clean Workspace
+      run: |
+        rm -rf build/ install/ log/
 
     - name: Build with colcon
       run: |
-        colcon build --packages-select interfaces
-        colcon build --packages-skip interfaces rviz_imu_plugin
+        source /opt/ros/humble/setup.bash
+        colcon build --packages-select interfaces --cmake-args -Wno-dev
+        colcon build --packages-skip interfaces --cmake-args -Wno-dev
 
     - name: Set latest commit status as ${{ job.status }}
       uses: myrotvorets/set-commit-status-action@master
