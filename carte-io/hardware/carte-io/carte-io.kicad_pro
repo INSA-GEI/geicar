@@ -584,12 +584,28 @@
       "CPU"
     ],
     [
-      "e0769f15-5851-4dbe-85c4-fc3863520381",
-      "IO"
-    ],
-    [
       "a0428d88-8c4a-4775-8048-a66da608a5ba",
       "Puissance"
+    ],
+    [
+      "e0769f15-5851-4dbe-85c4-fc3863520381",
+      "UARTS"
+    ],
+    [
+      "3e4e7140-3958-4172-a8ed-8175c1585cf5",
+      "Motors"
+    ],
+    [
+      "a3998fe1-61e0-4c81-93b1-42b2eee90206",
+      "Internals Sensors"
+    ],
+    [
+      "b1447454-b4c9-4241-a4de-131fa2452240",
+      "Externals I2C"
+    ],
+    [
+      "3f52fbb8-df6a-4282-9d71-7c6a457205c5",
+      "GPIO & SPI"
     ]
   ],
   "text_variables": {}

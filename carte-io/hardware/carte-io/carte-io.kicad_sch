@@ -12,6 +12,82 @@
 	)
 	(lib_symbols)
 	(sheet
+		(at 217.17 118.11)
+		(size 45.72 29.21)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "3e4e7140-3958-4172-a8ed-8175c1585cf5")
+		(property "Sheetname" "Motors"
+			(at 217.17 117.3984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "motors.kicad_sch"
+			(at 217.17 147.9046 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "carte-io"
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 41.91 34.29)
+		(size 40.64 17.78)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "3f52fbb8-df6a-4282-9d71-7c6a457205c5")
+		(property "Sheetname" "GPIO & SPI"
+			(at 41.91 33.5784 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "gpio_spi.kicad_sch"
+			(at 41.91 52.6546 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "carte-io"
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be"
+					(page "8")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 120.65 116.84)
 		(size 67.31 39.37)
 		(fields_autoplaced yes)
@@ -44,7 +120,83 @@
 		(instances
 			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be"
-					(page "4")
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 27.94 121.92)
+		(size 63.5 35.56)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "a3998fe1-61e0-4c81-93b1-42b2eee90206")
+		(property "Sheetname" "Internals Sensors"
+			(at 27.94 121.2084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "int_sensors.kicad_sch"
+			(at 27.94 158.0646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "carte-io"
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 123.19 24.13)
+		(size 97.79 33.02)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "b1447454-b4c9-4241-a4de-131fa2452240")
+		(property "Sheetname" "Externals I2C"
+			(at 123.19 23.4184 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "externals_i2c.kicad_sch"
+			(at 123.19 57.7346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "carte-io"
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be"
+					(page "7")
 				)
 			)
 		)
@@ -99,7 +251,7 @@
 			(color 0 0 0 0.0000)
 		)
 		(uuid "e0769f15-5851-4dbe-85c4-fc3863520381")
-		(property "Sheetname" "IO"
+		(property "Sheetname" "UARTS"
 			(at 172.72 62.7884 0)
 			(effects
 				(font
@@ -108,7 +260,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "carte-io_io.kicad_sch"
+		(property "Sheetfile" "carte-uarts_uarts.kicad_sch"
 			(at 172.72 99.6446 0)
 			(effects
 				(font
@@ -120,7 +272,7 @@
 		(instances
 			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be"
-					(page "3")
+					(page "4")
 				)
 			)
 		)
