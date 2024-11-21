@@ -5,7 +5,7 @@
 	(uuid "4b519ceb-b4d9-4705-9ebe-12558285aa02")
 	(paper "A4")
 	(title_block
-		(title "cpu (carte-io)")
+		(title "CPU")
 		(date "2024-10-09")
 		(rev "1.0")
 	)
@@ -3846,6 +3846,151 @@
 				)
 			)
 		)
+		(symbol "Switch:SW_Push"
+			(pin_numbers hide)
+			(pin_names
+				(offset 1.016) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "SW"
+				(at 1.27 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "SW_Push"
+				(at 0 -1.524 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Push button switch, generic, two pins"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "switch normally-open pushbutton push-button"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SW_Push_0_1"
+				(circle
+					(center -2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 0 1.27) (xy 0 3.048)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 2.54 1.27) (xy -2.54 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "power:+3.3V"
 			(power)
 			(pin_numbers hide)
@@ -4062,6 +4207,102 @@
 				)
 			)
 		)
+		(symbol "power:PWR_FLAG"
+			(power)
+			(pin_numbers hide)
+			(pin_names
+				(offset 0) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "#FLG"
+				(at 0 1.905 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Value" "PWR_FLAG"
+				(at 0 3.81 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Special symbol for telling ERC where power comes from"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "flag power"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "PWR_FLAG_0_0"
+				(pin power_out line
+					(at 0 0 90)
+					(length 0)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(symbol "PWR_FLAG_0_1"
+				(polyline
+					(pts
+						(xy 0 0) (xy 0 1.27) (xy -1.016 1.905) (xy 0 2.54) (xy 1.016 1.905) (xy 0 1.27)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+		)
 		(symbol "power:VDDA"
 			(power)
 			(pin_numbers hide)
@@ -4256,6 +4497,12 @@
 		(uuid "874fc799-ec9d-4f13-b1c2-d7973d28c9bc")
 	)
 	(junction
+		(at 214.63 59.69)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "87fe977d-7a3f-4756-a2de-411f52fbb091")
+	)
+	(junction
 		(at 33.02 143.51)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4328,6 +4575,12 @@
 		(uuid "ef24b5b1-c4ae-4e01-bca5-728cc1c580c0")
 	)
 	(junction
+		(at 231.14 59.69)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ef8882f6-3f25-47c6-9e05-1cc29422439c")
+	)
+	(junction
 		(at 76.2 43.18)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -4376,8 +4629,20 @@
 		(uuid "8af33e04-c59c-4d66-82eb-06c4755ea869")
 	)
 	(no_connect
+		(at 104.14 60.96)
+		(uuid "b5e14efd-e5f5-40c6-b510-80d8be69600a")
+	)
+	(no_connect
+		(at 149.86 73.66)
+		(uuid "b7929d94-d6ac-4338-b5fd-b2c13af2a4cf")
+	)
+	(no_connect
 		(at 149.86 157.48)
 		(uuid "cae12cf7-73a0-4e5d-b721-db778f2b4b48")
+	)
+	(no_connect
+		(at 149.86 88.9)
+		(uuid "d1338da1-adf0-461c-a930-0aedf1576c2d")
 	)
 	(no_connect
 		(at 104.14 137.16)
@@ -4386,6 +4651,10 @@
 	(no_connect
 		(at 104.14 73.66)
 		(uuid "eee884c2-e94f-46f8-a72f-4a223bd86a85")
+	)
+	(no_connect
+		(at 104.14 63.5)
+		(uuid "f71e95f7-04c4-4b84-8032-1748af8bb8ce")
 	)
 	(no_connect
 		(at 104.14 121.92)
@@ -4427,7 +4696,7 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 30.48) (xy 214.63 33.02)
+			(xy 214.63 29.21) (xy 214.63 33.02)
 		)
 		(stroke
 			(width 0)
@@ -4647,7 +4916,7 @@
 	)
 	(wire
 		(pts
-			(xy 214.63 30.48) (xy 232.41 30.48)
+			(xy 214.63 29.21) (xy 201.93 29.21)
 		)
 		(stroke
 			(width 0)
@@ -4664,6 +4933,16 @@
 			(type default)
 		)
 		(uuid "20a89151-4e2e-49f2-98ae-24481dd02e16")
+	)
+	(wire
+		(pts
+			(xy 231.14 54.61) (xy 231.14 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "20d377a0-ce61-4155-b289-a27f2bb8eb58")
 	)
 	(wire
 		(pts
@@ -4744,6 +5023,16 @@
 			(type default)
 		)
 		(uuid "2e5c24df-b020-4f45-86a7-940c55da4f63")
+	)
+	(wire
+		(pts
+			(xy 231.14 59.69) (xy 214.63 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2f5e6d2c-20c0-4f25-97fa-74d16551c5ed")
 	)
 	(wire
 		(pts
@@ -4837,16 +5126,6 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 60.96) (xy 104.14 60.96)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "442f207b-69e7-4824-b27a-6151499f3dbb")
-	)
-	(wire
-		(pts
 			(xy 95.25 50.8) (xy 95.25 53.34)
 		)
 		(stroke
@@ -4904,6 +5183,16 @@
 			(type default)
 		)
 		(uuid "47f2f55b-444f-4c2d-a103-d3281f5dabd1")
+	)
+	(wire
+		(pts
+			(xy 237.49 29.21) (xy 248.92 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4a2e7bef-01e5-40be-b756-031823253046")
 	)
 	(wire
 		(pts
@@ -4994,6 +5283,16 @@
 			(type default)
 		)
 		(uuid "5876f6e9-86ae-4467-9def-6f5272703065")
+	)
+	(wire
+		(pts
+			(xy 248.92 54.61) (xy 248.92 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "59167277-4ba8-4e8d-b840-dbd5207a744e")
 	)
 	(wire
 		(pts
@@ -5367,6 +5666,16 @@
 	)
 	(wire
 		(pts
+			(xy 231.14 44.45) (xy 231.14 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87e466a7-bf53-4ca9-ad0f-6d20e8e318be")
+	)
+	(wire
+		(pts
 			(xy 25.4 128.27) (xy 33.02 128.27)
 		)
 		(stroke
@@ -5467,16 +5776,6 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 63.5) (xy 104.14 63.5)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "91259d27-9f47-4909-91cf-c51a611125a9")
-	)
-	(wire
-		(pts
 			(xy 149.86 83.82) (xy 163.83 83.82)
 		)
 		(stroke
@@ -5484,16 +5783,6 @@
 			(type default)
 		)
 		(uuid "913c1f24-327f-4f39-9fbe-8043e029fb2f")
-	)
-	(wire
-		(pts
-			(xy 149.86 88.9) (xy 163.83 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "92600fa1-4ff2-4db0-8d7f-0a9bb8dba0eb")
 	)
 	(wire
 		(pts
@@ -5727,6 +6016,16 @@
 	)
 	(wire
 		(pts
+			(xy 220.98 29.21) (xy 231.14 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ba425ee4-ad0d-43b9-b1bd-cac96fcc2a77")
+	)
+	(wire
+		(pts
 			(xy 220.98 129.54) (xy 214.63 129.54)
 		)
 		(stroke
@@ -5787,6 +6086,16 @@
 	)
 	(wire
 		(pts
+			(xy 248.92 33.02) (xy 248.92 29.21)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c36e5ecf-8e28-46fd-a48b-b3117830ebc9")
+	)
+	(wire
+		(pts
 			(xy 76.2 33.02) (xy 90.17 33.02)
 		)
 		(stroke
@@ -5794,6 +6103,16 @@
 			(type default)
 		)
 		(uuid "c581260e-e917-4587-a8ab-fc845f9bd0cb")
+	)
+	(wire
+		(pts
+			(xy 248.92 40.64) (xy 248.92 44.45)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c5aed370-e905-4cf1-84de-8a6c49db7b01")
 	)
 	(wire
 		(pts
@@ -6027,16 +6346,6 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 73.66) (xy 163.83 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f116dded-ac0f-4dd0-a04b-2cb52576550f")
-	)
-	(wire
-		(pts
 			(xy 149.86 53.34) (xy 163.83 53.34)
 		)
 		(stroke
@@ -6074,6 +6383,26 @@
 			(type default)
 		)
 		(uuid "f5bbe0a2-e8d5-41de-9113-efa8fd1bedf0")
+	)
+	(wire
+		(pts
+			(xy 248.92 59.69) (xy 231.14 59.69)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f6d347c1-8d44-4fb5-8d0c-111514f143ec")
+	)
+	(wire
+		(pts
+			(xy 52.07 149.86) (xy 64.77 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f718f17b-dc10-4e79-bf84-4383599a95c2")
 	)
 	(wire
 		(pts
@@ -6152,25 +6481,14 @@
 		)
 		(uuid "cbcd7bd5-c707-4590-9e23-62965049dd5c")
 	)
-	(label "JTRST"
-		(at 163.83 88.9 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "0e7d4136-8e41-46c4-ac1c-d4ba7cb5b6f0")
-	)
 	(label "LED_ACTIVITY"
-		(at 232.41 30.48 180)
+		(at 201.93 29.21 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "12741525-8a76-4eaf-90bf-a6d6d0e8a122")
 	)
@@ -6184,6 +6502,17 @@
 			(justify right bottom)
 		)
 		(uuid "213958de-4733-4493-83d3-ec4e47428940")
+	)
+	(label "NRST"
+		(at 237.49 29.21 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "2f0f5a24-3071-4c82-9e57-8bae0e4e9753")
 	)
 	(label "JTCK-SWCLK"
 		(at 163.83 71.12 180)
@@ -6218,17 +6547,6 @@
 		)
 		(uuid "7659fd49-e96a-4bac-87b8-195af4eb7d12")
 	)
-	(label "JTDI"
-		(at 163.83 73.66 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "a69df12e-ba92-47a9-917a-3a0e9519cbb4")
-	)
 	(label "USER_BTN"
 		(at 91.44 119.38 0)
 		(fields_autoplaced yes)
@@ -6261,6 +6579,17 @@
 			(justify right bottom)
 		)
 		(uuid "c11d8965-b000-4634-ac7a-52222729ff7c")
+	)
+	(label "USER_BTN"
+		(at 220.98 29.21 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d20b68a4-cef9-4e6a-9a4b-f8bd84ef9c2b")
 	)
 	(label "LED_ACTIVITY"
 		(at 163.83 45.72 180)
@@ -6318,7 +6647,7 @@
 		(uuid "fe254a85-4a62-453c-9558-6379440bb2a1")
 	)
 	(hierarchical_label "SERVO_PWM4"
-		(shape input)
+		(shape output)
 		(at 163.83 142.24 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6330,7 +6659,7 @@
 		(uuid "012d96fd-53e0-4db7-84d5-6eb3e3e752bf")
 	)
 	(hierarchical_label "OUTPUT2"
-		(shape input)
+		(shape output)
 		(at 91.44 88.9 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6342,7 +6671,7 @@
 		(uuid "04efd23f-5ee5-4440-af07-87b300b799c1")
 	)
 	(hierarchical_label "GEN_PWM1"
-		(shape input)
+		(shape output)
 		(at 163.83 55.88 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6354,7 +6683,7 @@
 		(uuid "072873b4-a54d-42fd-a8e8-fedadd998222")
 	)
 	(hierarchical_label "US_PulseStart"
-		(shape input)
+		(shape output)
 		(at 163.83 127 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6366,7 +6695,7 @@
 		(uuid "096661f1-9180-4b47-80f2-e47b510cb580")
 	)
 	(hierarchical_label "I2C_SCL_EXTERNAL"
-		(shape input)
+		(shape output)
 		(at 163.83 109.22 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6390,7 +6719,7 @@
 		(uuid "0a5cba79-4008-4955-a05e-0497a752719c")
 	)
 	(hierarchical_label "SERVO_PWM1"
-		(shape input)
+		(shape output)
 		(at 163.83 134.62 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6402,7 +6731,7 @@
 		(uuid "0d6aba58-c49a-47c3-9a88-37ab199a4565")
 	)
 	(hierarchical_label "MOT_PWM1"
-		(shape input)
+		(shape output)
 		(at 163.83 35.56 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6414,7 +6743,7 @@
 		(uuid "107e6cc7-f0c0-421b-9e6c-1d7bd43e2197")
 	)
 	(hierarchical_label "I2C_SDA_ARBITRARY"
-		(shape input)
+		(shape bidirectional)
 		(at 163.83 96.52 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6426,7 +6755,7 @@
 		(uuid "1211900e-2060-40eb-89f2-a23035d4483b")
 	)
 	(hierarchical_label "OUTPUT3"
-		(shape input)
+		(shape output)
 		(at 91.44 93.98 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6461,20 +6790,8 @@
 		)
 		(uuid "2f4dab1c-22c9-46bf-8efe-5d7fc1973254")
 	)
-	(hierarchical_label "SPI_CS2"
-		(shape input)
-		(at 96.52 60.96 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "2f80c631-fd6a-40a9-a333-2ecd8cfb104c")
-	)
 	(hierarchical_label "FDCAN1_TX"
-		(shape input)
+		(shape output)
 		(at 163.83 66.04 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6498,7 +6815,7 @@
 		(uuid "38a18d3b-a0f6-47ef-a267-a040071752a5")
 	)
 	(hierarchical_label "SPI_SCK"
-		(shape input)
+		(shape output)
 		(at 91.44 91.44 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6510,7 +6827,7 @@
 		(uuid "3acefafd-f071-4035-baaa-d8ba33794f0f")
 	)
 	(hierarchical_label "SPI_MOSI"
-		(shape input)
+		(shape output)
 		(at 163.83 53.34 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6522,7 +6839,7 @@
 		(uuid "43351746-990c-47af-8539-10798caf538c")
 	)
 	(hierarchical_label "OUTPUT1"
-		(shape input)
+		(shape output)
 		(at 91.44 86.36 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6534,7 +6851,7 @@
 		(uuid "5222e054-162e-45bb-b42c-2b8a48bfd3ed")
 	)
 	(hierarchical_label "GEN_PWM2"
-		(shape input)
+		(shape output)
 		(at 163.83 104.14 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6570,7 +6887,7 @@
 		(uuid "5a1a3dde-d032-44e2-afc1-32f66c34c9c1")
 	)
 	(hierarchical_label "I2C_SDA_INT"
-		(shape input)
+		(shape bidirectional)
 		(at 163.83 101.6 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6594,7 +6911,7 @@
 		(uuid "6077f86c-a8d4-457a-8a14-8a7323dde680")
 	)
 	(hierarchical_label "COM_LIDAR1_TX"
-		(shape input)
+		(shape output)
 		(at 163.83 144.78 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6630,7 +6947,7 @@
 		(uuid "6dc44404-6b37-424e-8909-4aea33a99099")
 	)
 	(hierarchical_label "OUTPUT4"
-		(shape input)
+		(shape output)
 		(at 91.44 96.52 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6678,7 +6995,7 @@
 		(uuid "8594a282-a389-41da-8cc6-43d869981ebb")
 	)
 	(hierarchical_label "~{POWEROFF}"
-		(shape input)
+		(shape output)
 		(at 91.44 71.12 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6690,7 +7007,7 @@
 		(uuid "8706f4a4-f691-432f-90f3-bde4f5a9b6ec")
 	)
 	(hierarchical_label "COM_USB_TX"
-		(shape input)
+		(shape output)
 		(at 163.83 58.42 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6702,7 +7019,7 @@
 		(uuid "9dfaa9e8-fe52-4b39-91fb-9d7025e93752")
 	)
 	(hierarchical_label "COM_LIDAR2_TX"
-		(shape input)
+		(shape output)
 		(at 163.83 149.86 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6714,7 +7031,7 @@
 		(uuid "9fc3497a-ee78-4ad5-a2a2-0196c9652069")
 	)
 	(hierarchical_label "MOT_PWM4"
-		(shape input)
+		(shape output)
 		(at 163.83 43.18 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6738,7 +7055,7 @@
 		(uuid "a3657d65-8318-43d7-a96e-67479a59a66e")
 	)
 	(hierarchical_label "I2C_SCL_ARBITRARY"
-		(shape input)
+		(shape output)
 		(at 91.44 132.08 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6762,7 +7079,7 @@
 		(uuid "a93aada3-73f4-43fc-8ada-184913a685ba")
 	)
 	(hierarchical_label "MOT_PWM2"
-		(shape input)
+		(shape output)
 		(at 163.83 38.1 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6774,7 +7091,7 @@
 		(uuid "aa1b1ea2-d283-4706-b45b-d6281c6dfbaa")
 	)
 	(hierarchical_label "PWR_CSLEEP"
-		(shape input)
+		(shape output)
 		(at 163.83 48.26 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6822,7 +7139,7 @@
 		(uuid "b1b03009-906f-4468-9db3-0369ed8f8e3d")
 	)
 	(hierarchical_label "SERVO_PWM3"
-		(shape input)
+		(shape output)
 		(at 163.83 139.7 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6858,7 +7175,7 @@
 		(uuid "b63af727-fe4d-4e2f-a83b-b5a9c7f528b7")
 	)
 	(hierarchical_label "FDCAN_STBY"
-		(shape input)
+		(shape output)
 		(at 91.44 101.6 180)
 		(fields_autoplaced yes)
 		(effects
@@ -6868,18 +7185,6 @@
 			(justify right)
 		)
 		(uuid "b9fd2d00-387f-4daf-b94d-1f607599f908")
-	)
-	(hierarchical_label "SPI_CS3"
-		(shape input)
-		(at 96.52 63.5 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "bcadcd8c-6157-4f3b-a25d-8ad8c855c2b0")
 	)
 	(hierarchical_label "ENCODER_3_PHB"
 		(shape input)
@@ -6894,7 +7199,7 @@
 		(uuid "be4d8609-d152-41dd-a327-73cc440a8791")
 	)
 	(hierarchical_label "I2C_SDA_EXTERNAL"
-		(shape input)
+		(shape bidirectional)
 		(at 163.83 111.76 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6906,7 +7211,7 @@
 		(uuid "bf6a69e1-d09c-4e59-9954-e70e3d577365")
 	)
 	(hierarchical_label "MOT_PWM3"
-		(shape input)
+		(shape output)
 		(at 163.83 40.64 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6918,7 +7223,7 @@
 		(uuid "c8b8d167-2f2c-42ac-bdc2-8f3d77ee39ae")
 	)
 	(hierarchical_label "COM_EXT_TX"
-		(shape input)
+		(shape output)
 		(at 163.83 121.92 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6930,7 +7235,7 @@
 		(uuid "ca974ce5-c923-4e48-8a5d-36242564bc32")
 	)
 	(hierarchical_label "I2C_SCL_INT"
-		(shape input)
+		(shape output)
 		(at 163.83 99.06 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6966,7 +7271,7 @@
 		(uuid "d2193d35-c639-4f42-9c49-9621f1caa9f6")
 	)
 	(hierarchical_label "SERVO_PWM2N"
-		(shape input)
+		(shape output)
 		(at 163.83 78.74 0)
 		(fields_autoplaced yes)
 		(effects
@@ -6977,8 +7282,8 @@
 		)
 		(uuid "d2fc6c3d-caa2-4327-8175-b8a8836590a6")
 	)
-	(hierarchical_label "SPI_CS1"
-		(shape input)
+	(hierarchical_label "SPI_CS"
+		(shape output)
 		(at 96.52 58.42 180)
 		(fields_autoplaced yes)
 		(effects
@@ -7014,7 +7319,7 @@
 		(uuid "eb0044fe-d345-4555-85a7-cf0463e9be63")
 	)
 	(hierarchical_label "COM_GPS_TX"
-		(shape input)
+		(shape output)
 		(at 163.83 129.54 0)
 		(fields_autoplaced yes)
 		(effects
@@ -7095,7 +7400,7 @@
 			(uuid "f03f62e3-9255-49ca-b8a2-093b8dee120e")
 		)
 		(instances
-			(project ""
+			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
 					(reference "#PWR05")
 					(unit 1)
@@ -7236,6 +7541,72 @@
 		)
 	)
 	(symbol
+		(lib_id "power:PWR_FLAG")
+		(at 52.07 149.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "35ac17f3-bf4d-4732-85a4-4fc58fe66f45")
+		(property "Reference" "#FLG03"
+			(at 52.07 147.955 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PWR_FLAG"
+			(at 52.07 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 52.07 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 52.07 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Special symbol for telling ERC where power comes from"
+			(at 52.07 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "140a40d3-fc8c-4065-b958-0ff50f337c28")
+		)
+		(instances
+			(project ""
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
+					(reference "#FLG03")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Jumper:SolderJumper_2_Open")
 		(at 44.45 39.37 90)
 		(unit 1)
@@ -7298,7 +7669,7 @@
 			(uuid "3f5655a8-100d-44ab-9804-de899c4e33da")
 		)
 		(instances
-			(project ""
+			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
 					(reference "JP1")
 					(unit 1)
@@ -7364,7 +7735,7 @@
 			(uuid "a6b37c75-2430-4e73-b26b-71b7d1aa3868")
 		)
 		(instances
-			(project ""
+			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
 					(reference "#PWR04")
 					(unit 1)
@@ -7644,6 +8015,77 @@
 		)
 	)
 	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 248.92 49.53 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "685d20a2-9cef-4739-a733-50042532f3e5")
+		(property "Reference" "SW2"
+			(at 250.19 48.2599 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 250.19 50.7999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_TH_Tactile_Omron_B3F-10xx"
+			(at 243.84 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 243.84 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 248.92 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "205b411a-0d52-4f1d-a224-558e53cc75e3")
+		)
+		(pin "2"
+			(uuid "432190c9-ba0a-4bef-9893-f3cbc5e95e9e")
+		)
+		(instances
+			(project ""
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
+					(reference "SW2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+3.3V")
 		(at 214.63 124.46 0)
 		(unit 1)
@@ -7727,7 +8169,7 @@
 				)
 			)
 		)
-		(property "Value" "FTSH-110-01-L-DV-007"
+		(property "Value" "FTSH-105-01-L-DV-007"
 			(at 233.68 121.92 0)
 			(effects
 				(font
@@ -7735,7 +8177,7 @@
 				)
 			)
 		)
-		(property "Footprint" "FTSH-105-X-X-DV-007-P-X:SAMTEC_FTSH-105-X-X-DV-007-P-X"
+		(property "Footprint" "FTSH-105-01-L-DV-007-K:SAMTEC_FTSH-105-X-X-DV-007-P-X"
 			(at 233.68 132.08 0)
 			(effects
 				(font
@@ -7937,7 +8379,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100R"
+		(property "Value" "10K"
 			(at 207.01 143.5099 0)
 			(effects
 				(font
@@ -8199,6 +8641,71 @@
 		)
 	)
 	(symbol
+		(lib_id "power:VDDA")
+		(at 64.77 149.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "7b262877-efc9-491b-bf61-e1f6aa4db174")
+		(property "Reference" "#PWR0172"
+			(at 64.77 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "VDDA"
+			(at 64.77 144.78 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 64.77 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 64.77 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"VDDA\""
+			(at 64.77 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "155b5684-2f5b-4976-b8d0-6f7bc6cec273")
+		)
+		(instances
+			(project "carte-io"
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
+					(reference "#PWR0172")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 50.8 181.61 0)
 		(unit 1)
@@ -8403,7 +8910,7 @@
 			(uuid "63f1a261-7847-4010-ba30-6ef70254e9ed")
 		)
 		(instances
-			(project ""
+			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
 					(reference "X1")
 					(unit 1)
@@ -8476,6 +8983,77 @@
 			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
 					(reference "D7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_Push")
+		(at 231.14 49.53 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a9b42e0c-a8d5-4dea-be9d-707e7e6f0e38")
+		(property "Reference" "SW1"
+			(at 232.41 48.2599 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "SW_Push"
+			(at 232.41 50.7999 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "Button_Switch_THT:SW_TH_Tactile_Omron_B3F-10xx"
+			(at 226.06 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 226.06 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Push button switch, generic, two pins"
+			(at 231.14 49.53 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "57014b87-0a55-43f6-a391-966eea520d61")
+		)
+		(pin "2"
+			(uuid "ac225457-315c-411e-8a4e-c4e1dfe14093")
+		)
+		(instances
+			(project ""
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
+					(reference "SW1")
 					(unit 1)
 				)
 			)
@@ -8671,7 +9249,7 @@
 			(uuid "1cd9ff67-9945-4ea9-9a71-09f09d7049c3")
 		)
 		(instances
-			(project ""
+			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
 					(reference "#PWR06")
 					(unit 1)
@@ -9171,7 +9749,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "100R"
+		(property "Value" "1K"
 			(at 217.17 38.0999 0)
 			(effects
 				(font
@@ -9579,7 +10157,7 @@
 			(uuid "9b5a2596-5318-4922-baed-3fe85af8b6be")
 		)
 		(instances
-			(project ""
+			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
 					(reference "U1")
 					(unit 1)
@@ -9921,6 +10499,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:R")
+		(at 248.92 36.83 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "eb82526a-7ebd-43fa-8f45-7b949f486b47")
+		(property "Reference" "R72"
+			(at 251.46 35.5599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10K"
+			(at 251.46 38.0999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 247.142 36.83 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 248.92 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 248.92 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1e90dc38-5cba-421d-8ac8-5d74164ae802")
+		)
+		(pin "2"
+			(uuid "6aed1d7e-5d7b-44f6-8e38-c9528522ff96")
+		)
+		(instances
+			(project "carte-io"
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
+					(reference "R72")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 90.17 36.83 0)
 		(unit 1)
@@ -10120,7 +10767,7 @@
 			(uuid "006b1b2d-ad15-463d-a927-b6a4d9e6c599")
 		)
 		(instances
-			(project ""
+			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/df503f80-fd82-47f1-9d35-38636472ba02"
 					(reference "JP2")
 					(unit 1)

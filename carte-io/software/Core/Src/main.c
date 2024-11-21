@@ -20,6 +20,9 @@
 #include "main.h"
 #include "cmsis_os2.h"
 
+//#include "application.h"
+void APPLICATION_Init();
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -186,6 +189,8 @@ int main(void)
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
   MX_FREERTOS_Init();
+
+  APPLICATION_Init();
 
   /* Start scheduler */
   osKernelStart();

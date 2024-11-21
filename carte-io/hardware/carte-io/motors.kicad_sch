@@ -4,6 +4,12 @@
 	(generator_version "8.0")
 	(uuid "fa001dcd-0914-4ae1-b255-50eda6a8a4bb")
 	(paper "A4")
+	(title_block
+		(title "Motors & Servo")
+		(date "2024-11-05")
+		(rev "1.0")
+		(company "INSA - GEI")
+	)
 	(lib_symbols
 		(symbol "74LVC125APW:74LVC125APW"
 			(pin_names
@@ -2362,6 +2368,14 @@
 		(color 0 0 0 0)
 		(uuid "f9eeac44-796d-422b-8b75-3f703290911d")
 	)
+	(no_connect
+		(at 207.01 66.04)
+		(uuid "7f6327f3-d94b-43cd-8f77-6bcc934b0292")
+	)
+	(no_connect
+		(at 77.47 62.23)
+		(uuid "91d1a5b5-b46a-4250-896b-748c98140106")
+	)
 	(wire
 		(pts
 			(xy 172.72 124.46) (xy 172.72 132.08)
@@ -3943,7 +3957,7 @@
 		(uuid "fd8d330d-e9fb-4820-9568-fbc39bc13f5c")
 	)
 	(hierarchical_label "ENCODER_4_PHB"
-		(shape input)
+		(shape output)
 		(at 246.38 132.08 0)
 		(fields_autoplaced yes)
 		(effects
@@ -3955,7 +3969,7 @@
 		(uuid "03c806a5-9460-4ca5-9922-f1eb1df94442")
 	)
 	(hierarchical_label "ENCODER_3_PHB"
-		(shape input)
+		(shape output)
 		(at 246.38 127 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4015,7 +4029,7 @@
 		(uuid "52b600c3-371c-4d7d-aa63-ea8e9a32b472")
 	)
 	(hierarchical_label "ENCODER_3_PHA"
-		(shape input)
+		(shape output)
 		(at 246.38 124.46 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4039,7 +4053,7 @@
 		(uuid "78d8434b-f522-4f24-95fd-5118f708dfba")
 	)
 	(hierarchical_label "ENCODER_1_PHB"
-		(shape input)
+		(shape output)
 		(at 111.76 125.73 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4063,7 +4077,7 @@
 		(uuid "8cd335f9-cad7-4cee-a517-7d471bde38bb")
 	)
 	(hierarchical_label "ENCODER_1_PHA"
-		(shape input)
+		(shape output)
 		(at 111.76 123.19 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4099,7 +4113,7 @@
 		(uuid "d1203d1c-4c11-4352-adc4-211f1314750b")
 	)
 	(hierarchical_label "ENCODER_2_PHA"
-		(shape input)
+		(shape output)
 		(at 111.76 128.27 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4111,7 +4125,7 @@
 		(uuid "d671cb80-7864-4c05-bd80-c27ceba4eef9")
 	)
 	(hierarchical_label "ENCODER_2_PHB"
-		(shape input)
+		(shape output)
 		(at 111.76 130.81 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4123,7 +4137,7 @@
 		(uuid "dc593316-dbb0-4041-9d0f-b66e7f42087e")
 	)
 	(hierarchical_label "ENCODER_4_PHA"
-		(shape input)
+		(shape output)
 		(at 246.38 129.54 0)
 		(fields_autoplaced yes)
 		(effects
@@ -4144,7 +4158,7 @@
 		(dnp no)
 		(uuid "027373aa-6891-46ce-acf6-c7ef8d882db4")
 		(property "Reference" "R16"
-			(at 106.6799 49.53 0)
+			(at 104.902 51.816 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4153,7 +4167,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 109.2199 49.53 0)
+			(at 117.094 52.07 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4352,7 +4366,7 @@
 		(dnp no)
 		(uuid "1006c947-ee04-436b-a484-064289ef8b74")
 		(property "Reference" "R12"
-			(at 40.6399 123.19 0)
+			(at 42.926 128.27 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4361,7 +4375,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 43.1799 123.19 0)
+			(at 44.196 130.302 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4652,7 +4666,7 @@
 		(dnp no)
 		(uuid "1e39f20c-a2d0-4631-b97a-90343a4d3845")
 		(property "Reference" "R23"
-			(at 214.6299 50.8 0)
+			(at 216.916 49.022 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4661,7 +4675,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 217.1699 50.8 0)
+			(at 218.186 50.8 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5644,7 +5658,7 @@
 		(dnp no)
 		(uuid "41b23455-187e-4397-927c-b33581068c3c")
 		(property "Reference" "R13"
-			(at 40.6399 147.32 0)
+			(at 42.926 145.288 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5653,7 +5667,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 43.1799 147.32 0)
+			(at 44.196 147.066 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6116,7 +6130,7 @@
 		(dnp no)
 		(uuid "6257146c-3bef-432d-bd1a-b7c79551043f")
 		(property "Reference" "R25"
-			(at 214.6299 55.88 0)
+			(at 211.836 58.42 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6125,7 +6139,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 217.1699 55.88 0)
+			(at 225.298 58.42 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6185,7 +6199,7 @@
 		(dnp no)
 		(uuid "6855195c-88a5-4695-8b4f-c23d577bb634")
 		(property "Reference" "R14"
-			(at 40.6399 152.4 0)
+			(at 42.926 157.734 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6194,7 +6208,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 43.1799 152.4 0)
+			(at 44.196 159.766 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6609,7 +6623,7 @@
 		(dnp no)
 		(uuid "8c57eb61-2c4d-4f3e-a521-cde7c0b189d1")
 		(property "Reference" "R24"
-			(at 214.6299 53.34 0)
+			(at 211.836 55.88 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6618,7 +6632,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 217.1699 53.34 0)
+			(at 225.044 55.88 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6678,7 +6692,7 @@
 		(dnp no)
 		(uuid "8c7ea6cb-9256-4f4d-a18b-beab093583c8")
 		(property "Reference" "R22"
-			(at 177.7999 153.67 0)
+			(at 180.086 158.496 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6687,7 +6701,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 180.3399 153.67 0)
+			(at 181.356 160.528 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6812,7 +6826,7 @@
 		(dnp no)
 		(uuid "92c0b6d5-6b96-4abd-b757-19b8ee43fa8a")
 		(property "Reference" "R18"
-			(at 106.6799 54.61 0)
+			(at 108.966 59.69 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6821,7 +6835,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 109.2199 54.61 0)
+			(at 110.236 61.468 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6881,7 +6895,7 @@
 		(dnp no)
 		(uuid "978e9aee-c4e8-46ca-9bfd-80d08b651d61")
 		(property "Reference" "R17"
-			(at 106.6799 52.07 0)
+			(at 104.902 54.61 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6890,7 +6904,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 109.2199 52.07 0)
+			(at 117.094 54.61 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7212,7 +7226,7 @@
 		(dnp no)
 		(uuid "aca6ce3f-efb3-4d3e-b758-e3becfc00ad9")
 		(property "Reference" "R15"
-			(at 106.6799 46.99 0)
+			(at 108.712 44.45 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7221,7 +7235,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 109.2199 46.99 0)
+			(at 109.982 47.244 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7632,7 +7646,7 @@
 		(dnp no)
 		(uuid "c473c71e-0e28-4d18-9add-f23a17b43e1a")
 		(property "Reference" "R26"
-			(at 214.6299 58.42 0)
+			(at 217.17 63.754 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7641,7 +7655,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 217.1699 58.42 0)
+			(at 218.44 65.786 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7701,7 +7715,7 @@
 		(dnp no)
 		(uuid "c88de638-8f56-4641-8387-a019c542e546")
 		(property "Reference" "R21"
-			(at 177.7999 148.59 0)
+			(at 180.086 146.304 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7710,7 +7724,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 180.3399 148.59 0)
+			(at 181.356 148.59 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8136,7 +8150,7 @@
 		(dnp no)
 		(uuid "d670e0c6-c281-4d7b-a580-4bfd6822269b")
 		(property "Reference" "R11"
-			(at 40.6399 118.11 0)
+			(at 42.926 115.57 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8145,7 +8159,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 43.1799 118.11 0)
+			(at 44.196 118.11 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8279,7 +8293,7 @@
 		(dnp no)
 		(uuid "e11b9060-3f19-4a11-91af-95e92390e64a")
 		(property "Reference" "R20"
-			(at 177.7999 124.46 0)
+			(at 180.34 129.54 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8288,7 +8302,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 180.3399 124.46 0)
+			(at 181.61 131.572 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8348,7 +8362,7 @@
 		(dnp no)
 		(uuid "e9609ab2-69fe-4111-9384-bbd0d8112949")
 		(property "Reference" "R19"
-			(at 177.7999 119.38 0)
+			(at 180.086 117.348 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8357,7 +8371,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 180.3399 119.38 0)
+			(at 181.356 119.38 90)
 			(effects
 				(font
 					(size 1.27 1.27)

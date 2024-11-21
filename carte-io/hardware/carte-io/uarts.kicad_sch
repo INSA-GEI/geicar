@@ -5,7 +5,7 @@
 	(uuid "05e08d44-5328-4320-93f0-70be43b7e59d")
 	(paper "A4")
 	(title_block
-		(title "UARTS (carte-uarts)")
+		(title "UARTS ")
 		(date "2024-10-09")
 		(rev "1.0")
 		(company "INSA - GEI")
@@ -637,142 +637,6 @@
 						)
 					)
 					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "Device:C"
-			(pin_numbers hide)
-			(pin_names
-				(offset 0.254)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "C"
-				(at 0.635 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "C"
-				(at 0.635 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0.9652 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Unpolarized capacitor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "cap capacitor"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "C_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "C_0_1"
-				(polyline
-					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "C_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 2.794)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.794)
-					(name "~"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1817,7 +1681,7 @@
 		(uuid "dce635eb-076f-4d4a-a215-e5d5f2e882bc")
 	)
 	(hierarchical_label "EXT_UART2_RX"
-		(shape input)
+		(shape output)
 		(at 171.45 71.12 180)
 		(fields_autoplaced yes)
 		(effects
@@ -1829,7 +1693,7 @@
 		(uuid "31ef7874-5754-4047-9118-0306e9b6b738")
 	)
 	(hierarchical_label "EXT_UART1_RX"
-		(shape input)
+		(shape output)
 		(at 35.56 71.12 180)
 		(fields_autoplaced yes)
 		(effects
@@ -1877,7 +1741,7 @@
 		(uuid "fcda75cd-0fc8-41e5-9a8c-7a48711f4187")
 	)
 	(hierarchical_label "EXT_UART3_RX"
-		(shape input)
+		(shape output)
 		(at 179.07 142.24 180)
 		(fields_autoplaced yes)
 		(effects
@@ -2162,7 +2026,7 @@
 		(dnp no)
 		(uuid "1ee00a4f-87bf-4e10-a2a4-3da4f2ceba62")
 		(property "Reference" "R33"
-			(at 245.1099 50.8 0)
+			(at 247.396 48.514 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2171,7 +2035,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 247.6499 50.8 0)
+			(at 248.666 50.8 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3114,7 +2978,7 @@
 		(dnp no)
 		(uuid "4580e14e-7008-4118-b36d-091f2eca7292")
 		(property "Reference" "R45"
-			(at 252.7299 121.92 0)
+			(at 255.27 119.38 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3123,7 +2987,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 255.2699 121.92 0)
+			(at 256.286 121.92 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3328,76 +3192,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
-		(at -3.81 201.93 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "62571766-91ad-49cf-a9c9-c47d729a3516")
-		(property "Reference" "C0"
-			(at 0 200.6599 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100nF"
-			(at 0 203.1999 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at -2.8448 205.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at -3.81 201.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor"
-			(at -3.81 201.93 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "f6bf2d20-f65b-499f-9d22-0394fea41d31")
-		)
-		(pin "1"
-			(uuid "960aebb3-d6f8-44fb-a40d-5ae35257b8e3")
-		)
-		(instances
-			(project "carte-io"
-				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/e0769f15-5851-4dbe-85c4-fc3863520381"
-					(reference "C0")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Connector_Generic:Conn_01x04")
 		(at 130.81 53.34 0)
 		(unit 1)
@@ -3480,7 +3274,7 @@
 		(dnp no)
 		(uuid "6b695696-bbbf-4d7f-b963-8c67698ac96e")
 		(property "Reference" "R34"
-			(at 251.4599 55.88 0)
+			(at 253.746 61.468 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3489,7 +3283,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 253.9999 55.88 0)
+			(at 255.016 63.754 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3913,7 +3707,7 @@
 		(dnp no)
 		(uuid "88dc72a2-4c35-45f4-bfd8-106c50a91c7c")
 		(property "Reference" "R31"
-			(at 107.9499 50.8 0)
+			(at 110.49 48.768 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3922,7 +3716,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 110.4899 50.8 0)
+			(at 110.4899 50.8 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4219,7 +4013,7 @@
 		(dnp no)
 		(uuid "9b03bd04-cec1-4062-9df7-10bb736eedde")
 		(property "Reference" "R46"
-			(at 259.0799 127 0)
+			(at 261.62 132.588 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4228,7 +4022,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 261.6199 127 0)
+			(at 262.89 134.874 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4506,7 +4300,7 @@
 		(dnp no)
 		(uuid "b8605ad9-7e27-4c8a-ad8f-163c0df1c59f")
 		(property "Reference" "R32"
-			(at 114.2999 55.88 0)
+			(at 116.586 61.468 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4515,7 +4309,7 @@
 			)
 		)
 		(property "Value" "100R"
-			(at 116.8399 55.88 0)
+			(at 117.602 64.008 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4626,75 +4420,6 @@
 			(project "carte-io"
 				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/e0769f15-5851-4dbe-85c4-fc3863520381"
 					(reference "#PWR0121")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 41.91 213.36 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c7e0c2b1-5382-4621-bafa-5ab7aa92345e")
-		(property "Reference" "R0"
-			(at 40.6399 210.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "100R"
-			(at 43.1799 210.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 41.91 215.138 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 41.91 213.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 41.91 213.36 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "efca5dfc-4be6-4ef5-b35c-782cb2cfa014")
-		)
-		(pin "2"
-			(uuid "6fb49886-88b7-4e4e-a365-5040db434fec")
-		)
-		(instances
-			(project "carte-io"
-				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/e0769f15-5851-4dbe-85c4-fc3863520381"
-					(reference "R0")
 					(unit 1)
 				)
 			)
