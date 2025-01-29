@@ -2597,7 +2597,6 @@
 	(hierarchical_label "INT_PRESSURE"
 		(shape output)
 		(at 48.26 162.56 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2609,7 +2608,6 @@
 	(hierarchical_label "SENSORS_I2C_SCL"
 		(shape input)
 		(at 40.64 45.72 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2621,7 +2619,6 @@
 	(hierarchical_label "SENSORS_I2C_SCL"
 		(shape input)
 		(at 55.88 77.47 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2633,7 +2630,6 @@
 	(hierarchical_label "SENSORS_I2C_SDA"
 		(shape bidirectional)
 		(at 55.88 82.55 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2645,7 +2641,6 @@
 	(hierarchical_label "SENSORS_I2C_SCL"
 		(shape input)
 		(at 127 81.28 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2657,7 +2652,6 @@
 	(hierarchical_label "SENSORS_I2C_SDA"
 		(shape bidirectional)
 		(at 45.72 114.3 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2669,7 +2663,6 @@
 	(hierarchical_label "SENSORS_I2C_SCL"
 		(shape input)
 		(at 124.46 151.13 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2681,7 +2674,6 @@
 	(hierarchical_label "SENSORS_I2C_SDA"
 		(shape bidirectional)
 		(at 124.46 148.59 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2693,7 +2685,6 @@
 	(hierarchical_label "SENSORS_I2C_SDA"
 		(shape bidirectional)
 		(at 127 83.82 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2705,7 +2696,6 @@
 	(hierarchical_label "SENSORS_I2C_SDA"
 		(shape bidirectional)
 		(at 48.26 149.86 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2717,7 +2707,6 @@
 	(hierarchical_label "INT_LIGHT"
 		(shape output)
 		(at 45.72 119.38 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2729,7 +2718,6 @@
 	(hierarchical_label "SENSORS_I2C_SCL"
 		(shape input)
 		(at 45.72 116.84 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2741,7 +2729,6 @@
 	(hierarchical_label "SENSORS_I2C_SDA"
 		(shape bidirectional)
 		(at 40.64 41.91 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2753,7 +2740,6 @@
 	(hierarchical_label "INT_MAGNETO"
 		(shape output)
 		(at 166.37 78.74 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2765,7 +2751,6 @@
 	(hierarchical_label "INT_IMU"
 		(shape output)
 		(at 171.45 138.43 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2777,7 +2762,6 @@
 	(hierarchical_label "SENSORS_I2C_SCL"
 		(shape input)
 		(at 48.26 154.94 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)

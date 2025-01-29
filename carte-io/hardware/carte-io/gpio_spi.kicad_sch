@@ -4330,7 +4330,6 @@
 	)
 	(label "OUT1"
 		(at 111.76 69.85 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4341,7 +4340,6 @@
 	)
 	(label "OUT2"
 		(at 30.48 35.56 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4352,7 +4350,6 @@
 	)
 	(label "IN2"
 		(at 77.47 35.56 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4363,7 +4360,6 @@
 	)
 	(label "OUT2"
 		(at 111.76 72.39 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4374,7 +4370,6 @@
 	)
 	(label "IN3"
 		(at 21.59 143.51 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4385,7 +4380,6 @@
 	)
 	(label "IN2"
 		(at 21.59 140.97 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4396,7 +4390,6 @@
 	)
 	(label "IN1"
 		(at 77.47 33.02 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4407,7 +4400,6 @@
 	)
 	(label "SPI_MISO_EXT"
 		(at 180.34 83.82 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4418,7 +4410,6 @@
 	)
 	(label "OUT4"
 		(at 111.76 77.47 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4429,7 +4420,6 @@
 	)
 	(label "SPI_CS_EXT"
 		(at 180.34 45.72 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4440,7 +4430,6 @@
 	)
 	(label "GEN_PWM1_EXT"
 		(at 279.4 140.97 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4451,7 +4440,6 @@
 	)
 	(label "SPI_CLK_EXT"
 		(at 180.34 64.77 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4462,7 +4450,6 @@
 	)
 	(label "OUT3"
 		(at 111.76 74.93 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4473,7 +4460,6 @@
 	)
 	(label "IN1"
 		(at 21.59 138.43 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4484,7 +4470,6 @@
 	)
 	(label "GEN_PWM2_EXT"
 		(at 77.47 30.48 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4495,7 +4480,6 @@
 	)
 	(label "GEN_PWM2_EXT"
 		(at 279.4 148.59 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4506,7 +4490,6 @@
 	)
 	(label "IN3"
 		(at 77.47 38.1 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4517,7 +4500,6 @@
 	)
 	(label "SPI_MOSI_EXT"
 		(at 180.34 105.41 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4528,7 +4510,6 @@
 	)
 	(label "GEN_PWM1_EXT"
 		(at 30.48 30.48 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4539,7 +4520,6 @@
 	)
 	(label "IN4"
 		(at 77.47 40.64 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4550,7 +4530,6 @@
 	)
 	(label "OUT4"
 		(at 30.48 40.64 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4561,7 +4540,6 @@
 	)
 	(label "IN4"
 		(at 21.59 146.05 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4572,7 +4550,6 @@
 	)
 	(label "OUT3"
 		(at 30.48 38.1 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4583,7 +4560,6 @@
 	)
 	(label "OUT1"
 		(at 30.48 33.02 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4595,7 +4571,6 @@
 	(hierarchical_label "INPUT2"
 		(shape output)
 		(at 115.57 140.97 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4607,7 +4582,6 @@
 	(hierarchical_label "OUTPUT2"
 		(shape input)
 		(at 33.02 72.39 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4619,7 +4593,6 @@
 	(hierarchical_label "OUTPUT4"
 		(shape input)
 		(at 33.02 77.47 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4631,7 +4604,6 @@
 	(hierarchical_label "OUTPUT3"
 		(shape input)
 		(at 33.02 74.93 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4643,7 +4615,6 @@
 	(hierarchical_label "SPI_CS"
 		(shape input)
 		(at 130.81 45.72 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4655,7 +4626,6 @@
 	(hierarchical_label "OUTPUT1"
 		(shape input)
 		(at 33.02 69.85 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4667,7 +4637,6 @@
 	(hierarchical_label "SPI_MISO"
 		(shape output)
 		(at 130.81 83.82 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4679,7 +4648,6 @@
 	(hierarchical_label "INPUT4"
 		(shape output)
 		(at 115.57 146.05 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4691,7 +4659,6 @@
 	(hierarchical_label "GEN_PWM2"
 		(shape input)
 		(at 193.04 142.24 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4703,7 +4670,6 @@
 	(hierarchical_label "SPI_MOSI"
 		(shape input)
 		(at 130.81 105.41 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4715,7 +4681,6 @@
 	(hierarchical_label "SPI_CLK"
 		(shape input)
 		(at 130.81 64.77 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4727,7 +4692,6 @@
 	(hierarchical_label "INPUT3"
 		(shape output)
 		(at 115.57 143.51 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4739,7 +4703,6 @@
 	(hierarchical_label "INPUT1"
 		(shape output)
 		(at 115.57 138.43 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4751,7 +4714,6 @@
 	(hierarchical_label "GEN_PWM1"
 		(shape input)
 		(at 154.94 128.27 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)

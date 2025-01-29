@@ -2012,7 +2012,6 @@
 	)
 	(label "UART1_TX"
 		(at 91.44 53.34 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2023,7 +2022,6 @@
 	)
 	(label "UART3_RX"
 		(at 240.03 129.54 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2034,7 +2032,6 @@
 	)
 	(label "UART3_TX"
 		(at 240.03 124.46 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2045,7 +2042,6 @@
 	)
 	(label "UART2_TX"
 		(at 232.41 53.34 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2056,7 +2052,6 @@
 	)
 	(label "UART2_RX"
 		(at 232.41 58.42 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2067,7 +2062,6 @@
 	)
 	(label "UART1_RX"
 		(at 91.44 58.42 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2079,7 +2073,6 @@
 	(hierarchical_label "EXT_UART2_RX"
 		(shape output)
 		(at 171.45 71.12 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2091,7 +2084,6 @@
 	(hierarchical_label "EXT_UART1_RX"
 		(shape output)
 		(at 35.56 71.12 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2103,7 +2095,6 @@
 	(hierarchical_label "EXT_UART2_TX"
 		(shape input)
 		(at 171.45 53.34 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2115,7 +2106,6 @@
 	(hierarchical_label "EXT_UART3_TX"
 		(shape input)
 		(at 179.07 124.46 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2127,7 +2117,6 @@
 	(hierarchical_label "EXT_UART1_TX"
 		(shape input)
 		(at 35.56 53.34 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2139,7 +2128,6 @@
 	(hierarchical_label "EXT_UART3_RX"
 		(shape output)
 		(at 179.07 142.24 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)

@@ -4777,7 +4777,6 @@
 	)
 	(label "USB2-DN"
 		(at 146.05 107.95 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4788,7 +4787,6 @@
 	)
 	(label "FT231_VCC"
 		(at 157.48 92.71 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4799,7 +4797,6 @@
 	)
 	(label "USB2-DP"
 		(at 146.05 110.49 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4810,7 +4807,6 @@
 	)
 	(label "USB-DP"
 		(at 97.79 110.49 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4821,7 +4817,6 @@
 	)
 	(label "VIN"
 		(at 43.18 34.29 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4832,7 +4827,6 @@
 	)
 	(label "USB-DN"
 		(at 97.79 107.95 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4844,7 +4838,6 @@
 	(hierarchical_label "ADC_VBAT"
 		(shape output)
 		(at 69.85 171.45 90)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4856,7 +4849,6 @@
 	(hierarchical_label "USB_UART_TX"
 		(shape input)
 		(at 224.79 100.33 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4868,7 +4860,6 @@
 	(hierarchical_label "USB_UART_RX"
 		(shape output)
 		(at 224.79 102.87 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)

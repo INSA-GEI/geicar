@@ -24,10 +24,14 @@
 #include <errno.h>
 #include <stdint.h>
 
+#include "panic.h"
+#include "app_freertos.h"
+
 /**
  * Pointer to the current high watermark of the heap usage
  */
 static uint8_t *__sbrk_heap_end = NULL;
+extern uint8_t ucHeap[configTOTAL_HEAP_SIZE];
 
 /**
  * @brief _sbrk() allocates memory to the newlib heap and is used by malloc
@@ -76,4 +80,38 @@ void *_sbrk(ptrdiff_t incr)
   __sbrk_heap_end += incr;
 
   return (void *)prev_heap_end;
+}
+
+uint32_t Counter_Malloc=0;
+uint32_t Counter_Free=0;
+
+/* Functions */
+void* malloc(size_t size)
+{
+	void* ptr = NULL;
+
+	if(size > 0)
+	{
+		// We simply wrap the FreeRTOS call into a standard form
+		ptr = pvPortMalloc(size);
+		Counter_Malloc++;
+
+		if (ptr==NULL) { /* plus assez de memoire dynamique*/
+			PANIC_Raise(panic_malloc);
+		}
+	} // else NULL if there was an error
+
+	return ptr;
+}
+
+void free(void* ptr)
+{
+	if (ptr)
+	{
+		if ((ptr>=(void*)ucHeap) && (ptr<=(void*)ucHeap+configTOTAL_HEAP_SIZE)) {
+			// We simply wrap the FreeRTOS call into a standard form
+			vPortFree(ptr);
+			Counter_Free++;
+		}
+	}
 }

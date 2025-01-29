@@ -79,7 +79,7 @@ extern "C" {
 /*#define HAL_SRAM_MODULE_ENABLED */
 #define HAL_TIM_MODULE_ENABLED
 /*#define HAL_TSC_MODULE_ENABLED */
-/*#define HAL_UART_MODULE_ENABLED */
+#define HAL_UART_MODULE_ENABLED
 /*#define HAL_USART_MODULE_ENABLED */
 /*#define HAL_WWDG_MODULE_ENABLED */
 /*#define HAL_XSPI_MODULE_ENABLED */
@@ -233,7 +233,7 @@ vary depending on the variations in voltage and temperature.*/
 #define  USE_HAL_SRAM_REGISTER_CALLBACKS       0U /* SRAM register callback disabled      */
 #define  USE_HAL_TIM_REGISTER_CALLBACKS        0U /* TIM register callback disabled       */
 #define  USE_HAL_TSC_REGISTER_CALLBACKS        0U /* TSC register callback disabled       */
-#define  USE_HAL_UART_REGISTER_CALLBACKS       0U /* UART register callback disabled      */
+#define  USE_HAL_UART_REGISTER_CALLBACKS       1U /* UART register callback disabled      */
 #define  USE_HAL_USART_REGISTER_CALLBACKS      0U /* USART register callback disabled     */
 #define  USE_HAL_WWDG_REGISTER_CALLBACKS       0U /* WWDG register callback disabled      */
 #define  USE_HAL_OSPI_REGISTER_CALLBACKS       0U /* OSPI register callback disabled      */

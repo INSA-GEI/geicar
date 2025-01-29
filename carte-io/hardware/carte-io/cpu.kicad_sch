@@ -6483,7 +6483,6 @@
 	)
 	(label "LED_ACTIVITY"
 		(at 201.93 29.21 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6494,7 +6493,6 @@
 	)
 	(label "NRST"
 		(at 260.35 137.16 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6505,7 +6503,6 @@
 	)
 	(label "NRST"
 		(at 237.49 29.21 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6516,7 +6513,6 @@
 	)
 	(label "JTCK-SWCLK"
 		(at 163.83 71.12 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6527,7 +6523,6 @@
 	)
 	(label "JTCK-SWCLK"
 		(at 260.35 129.54 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6538,7 +6533,6 @@
 	)
 	(label "CLK_IN_16Mhz"
 		(at 87.63 48.26 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6549,7 +6543,6 @@
 	)
 	(label "USER_BTN"
 		(at 91.44 119.38 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6560,7 +6553,6 @@
 	)
 	(label "JTDO-SWO"
 		(at 163.83 86.36 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6571,7 +6563,6 @@
 	)
 	(label "JTMS-SWDIO"
 		(at 260.35 127 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6582,7 +6573,6 @@
 	)
 	(label "USER_BTN"
 		(at 220.98 29.21 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6593,7 +6583,6 @@
 	)
 	(label "LED_ACTIVITY"
 		(at 163.83 45.72 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6604,7 +6593,6 @@
 	)
 	(label "JTMS-SWDIO"
 		(at 163.83 68.58 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6615,7 +6603,6 @@
 	)
 	(label "NRST"
 		(at 104.14 21.59 270)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6626,7 +6613,6 @@
 	)
 	(label "JTDO-SWO"
 		(at 260.35 132.08 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6637,7 +6623,6 @@
 	)
 	(label "GNDDetect"
 		(at 204.47 137.16 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6649,7 +6634,6 @@
 	(hierarchical_label "SERVO_PWM4"
 		(shape output)
 		(at 163.83 142.24 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6661,7 +6645,6 @@
 	(hierarchical_label "OUTPUT2"
 		(shape output)
 		(at 91.44 88.9 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6673,7 +6656,6 @@
 	(hierarchical_label "GEN_PWM1"
 		(shape output)
 		(at 163.83 55.88 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6685,7 +6667,6 @@
 	(hierarchical_label "US_PulseStart"
 		(shape output)
 		(at 163.83 127 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6697,7 +6678,6 @@
 	(hierarchical_label "I2C_SCL_EXTERNAL"
 		(shape output)
 		(at 163.83 109.22 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6709,7 +6689,6 @@
 	(hierarchical_label "ENCODER_2_PHA"
 		(shape input)
 		(at 163.83 81.28 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6721,7 +6700,6 @@
 	(hierarchical_label "SERVO_PWM1"
 		(shape output)
 		(at 163.83 134.62 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6733,7 +6711,6 @@
 	(hierarchical_label "MOT_PWM1"
 		(shape output)
 		(at 163.83 35.56 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6745,7 +6722,6 @@
 	(hierarchical_label "I2C_SDA_ARBITRARY"
 		(shape bidirectional)
 		(at 163.83 96.52 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6757,7 +6733,6 @@
 	(hierarchical_label "OUTPUT3"
 		(shape output)
 		(at 91.44 93.98 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6769,7 +6744,6 @@
 	(hierarchical_label "COM_USB_RX"
 		(shape input)
 		(at 163.83 60.96 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6781,7 +6755,6 @@
 	(hierarchical_label "FDCAN1_RX"
 		(shape input)
 		(at 163.83 63.5 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6793,7 +6766,6 @@
 	(hierarchical_label "FDCAN1_TX"
 		(shape output)
 		(at 163.83 66.04 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6805,7 +6777,6 @@
 	(hierarchical_label "COM_LIDAR1_RX"
 		(shape input)
 		(at 163.83 147.32 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6817,7 +6788,6 @@
 	(hierarchical_label "SPI_SCK"
 		(shape output)
 		(at 91.44 91.44 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6829,7 +6799,6 @@
 	(hierarchical_label "SPI_MOSI"
 		(shape output)
 		(at 163.83 53.34 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6841,7 +6810,6 @@
 	(hierarchical_label "OUTPUT1"
 		(shape output)
 		(at 91.44 86.36 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6853,7 +6821,6 @@
 	(hierarchical_label "GEN_PWM2"
 		(shape output)
 		(at 163.83 104.14 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6865,7 +6832,6 @@
 	(hierarchical_label "INT_MAGNETO"
 		(shape input)
 		(at 91.44 109.22 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6877,7 +6843,6 @@
 	(hierarchical_label "INPUT3"
 		(shape input)
 		(at 91.44 81.28 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6889,7 +6854,6 @@
 	(hierarchical_label "I2C_SDA_INT"
 		(shape bidirectional)
 		(at 163.83 101.6 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6901,7 +6865,6 @@
 	(hierarchical_label "ENCODER_1_PHA"
 		(shape input)
 		(at 163.83 91.44 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6913,7 +6876,6 @@
 	(hierarchical_label "COM_LIDAR1_TX"
 		(shape output)
 		(at 163.83 144.78 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6925,7 +6887,6 @@
 	(hierarchical_label "COM_EXT_RX"
 		(shape input)
 		(at 163.83 119.38 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6937,7 +6898,6 @@
 	(hierarchical_label "ENCODER_4_PHA"
 		(shape input)
 		(at 163.83 93.98 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6949,7 +6909,6 @@
 	(hierarchical_label "OUTPUT4"
 		(shape output)
 		(at 91.44 96.52 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6961,7 +6920,6 @@
 	(hierarchical_label "ENCODER_2_PHB"
 		(shape input)
 		(at 91.44 124.46 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6973,7 +6931,6 @@
 	(hierarchical_label "INPUT4"
 		(shape input)
 		(at 91.44 83.82 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6985,7 +6942,6 @@
 	(hierarchical_label "US_PulseEnd"
 		(shape input)
 		(at 91.44 139.7 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6997,7 +6953,6 @@
 	(hierarchical_label "~{POWEROFF}"
 		(shape output)
 		(at 91.44 71.12 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7009,7 +6964,6 @@
 	(hierarchical_label "COM_USB_TX"
 		(shape output)
 		(at 163.83 58.42 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7021,7 +6975,6 @@
 	(hierarchical_label "COM_LIDAR2_TX"
 		(shape output)
 		(at 163.83 149.86 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7033,7 +6986,6 @@
 	(hierarchical_label "MOT_PWM4"
 		(shape output)
 		(at 163.83 43.18 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7045,7 +6997,6 @@
 	(hierarchical_label "INT_PRESSURE"
 		(shape input)
 		(at 91.44 114.3 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7057,7 +7008,6 @@
 	(hierarchical_label "I2C_SCL_ARBITRARY"
 		(shape output)
 		(at 91.44 132.08 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7069,7 +7019,6 @@
 	(hierarchical_label "ENCODER_1_PHB"
 		(shape input)
 		(at 163.83 124.46 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7081,7 +7030,6 @@
 	(hierarchical_label "MOT_PWM2"
 		(shape output)
 		(at 163.83 38.1 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7093,7 +7041,6 @@
 	(hierarchical_label "PWR_CSLEEP"
 		(shape output)
 		(at 163.83 48.26 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7105,7 +7052,6 @@
 	(hierarchical_label "INT_LIGHT"
 		(shape input)
 		(at 91.44 116.84 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7117,7 +7063,6 @@
 	(hierarchical_label "INPUT2"
 		(shape input)
 		(at 91.44 78.74 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7129,7 +7074,6 @@
 	(hierarchical_label "ENCODER_4_PHB"
 		(shape input)
 		(at 91.44 134.62 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7141,7 +7085,6 @@
 	(hierarchical_label "SERVO_PWM3"
 		(shape output)
 		(at 163.83 139.7 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7153,7 +7096,6 @@
 	(hierarchical_label "COM_LIDAR2_RX"
 		(shape input)
 		(at 91.44 106.68 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7165,7 +7107,6 @@
 	(hierarchical_label "INT_IMU"
 		(shape input)
 		(at 91.44 111.76 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7177,7 +7118,6 @@
 	(hierarchical_label "FDCAN_STBY"
 		(shape output)
 		(at 91.44 101.6 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7189,7 +7129,6 @@
 	(hierarchical_label "ENCODER_3_PHB"
 		(shape input)
 		(at 91.44 68.58 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7201,7 +7140,6 @@
 	(hierarchical_label "I2C_SDA_EXTERNAL"
 		(shape bidirectional)
 		(at 163.83 111.76 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7213,7 +7151,6 @@
 	(hierarchical_label "MOT_PWM3"
 		(shape output)
 		(at 163.83 40.64 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7225,7 +7162,6 @@
 	(hierarchical_label "COM_EXT_TX"
 		(shape output)
 		(at 163.83 121.92 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7237,7 +7173,6 @@
 	(hierarchical_label "I2C_SCL_INT"
 		(shape output)
 		(at 163.83 99.06 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7249,7 +7184,6 @@
 	(hierarchical_label "COM_GPS_RX"
 		(shape input)
 		(at 163.83 132.08 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7261,7 +7195,6 @@
 	(hierarchical_label "ENCODER_3_PHA"
 		(shape input)
 		(at 91.44 66.04 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7273,7 +7206,6 @@
 	(hierarchical_label "SERVO_PWM2N"
 		(shape output)
 		(at 163.83 78.74 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7285,7 +7217,6 @@
 	(hierarchical_label "SPI_CS"
 		(shape output)
 		(at 96.52 58.42 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7297,7 +7228,6 @@
 	(hierarchical_label "ADC_VBAT"
 		(shape input)
 		(at 163.83 83.82 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7309,7 +7239,6 @@
 	(hierarchical_label "INPUT1"
 		(shape input)
 		(at 91.44 76.2 180)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7321,7 +7250,6 @@
 	(hierarchical_label "COM_GPS_TX"
 		(shape output)
 		(at 163.83 129.54 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -7333,7 +7261,6 @@
 	(hierarchical_label "SPI_MISO"
 		(shape input)
 		(at 163.83 50.8 0)
-		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)

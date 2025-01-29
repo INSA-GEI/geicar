@@ -56,7 +56,17 @@
 
 /* External variables --------------------------------------------------------*/
 extern FDCAN_HandleTypeDef hfdcan1;
-extern LL_DMA_LinkNodeTypeDef Node_GPDMA1_Channel4;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel2;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel3;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel1;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel0;
+extern DMA_NodeTypeDef Node_GPDMA1_Channel4;
+extern DMA_QListTypeDef List_GPDMA1_Channel4;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel4;
+extern UART_HandleTypeDef huart4;
+extern UART_HandleTypeDef huart5;
+extern UART_HandleTypeDef huart1;
+extern UART_HandleTypeDef huart3;
 extern SPI_HandleTypeDef hspi1;
 extern TIM_HandleTypeDef htim6;
 extern TIM_HandleTypeDef htim7;
@@ -172,7 +182,7 @@ void GPDMA1_Channel0_IRQHandler(void)
   /* USER CODE BEGIN GPDMA1_Channel0_IRQn 0 */
 
   /* USER CODE END GPDMA1_Channel0_IRQn 0 */
-
+  HAL_DMA_IRQHandler(&handle_GPDMA1_Channel0);
   /* USER CODE BEGIN GPDMA1_Channel0_IRQn 1 */
 
   /* USER CODE END GPDMA1_Channel0_IRQn 1 */
@@ -186,7 +196,7 @@ void GPDMA1_Channel1_IRQHandler(void)
   /* USER CODE BEGIN GPDMA1_Channel1_IRQn 0 */
 
   /* USER CODE END GPDMA1_Channel1_IRQn 0 */
-
+  HAL_DMA_IRQHandler(&handle_GPDMA1_Channel1);
   /* USER CODE BEGIN GPDMA1_Channel1_IRQn 1 */
 
   /* USER CODE END GPDMA1_Channel1_IRQn 1 */
@@ -200,7 +210,7 @@ void GPDMA1_Channel2_IRQHandler(void)
   /* USER CODE BEGIN GPDMA1_Channel2_IRQn 0 */
 
   /* USER CODE END GPDMA1_Channel2_IRQn 0 */
-
+  HAL_DMA_IRQHandler(&handle_GPDMA1_Channel2);
   /* USER CODE BEGIN GPDMA1_Channel2_IRQn 1 */
 
   /* USER CODE END GPDMA1_Channel2_IRQn 1 */
@@ -214,7 +224,7 @@ void GPDMA1_Channel3_IRQHandler(void)
   /* USER CODE BEGIN GPDMA1_Channel3_IRQn 0 */
 
   /* USER CODE END GPDMA1_Channel3_IRQn 0 */
-
+  HAL_DMA_IRQHandler(&handle_GPDMA1_Channel3);
   /* USER CODE BEGIN GPDMA1_Channel3_IRQn 1 */
 
   /* USER CODE END GPDMA1_Channel3_IRQn 1 */
@@ -228,7 +238,7 @@ void GPDMA1_Channel4_IRQHandler(void)
   /* USER CODE BEGIN GPDMA1_Channel4_IRQn 0 */
 
   /* USER CODE END GPDMA1_Channel4_IRQn 0 */
-
+  HAL_DMA_IRQHandler(&handle_GPDMA1_Channel4);
   /* USER CODE BEGIN GPDMA1_Channel4_IRQn 1 */
 
   /* USER CODE END GPDMA1_Channel4_IRQn 1 */
@@ -312,6 +322,7 @@ void USART1_IRQHandler(void)
   /* USER CODE BEGIN USART1_IRQn 0 */
 
   /* USER CODE END USART1_IRQn 0 */
+  HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
 
   /* USER CODE END USART1_IRQn 1 */
@@ -325,6 +336,7 @@ void USART3_IRQHandler(void)
   /* USER CODE BEGIN USART3_IRQn 0 */
 
   /* USER CODE END USART3_IRQn 0 */
+  HAL_UART_IRQHandler(&huart3);
   /* USER CODE BEGIN USART3_IRQn 1 */
 
   /* USER CODE END USART3_IRQn 1 */
@@ -338,6 +350,7 @@ void UART4_IRQHandler(void)
   /* USER CODE BEGIN UART4_IRQn 0 */
 
   /* USER CODE END UART4_IRQn 0 */
+  HAL_UART_IRQHandler(&huart4);
   /* USER CODE BEGIN UART4_IRQn 1 */
 
   /* USER CODE END UART4_IRQn 1 */
@@ -351,6 +364,7 @@ void UART5_IRQHandler(void)
   /* USER CODE BEGIN UART5_IRQn 0 */
 
   /* USER CODE END UART5_IRQn 0 */
+  HAL_UART_IRQHandler(&huart5);
   /* USER CODE BEGIN UART5_IRQn 1 */
 
   /* USER CODE END UART5_IRQn 1 */
