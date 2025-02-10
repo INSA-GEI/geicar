@@ -5,7 +5,7 @@
  *      Author: dimercur
  */
 
-#include <gpio.h>
+#include <Devices/gpio.h>
 #include "app_config.h"
 #include "debug.h"
 
