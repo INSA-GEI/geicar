@@ -29,8 +29,7 @@ App::App(const char *taskName, const char *queueName) {
 	taskName,
 	TASK_STACK_SIZE_APPLICATION,
 	TASK_PRIO_APP_MAIN_TASK)) {
-		while (1)
-			;
+		PANIC("[APP] Unable to create mainTask");
 	}
 
 	// Création de la tache associée à la methode receiveFrameTask
@@ -40,14 +39,12 @@ App::App(const char *taskName, const char *queueName) {
 	"APP_receiveFrame",
 	TASK_STACK_SIZE_STD,
 	TASK_PRIO_APP_RCV_CMD)) {
-		while (1)
-			;
+		PANIC("[APP] Unable to create receiveCommandTask");
 	}
 
 	/* Creation de la message queue principale de app */
 	if (!messageQueue_.create(queueName)) {
-		Debug::writeln("[App] Erreur de creation de la file");
-		while (1);
+		PANIC("[App] Erreur de creation de la file");
 	}
 
 	// Configure l'USART1 -> uart pour la communication avec la raspberry
@@ -70,9 +67,9 @@ App::~App() {
 }
 
 /*
- * cette methode ne sert un peu à rien vu que les taches demarre immediatement lorsque le
- * scheduler de freertos demarre.
- * En fait, elle sert à eviter que le destructeur de app soit appelé (voir appwrapper.c)
+ * cette méthode ne sert un peu à rien vu que les taches démarrent immédiatement lorsque le
+ * scheduler de freertos démarre.
+ * En fait, elle sert à éviter que le destructeur de app soit appelé (voir appwrapper.c)
  */
 void App::run(void) {
 	mainTask_.run();
@@ -80,12 +77,12 @@ void App::run(void) {
 
 // Méthode de la classe appelée par la tâche mainTask_
 void App::mainTask(void) {
-	Debug::writeln("[App] Demarrage de la tache mainTask");
+	Debug::writeln("[App] Démarrage de la tache mainTask");
 
 	if (!appInstance)
 		appInstance = this;
 
-	gpio_ = new Gpio("Gpio_Tsk", "Gpio_Queue");
+	gpio_ = new Gpio("Gpio_Tsk", "Gpio_Queue", this->messageQueue_);
 
 	while (1) {
 		vTaskDelay(pdMS_TO_TICKS(1000));  // Attendre 1 seconde

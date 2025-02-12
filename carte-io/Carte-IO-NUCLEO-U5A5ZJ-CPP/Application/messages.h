@@ -20,7 +20,6 @@
 
 #include "iostream"
 
-
 /**
 	 * Message ID defined for system communication
 	 *

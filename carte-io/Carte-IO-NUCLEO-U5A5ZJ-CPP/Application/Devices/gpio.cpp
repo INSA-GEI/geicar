@@ -12,40 +12,36 @@
 #include "semphr.h"
 
 // Constructeur
-Gpio::Gpio(const char* taskName, const char* queueName) : taskName_(taskName), messageQueueName_(queueName) {
+Gpio::Gpio(const char* taskName, const char* queueName, MessageHandler &app_mailbox) : Sensor(queueName, app_mailbox) {
 	Debug::writeln("[Gpio] Creation de l'objet Gpio");
+
+	taskName_ = taskName;
+	messageQueueName_ = queueName;
 
 	// Création de la tâche FreeRTOS, la fonction statique est utilisée comme point d'entrée
 	xTaskCreate(taskWrapper, taskName_, 256, this, tskIDLE_PRIORITY+1, &taskHandle_);
 	vTaskResume(taskHandle_);
-
-	// Creation d'une mailbox pour la reception d'action
-	messageQueue_ = xQueueCreate(QUEUE_LENGTH, ITEM_SIZE);
-	if (messageQueue_ == NULL) {
-		Debug::writeln("[Gpio] Erreur de craation de la queue");
-		while (1);
-	}
-
-	vQueueAddToRegistry(messageQueue_, messageQueueName_ );
 }
 
 // Destructeur
 Gpio::~Gpio() {
 	Debug::writeln("[Gpio] Destruction de l'objet Gpio");
+
 	// Retire les semaphores et taches
-	vQueueDelete(messageQueue_);
 	vTaskDelete(taskHandle_);
 }
 
 // Méthode de la classe appelée par la tâche taskWrapper
 void Gpio::run() {
-	void *msg;
+	Message *msg;
 	int counter=0;
 
-	Debug::writeln("[Gpio] Demarrage de la tache");
+	Debug::writeln("[Gpio] Démarrage de la tache");
 
 	while (1) {
-		if (xQueueReceive(messageQueue_, & msg, pdMS_TO_TICKS(1000)) == pdPASS) {
+		msg = mailbox_.get(1000); // attente sur message ou 1s
+
+		if (msg != nullptr ) {
 			/* Un message a été reçu */
 			Debug::writeln("[Gpio] Message reçu");
 		}

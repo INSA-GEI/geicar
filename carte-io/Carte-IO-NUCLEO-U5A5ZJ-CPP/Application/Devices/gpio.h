@@ -16,10 +16,12 @@
 
 #include "messages.h"
 
-class Gpio {
+#include "sensor.h"
+
+class Gpio : public Sensor {
 public:
-	Gpio(const char* taskName, const char* queueName);
-	Gpio() {Gpio("Gpio", "Gpio_Queue");}
+	Gpio(const char* taskName, const char* queueName, MessageHandler &app_mailbox);
+	//Gpio() {Gpio("Gpio", static_cast<MessageHandler&>(nullptr), "Gpio_Queue");}
 	virtual ~Gpio();
 
 private:
