@@ -8,14 +8,15 @@
 #ifndef APP_H_
 #define APP_H_
 
-#include <Devices/gpio.h>
 #include "stm32u5xx_hal.h"
 
 #include "FreeRTOS.h"
-#include "semphr.h"
 
 #include "taskhandler.h"
 #include "messagehandler.h"
+
+#include <Devices/gpio.h>
+#include <Drivers/uartdriver.h>
 
 class App {
 public:
@@ -31,15 +32,15 @@ private:
 	TaskHandler receiveCommandTask_;
 
 	// Peripheriques
-	Gpio *gpio;
+	Gpio *gpio_;
 
-	UART_HandleTypeDef huart_;
-	SemaphoreHandle_t txCompleteSemaphore_;
-	SemaphoreHandle_t rxCompleteSemaphore_;
+	// uart data for communication
+	UartDriver *uartDriver_;
+//	UART_HandleTypeDef huart_;
 
-	uint8_t cmdHeader[3];
-	static void txCompleteCallback_(UART_HandleTypeDef* huart);
-	static void rxCompleteCallback_(UART_HandleTypeDef* huart);
+	uint8_t cmdHeader_[3];
+//	static void txCompleteCallback_(UART_HandleTypeDef* huart);
+//	static void rxCompleteCallback_(UART_HandleTypeDef* huart);
 	void onTxCompleteCallback(void);
 	void onRxCompleteCallback(void);
 
@@ -48,7 +49,6 @@ private:
 
 	// Méthode appelée par la tache receiveCommandTask_
 	void receiveFrameTask(void);
-
 };
 
 #endif /* APP_H_ */

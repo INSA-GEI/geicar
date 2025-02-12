@@ -15,27 +15,33 @@
 #define SOF 0x7F                  // Start of Frame
 #define HEADER_SIZE 2             // Taille de [SOF][Length][Type]
 
-App* appInstance;
+App *appInstance;
 
-App::App(const char* taskName, const char* queueName) {
+extern UART_HandleTypeDef huart1;
+
+App::App(const char *taskName, const char *queueName) {
 	Debug::writeln("[App] Creation de l'objet App");
 
 	// Création de la tache associée à la methode mainTask
-	if (!mainTask_.create(
-			[&](void){ mainTask(); },
-			taskName,
-			TASK_STACK_SIZE_APPLICATION,
-			TASK_PRIO_APP_MAIN_TASK)) {
-		while (1);
+	if (!mainTask_.create([&](void) {
+		mainTask();
+	},
+	taskName,
+	TASK_STACK_SIZE_APPLICATION,
+	TASK_PRIO_APP_MAIN_TASK)) {
+		while (1)
+			;
 	}
 
 	// Création de la tache associée à la methode receiveFrameTask
-	if (!receiveCommandTask_.create(
-			[&](void){ receiveFrameTask(); },
-			"APP_receiveFrame",
-			TASK_STACK_SIZE_STD,
-			TASK_PRIO_APP_RCV_CMD)) {
-		while (1);
+	if (!receiveCommandTask_.create([&](void) {
+		receiveFrameTask();
+	},
+	"APP_receiveFrame",
+	TASK_STACK_SIZE_STD,
+	TASK_PRIO_APP_RCV_CMD)) {
+		while (1)
+			;
 	}
 
 	/* Creation de la message queue principale de app */
@@ -44,38 +50,19 @@ App::App(const char* taskName, const char* queueName) {
 		while (1);
 	}
 
-	// Crée les sémaphores FreeRTOS
-	txCompleteSemaphore_ = xSemaphoreCreateBinary();
-	rxCompleteSemaphore_ = xSemaphoreCreateBinary();
+	// Configure l'USART1 -> uart pour la communication avec la raspberry
+	huart1 = {0};
+	huart1.Instance = USART1;
 
-	// Configure l'UART
-	huart_.Init.BaudRate = 115200;
-	huart_.Init.WordLength = UART_WORDLENGTH_8B;
-	huart_.Init.StopBits = UART_STOPBITS_1;
-	huart_.Init.Parity = UART_PARITY_NONE;
-	huart_.Init.Mode = UART_MODE_TX_RX;
-	huart_.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-	huart_.Init.OverSampling = UART_OVERSAMPLING_16;
-	if (HAL_UART_Init(&huart_) != HAL_OK) {
-		while (1);
-	}
-
-	// Enregistre les callbacks personnalisés
-	if (HAL_UART_RegisterCallback(&huart_, HAL_UART_TX_COMPLETE_CB_ID, txCompleteCallback_) != HAL_OK) {
-		while (1);
-	}
-
-	if (HAL_UART_RegisterCallback(&huart_, HAL_UART_RX_COMPLETE_CB_ID, rxCompleteCallback_) != HAL_OK) {
-		while (1);
-	}
+	uartDriver_ = new UartDriver(&huart1);
+	//uartDriver_->configure(115200); // sans autre info, c'est du polling
+	uartDriver_->configure(115200, MODE_IRQ, MODE_IRQ); // TX et RX en IT
 }
 
 App::~App() {
 	Debug::writeln("[App] Destruction de l'objet App");
 
-	vSemaphoreDelete(txCompleteSemaphore_);
-	vSemaphoreDelete(rxCompleteSemaphore_);
-	HAL_UART_DeInit(&huart_);
+	delete (uartDriver_);
 
 	//delete (messageQueue_);
 	//delete (&mainTask_);
@@ -98,11 +85,13 @@ void App::mainTask(void) {
 	if (!appInstance)
 		appInstance = this;
 
-	gpio = new Gpio("Gpio_Tsk", "Gpio_Queue");
+	gpio_ = new Gpio("Gpio_Tsk", "Gpio_Queue");
 
 	while (1) {
 		vTaskDelay(pdMS_TO_TICKS(1000));  // Attendre 1 seconde
 		Debug::writeln("[App] activation de la tache");
+
+		//uartDriver_->write("Hello", sizeof("Hello"));
 	}
 }
 
@@ -114,43 +103,18 @@ void App::receiveFrameTask(void) {
 		appInstance = this;
 
 	/* Recuperer l'en tete d'un commande */
-	if (HAL_UART_Receive_IT(&huart_, cmdHeader, 3) != HAL_OK) {
-		// Gérer l'erreur ici
-	}
+//	if (HAL_UART_Receive_IT(&huart_, cmdHeader_, 3) != HAL_OK) {
+//		// Gérer l'erreur ici
+//	}
 
 	while (1) {
-		// Attend la réception via le sémaphore
-		if (xSemaphoreTake(rxCompleteSemaphore_, portMAX_DELAY) != pdTRUE) {
-			// Gérer le timeout ici
-		}
+		//vTaskDelay(pdMS_TO_TICKS(1000));  // Attendre 1 seconde
+
+		uartDriver_->read(cmdHeader_, sizeof(cmdHeader_));
+
+		uartDriver_->write(cmdHeader_, sizeof(cmdHeader_));
 
 		Debug::writeln("[App] reception de donnée");
 	}
 }
 
-// Méthodes d'interruption
-void App::onTxCompleteCallback(void) {
-	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-	xSemaphoreGiveFromISR(txCompleteSemaphore_, &xHigherPriorityTaskWoken);
-	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-}
-
-void App::onRxCompleteCallback(void) {
-	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-	xSemaphoreGiveFromISR(rxCompleteSemaphore_, &xHigherPriorityTaskWoken);
-	portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-}
-
-void App::txCompleteCallback_(UART_HandleTypeDef* huart) {
-	//App* instance = static_cast<App*>(huart->pUserData);
-	if (appInstance) {
-		appInstance->onTxCompleteCallback();
-	}
-}
-
-void App::rxCompleteCallback_(UART_HandleTypeDef* huart) {
-	//App* instance = static_cast<App*>(huart->pUserData);
-	if (appInstance) {
-		appInstance->onRxCompleteCallback();
-	}
-}

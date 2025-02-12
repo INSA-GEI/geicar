@@ -52,23 +52,15 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
-void MX_GPDMA1_Init(void);
-void MX_USB_OTG_HS_PCD_Init(void);
-void MX_ICACHE_Init(void);
+void MX_GPIO_Init(void);
 void MX_USART1_UART_Init(void);
-void MX_DCACHE1_Init(void);
+void MX_I2C1_Init(void);
 
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define VBUS_SENSE_Pin GPIO_PIN_2
-#define VBUS_SENSE_GPIO_Port GPIOC
-#define UCPD_FLT_Pin GPIO_PIN_14
-#define UCPD_FLT_GPIO_Port GPIOB
-#define UCPD_DBn_Pin GPIO_PIN_5
-#define UCPD_DBn_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

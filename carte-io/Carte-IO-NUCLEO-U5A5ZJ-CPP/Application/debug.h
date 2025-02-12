@@ -12,6 +12,9 @@
 #define DEBUG_VCP_PORT		32 // le port VCP correspond à l'uart connecté à la sonde de debug
 
 #ifdef __cplusplus
+
+#define PANIC(msg) Debug::panic(__FILE__, __LINE__, msg)
+
 class Debug {
 public:
 	// Wrapper statique pour appeler la méthode membre
@@ -28,6 +31,7 @@ public:
 	static void write(uint8_t port, const char* fmt, ...);
 	static void write(const char* fmt, ...);
 
+	static void panic(const char* file, uint32_t line, const char* msg);
 private:
 	static TaskHandle_t periodicReportTaskHandle_;
 	static void periodicReportTask_(void *pvParameters);
@@ -40,4 +44,5 @@ private:
 int __io_putchar(int ch);
 int __io_getchar(void);
 
+void panic (const char *file, uint32_t line, const char *msg);
 #endif /* DEBUG_H_ */

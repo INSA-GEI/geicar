@@ -13,6 +13,7 @@
 
 #include <cstdarg> // Pour gérer les arguments variables
 #include <cstdio>  // Pour printf
+//#include "stdio.h"
 
 // ITM Stimulus Port pour SWO
 #define ITM_STIMULUS_PORT_PRINTF 			0
@@ -96,6 +97,12 @@ void Debug::write(const char* fmt, ...) {
 #endif //DEBUG
 }
 
+void Debug::panic(const char* file, uint32_t line, const char* msg) {
+	writeln("!!! PANIC - SYSTEM HALTED !!!");
+	write("File: %s, line: %lu\n", file, line);
+	write("%s\n", msg);
+}
+
 void Debug::periodicReportTask_(void *pvParameters) {
 #ifdef DEBUG
 	char buffer[512];
@@ -121,3 +128,4 @@ int __io_putchar(int ch) {
 int __io_getchar(void) {
 	return 0;
 }
+

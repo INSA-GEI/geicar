@@ -125,7 +125,7 @@ SECTIONS
     *(.data*)          /* .data* sections */
     *(.RamFunc)        /* .RamFunc sections */
     *(.RamFunc*)       /* .RamFunc* sections */
-
+	
     _edata = .;        /* define a global symbol at data end */
   } >RAM AT> FLASH
 
@@ -138,11 +138,16 @@ SECTIONS
     *(.bss)
     *(.bss*)
     *(COMMON)
-
+	
     _ebss = .;         /* define a global symbol at bss end */
     __bss_end__ = _ebss;
   } >RAM
 
+  .ucHeap_buffer (NOLOAD) :
+  {
+    *(.ucHeap_buffer)
+  } >RAM
+  
   /* User_heap_stack section, used to check that there is enough "RAM" Ram type memory left */
   ._user_heap_stack :
   {

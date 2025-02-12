@@ -30,7 +30,7 @@
  * Pointer to the current high watermark of the heap usage
  */
 static uint8_t *__sbrk_heap_end = NULL;
-extern uint8_t ucHeap[configTOTAL_HEAP_SIZE];
+uint8_t ucHeap[ configTOTAL_HEAP_SIZE ]  __attribute__ ((aligned (4),section(".ucHeap_buffer")));
 
 /**
  * @brief _sbrk() allocates memory to the newlib heap and is used by malloc
