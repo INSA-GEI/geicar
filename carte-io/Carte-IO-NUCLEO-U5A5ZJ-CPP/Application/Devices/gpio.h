@@ -24,12 +24,13 @@ public:
 	//Gpio() {Gpio("Gpio", static_cast<MessageHandler&>(nullptr), "Gpio_Queue");}
 	virtual ~Gpio();
 
+	//QueueHandle_t getQueueHandle() { return messageQueue_; }
 private:
 	const char* taskName_;  // Nom de la tâche
 	TaskHandle_t taskHandle_;  // Handle de la tâche
 
-	const char* messageQueueName_;  // Nom de la mailbox
-	QueueHandle_t messageQueue_;  // Handle de la mailbox
+	//const char* messageQueueName_;  // Nom de la mailbox
+	//QueueHandle_t messageQueue_;  // Handle de la mailbox
 
 	// Méthode de la classe appelée par la tâche
 	void run(void);
@@ -45,8 +46,8 @@ public:
 		uint8_t vals;
 	} GPIOPins_TypeDef;
 
-	GpioMessage(MessageHandler &from, MessageHandler &to);
-	GpioMessage(MessageHandler &from, MessageHandler &to, GPIOPins_TypeDef pins);
+	GpioMessage();
+	GpioMessage(GPIOPins_TypeDef pins);
 
 	void setPins (GPIOPins_TypeDef pins);
 	GPIOPins_TypeDef getPins(void);

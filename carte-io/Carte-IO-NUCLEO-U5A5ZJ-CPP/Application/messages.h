@@ -52,26 +52,15 @@ class MessageHandler;
 class Message {
 public:
 
-	Message() :from_(nullptr), to_(nullptr) {};
-
 	/**
 	 * Create a new, empty message
 	 */
-	Message(MessageHandler &from, MessageHandler &to);
-
-	/**
-	 * Create a new, empty message
-	 */
-	Message(MessageHandler &from, MessageHandler &to, MessageID id);
+	Message() : messageID_{MESSAGE_EMPTY} {};
 
 	/**
 	 * Destroy message
 	 */
-	virtual ~Message();
-
-	void setSender (MessageHandler &sender) {from_ = &sender;}
-
-	void setReceiver (MessageHandler &receiver) { to_ = &receiver;}
+	virtual ~Message() {}
 
 	/**
 	 * Translate content of message into a string that can be displayed
@@ -106,11 +95,18 @@ public:
 	 * Set message ID
 	 * @param id Message ID
 	 */
-	void setID(MessageID id) {
+	bool setID(MessageID id) {
+		bool status=false;
+
 		if (checkID(id)) {
 			this->messageID_ = id;
-		} else while (1);
+			status = true;
+		}
+
+		return status;
 	}
+
+	virtual bool isValid() { return checkID(messageID_); }
 
 	/**
 	 * Comparison operator
@@ -130,32 +126,11 @@ public:
 		return !(messageID_ == msg.messageID_);
 	}
 
-	/**
-	 * Send current message
-	 * @return true if message was correctly posted, false otherwise
-	 */
-	bool send();
-
-	/**
-	 * Send current message from an ISR
-	 * @return true if message was correctly posted, false otherwise
-	 */
-	bool sendFromISR();
 protected:
 	/**
 	 * Message identifier (@see MessageID)
 	 */
-	MessageID messageID_=MESSAGE_EMPTY;
-
-	/**
-	 * Sender messagehandler. For avoiding cross reference, stored as void, but casted to MessageHandler type when used
-	 */
-	MessageHandler *from_=nullptr;
-
-	/**
-	 * Receiver messagehandler. For avoiding cross reference, stored as void, but casted to MessageHandler type when used
-	 */
-	MessageHandler *to_=nullptr;
+	MessageID messageID_;
 
 	/**
 	 * Verify if message ID is compatible with current message type
@@ -168,11 +143,16 @@ protected:
 
 class LogMessage : public Message {
 public:
-	LogMessage(MessageHandler &from, MessageHandler &to, std::string &str);
+	LogMessage() { messageID_ = MESSAGE_LOG; }
+	LogMessage(std::string &str);
+	LogMessage(char* str);
 
 	LogMessage* copy();
 
-	std::string getString();
+	std::string getString() { return str_; }
+
+	void setString(std::string s) {str_ = s; }
+	void setString(char* s) {str_ = std::string(s); }
 
 	/**
      * Comparison operator

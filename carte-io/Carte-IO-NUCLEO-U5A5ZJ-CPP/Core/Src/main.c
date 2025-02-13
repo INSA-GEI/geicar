@@ -103,7 +103,7 @@ int main(void)
   MX_ICACHE_Init();
   MX_DCACHE1_Init();
   /* USER CODE BEGIN 2 */
-
+  MX_USART1_UART_Init();
   cpp_main();
   /* USER CODE END 2 */
 

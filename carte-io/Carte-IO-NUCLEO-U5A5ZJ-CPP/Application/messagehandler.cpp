@@ -40,7 +40,6 @@ bool MessageHandler::create (const char* queueName) {
 	return create(queueName, QUEUE_LENGTH, ITEM_SIZE);
 }
 
-
 QueueHandle_t MessageHandler::getQueueHandler() {
 	return messageQueue_;
 }
@@ -55,8 +54,9 @@ Message* MessageHandler::get(TickType_t timeout) {
 	void *p=nullptr;
 	Message* msg = nullptr;
 
-	if (xQueueReceive(messageQueue_, p, timeout) == pdTRUE) {
-		msg = static_cast<Message*>(p);
+	if (xQueueReceive(messageQueue_, static_cast<void*>(&p), timeout) == pdTRUE) {
+		if (p)
+			msg = static_cast<Message*>(p);
 	}
 
 	return msg;
@@ -69,7 +69,7 @@ Message* MessageHandler::getFromISR(void) {
 	BaseType_t xTaskWokenByReceive = pdFALSE;
 	Message* msg = nullptr;
 
-	if (xQueueReceiveFromISR(messageQueue_, p, &xTaskWokenByReceive) == pdTRUE) {
+	if (xQueueReceiveFromISR(messageQueue_, static_cast<void*>(&p), &xTaskWokenByReceive) == pdTRUE) {
 		if( xTaskWokenByReceive != pdFALSE ) {
 			/* We should switch context so the ISR returns to a different task.
 		           NOTE: How this is done depends on the port you are using. Check
@@ -86,14 +86,14 @@ Message* MessageHandler::getFromISR(void) {
 
 // Send message
 bool MessageHandler::send(Message* msg, TickType_t timeout) {
-	return (xQueueSend(messageQueue_, (void*)msg, timeout) == pdPASS) ? true:false;
+	return (xQueueSend(messageQueue_, static_cast<void*>(&msg), timeout) == pdPASS) ? true:false;
 }
 
 // Send message
 bool MessageHandler::sendFromISR(Message* msg) {
 	BaseType_t xTaskWokenBySend = pdFALSE;
 
-	if (xQueueSendFromISR(messageQueue_, (void*)msg, &xTaskWokenBySend) == pdPASS) {
+	if (xQueueSendFromISR(messageQueue_, static_cast<void*>(&msg), &xTaskWokenBySend) == pdPASS) {
 		if( xTaskWokenBySend != pdFALSE ) {
 			/* We should switch context so the ISR returns to a different task.
 				           NOTE: How this is done depends on the port you are using. Check

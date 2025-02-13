@@ -27,26 +27,6 @@ const std::string MESSAGE_ID_STRING[] = {
 		"Log"
 };
 
-/**
- * Create a new, empty message
- */
-Message::Message(MessageHandler &from, MessageHandler &to) : from_(&from), to_(&to) {
-	messageID_ = MESSAGE_EMPTY;
-}
-
-/**
- * Create a new, empty message
- */
-Message::Message(MessageHandler &from, MessageHandler &to, MessageID id) : from_(&from), to_(&to) {
-	setID(id);
-}
-
-/**
- * Destroy message
- */
-Message::~Message() {
-	// TODO: bien verifier que l'on a supprimé les allocations de données
-}
 
 /**
  * Translate content of message into a string that can be displayed
@@ -60,11 +40,11 @@ std::string Message::toString() {
 }
 
 /**
- * Allocate a new mesage and copy contents of current message
+ * Allocate a new message and copy contents of current message
  * @return A message, copy of current
  */
 Message* Message::copy() {
-	Message *msg = new Message(*from_, *to_, messageID_);
+	Message *msg = new Message();
 
 	return msg;
 }
@@ -79,47 +59,27 @@ bool Message::checkID(MessageID id) {
 	} else return false;
 }
 
-/**
- * Send current message
- * @return true if message was correctly posted, false otherwise
- */
-bool Message::send() {
-	//MessageHandler* msgHandler = static_cast<MessageHandler*>(to_);
-
-	return to_->send(this);
-}
-
-/**
- * Send current message from an ISR
- * @return true if message was correctly posted, false otherwise
- */
-bool Message::sendFromISR() {
-	MessageHandler* msgHandler = static_cast<MessageHandler*>(to_);
-
-	return msgHandler->sendFromISR(this);
-}
-
-
+//////////////////////////////////////////////////////////////////
+/// LogMessage
+//////////////////////////////////////////////////////////////////
 
 /**
  * Create a new, empty message
  */
-LogMessage::LogMessage(MessageHandler &from, MessageHandler &to, std::string &str) {
-	Message::setSender(from);
-	Message::setReceiver(to);
+LogMessage::LogMessage(std::string &str) {
 	LogMessage::str_ = str;
 	LogMessage::setID(MESSAGE_LOG);
 }
 
-
-LogMessage* LogMessage::copy() {
-	LogMessage *msg = new LogMessage(*from_, *to_, str_);
-
-	return msg;
+LogMessage::LogMessage(char *str) {
+	LogMessage::str_ = std::string(str);
+	LogMessage::setID(MESSAGE_LOG);
 }
 
-std::string LogMessage::getString() {
-	return str_;
+LogMessage* LogMessage::copy() {
+	LogMessage *msg = new LogMessage(str_);
+
+	return msg;
 }
 
 /**

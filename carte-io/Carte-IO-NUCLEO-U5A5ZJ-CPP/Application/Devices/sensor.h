@@ -20,13 +20,20 @@ public:
 
 	virtual void setAppMailbox(MessageHandler &app_mailbox) {appMailbox_ = &app_mailbox;}
 
-	virtual bool post(Message &msg);
-	virtual bool postFromISR(Message &msg);
+	virtual bool postMessage(Message &msg);
+	virtual bool postMessageFromISR(Message &msg);
+	virtual bool postMessage(Message* msg);
+	virtual bool postMessageFromISR(Message* msg);
 
 	static bool probe(void* handler) {return false;}
 protected:
 	MessageHandler mailbox_; // Objet mailbox
 	MessageHandler* appMailbox_ = nullptr;
+
+	virtual bool postMessageToApp(Message &msg);
+	virtual bool postMessageToAppFromISR(Message &msg);
+	virtual bool postMessageToApp(Message* msg);
+	virtual bool postMessageToAppFromISR(Message* msg);
 };
 
 #endif /* DEVICES_SENSOR_H_ */

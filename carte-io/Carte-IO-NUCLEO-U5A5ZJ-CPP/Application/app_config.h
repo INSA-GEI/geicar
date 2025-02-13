@@ -25,7 +25,7 @@
 
 // Queues configuration
 #define QUEUE_LENGTH 				5
-#define ITEM_SIZE sizeof(void*)
+#define ITEM_SIZE 					sizeof(void*)
 
 // UART VCP
 #define UART_VCP	UART1

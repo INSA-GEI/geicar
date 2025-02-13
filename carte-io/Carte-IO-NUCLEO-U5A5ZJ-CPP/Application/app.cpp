@@ -78,6 +78,7 @@ void App::run(void) {
 // Méthode de la classe appelée par la tâche mainTask_
 void App::mainTask(void) {
 	Debug::writeln("[App] Démarrage de la tache mainTask");
+	Message* msg;
 
 	if (!appInstance)
 		appInstance = this;
@@ -85,31 +86,55 @@ void App::mainTask(void) {
 	gpio_ = new Gpio("Gpio_Tsk", "Gpio_Queue", this->messageQueue_);
 
 	while (1) {
-		vTaskDelay(pdMS_TO_TICKS(1000));  // Attendre 1 seconde
-		Debug::writeln("[App] activation de la tache");
+		//vTaskDelay(pdMS_TO_TICKS(1000));  // Attendre 1 seconde
+		msg=messageQueue_.get(); //Attente infinie
+		Debug::writeln("[App] Reception d'un message");
 
+		uint8_t id= msg->getID();
+		Debug::write("ID= %u",id );
+
+		delete(msg);
 		//uartDriver_->write("Hello", sizeof("Hello"));
 	}
 }
 
 // Méthode appelée par la tache receiveCommandTask_
 void App::receiveFrameTask(void) {
+	GpioMessage* msg=nullptr;
+	//QueueHandle_t queue=nullptr;
 	Debug::writeln("[App] Demarrage de la tache receiveFrameTask");
 
 	if (!appInstance)
 		appInstance = this;
 
 	/* Recuperer l'en tete d'un commande */
-//	if (HAL_UART_Receive_IT(&huart_, cmdHeader_, 3) != HAL_OK) {
-//		// Gérer l'erreur ici
-//	}
+	//	if (HAL_UART_Receive_IT(&huart_, cmdHeader_, 3) != HAL_OK) {
+	//		// Gérer l'erreur ici
+	//	}
+
+
 
 	while (1) {
 		//vTaskDelay(pdMS_TO_TICKS(1000));  // Attendre 1 seconde
 
-		uartDriver_->read(cmdHeader_, sizeof(cmdHeader_));
+		if (uartDriver_->read(cmdHeader_, sizeof(cmdHeader_)) == HAL_OK ) {
 
-		uartDriver_->write(cmdHeader_, sizeof(cmdHeader_));
+			uartDriver_->write(cmdHeader_, sizeof(cmdHeader_));
+			msg = new GpioMessage({cmdHeader_[0], cmdHeader_[1]});
+
+			//queue = gpio_->getQueueHandle();
+			//if (queue != nullptr) {
+				if (gpio_->postMessage(msg))
+				//if (xQueueSend(queue, (void*)&msg, pdMS_TO_TICKS(100)) == pdPASS)
+					Debug::writeln("[App] Envoi du message OK");
+				else
+					Debug::writeln("[App] Echec envoi du message");
+				//gpio_->postMessage(msg);
+			//} else
+			//	Debug::writeln("[App] Queue invalide");
+		} else {
+			Debug::writeln("[App] Error when receiving uart data");
+		}
 
 		Debug::writeln("[App] reception de donnée");
 	}

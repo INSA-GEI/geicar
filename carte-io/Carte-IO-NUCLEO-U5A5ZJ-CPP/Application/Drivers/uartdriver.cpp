@@ -76,6 +76,12 @@ HAL_StatusTypeDef UartDriver::configure(uint32_t baudrate,
 		assert_param(circular_buffer_size != 0);
 	}
 
+	txMode_ = tx_mode;
+	rxMode_ = rx_mode;
+	circularBuffer_ = circular_buffer;
+	circularBufferSize_ = circular_buffer_size;
+	timerDelay_ = timer_delay;
+
 	/*
 	 * /!\ Attention : Le callback HAL_UART_MSPINIT_CB_ID et HAL_UART_MSPDEINIT_CB_ID sont
 	 * en partie détournés de leur fonction dans HAL
@@ -149,12 +155,6 @@ HAL_StatusTypeDef UartDriver::configure(uint32_t baudrate,
 			HAL_UART_MSPINIT_CB_ID, (pUART_CallbackTypeDef)this);
 	HAL_UART_RegisterCallback(uartHandler_,
 			HAL_UART_MSPDEINIT_CB_ID, hwDeInit);
-
-	txMode_ = tx_mode;
-	rxMode_ = rx_mode;
-	circularBuffer_ = circular_buffer;
-	circularBufferSize_ = circular_buffer_size;
-	timerDelay_ = timer_delay;
 
 	if (rxMode_ == MODE_CIRCULAR_DMA) {
 		dmaReadIndex_ =0;
@@ -340,6 +340,7 @@ HAL_StatusTypeDef UartDriver::write(uint8_t *data, uint16_t size,
 HAL_StatusTypeDef UartDriver::read(uint8_t *data, uint16_t size,
 		uint32_t timeout) {
 	HAL_StatusTypeDef status = HAL_ERROR;
+	BaseType_t semStatus = pdFALSE;
 
 	if ((rxMode_ != MODE_POLLING) && (rxMode_ != MODE_CIRCULAR_DMA)) {
 		if (rxMode_ == MODE_IRQ)
@@ -355,7 +356,9 @@ HAL_StatusTypeDef UartDriver::read(uint8_t *data, uint16_t size,
 					status = HAL_TIMEOUT;
 			} else {
 				// Attente infinie tant que le semaphore n'est pas produit
-				while (xSemaphoreTake(rxCompleteSemaphore_,	portMAX_DELAY) != pdTRUE);
+				while (semStatus != pdTRUE) {
+					semStatus = xSemaphoreTake(rxCompleteSemaphore_,	portMAX_DELAY);
+				}
 			}
 		}
 	} else if (rxMode_ == MODE_CIRCULAR_DMA) {
