@@ -13,12 +13,14 @@
 
 #ifdef __cplusplus
 
+#include "taskhandler.h"
+
 #define PANIC(msg) Debug::panic(__FILE__, __LINE__, msg)
 
 class Debug {
 public:
 	// Wrapper statique pour appeler la méthode membre
-	static void init();
+	Debug();
 
 	static void write(uint8_t port, const char c) { write_(port, c); }
 	static void write(const char c) { write_(DEBUG_DEFAULT_PORT, c); }
@@ -33,8 +35,8 @@ public:
 
 	static void panic(const char* file, uint32_t line, const char* msg);
 private:
-	static TaskHandle_t periodicReportTaskHandle_;
-	static void periodicReportTask_(void *pvParameters);
+	TaskHandler periodicReportTaskHandler_;
+	void periodicReportTask_(void);
 
 	static void write_(uint8_t port, const char c);
 	static void write_(uint8_t port, const char *str);

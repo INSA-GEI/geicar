@@ -14,9 +14,11 @@
 #define VERSION_STRING 				"1.0"
 
 // Tasks priority, higher = higher priority
-#define TASK_PRIO_APP_RCV_CMD		tskIDLE_PRIORITY +20
-#define TASK_PRIO_APP_MAIN_TASK		tskIDLE_PRIORITY +19
+#define TASK_PRIO_APP_CMD_MGMT_CMD		tskIDLE_PRIORITY +20
+#define TASK_PRIO_APP_MBX_MGMT_TASK		tskIDLE_PRIORITY +19
 #define TASK_PRIO_PROBE_RUN			tskIDLE_PRIORITY +18
+#define TASK_PRIO_GPIO				tskIDLE_PRIORITY +17
+
 #define TASK_PRIO_PERIODIC_DEBUG	tskIDLE_PRIORITY + 1
 
 // Various config

@@ -8,9 +8,19 @@
 #include "sensor.h"
 #include "debug.h"
 
-Sensor::Sensor(const char *mailboxName, MessageHandler &app_mailbox): appMailbox_(&app_mailbox) {
-	if (!mailbox_.create(mailboxName))
-		PANIC ("[Sensor] Impossible de créer la mailbox");
+/**
+ * @brief Initialise la mailbox du capteur
+ *
+ * Permet d'initialiser la mailbox du capteur.
+ * @param queueName Non de la mailbox affichée par Freertos
+ * @return true si la creation reussi, false sinon
+ */
+bool Sensor::initMessagesManagement(const char *queueName) {
+	if (!mailbox_.create(queueName)) {
+		PANIC ("[Sensor] Impossible de creer la mailbox");
+		return false;
+	} else
+		return true;
 }
 
 bool Sensor::postMessage(Message &msg) {

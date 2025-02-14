@@ -15,32 +15,34 @@
 #include "taskhandler.h"
 #include "messagehandler.h"
 
+#include "debug.h"
+
 #include <Devices/gpio.h>
 #include <Drivers/uartdriver.h>
 
 class App {
 public:
-	App(const char* taskName, const char* queueName);
-	App() {App("Application", "App_Queue");}
+	App();
+	~App();
 
 	void run(void);
-	virtual ~App();
 
 private:
 	MessageHandler messageQueue_; // Objet mailbox
-	TaskHandler mainTask_;
-	TaskHandler receiveCommandTask_;
+	TaskHandler mailboxManagmentTask_;
+	TaskHandler commandsManagmentTask_;
 
-	// Peripheriques
+	// uart for communication
+	UartDriver *comRaspberry_;
+
+	// Pour les rapports périodiques
+	Debug *debug;
+
+	// Périphériques
 	Gpio *gpio_;
 
-	// uart data for communication
-	UartDriver *uartDriver_;
-//	UART_HandleTypeDef huart_;
-
 	uint8_t cmdHeader_[3];
-//	static void txCompleteCallback_(UART_HandleTypeDef* huart);
-//	static void rxCompleteCallback_(UART_HandleTypeDef* huart);
+
 	void onTxCompleteCallback(void);
 	void onRxCompleteCallback(void);
 

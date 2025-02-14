@@ -51,6 +51,8 @@ UartDriver::UartDriver(UART_HandleTypeDef* huart): uartHandler_(huart) {
 	 * semaphore RX soit produit)
 	 */
 	xSemaphoreGive(txCompleteSemaphore_);
+	vQueueAddToRegistry(txCompleteSemaphore_, "TX Complete");
+	vQueueAddToRegistry(rxCompleteSemaphore_, "RX Complete");
 }
 
 UartDriver::~UartDriver() {
@@ -168,6 +170,8 @@ HAL_StatusTypeDef UartDriver::configure(uint32_t baudrate,
 				(void*) this,             // ID du timer (facultatif)
 				UartTimerCallback      // Fonction callback
 		);
+
+		//vQueueAddToRegistry(periodicTimer_,"Timer");
 	}
 
 	return HAL_OK;
@@ -432,8 +436,7 @@ void UartDriver::onRXEvent(UART_EventTypedef event) {
 		/* Liberation du semaphore RX */
 		xSemaphoreGiveFromISR(rxCompleteSemaphore_, &xHigherPriorityTaskWoken);
 
-		/* Yield if xHigherPriorityTaskWoken is true. The
- actual macro used here is port specific. */
+		/* Yield if xHigherPriorityTaskWoken is true. The  actual macro used here is port specific. */
 		portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 	}
 }

@@ -84,13 +84,19 @@ void *_sbrk(ptrdiff_t incr)
 uint32_t Counter_Malloc=0;
 uint32_t Counter_Free=0;
 
-/* Functions */
-void* malloc(size_t size)
-{
+/**
+ * @brief malloc() allocates memory on the heap and provide a pointer to this newly allocated area
+ *
+ * This implementation uses ucHeap and pvportMalloc from Freertos. I also use a counter
+ * (Counter_Malloc) in order to check if there is memory leaks
+ *
+ * @param size In bytes, amount of ram required
+ * @return Pointer to allocated memory
+ */
+void* malloc(size_t size) {
 	void* ptr = NULL;
 
-	if(size > 0)
-	{
+	if(size > 0) {
 		// We simply wrap the FreeRTOS call into a standard form
 		ptr = pvPortMalloc(size);
 		Counter_Malloc++;
@@ -103,10 +109,18 @@ void* malloc(size_t size)
 	return ptr;
 }
 
-void free(void* ptr)
-{
-	if (ptr)
-	{
+/**
+ * @brief free() deallocate memory from the heap and release pointer
+ *
+ * This implementation uses ucHeap and vPortFree from Freertos. I also use a counter
+ * (Counter_Free) in order to check if there is memory leaks.
+ * free will also ensure pointer is non-null and that pointer is in relevant range.
+ * Otherwise do nothing
+ *
+ * @param ptr Pointer to an allocated area
+ */
+void free(void* ptr) {
+	if (ptr) {
 		if ((ptr>=(void*)ucHeap) && (ptr<=(void*)ucHeap+configTOTAL_HEAP_SIZE)) {
 			// We simply wrap the FreeRTOS call into a standard form
 			vPortFree(ptr);

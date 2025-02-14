@@ -14,11 +14,15 @@
 class Sensor {
 public:
 	Sensor() {}
-	Sensor(const char *mailboxName, MessageHandler &app_mailbox);
-
 	virtual ~Sensor() {}
 
-	virtual void setAppMailbox(MessageHandler &app_mailbox) {appMailbox_ = &app_mailbox;}
+	virtual bool initMessagesManagement(const char* queueName);
+	virtual bool initMessagesManagement(const char* queueName, MessageHandler &app_mailbox) {
+		setApplicationMailbox(app_mailbox);
+		return initMessagesManagement(queueName);
+	}
+
+	virtual void setApplicationMailbox(MessageHandler &app_mailbox) {appMailbox_ = &app_mailbox;}
 
 	virtual bool postMessage(Message &msg);
 	virtual bool postMessageFromISR(Message &msg);

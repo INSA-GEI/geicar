@@ -152,7 +152,7 @@ public:
 	std::string getString() { return str_; }
 
 	void setString(std::string s) {str_ = s; }
-	void setString(char* s) {str_ = std::string(s); }
+	void setString(const char* s) {str_ = std::string(s); }
 
 	/**
      * Comparison operator

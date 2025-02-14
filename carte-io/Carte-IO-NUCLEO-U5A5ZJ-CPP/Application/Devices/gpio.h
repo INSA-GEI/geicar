@@ -11,32 +11,22 @@
 #include "stm32u5xx.h"
 
 #include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
-
-#include "messages.h"
 
 #include "sensor.h"
+#include "messages.h"
+#include "taskhandler.h"
 
 class Gpio : public Sensor {
 public:
-	Gpio(const char* taskName, const char* queueName, MessageHandler &app_mailbox);
-	//Gpio() {Gpio("Gpio", static_cast<MessageHandler&>(nullptr), "Gpio_Queue");}
-	virtual ~Gpio();
+	Gpio(const char* taskName);
+	~Gpio();
 
-	//QueueHandle_t getQueueHandle() { return messageQueue_; }
 private:
-	const char* taskName_;  // Nom de la tâche
-	TaskHandle_t taskHandle_;  // Handle de la tâche
-
-	//const char* messageQueueName_;  // Nom de la mailbox
-	//QueueHandle_t messageQueue_;  // Handle de la mailbox
+	// Handler de la tâche
+	TaskHandler taskHandler_;
 
 	// Méthode de la classe appelée par la tâche
 	void run(void);
-
-	// Wrapper statique pour appeler la méthode membre
-	static void taskWrapper(void* parameter);
 };
 
 class GpioMessage : public Message {

@@ -22,7 +22,7 @@ extern "C" __attribute__((noreturn)) void cpp_main(void) {
 	MX_FREERTOS_Init();
 
 	// Creation de l'objet app qui sert d'objet principal de l'ensemble de l'application
-	app = new App("Application", "App_Queue");
+	app = new App();
 
 	/* Start scheduler */
 	osKernelStart();

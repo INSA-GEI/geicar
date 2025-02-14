@@ -19,20 +19,20 @@
 #define ITM_STIMULUS_PORT_PRINTF 			0
 #define ITM_STIMULUS_PORT_PERIODIC_DEBUG 	1
 
-void Debug::init(void) {
-#ifdef DEBUG
-	// Creation de la tache de rapport periodique
-	xTaskCreate(periodicReportTask_,
-			"DebugPeriodic",
-			TASK_STACK_SIZE_STD*4,
-			NULL,
-			TASK_PRIO_PERIODIC_DEBUG,
-			&periodicReportTaskHandle_);
+extern uint32_t Counter_Malloc;
+extern uint32_t Counter_Free;
 
-	vTaskResume(periodicReportTaskHandle_);
+Debug::Debug() {
+#ifdef DEBUG
+	// Création de la tache associée à la méthode run()
+		if (!periodicReportTaskHandler_.create([&](void) { periodicReportTask_(); },
+				"DEBUG",
+				TASK_STACK_SIZE_STD,
+				TASK_PRIO_PERIODIC_DEBUG)) {
+			PANIC("[DEBUG] Unable to create task periodicReportTask_()");
+		}
 #endif // DEBUG
 }
-
 
 void Debug::write_(uint8_t port, const char c) {
 #ifdef DEBUG
@@ -103,7 +103,7 @@ void Debug::panic(const char* file, uint32_t line, const char* msg) {
 	write("%s\n", msg);
 }
 
-void Debug::periodicReportTask_(void *pvParameters) {
+void Debug::periodicReportTask_(void) {
 #ifdef DEBUG
 	char buffer[512];
 
@@ -111,8 +111,10 @@ void Debug::periodicReportTask_(void *pvParameters) {
 		vTaskDelay(pdMS_TO_TICKS(1000)); // Wait 1s
 		vTaskList(buffer); // Collecte les stats
 
-		writeln(ITM_STIMULUS_PORT_PERIODIC_DEBUG,"Task\tState\tPrio\tStack\tNum");
+		writeln(ITM_STIMULUS_PORT_PERIODIC_DEBUG,"==========================================\nTask\tState\tPrio\tStack\tNum");
 		writeln(ITM_STIMULUS_PORT_PERIODIC_DEBUG,buffer);
+		snprintf(buffer, 512, "malloc/new = %lu\nfree/delete = %lu\n",Counter_Malloc, Counter_Free);
+		writeln(ITM_STIMULUS_PORT_PERIODIC_DEBUG, buffer);
 	}
 #endif //DEBUG
 }

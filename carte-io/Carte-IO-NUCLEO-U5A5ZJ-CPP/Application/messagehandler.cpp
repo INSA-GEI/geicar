@@ -11,7 +11,7 @@
 
 MessageHandler::MessageHandler(const char* queueName) : messageQueueName_(queueName) {
 	if (!create(queueName)) // Si la creation de la queue echoue -> while (1)
-		while (1);
+		PANIC("[MessageHandler] Impossible de creer la mailbox");
 }
 
 MessageHandler::~MessageHandler() {
@@ -23,17 +23,17 @@ MessageHandler::~MessageHandler() {
 bool MessageHandler::create (const char* queueName, uint32_t queueSize, uint32_t itemSize) {
 	bool status = true;
 
-		/* Creation de la message queue associée à l'objet */
-		messageQueue_ = xQueueCreate((UBaseType_t)queueSize, (UBaseType_t)itemSize);
-		if (messageQueue_ == NULL) {
-			Debug::writeln("[App] Erreur de creation de la file");
-			status =false;
-		} else {
-			messageQueueName_ = queueName;
-			vQueueAddToRegistry(messageQueue_, messageQueueName_ );
-		}
+	/* Creation de la message queue associée à l'objet */
+	messageQueue_ = xQueueCreate((UBaseType_t)queueSize, (UBaseType_t)itemSize);
+	if (messageQueue_ == NULL) {
+		Debug::writeln("[App] Erreur de creation de la file");
+		status =false;
+	} else {
+		messageQueueName_ = queueName;
+		vQueueAddToRegistry(messageQueue_, messageQueueName_ );
+	}
 
-		return status;
+	return status;
 }
 
 bool MessageHandler::create (const char* queueName) {
@@ -54,10 +54,13 @@ Message* MessageHandler::get(TickType_t timeout) {
 	void *p=nullptr;
 	Message* msg = nullptr;
 
-	if (xQueueReceive(messageQueue_, static_cast<void*>(&p), timeout) == pdTRUE) {
-		if (p)
-			msg = static_cast<Message*>(p);
-	}
+	if (messageQueue_) {
+		if (xQueueReceive(messageQueue_, static_cast<void*>(&p), timeout) == pdTRUE) {
+			if (p)
+				msg = static_cast<Message*>(p);
+		}
+	} else
+		PANIC("[MessageHandler] Mailbox non cree");
 
 	return msg;
 }
@@ -69,39 +72,53 @@ Message* MessageHandler::getFromISR(void) {
 	BaseType_t xTaskWokenByReceive = pdFALSE;
 	Message* msg = nullptr;
 
-	if (xQueueReceiveFromISR(messageQueue_, static_cast<void*>(&p), &xTaskWokenByReceive) == pdTRUE) {
-		if( xTaskWokenByReceive != pdFALSE ) {
-			/* We should switch context so the ISR returns to a different task.
+	if (messageQueue_) {
+		if (xQueueReceiveFromISR(messageQueue_, static_cast<void*>(&p), &xTaskWokenByReceive) == pdTRUE) {
+			if( xTaskWokenByReceive != pdFALSE ) {
+				/* We should switch context so the ISR returns to a different task.
 		           NOTE: How this is done depends on the port you are using. Check
 		           the documentation and examples for your port. */
-			taskYIELD ();
-		}
+				taskYIELD ();
+			}
 
-		if (p)
-			msg = static_cast<Message*>(p);
-	}
+			if (p)
+				msg = static_cast<Message*>(p);
+		}
+	} else
+		PANIC("[MessageHandler] Mailbox non cree");
 
 	return msg;
 }
 
 // Send message
 bool MessageHandler::send(Message* msg, TickType_t timeout) {
-	return (xQueueSend(messageQueue_, static_cast<void*>(&msg), timeout) == pdPASS) ? true:false;
+	if (messageQueue_)
+		return (xQueueSend(messageQueue_, static_cast<void*>(&msg), timeout) == pdPASS) ? true:false;
+	else {
+		PANIC("[MessageHandler] Mailbox non cree");
+		return false;
+	}
 }
 
 // Send message
 bool MessageHandler::sendFromISR(Message* msg) {
 	BaseType_t xTaskWokenBySend = pdFALSE;
 
-	if (xQueueSendFromISR(messageQueue_, static_cast<void*>(&msg), &xTaskWokenBySend) == pdPASS) {
-		if( xTaskWokenBySend != pdFALSE ) {
-			/* We should switch context so the ISR returns to a different task.
+	if (messageQueue_) {
+		if (xQueueSendFromISR(messageQueue_, static_cast<void*>(&msg), &xTaskWokenBySend) == pdPASS) {
+			if( xTaskWokenBySend != pdFALSE ) {
+				/* We should switch context so the ISR returns to a different task.
 				           NOTE: How this is done depends on the port you are using. Check
 				           the documentation and examples for your port. */
-			taskYIELD ();
-		}
+				taskYIELD ();
+			}
 
-		return true;
-	} else
+			return true;
+		} else
+			return false;
+	} else {
+		PANIC("[MessageHandler] Mailbox non cree");
 		return false;
+	}
+
 }

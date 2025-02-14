@@ -12,37 +12,25 @@
 #include "semphr.h"
 
 // Constructeur
-Gpio::Gpio(const char* taskName, const char* queueName, MessageHandler &app_mailbox) : Sensor(queueName, app_mailbox) {
+Gpio::Gpio(const char* taskName) : Sensor() {
 	Debug::writeln("[Gpio] Creation de l'objet Gpio");
 
-	taskName_ = taskName;
-	//messageQueueName_ = queueName;
-
-	// Création de la tâche FreeRTOS, la fonction statique est utilisée comme point d'entrée
-	xTaskCreate(taskWrapper, taskName_, 256, this, tskIDLE_PRIORITY+1, &taskHandle_);
-	vTaskResume(taskHandle_);
-
-//	/* Creation de la message queue associée à l'objet */
-//	messageQueue_ = xQueueCreate((UBaseType_t) QUEUE_LENGTH, (UBaseType_t)ITEM_SIZE);
-//	if (messageQueue_ == NULL) {
-//		PANIC("[GPIO] Erreur de creation de la file");
-//	} else {
-//		messageQueueName_ = queueName;
-//		vQueueAddToRegistry(messageQueue_, messageQueueName_ );
-//	}
+	// Création de la tache associée à la méthode run()
+	if (!taskHandler_.create([&](void) { run(); },
+			taskName,
+			TASK_STACK_SIZE_STD,
+			TASK_PRIO_GPIO)) {
+		PANIC("[Gpio] Unable to create task run()");
+	}
 }
 
 // Destructeur
 Gpio::~Gpio() {
 	Debug::writeln("[Gpio] Destruction de l'objet Gpio");
-
-	// Retire les semaphores et taches
-	vTaskDelete(taskHandle_);
 }
 
 // Méthode de la classe appelée par la tâche taskWrapper
 void Gpio::run() {
-	//void* p;
 	Message *msg;
 	LogMessage *ans;
 	GpioMessage *gpioMsg;
@@ -52,31 +40,17 @@ void Gpio::run() {
 	Debug::writeln("[Gpio] Démarrage de la tache");
 
 	while (1) {
-		//		msg = mailbox_.get(1000); // attente sur message ou 1s
-		//
-		//		if (msg != nullptr ) {
-		//			/* Un message a été reçu */
-		//			Debug::writeln("[Gpio] Message reçu");
-		//
-		//			if (msg->getID()!=MESSAGE_SET_GPIO) {
-		//				Debug::writeln("[Gpio] Message n'est pas de type GpioMessage");
-		//			} else {
-		//				gpioMsg = static_cast<GpioMessage*>(msg);
-		//				GpioMessage::GPIOPins_TypeDef pins = gpioMsg->getPins();
-		//
-		//				Debug::write("Pins = %0xd, vals = %0xd\n", pins.pins, pins.vals);
-		//			}
-		//
-		//			delete(msg);
-		//		}
-
-		//vTaskDelay(pdMS_TO_TICKS(1000));
-
-		//if (xQueueReceive(messageQueue_, (void*)&msg, pdMS_TO_TICKS(1000)) == pdTRUE) {
-			//msg = static_cast<Message*>(p);
-
+		/*
+		 * Récupération des messages en provenance de l'application
+		 * On a joute un timeout de 1s pour éviter d'etre bloquant
+		 * et pouvoir, périodiquement, verifier qu'un signal en entrée a changé
+		 *
+		 * Si msg == nullptr -> sortie du au timeout
+		 * Sinon, sortie du à la reception d'un message
+		 */
 		msg = mailbox_.get(1000);
-		if (msg) {
+
+		if (msg) { // on arrive ici car on a reçu un message venant de l'application
 			gpioMsg = static_cast<GpioMessage*>(msg);
 			ans=new LogMessage();
 
@@ -92,6 +66,7 @@ void Gpio::run() {
 
 			delete (msg);
 		}
+
 		// Dans tout les cas, on scrute l'etat des ports en entrée
 		// (soit toutes les 100ms si aucun message n'est reçu, sinon lorsqu'un message est reçu)
 
@@ -100,16 +75,15 @@ void Gpio::run() {
 	}
 }
 
-// Wrapper statique pour appeler la méthode membre
-void Gpio::taskWrapper(void* parameter) {
-	Gpio* instance = static_cast<Gpio*>(parameter);
-	if (instance) {
-		instance->run();
-	}
-
-	vTaskDelete(nullptr);  // Supprime la tâche si jamais la méthode run() retourne
-}
-
+//// Wrapper statique pour appeler la méthode membre
+//void Gpio::taskWrapper(void* parameter) {
+//	Gpio* instance = static_cast<Gpio*>(parameter);
+//	if (instance) {
+//		instance->run();
+//	}
+//
+//	vTaskDelete(nullptr);  // Supprime la tâche si jamais la méthode run() retourne
+//}
 
 /***
  * GpioMessage
