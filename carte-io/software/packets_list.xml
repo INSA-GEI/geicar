@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data>
+  <loop>false</loop>
+  <repeat_times>1</repeat_times>
+  <repeat_period>500</repeat_period>
+  <packets_list>
+    <packet name="Message log (ABCD)">
+      <payload>7F000602414243446F</payload>
+    </packet>
+    <packet name="Mauvais Checksum">
+      <payload>7F0006024142434400</payload>
+    </packet>
+    <packet name="Mauvais Type">
+      <payload>7F0006C34142434400</payload>
+    </packet>
+    <packet name="Mauvaise longueur (trop court)">
+      <payload>7F0001</payload>
+    </packet>
+    <packet name="Mauvaise longueur (trop long">
+      <payload>7F0601024142434400</payload>
+    </packet>
+    <packet name="Mauvais header">
+      <payload>FA0001</payload>
+    </packet>
+    <packet name="GPIO Req">
+      <payload>7F000304C0BA</payload>
+    </packet>
+    <packet name="GPIO Set">
+      <payload>7F000403030275</payload>
+    </packet>
+  </packets_list>
+</data>

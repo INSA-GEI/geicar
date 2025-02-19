@@ -44,7 +44,8 @@ bool Sensor::postMessage(Message* msg) {
 	bool status = false;
 
 	/* Envoi d'un message vers le capteur */
-	status = mailbox_.send(msg);
+	if (msg)
+		status = mailbox_.send(msg);
 
 	return status;
 }
@@ -52,7 +53,8 @@ bool Sensor::postMessage(Message* msg) {
 bool Sensor::postMessageFromISR(Message* msg) {
 	bool status = false;
 
-	status = mailbox_.sendFromISR(msg);
+	if (msg)
+		status = mailbox_.sendFromISR(msg);
 
 	return status;
 }
@@ -78,7 +80,8 @@ bool Sensor::postMessageToApp(Message* msg) {
 	bool status = false;
 
 	/* Envoi d'un message vers le capteur */
-	status = appMailbox_->send(msg);
+	if (msg)
+		status = appMailbox_->send(msg);
 
 	return status;
 }
@@ -86,7 +89,8 @@ bool Sensor::postMessageToApp(Message* msg) {
 bool Sensor::postMessageToAppFromISR(Message* msg) {
 	bool status = false;
 
-	status = appMailbox_->sendFromISR(msg);
+	if (msg)
+		status = appMailbox_->sendFromISR(msg);
 
 	return status;
 }

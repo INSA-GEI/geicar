@@ -317,8 +317,11 @@ void UartDriver::onHWDeInitEvent(void) {
 	}
 }
 
-HAL_StatusTypeDef UartDriver::write(uint8_t *data, uint16_t size,
-		uint32_t timeout) {
+HAL_StatusTypeDef UartDriver::write(
+		const uint8_t *data,
+		uint16_t size,
+		uint32_t timeout,
+		bool deleteBuffer) {
 	HAL_StatusTypeDef status = HAL_ERROR;
 	TickType_t timeoutFreertos = portMAX_DELAY;
 
@@ -327,6 +330,10 @@ HAL_StatusTypeDef UartDriver::write(uint8_t *data, uint16_t size,
 			timeoutFreertos = pdMS_TO_TICKS(timeout);
 
 		if (xSemaphoreTake(txCompleteSemaphore_, timeoutFreertos) == pdTRUE) {
+			// Enregistrement de la demande de liberation mémoire en fin de transfert
+			deleteBufferAfterTX_ = deleteBuffer;
+			txBuffer_ = data;
+
 			if (txMode_ == MODE_IRQ)
 				status = HAL_UART_Transmit_IT(uartHandler_,
 						data, size);
@@ -371,7 +378,7 @@ HAL_StatusTypeDef UartDriver::read(uint8_t *data, uint16_t size,
 		writeIndex_ = 0;
 		readInProgress_ = true;
 
-		// demarrage du timer
+		// Démarrage du timer
 		assert_param(xTimerStart(periodicTimer_,0) == pdPASS);
 
 	} else { // rxMode == MODE_POLLING
@@ -417,6 +424,10 @@ bool UartDriver::proceedCircularDMA(uint32_t currentDMAIndex) {
  */
 void UartDriver::onTXEvent(UART_EventTypedef event) {
 	BaseType_t xHigherPriorityTaskWoken = pdFALSE;
+
+	// liberation mémoire du buffer TX si demandé lors de l'envoi
+	if ((deleteBufferAfterTX_) && (txBuffer_))
+		delete(txBuffer_);
 
 	/* Liberation du semaphore TX */
 	xSemaphoreGiveFromISR(txCompleteSemaphore_, &xHigherPriorityTaskWoken);

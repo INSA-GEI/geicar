@@ -41,16 +41,20 @@ private:
 	// Périphériques
 	Gpio *gpio_;
 
-	uint8_t cmdHeader_[3];
+	void probe(void);
+
+	bool parseFrameAndPost(RawFrameMessage *frame);
+	bool buildFrameAndSend(Message *msg);
+	uint8_t computeChecksum(uint8_t* buffer, uint16_t length);
 
 	void onTxCompleteCallback(void);
 	void onRxCompleteCallback(void);
 
-	// Méthode de la classe appelée par la tâche mainTask_
-	void mainTask(void);
+	// Méthode de la classe appelée par la tâche mailboxManagmentTask_
+	void mailboxManagment(void);
 
-	// Méthode appelée par la tache receiveCommandTask_
-	void receiveFrameTask(void);
+	// Méthode appelée par la tache commandsManagmentTask_
+	void commandsManagment(void);
 };
 
 #endif /* APP_H_ */

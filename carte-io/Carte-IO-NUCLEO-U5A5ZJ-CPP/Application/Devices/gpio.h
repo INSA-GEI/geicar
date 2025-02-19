@@ -16,19 +16,6 @@
 #include "messages.h"
 #include "taskhandler.h"
 
-class Gpio : public Sensor {
-public:
-	Gpio(const char* taskName);
-	~Gpio();
-
-private:
-	// Handler de la tâche
-	TaskHandler taskHandler_;
-
-	// Méthode de la classe appelée par la tâche
-	void run(void);
-};
-
 class GpioMessage : public Message {
 public:
 	typedef struct {
@@ -43,7 +30,7 @@ public:
 	GPIOPins_TypeDef getPins(void);
 
 	GpioMessage* copy();
-	std::string getString();
+	std::string toString();
 
 	/**
      * Comparison operator
@@ -78,6 +65,21 @@ protected:
      * @return true, if message ID is acceptable, false otherwise
      */
     bool checkID(MessageID id);
+};
+
+class Gpio : public Sensor {
+public:
+	Gpio(const char* taskName);
+	~Gpio();
+
+	static GpioMessage* fromFrame(Sensor::RawData_Typedef raw);
+	static Sensor::RawData_Typedef toFrame(GpioMessage* msg);
+private:
+	// Handler de la tâche
+	TaskHandler taskHandler_;
+
+	// Méthode de la classe appelée par la tâche
+	void run(void);
 };
 
 #endif /* GPIO_H_ */

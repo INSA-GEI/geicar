@@ -18,6 +18,9 @@ typedef enum {
 	MODE_POLLING = 0x00U, MODE_IRQ, MODE_DMA, MODE_CIRCULAR_DMA
 } UartDriver_ModeTypeDef;
 
+#define DELETE_BUFFER_AFTER_USE	true
+#define KEEP_BUFFER_AFTER_USE false
+
 class UartDriver {
 public:
 	// Constructeur prenant un handler standard HAL
@@ -41,30 +44,37 @@ public:
 		return configure(baudrate, tx_mode, rx_mode, nullptr, 0, 0); // <- timer_delay =0 car le timer ne sert QUE dans le cas du DMA circulaire
 	}
 
-	HAL_StatusTypeDef write(uint8_t *data, uint16_t size, uint32_t timeout);
-	HAL_StatusTypeDef write(uint8_t *data, uint16_t size) {
-		return write(data, size, (uint32_t) portMAX_DELAY);
+	HAL_StatusTypeDef write(const uint8_t *data, uint16_t size, uint32_t timeout, bool deleteBuffer);
+	HAL_StatusTypeDef write(const uint8_t *data, uint16_t size) {
+		return write(data, size, static_cast<uint32_t>(portMAX_DELAY), false);
+	};
+
+	HAL_StatusTypeDef write(const uint8_t *data, uint16_t size, bool deleteBuffer) {
+		return write(data, size, static_cast<uint32_t>(portMAX_DELAY), deleteBuffer);
 	};
 
 	HAL_StatusTypeDef write(const char *data, uint16_t size) {
-		return write((uint8_t*) data, size);
+		return write(reinterpret_cast<const uint8_t*>(data), size);
 	}
 
-	HAL_StatusTypeDef write(const char *data, uint16_t size, uint32_t timeout) {
-		return write((uint8_t*) data, size, timeout);
+	HAL_StatusTypeDef write(const char *data, uint16_t size, bool deleteBuffer) {
+		return write(reinterpret_cast<const uint8_t*>(data), size, deleteBuffer);
+	}
+	HAL_StatusTypeDef write(const char *data, uint16_t size, uint32_t timeout, bool deleteBuffer) {
+		return write(reinterpret_cast<const uint8_t*>(data), size, timeout, deleteBuffer);
 	}
 
 	HAL_StatusTypeDef read(uint8_t *data, uint16_t size, uint32_t timeout);
 	HAL_StatusTypeDef read(uint8_t *data, uint16_t size) {
-		return read(data, size, (uint32_t) portMAX_DELAY);
+		return read(data, size, static_cast<uint32_t>(portMAX_DELAY));
 	}
 
-	HAL_StatusTypeDef read(const char *data, uint16_t size) {
-		return read((uint8_t*) data, size);
+	HAL_StatusTypeDef read(char *data, uint16_t size) {
+		return read(reinterpret_cast<uint8_t*>(data), size);
 	}
 
-	HAL_StatusTypeDef read(const char *data, uint16_t size, uint32_t timeout) {
-		return read((uint8_t*) data, size, timeout);
+	HAL_StatusTypeDef read(char *data, uint16_t size, uint32_t timeout) {
+		return read(reinterpret_cast<uint8_t*>(data), size, timeout);
 	}
 
 private:
@@ -86,6 +96,9 @@ private:
 	UartDriver_ModeTypeDef rxMode_ = MODE_POLLING;
 
 	uint32_t timerDelay_ = 100;
+
+	bool deleteBufferAfterTX_;
+	const uint8_t* txBuffer_;
 
 	SemaphoreHandle_t txCompleteSemaphore_ = nullptr;
 	SemaphoreHandle_t rxCompleteSemaphore_ = nullptr;

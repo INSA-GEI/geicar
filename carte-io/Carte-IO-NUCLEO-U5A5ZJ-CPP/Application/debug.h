@@ -34,6 +34,7 @@ public:
 	static void write(const char* fmt, ...);
 
 	static void panic(const char* file, uint32_t line, const char* msg);
+	static void resetDeltaMallocFree(void);
 private:
 	TaskHandler periodicReportTaskHandler_;
 	void periodicReportTask_(void);

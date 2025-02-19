@@ -30,6 +30,9 @@
 		// Generic messages
 		MESSAGE_EMPTY = 0,
 
+		// Message Raw Frame
+		MESSAGE_RAW_FRAME,
+
 		// Basic log messaging (LogMessage)
 		MESSAGE_LOG,
 
@@ -38,7 +41,6 @@
 		MESSAGE_GET_GPIO_REQ,
 		MESSAGE_GET_GPIO_ANS
 	} MessageID;
-
 
 /**
  * Base class for messaging
@@ -140,6 +142,88 @@ protected:
 	virtual bool checkID(MessageID id);
 };
 
+/**
+ * Classe RawFrameMessage
+ * Utilisée lors de la reception ou l'envoi de messages vers la raspberry
+ */
+
+class RawFrameMessage : public Message {
+public:
+	RawFrameMessage() : Message() {
+		messageID_ = MESSAGE_RAW_FRAME;
+		data_ = nullptr;
+		length_= 0;
+	}
+
+	RawFrameMessage(uint8_t* data, uint16_t length): Message() {
+		messageID_ = MESSAGE_RAW_FRAME;
+		data_ = data;
+		length_= length;
+	}
+
+	~RawFrameMessage() {
+		delete(data_);
+	}
+
+	void setData (uint8_t* data, uint16_t length) {
+		data_ = data;
+		length_ = length;
+	}
+
+	uint16_t getLength(void) { return length_; }
+	uint8_t* getData(void) { return data_; }
+
+	RawFrameMessage* copy() { return new RawFrameMessage(data_, length_); }
+	std::string toString() { return "RawFrameMessage"; }
+
+	/**
+	 * Comparison operator
+	 * @param msg Message to be compared
+	 * @return true if message are equal, false otherwise
+	 */
+	bool operator==(const RawFrameMessage& msg) {
+		return ((messageID_ == msg.messageID_) &&
+				(length_ == msg.length_) &&
+				(data_ == msg.data_));
+	}
+
+	/**
+	 * Difference operator
+	 * @param msg Message to be compared
+	 * @return true if message are different, false otherwise
+	 */
+	bool operator!=(const RawFrameMessage& msg) {
+		return !((messageID_ == msg.messageID_) &&
+				(length_ == msg.length_) &&
+				(data_ == msg.data_));
+	}
+protected:
+	/**
+	 * Message length
+	 */
+	uint16_t length_;
+
+	/**
+	 * Message data
+	 */
+	uint8_t* data_;
+
+	/**
+	 * Verify if message ID is compatible with current message type
+	 * @param id Message ID
+	 * @return true, if message ID is acceptable, false otherwise
+	 */
+	bool checkID(MessageID id) {
+		return ((id==MESSAGE_SET_GPIO) ||
+				(id==MESSAGE_GET_GPIO_ANS) ||
+				(id==MESSAGE_GET_GPIO_REQ)) ? true:false;
+	}
+};
+
+/**
+ * Classe LogMessage
+ * Utilisée pour tracer (log) des informations vers la raspberry
+ */
 
 class LogMessage : public Message {
 public:

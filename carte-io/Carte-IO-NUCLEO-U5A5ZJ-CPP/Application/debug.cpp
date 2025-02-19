@@ -19,18 +19,19 @@
 #define ITM_STIMULUS_PORT_PRINTF 			0
 #define ITM_STIMULUS_PORT_PERIODIC_DEBUG 	1
 
-extern uint32_t Counter_Malloc;
-extern uint32_t Counter_Free;
+extern int deltaMallocFree;
+char str_[100];
+char buffer_[512];
 
 Debug::Debug() {
 #ifdef DEBUG
 	// Création de la tache associée à la méthode run()
-		if (!periodicReportTaskHandler_.create([&](void) { periodicReportTask_(); },
-				"DEBUG",
-				TASK_STACK_SIZE_STD,
-				TASK_PRIO_PERIODIC_DEBUG)) {
-			PANIC("[DEBUG] Unable to create task periodicReportTask_()");
-		}
+	if (!periodicReportTaskHandler_.create([&](void) { periodicReportTask_(); },
+			"DEBUG",
+			TASK_STACK_SIZE_DEBUG + configMINIMAL_STACK_SIZE,
+			TASK_PRIO_PERIODIC_DEBUG)) {
+		PANIC("[DEBUG] Unable to create task periodicReportTask_()");
+	}
 #endif // DEBUG
 }
 
@@ -73,27 +74,25 @@ void Debug::write_(uint8_t port, const char *str) {
 
 void Debug::write(uint8_t port, const char* fmt, ...) {
 #ifdef DEBUG
-	char str[100];
-
 	va_list args;             // Déclare une liste d'arguments
 	va_start(args, fmt);   // Initialise la liste avec le dernier argument fixe
-	vsnprintf(str, 100, fmt, args);    // Appelle vsnprintf avec la liste d'arguments
+	vsnprintf(str_, 100, fmt, args);    // Appelle vsnprintf avec la liste d'arguments
 	va_end(args);             // Libère les ressources associées à va_list
 
-	write_(port,(const char*)str);
+	write_(port,(const char*)str_);
 #endif //DEBUG
 }
 
 void Debug::write(const char* fmt, ...) {
 #ifdef DEBUG
-	char str[100];
+	//char str[100];
 
 	va_list args;             // Déclare une liste d'arguments
 	va_start(args, fmt);   // Initialise la liste avec le dernier argument fixe
-	vsnprintf(str, 100, fmt, args);    // Appelle vsnprintf avec la liste d'arguments
+	vsnprintf(str_, 100, fmt, args);    // Appelle vsnprintf avec la liste d'arguments
 	va_end(args);             // Libère les ressources associées à va_list
 
-	write_(DEBUG_DEFAULT_PORT,(const char*)str);
+	write_(DEBUG_DEFAULT_PORT,(const char*)str_);
 #endif //DEBUG
 }
 
@@ -103,18 +102,22 @@ void Debug::panic(const char* file, uint32_t line, const char* msg) {
 	write("%s\n", msg);
 }
 
+void Debug::resetDeltaMallocFree() {
+	deltaMallocFree=0;
+}
+
 void Debug::periodicReportTask_(void) {
 #ifdef DEBUG
-	char buffer[512];
+	//char buffer[512]={0};
 
 	while (1) {
 		vTaskDelay(pdMS_TO_TICKS(1000)); // Wait 1s
-		vTaskList(buffer); // Collecte les stats
-
+		vTaskList(buffer_); // Collecte les stats
+		//
 		writeln(ITM_STIMULUS_PORT_PERIODIC_DEBUG,"==========================================\nTask\tState\tPrio\tStack\tNum");
-		writeln(ITM_STIMULUS_PORT_PERIODIC_DEBUG,buffer);
-		snprintf(buffer, 512, "malloc/new = %lu\nfree/delete = %lu\n",Counter_Malloc, Counter_Free);
-		writeln(ITM_STIMULUS_PORT_PERIODIC_DEBUG, buffer);
+		writeln(ITM_STIMULUS_PORT_PERIODIC_DEBUG,buffer_);
+		snprintf(buffer_, 512, "Delta malloc/free = %d\n",deltaMallocFree);
+		writeln(ITM_STIMULUS_PORT_PERIODIC_DEBUG, buffer_);
 	}
 #endif //DEBUG
 }

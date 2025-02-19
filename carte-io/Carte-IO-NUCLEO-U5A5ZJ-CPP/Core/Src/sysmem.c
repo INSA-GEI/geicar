@@ -81,8 +81,7 @@ void *_sbrk(ptrdiff_t incr)
   return (void *)prev_heap_end;
 }
 
-uint32_t Counter_Malloc=0;
-uint32_t Counter_Free=0;
+int deltaMallocFree=0;
 
 /**
  * @brief malloc() allocates memory on the heap and provide a pointer to this newly allocated area
@@ -99,9 +98,9 @@ void* malloc(size_t size) {
 	if(size > 0) {
 		// We simply wrap the FreeRTOS call into a standard form
 		ptr = pvPortMalloc(size);
-		Counter_Malloc++;
+		deltaMallocFree++;
 
-		if (ptr==NULL) { /* plus assez de memoire dynamique*/
+		if (ptr==NULL) { /* plus assez de mémoire dynamique*/
 			while(1);
 		}
 	} // else NULL if there was an error
@@ -124,7 +123,7 @@ void free(void* ptr) {
 		if ((ptr>=(void*)ucHeap) && (ptr<=(void*)ucHeap+configTOTAL_HEAP_SIZE)) {
 			// We simply wrap the FreeRTOS call into a standard form
 			vPortFree(ptr);
-			Counter_Free++;
+			deltaMallocFree--;
 		}
 	}
 }

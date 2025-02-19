@@ -13,6 +13,11 @@
 
 class Sensor {
 public:
+	typedef struct {
+		uint16_t length;
+		uint8_t* data;
+	} RawData_Typedef;
+
 	Sensor() {}
 	virtual ~Sensor() {}
 
@@ -30,6 +35,9 @@ public:
 	virtual bool postMessageFromISR(Message* msg);
 
 	static bool probe(void* handler) {return false;}
+	static Message* fromFrame(Sensor::RawData_Typedef raw) { return new Message();}
+	static Sensor::RawData_Typedef toFrame(Message* msg) {return {0, nullptr};}
+
 protected:
 	MessageHandler mailbox_; // Objet mailbox
 	MessageHandler* appMailbox_ = nullptr;
