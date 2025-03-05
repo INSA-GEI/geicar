@@ -73,6 +73,7 @@ extern "C" {
 /*#define HAL_RTC_MODULE_ENABLED */
 /*#define HAL_SAI_MODULE_ENABLED */
 /*#define HAL_SD_MODULE_ENABLED */
+/*#define HAL_SDIO_MODULE_ENABLED */
 /*#define HAL_SMARTCARD_MODULE_ENABLED */
 /*#define HAL_SMBUS_MODULE_ENABLED */
 /*#define HAL_SPI_MODULE_ENABLED */
@@ -192,7 +193,7 @@ vary depending on the variations in voltage and temperature.*/
   *        for possible callback identifiers defined in HAL_PPP_CallbackIDTypeDef
   *        for each PPP peripheral).
   */
-#define  USE_HAL_ADC_REGISTER_CALLBACKS        0U /* ADC register callback disabled       */
+#define  USE_HAL_ADC_REGISTER_CALLBACKS        1U /* ADC register callback enabled       */
 #define  USE_HAL_COMP_REGISTER_CALLBACKS       0U /* COMP register callback disabled      */
 #define  USE_HAL_CORDIC_REGISTER_CALLBACKS     0U /* CORDIC register callback disabled    */
 #define  USE_HAL_CRYP_REGISTER_CALLBACKS       0U /* CRYP register callback disabled      */
@@ -200,18 +201,18 @@ vary depending on the variations in voltage and temperature.*/
 #define  USE_HAL_DCMI_REGISTER_CALLBACKS       0U /* DCMI register callback disabled      */
 #define  USE_HAL_DMA2D_REGISTER_CALLBACKS      0U /* DMA2D register callback disabled     */
 #define  USE_HAL_DSI_REGISTER_CALLBACKS        0U /* DSI register callback disabled       */
-#define  USE_HAL_FDCAN_REGISTER_CALLBACKS      0U /* FDCAN register callback disabled     */
+#define  USE_HAL_FDCAN_REGISTER_CALLBACKS      1U /* FDCAN register callback enabled     */
 #define  USE_HAL_FMAC_REGISTER_CALLBACKS       0U /* FMAC register callback disabled      */
 #define  USE_HAL_HASH_REGISTER_CALLBACKS       0U /* HASH register callback disabled      */
 #define  USE_HAL_HCD_REGISTER_CALLBACKS        0U /* HCD register callback disabled       */
 #define  USE_HAL_GFXMMU_REGISTER_CALLBACKS     0U /* GFXMMU register callback disabled    */
 #define  USE_HAL_GFXTIM_REGISTER_CALLBACKS     0U /* GFXTIM register callback disabled    */
 #define  USE_HAL_GPU2D_REGISTER_CALLBACKS      0U /* GPU2D register callback disabled     */
-#define  USE_HAL_I2C_REGISTER_CALLBACKS        0U /* I2C register callback disabled       */
+#define  USE_HAL_I2C_REGISTER_CALLBACKS        1U /* I2C register callback enabled       */
 #define  USE_HAL_IWDG_REGISTER_CALLBACKS       0U /* IWDG register callback disabled      */
 #define  USE_HAL_IRDA_REGISTER_CALLBACKS       0U /* IRDA register callback disabled      */
 #define  USE_HAL_JPEG_REGISTER_CALLBACKS       0U /* JPEG register callback disabled      */
-#define  USE_HAL_LPTIM_REGISTER_CALLBACKS      0U /* LPTIM register callback disabled     */
+#define  USE_HAL_LPTIM_REGISTER_CALLBACKS      1U /* LPTIM register callback enabled     */
 #define  USE_HAL_LTDC_REGISTER_CALLBACKS       0U /* LTDC register callback disabled      */
 #define  USE_HAL_MDF_REGISTER_CALLBACKS        0U /* MDF register callback disabled       */
 #define  USE_HAL_MMC_REGISTER_CALLBACKS        0U /* MMC register callback disabled       */
@@ -226,12 +227,13 @@ vary depending on the variations in voltage and temperature.*/
 #define  USE_HAL_RTC_REGISTER_CALLBACKS        0U /* RTC register callback disabled       */
 #define  USE_HAL_SAI_REGISTER_CALLBACKS        0U /* SAI register callback disabled       */
 #define  USE_HAL_SD_REGISTER_CALLBACKS         0U /* SD register callback disabled        */
+#define  USE_HAL_SDIO_REGISTER_CALLBACKS       0U /* SDIO register callback disabled      */
 #define  USE_HAL_SDRAM_REGISTER_CALLBACKS      0U /* SDRAM register callback disabled     */
 #define  USE_HAL_SMARTCARD_REGISTER_CALLBACKS  0U /* SMARTCARD register callback disabled */
 #define  USE_HAL_SMBUS_REGISTER_CALLBACKS      0U /* SMBUS register callback disabled     */
-#define  USE_HAL_SPI_REGISTER_CALLBACKS        0U /* SPI register callback disabled       */
+#define  USE_HAL_SPI_REGISTER_CALLBACKS        1U /* SPI register callback enabled       */
 #define  USE_HAL_SRAM_REGISTER_CALLBACKS       0U /* SRAM register callback disabled      */
-#define  USE_HAL_TIM_REGISTER_CALLBACKS        0U /* TIM register callback disabled       */
+#define  USE_HAL_TIM_REGISTER_CALLBACKS        1U /* TIM register callback enabled       */
 #define  USE_HAL_TSC_REGISTER_CALLBACKS        0U /* TSC register callback disabled       */
 #define  USE_HAL_UART_REGISTER_CALLBACKS       1U /* UART register callback enabled      */
 #define  USE_HAL_USART_REGISTER_CALLBACKS      1U /* USART register callback enabled     */
@@ -248,6 +250,10 @@ vary depending on the variations in voltage and temperature.*/
 /* ################## SDMMC peripheral configuration ######################### */
 
 #define USE_SD_TRANSCEIVER            0U
+
+/* ################## SDIO peripheral configuration ########################## */
+#define USE_SDIO_TRANSCEIVER          0U
+#define SDIO_MAX_IO_NUMBER            7U
 
 /* Includes ------------------------------------------------------------------*/
 /**
@@ -385,6 +391,10 @@ vary depending on the variations in voltage and temperature.*/
 #ifdef HAL_SD_MODULE_ENABLED
 #include "stm32u5xx_hal_sd.h"
 #endif /* HAL_SD_MODULE_ENABLED */
+
+#ifdef HAL_SDIO_MODULE_ENABLED
+#include "stm32u5xx_hal_sdio.h"
+#endif /* HAL_SDIO_MODULE_ENABLED */
 
 #ifdef HAL_SMBUS_MODULE_ENABLED
 #include "stm32u5xx_hal_smbus.h"

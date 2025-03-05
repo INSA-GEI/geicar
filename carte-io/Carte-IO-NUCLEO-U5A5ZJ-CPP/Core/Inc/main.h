@@ -30,6 +30,18 @@ extern "C" {
 #include "stm32u5xx_hal.h"
 #include "stm32u5xx_nucleo.h"
 
+#include "stm32u5xx_ll_tim.h"
+#include "stm32u5xx_ll_bus.h"
+#include "stm32u5xx_ll_cortex.h"
+#include "stm32u5xx_ll_rcc.h"
+#include "stm32u5xx_ll_system.h"
+#include "stm32u5xx_ll_utils.h"
+#include "stm32u5xx_ll_pwr.h"
+#include "stm32u5xx_ll_gpio.h"
+#include "stm32u5xx_ll_dma.h"
+
+#include "stm32u5xx_ll_exti.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -50,11 +62,16 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
-void MX_GPIO_Init(void);
+void MX_GPDMA1_Init(void);
 void MX_USART1_UART_Init(void);
 void MX_I2C1_Init(void);
+void MX_I2C2_Init(void);
+void MX_I2C3_Init(void);
+void MX_TIM4_Init(void);
 
 /* USER CODE BEGIN EFP */
 

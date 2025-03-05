@@ -19,10 +19,15 @@
 #define SOF 0x7F                  // Start of Frame
 #define HEADER_SIZE 3             // Taille de [SOF][Length][Type]
 
+#define BUFFER_COM_RASPBERRY_LENGTH	256
+uint8_t bufferComRaspberry[BUFFER_COM_RASPBERRY_LENGTH];
+
 /**
  * Liste des handlers de périphériques pre-configurés
  */
 extern UART_HandleTypeDef huart1;
+
+UartDriver *uart1obj;
 
 App::App() {
 	Debug::writeln("[App] Creation de l'objet App");
@@ -53,8 +58,13 @@ App::App() {
 	huart1.Instance = USART1;
 
 	comRaspberry_ = new UartDriver(&huart1);
-	comRaspberry_->configure(115200, MODE_IRQ, MODE_IRQ); // TX et RX en IT
+	uart1obj = comRaspberry_;
 
+	//comRaspberry_->configure(115200, MODE_DMA, MODE_CIRCULAR_DMA); // TX et RX en DMA et DMA circulaire
+	comRaspberry_->configure(115200,
+			MODE_DMA, MODE_CIRCULAR_DMA,
+			bufferComRaspberry, BUFFER_COM_RASPBERRY_LENGTH,
+			10); // TX et RX en DMA et DMA circulaire, buffer circulaire de 256 octets, timer à 10ms
 	// Initialisation de la tâche périodique de debug (rapport)
 	debug = new Debug();
 }
@@ -185,6 +195,8 @@ void App::mailboxManagment(void) {
 				break;
 			}
 			case MESSAGE_GET_GPIO_ANS:
+				Debug::writeln("Envoi d'une frame GPIO_ANS");
+
 				if (buildFrameAndSend(msg)!=true)
 					Debug::writeln("Echec envoi d'une frame");
 				// Attention : un buffer est alloué dans buildFrameAndSend. Comment le libérer proprement ?

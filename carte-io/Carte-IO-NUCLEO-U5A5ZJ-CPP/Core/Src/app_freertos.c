@@ -45,13 +45,13 @@
 extern TIM_HandleTypeDef htim6;
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
-//osThreadId_t defaultTaskHandle;
-/*const osThreadAttr_t defaultTask_attributes = {
+osThreadId_t defaultTaskHandle;
+const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
   .priority = (osPriority_t) osPriorityNormal,
   .stack_size = 128 * 4
 };
-*/
+
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 
@@ -106,7 +106,7 @@ void MX_FREERTOS_Init(void) {
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
   /* creation of defaultTask */
-  //defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */

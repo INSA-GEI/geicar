@@ -100,6 +100,8 @@ void Debug::panic(const char* file, uint32_t line, const char* msg) {
 	writeln("!!! PANIC - SYSTEM HALTED !!!");
 	write("File: %s, line: %lu\n", file, line);
 	write("%s\n", msg);
+
+	while(1);
 }
 
 void Debug::resetDeltaMallocFree() {

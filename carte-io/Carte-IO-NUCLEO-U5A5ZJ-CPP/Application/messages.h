@@ -18,6 +18,8 @@
 #ifndef __MESSAGES_H__
 #define __MESSAGES_H__
 
+#include "stm32u5xx_hal.h"
+
 #include "iostream"
 
 /**
@@ -115,7 +117,7 @@ public:
 	 * @param msg Message to be compared
 	 * @return true if message are equal, false otherwise
 	 */
-	virtual bool operator==(const Message& msg) {
+	bool operator==(const Message& msg) {
 		return (messageID_ == msg.messageID_);
 	}
 
@@ -124,7 +126,7 @@ public:
 	 * @param msg Message to be compared
 	 * @return true if message are different, false otherwise
 	 */
-	virtual bool operator!=(const Message& msg) {
+	bool operator!=(const Message& msg) {
 		return !(messageID_ == msg.messageID_);
 	}
 

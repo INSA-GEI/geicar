@@ -8,6 +8,7 @@
 #include <Drivers/uartdriver.h>
 
 #include "debug.h"
+#include <cstring>
 
 // Constructeur
 UartDriver::UartDriver(UART_HandleTypeDef* huart): uartHandler_(huart) {
@@ -76,13 +77,16 @@ HAL_StatusTypeDef UartDriver::configure(uint32_t baudrate,
 	if (rx_mode == MODE_CIRCULAR_DMA) {
 		assert_param(circular_buffer != nullptr);
 		assert_param(circular_buffer_size != 0);
+
+		circularBuffer_ = circular_buffer;
+		circularBufferSize_ = circular_buffer_size;
+		dmaReadIndex_ = 0;
+		timerDelay_ = timer_delay;
+		readInProgress_ = false;
 	}
 
 	txMode_ = tx_mode;
 	rxMode_ = rx_mode;
-	circularBuffer_ = circular_buffer;
-	circularBufferSize_ = circular_buffer_size;
-	timerDelay_ = timer_delay;
 
 	/*
 	 * /!\ Attention : Le callback HAL_UART_MSPINIT_CB_ID et HAL_UART_MSPDEINIT_CB_ID sont
@@ -159,19 +163,20 @@ HAL_StatusTypeDef UartDriver::configure(uint32_t baudrate,
 			HAL_UART_MSPDEINIT_CB_ID, hwDeInit);
 
 	if (rxMode_ == MODE_CIRCULAR_DMA) {
-		dmaReadIndex_ =0;
-		readInProgress_ = false;
-	}
+		if (timerDelay_ != 0) {
+			periodicTimer_ = xTimerCreate("UART_Timer",           // Nom du timer
+					pdMS_TO_TICKS(timer_delay),    // Période en ticks ( ex 500 ms)
+					pdTRUE,       // Auto-reload (pdTRUE = répète, pdFALSE = unique)
+					(void*) this,             // ID du timer (facultatif)
+					UartTimerCallback      // Fonction callback
+			);
 
-	if (timerDelay_ != 0) {
-		periodicTimer_ = xTimerCreate("UART_Timer",           // Nom du timer
-				pdMS_TO_TICKS(timer_delay),    // Période en ticks ( ex 500 ms)
-				pdTRUE,       // Auto-reload (pdTRUE = répète, pdFALSE = unique)
-				(void*) this,             // ID du timer (facultatif)
-				UartTimerCallback      // Fonction callback
-		);
+			//vQueueAddToRegistry(periodicTimer_,"Timer");
+		}
 
-		//vQueueAddToRegistry(periodicTimer_,"Timer");
+		// Demarrage de la DMA circulaire
+		if (HAL_UARTEx_ReceiveToIdle_DMA(uartHandler_, circularBuffer_, circular_buffer_size) != HAL_OK)
+			PANIC("Impossible de lancer la DMA circulaire");
 	}
 
 	return HAL_OK;
@@ -180,6 +185,7 @@ HAL_StatusTypeDef UartDriver::configure(uint32_t baudrate,
 void UartDriver::onHWInitEvent(void) {
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 	RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+	DMA_NodeConfTypeDef NodeConfig;
 
 	if(uartHandler_->Instance==USART1)
 	{
@@ -208,10 +214,6 @@ void UartDriver::onHWInitEvent(void) {
 		GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 		GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
 		HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-		/* USART1 interrupt Init */
-		HAL_NVIC_SetPriority(USART1_IRQn, 6, 0);
-		HAL_NVIC_EnableIRQ(USART1_IRQn);
 	}
 
 	if (txMode_ == MODE_DMA) {
@@ -220,35 +222,38 @@ void UartDriver::onHWInitEvent(void) {
 			__HAL_RCC_GPDMA1_CLK_ENABLE();
 
 			/* GPDMA1 interrupt Init */
-			HAL_NVIC_SetPriority(GPDMA1_Channel0_IRQn, 0, 0);
-			HAL_NVIC_EnableIRQ(GPDMA1_Channel0_IRQn);
+			HAL_NVIC_SetPriority(GPDMA1_Channel1_IRQn, 2, 0);
+			HAL_NVIC_EnableIRQ(GPDMA1_Channel1_IRQn);
 
 			/* USER CODE BEGIN GPDMA1_Init 1 */
 
-			/* USER CODE END GPDMA1_Init 1 */
-			handle_GPDMA1_Channel_TX_.Instance = GPDMA1_Channel0;
-			handle_GPDMA1_Channel_TX_.InitLinkedList.Priority =
-					DMA_LOW_PRIORITY_HIGH_WEIGHT;
-			handle_GPDMA1_Channel_TX_.InitLinkedList.LinkStepMode =
-					DMA_LSM_FULL_EXECUTION;
-			handle_GPDMA1_Channel_TX_.InitLinkedList.LinkAllocatedPort =
-					DMA_LINK_ALLOCATED_PORT0;
-			handle_GPDMA1_Channel_TX_.InitLinkedList.TransferEventMode =
-					DMA_TCEM_LAST_LL_ITEM_TRANSFER;
-			handle_GPDMA1_Channel_TX_.InitLinkedList.LinkedListMode =
-					DMA_LINKEDLIST_NORMAL;
-			if (HAL_DMAEx_List_Init(&handle_GPDMA1_Channel_TX_) != HAL_OK)
-				PANIC("DMA chained list error (UART1)");
+			/* USART1 DMA Init */
+			/* GPDMA1_REQUEST_USART1_TX Init */
+			handle_GPDMA1_Channel_TX_.Instance = GPDMA1_Channel1;
+			handle_GPDMA1_Channel_TX_.Init.Request = GPDMA1_REQUEST_USART1_TX;
+			handle_GPDMA1_Channel_TX_.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+			handle_GPDMA1_Channel_TX_.Init.Direction = DMA_MEMORY_TO_PERIPH;
+			handle_GPDMA1_Channel_TX_.Init.SrcInc = DMA_SINC_INCREMENTED;
+			handle_GPDMA1_Channel_TX_.Init.DestInc = DMA_DINC_FIXED;
+			handle_GPDMA1_Channel_TX_.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+			handle_GPDMA1_Channel_TX_.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+			handle_GPDMA1_Channel_TX_.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+			handle_GPDMA1_Channel_TX_.Init.SrcBurstLength = 1;
+			handle_GPDMA1_Channel_TX_.Init.DestBurstLength = 1;
+			handle_GPDMA1_Channel_TX_.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+			handle_GPDMA1_Channel_TX_.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+			handle_GPDMA1_Channel_TX_.Init.Mode = DMA_NORMAL;
+			if (HAL_DMA_Init(&handle_GPDMA1_Channel_TX_) != HAL_OK)
+			{
+				PANIC("DMA init error (UART1)");
+			}
 
-			if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel_TX_,
-					DMA_CHANNEL_NPRIV) != HAL_OK)
+			__HAL_LINKDMA(uartHandler_, hdmatx, handle_GPDMA1_Channel_TX_);
+
+			if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel_TX_, DMA_CHANNEL_NPRIV) != HAL_OK)
+			{
 				PANIC("DMA configuration error (UART1)");
-		}
-	} else if (txMode_ == MODE_IRQ) {
-		if (uartHandler_->Instance == USART1) {
-			/* UART1 interrupt Init */
-			HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
-			HAL_NVIC_EnableIRQ(USART1_IRQn);
+			}
 		}
 	}
 
@@ -258,35 +263,72 @@ void UartDriver::onHWInitEvent(void) {
 			__HAL_RCC_GPDMA1_CLK_ENABLE();
 
 			/* GPDMA1 interrupt Init */
-			HAL_NVIC_SetPriority(GPDMA1_Channel1_IRQn, 0, 0);
-			HAL_NVIC_EnableIRQ(GPDMA1_Channel1_IRQn);
+			HAL_NVIC_SetPriority(GPDMA1_Channel0_IRQn, 2, 0);
+			HAL_NVIC_EnableIRQ(GPDMA1_Channel0_IRQn);
 
 			/* USER CODE BEGIN GPDMA1_Init 1 */
 
-			/* USER CODE END GPDMA1_Init 1 */
-			handle_GPDMA1_Channel_RX_.Instance = GPDMA1_Channel1;
-			handle_GPDMA1_Channel_RX_.InitLinkedList.Priority =
-					DMA_LOW_PRIORITY_HIGH_WEIGHT;
-			handle_GPDMA1_Channel_RX_.InitLinkedList.LinkStepMode =
-					DMA_LSM_FULL_EXECUTION;
-			handle_GPDMA1_Channel_RX_.InitLinkedList.LinkAllocatedPort =
-					DMA_LINK_ALLOCATED_PORT0;
-			handle_GPDMA1_Channel_RX_.InitLinkedList.TransferEventMode =
-					DMA_TCEM_LAST_LL_ITEM_TRANSFER;
-			if (rxMode_ == MODE_CIRCULAR_DMA)
-				handle_GPDMA1_Channel_RX_.InitLinkedList.LinkedListMode =
-						DMA_LINKEDLIST_CIRCULAR;
-			else
-				handle_GPDMA1_Channel_RX_.InitLinkedList.LinkedListMode =
-						DMA_LINKEDLIST_NORMAL;
-			if (HAL_DMAEx_List_Init(&handle_GPDMA1_Channel_RX_) != HAL_OK)
-				PANIC("DMA chained list error (UART1)");
+			memset(&NodeConfig, 0, sizeof(NodeConfig));
+			memset(&List_GPDMA1_Channel_RX_, 0, sizeof(List_GPDMA1_Channel_RX_));
 
-			if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel_RX_,
-					DMA_CHANNEL_NPRIV) != HAL_OK)
+			/* GPDMA1_REQUEST_USART1_RX Init */
+			NodeConfig.NodeType = DMA_GPDMA_LINEAR_NODE;
+			NodeConfig.Init.Request = GPDMA1_REQUEST_USART1_RX;
+			NodeConfig.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+			NodeConfig.Init.Direction = DMA_PERIPH_TO_MEMORY;
+			NodeConfig.Init.SrcInc = DMA_SINC_FIXED;
+			NodeConfig.Init.DestInc = DMA_DINC_INCREMENTED;
+			NodeConfig.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+			NodeConfig.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+			NodeConfig.Init.SrcBurstLength = 1;
+			NodeConfig.Init.DestBurstLength = 1;
+			NodeConfig.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+			NodeConfig.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+			NodeConfig.Init.Mode = DMA_NORMAL;
+			NodeConfig.TriggerConfig.TriggerPolarity = DMA_TRIG_POLARITY_MASKED;
+			NodeConfig.DataHandlingConfig.DataExchange = DMA_EXCHANGE_NONE;
+			NodeConfig.DataHandlingConfig.DataAlignment = DMA_DATA_RIGHTALIGN_ZEROPADDED;
+			if (HAL_DMAEx_List_BuildNode(&NodeConfig, &Node_GPDMA1_Channel_RX_) != HAL_OK)
+			{
+				PANIC("DMA node init error (UART1)");
+			}
+
+			if (HAL_DMAEx_List_InsertNode(&List_GPDMA1_Channel_RX_, NULL, &Node_GPDMA1_Channel_RX_) != HAL_OK)
+			{
+				PANIC("DMA node insert error (UART1)");
+			}
+
+			if (HAL_DMAEx_List_SetCircularMode(&List_GPDMA1_Channel_RX_) != HAL_OK)
+			{
+				PANIC("DMA list setcircularmode error (UART1)");
+			}
+
+			handle_GPDMA1_Channel_RX_.Instance = GPDMA1_Channel0;
+			handle_GPDMA1_Channel_RX_.InitLinkedList.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+			handle_GPDMA1_Channel_RX_.InitLinkedList.LinkStepMode = DMA_LSM_FULL_EXECUTION;
+			handle_GPDMA1_Channel_RX_.InitLinkedList.LinkAllocatedPort = DMA_LINK_ALLOCATED_PORT0;
+			handle_GPDMA1_Channel_RX_.InitLinkedList.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+			handle_GPDMA1_Channel_RX_.InitLinkedList.LinkedListMode = DMA_LINKEDLIST_CIRCULAR;
+			if (HAL_DMAEx_List_Init(&handle_GPDMA1_Channel_RX_) != HAL_OK)
+			{
+				PANIC("DMA list init error (UART1)");
+			}
+
+			if (HAL_DMAEx_List_LinkQ(&handle_GPDMA1_Channel_RX_, &List_GPDMA1_Channel_RX_) != HAL_OK)
+			{
+				PANIC("DMA list link error (UART1)");
+			}
+
+			__HAL_LINKDMA(uartHandler_, hdmarx, handle_GPDMA1_Channel_RX_);
+
+			if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel_RX_, DMA_CHANNEL_NPRIV) != HAL_OK)
+			{
 				PANIC("DMA configuration error (UART1)");
+			}
 		}
-	} else if (rxMode_ == MODE_IRQ) {
+	}
+
+	if ((txMode_ != MODE_POLLING) && (rxMode_ != MODE_POLLING)) {
 		if (uartHandler_->Instance == USART1) {
 			/* UART1 interrupt Init */
 			HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
@@ -378,9 +420,23 @@ HAL_StatusTypeDef UartDriver::read(uint8_t *data, uint16_t size,
 		writeIndex_ = 0;
 		readInProgress_ = true;
 
-		// Démarrage du timer
-		assert_param(xTimerStart(periodicTimer_,0) == pdPASS);
+		// Démarrage du timer / lecture periodique
+		BaseType_t timerStat = xTimerStart(periodicTimer_,0);
+		assert_param(timerStat == pdPASS);
 
+		// on part du principe que tout va bien se passer
+		status = HAL_OK;
+
+		// attente du semaphore de fin de lecture
+		if (timeout != portMAX_DELAY) {
+			if (xSemaphoreTake(rxCompleteSemaphore_, pdMS_TO_TICKS(timeout))!=pdTRUE)
+				status = HAL_TIMEOUT;
+		} else {
+			// Attente infinie tant que le semaphore n'est pas produit
+			while (semStatus != pdTRUE) {
+				semStatus = xSemaphoreTake(rxCompleteSemaphore_,	portMAX_DELAY);
+			}
+		}
 	} else { // rxMode == MODE_POLLING
 		status = HAL_UART_Receive(uartHandler_, data, size,
 				timeout);
@@ -394,7 +450,11 @@ bool UartDriver::proceedCircularDMA(uint32_t currentDMAIndex) {
 		if (writeIndex_ >= outputSize_)
 			return true; // Si déjà rempli, ne rien faire
 
-		size_t dmaWriteIndex = (size_t) currentDMAIndex;
+		size_t dmaWriteIndex = (size_t) circularBufferSize_ - (size_t) currentDMAIndex;
+		// L'index DMA va de la taille du buffer à 0 (décrément)
+		// ainsi, si le buffer a une taille de 50 et l'index vaut 48
+		// il n'y a que 50-48 =2 octets dans le buffer
+
 		size_t availableData =
 				(dmaWriteIndex >= dmaReadIndex_) ?
 						(dmaWriteIndex - dmaReadIndex_) :
@@ -407,9 +467,9 @@ bool UartDriver::proceedCircularDMA(uint32_t currentDMAIndex) {
 			availableData--;
 
 			if (writeIndex_ == outputSize_) {
-				// Arrêt du timer
+				// On a reçu nos données, arret du timer periodique et on indique que l'on n'est plus en phase de reception
 				xTimerStop(periodicTimer_, 0);
-
+				readInProgress_ = false;
 				return true;
 			}
 		}
@@ -438,8 +498,11 @@ void UartDriver::onTXEvent(UART_EventTypedef event) {
 }
 
 void UartDriver::onRXEvent(UART_EventTypedef event) {
+	bool status;
+
 	if ((rxMode_ == MODE_CIRCULAR_DMA) && (readInProgress_ == true)) {
-		if (proceedCircularDMA(__HAL_DMA_GET_COUNTER(uartHandler_->hdmarx)))
+		status = proceedCircularDMA(__HAL_DMA_GET_COUNTER(uartHandler_->hdmarx));
+		if (status)
 			xSemaphoreGive(rxCompleteSemaphore_);
 	} else {
 		BaseType_t xHigherPriorityTaskWoken = pdFALSE;

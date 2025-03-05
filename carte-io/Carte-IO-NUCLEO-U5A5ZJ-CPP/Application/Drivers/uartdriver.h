@@ -77,6 +77,8 @@ public:
 		return read(reinterpret_cast<uint8_t*>(data), size, timeout);
 	}
 
+	DMA_HandleTypeDef *getDmaTXHandler() {return &handle_GPDMA1_Channel_TX_;}
+	DMA_HandleTypeDef *getDmaRXHandler() {return &handle_GPDMA1_Channel_RX_;}
 private:
 	typedef enum {
 		UART_TX_COMPLETE = 0x00U,
@@ -91,6 +93,8 @@ private:
 
 	DMA_HandleTypeDef handle_GPDMA1_Channel_TX_;
 	DMA_HandleTypeDef handle_GPDMA1_Channel_RX_;
+	DMA_NodeTypeDef Node_GPDMA1_Channel_RX_;
+	DMA_QListTypeDef List_GPDMA1_Channel_RX_;
 
 	UartDriver_ModeTypeDef txMode_ = MODE_POLLING;
 	UartDriver_ModeTypeDef rxMode_ = MODE_POLLING;
@@ -106,13 +110,13 @@ private:
 	TimerHandle_t periodicTimer_;
 
 	/* gestion de la DMA circulaire */
-	uint8_t *circularBuffer_ = nullptr;
-	uint32_t circularBufferSize_ = 0;
-	uint8_t *outputBuffer_ = nullptr;
-	uint32_t outputSize_ = 0;
-	uint32_t dmaReadIndex_ = 0;
-	uint32_t writeIndex_ = 0;
-	bool readInProgress_ = false;
+	uint8_t *circularBuffer_;
+	uint32_t circularBufferSize_;
+	uint8_t *outputBuffer_;
+	uint32_t outputSize_;
+	uint32_t dmaReadIndex_;
+	uint32_t writeIndex_;
+	bool readInProgress_;
 
 	bool proceedCircularDMA(uint32_t currentDMAIndex);
 
