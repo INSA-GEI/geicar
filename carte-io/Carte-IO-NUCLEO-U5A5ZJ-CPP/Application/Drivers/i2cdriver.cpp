@@ -24,9 +24,7 @@ I2cDriver::~I2cDriver() {
 }
 
 // Configuration des bus I2C
-bool I2cDriver::configure(I2C_HandleTypeDef* hi2c_internal,
-		I2C_HandleTypeDef* hi2c_external,
-		I2C_HandleTypeDef* hi2c_arbitrary,
+bool I2cDriver::configure(I2C_HandleTypeDef* hi2c,
 		I2cDriver_ModeTypeDef mode,
 		uint32_t timeout) {
 	assert_param(
@@ -34,7 +32,7 @@ bool I2cDriver::configure(I2C_HandleTypeDef* hi2c_internal,
 
 	bool status = true;
 
-	handler_ = hi2c_internal;
+	handler_ = hi2c;
 	mode_ = mode;
 	timeout_ = timeout;
 

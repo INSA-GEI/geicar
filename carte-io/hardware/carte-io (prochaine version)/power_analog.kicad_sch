@@ -643,145 +643,6 @@
 				)
 			)
 		)
-		(symbol "Connector_Generic:Conn_01x02"
-			(pin_names
-				(offset 1.016) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "J"
-				(at 0 2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Conn_01x02"
-				(at 0 -5.08 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "connector"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Connector*:*_1x??_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Conn_01x02_1_1"
-				(rectangle
-					(start -1.27 -2.413)
-					(end 0 -2.667)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 0.127)
-					(end 0 -0.127)
-					(stroke
-						(width 0.1524)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 1.27)
-					(end 1.27 -3.81)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin passive line
-					(at -5.08 0 0)
-					(length 3.81)
-					(name "Pin_1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at -5.08 -2.54 0)
-					(length 3.81)
-					(name "Pin_2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Device:C"
 			(pin_numbers hide)
 			(pin_names
@@ -2484,6 +2345,203 @@
 				)
 			)
 		)
+		(symbol "SeeedStudio - Horizontal header:SeeedStudio - 114020164 - R/A"
+			(pin_names
+				(offset 1.016) hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "114020164"
+				(at 0 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "SeeedStudio - Horizontal Header -114020164:SEEEDSTUDIO_114020164"
+				(at -1.27 -12.192 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.mouser.fr/datasheet/2/744/Grove_Female_Header___SMD_4P_2_0mm_90D_Datasheet-3011316.pdf"
+				(at 0.508 -14.478 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "GROVE FEMALE HEADER R/A"
+				(at -0.254 -9.906 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SeeedStudio - 114020164 - R/A_1_1"
+				(rectangle
+					(start -1.27 -4.953)
+					(end 0 -5.207)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 2.667)
+					(end 0 2.413)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 3.81)
+					(end 1.27 -6.35)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at -5.08 2.54 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -5.08 0)
+					(length 3.81)
+					(name "Pin_4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
 		(symbol "Transistor_FET:IRF7404"
 			(pin_names hide)
 			(exclude_from_sim no)
@@ -3429,6 +3487,12 @@
 		(uuid "0816e049-55e9-43e9-9037-6354ca533053")
 	)
 	(junction
+		(at 35.56 35.56)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "1fe7b956-d093-45cd-8263-bc5f61b8f428")
+	)
+	(junction
 		(at 69.85 175.26)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3487,6 +3551,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "47e41160-e861-4aa3-87fd-11f82621ce5e")
+	)
+	(junction
+		(at 33.02 40.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "5dfc63c0-dfc1-4003-a4a6-48313b5fc251")
 	)
 	(junction
 		(at 152.4 138.43)
@@ -3549,12 +3619,6 @@
 		(uuid "aaf2a002-abba-4d8f-a012-331c5292f46a")
 	)
 	(junction
-		(at 48.26 41.91)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "b9ccc9ea-e129-41b1-94a5-6bd75b8ffe74")
-	)
-	(junction
 		(at 125.73 138.43)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3571,6 +3635,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "de851494-9e62-4c1e-8770-02c57cb6bf32")
+	)
+	(junction
+		(at 48.26 40.64)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e567162f-6137-40c0-af72-5677afe3a495")
 	)
 	(junction
 		(at 176.53 39.37)
@@ -3702,6 +3772,16 @@
 	)
 	(wire
 		(pts
+			(xy 33.02 40.64) (xy 48.26 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "12a3b248-2f55-40a2-8bcb-291c61e77193")
+	)
+	(wire
+		(pts
 			(xy 152.4 100.33) (xy 157.48 100.33)
 		)
 		(stroke
@@ -3709,6 +3789,16 @@
 			(type default)
 		)
 		(uuid "1439b198-22b3-4ead-94da-e9b58ed1c9cf")
+	)
+	(wire
+		(pts
+			(xy 30.48 38.1) (xy 35.56 38.1)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "153a6c19-1cc8-43d0-a480-32d6df083d84")
 	)
 	(wire
 		(pts
@@ -3782,7 +3872,7 @@
 	)
 	(wire
 		(pts
-			(xy 48.26 41.91) (xy 48.26 39.37)
+			(xy 48.26 41.91) (xy 48.26 40.64)
 		)
 		(stroke
 			(width 0)
@@ -3842,7 +3932,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 35.56) (xy 30.48 31.75)
+			(xy 35.56 35.56) (xy 35.56 31.75)
 		)
 		(stroke
 			(width 0)
@@ -3879,6 +3969,16 @@
 			(type default)
 		)
 		(uuid "307770e1-d76e-4b91-a3d4-0a3dd5bdcb97")
+	)
+	(wire
+		(pts
+			(xy 35.56 38.1) (xy 35.56 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "321a598b-4822-448d-b0ca-2d09b139aea7")
 	)
 	(wire
 		(pts
@@ -3959,6 +4059,16 @@
 			(type default)
 		)
 		(uuid "4e2443d8-0ed0-46b9-a675-c8f1850d8edf")
+	)
+	(wire
+		(pts
+			(xy 48.26 40.64) (xy 48.26 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4ef0de18-b99c-4f60-87c2-7822883d54a7")
 	)
 	(wire
 		(pts
@@ -4132,6 +4242,16 @@
 	)
 	(wire
 		(pts
+			(xy 30.48 33.02) (xy 33.02 33.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "664a5526-2edc-4e93-91af-1154557f94c5")
+	)
+	(wire
+		(pts
 			(xy 274.32 29.21) (xy 274.32 31.75)
 		)
 		(stroke
@@ -4152,7 +4272,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 31.75) (xy 43.18 31.75)
+			(xy 35.56 31.75) (xy 43.18 31.75)
 		)
 		(stroke
 			(width 0)
@@ -4219,16 +4339,6 @@
 			(type default)
 		)
 		(uuid "736396eb-32b9-45da-a0b2-13445aebad0a")
-	)
-	(wire
-		(pts
-			(xy 44.45 177.8) (xy 48.26 177.8)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "77bebc0d-2c10-4bb8-8140-b2592ec24d20")
 	)
 	(wire
 		(pts
@@ -4362,16 +4472,6 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 175.26) (xy 50.8 175.26)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "92797428-2e81-4a3b-a7f4-1578d5400470")
-	)
-	(wire
-		(pts
 			(xy 139.7 39.37) (xy 151.13 39.37)
 		)
 		(stroke
@@ -4409,6 +4509,26 @@
 			(type default)
 		)
 		(uuid "9d477363-c3e9-4752-824d-89f1c3f4eba2")
+	)
+	(wire
+		(pts
+			(xy 26.67 172.72) (xy 36.83 172.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a00cc50e-7e97-4663-8566-fcd7bbdf408b")
+	)
+	(wire
+		(pts
+			(xy 26.67 170.18) (xy 36.83 170.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a05ffa01-f819-4263-b9fb-6060efa710f2")
 	)
 	(wire
 		(pts
@@ -4472,6 +4592,16 @@
 	)
 	(wire
 		(pts
+			(xy 26.67 175.26) (xy 50.8 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b7bd9962-094e-4f60-b67a-397f741723bf")
+	)
+	(wire
+		(pts
 			(xy 125.73 138.43) (xy 113.03 138.43)
 		)
 		(stroke
@@ -4512,7 +4642,7 @@
 	)
 	(wire
 		(pts
-			(xy 30.48 41.91) (xy 48.26 41.91)
+			(xy 30.48 40.64) (xy 33.02 40.64)
 		)
 		(stroke
 			(width 0)
@@ -4622,6 +4752,16 @@
 	)
 	(wire
 		(pts
+			(xy 26.67 177.8) (xy 48.26 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d82b3bc3-7508-43aa-9288-8f82b3bcddc7")
+	)
+	(wire
+		(pts
 			(xy 48.26 76.2) (xy 59.69 76.2)
 		)
 		(stroke
@@ -4712,6 +4852,16 @@
 	)
 	(wire
 		(pts
+			(xy 33.02 33.02) (xy 33.02 40.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ecebdba3-c2b0-4f1a-8f80-f8998f53f57b")
+	)
+	(wire
+		(pts
 			(xy 113.03 138.43) (xy 113.03 123.19)
 		)
 		(stroke
@@ -4752,6 +4902,16 @@
 	)
 	(wire
 		(pts
+			(xy 35.56 35.56) (xy 30.48 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f3b473b8-6fde-4d09-90be-2a028d7f16b9")
+	)
+	(wire
+		(pts
 			(xy 92.71 133.35) (xy 92.71 123.19)
 		)
 		(stroke
@@ -4769,16 +4929,6 @@
 			(type default)
 		)
 		(uuid "f6c5c597-90c3-40fe-8e47-a6d3c7b0a274")
-	)
-	(wire
-		(pts
-			(xy 30.48 38.1) (xy 30.48 41.91)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f8020a20-a581-4103-bde5-fcac1cb31c37")
 	)
 	(wire
 		(pts
@@ -4901,6 +5051,17 @@
 		)
 		(uuid "0d3f58f5-c05a-4309-96ff-f314970ea50e")
 	)
+	(hierarchical_label "~{POWEROFF}"
+		(shape input)
+		(at 36.83 170.18 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "384497f7-a88d-4ca1-99b4-e6eeba05ecf5")
+	)
 	(hierarchical_label "USB_UART_TX"
 		(shape input)
 		(at 224.79 100.33 0)
@@ -4922,6 +5083,17 @@
 			(justify left)
 		)
 		(uuid "c0792d6b-cb18-49b1-bb7d-5ef9ee452823")
+	)
+	(hierarchical_label "PWR_CSLEEP"
+		(shape input)
+		(at 36.83 172.72 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c4b9c88e-bd1f-4eeb-87f9-5719f68a833e")
 	)
 	(symbol
 		(lib_id "power:+5V")
@@ -5780,7 +5952,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x02")
+		(lib_id "SeeedStudio - Horizontal header:SeeedStudio - 114020164 - R/A")
 		(at 25.4 35.56 0)
 		(mirror y)
 		(unit 1)
@@ -5790,32 +5962,23 @@
 		(dnp no)
 		(uuid "2a41f8c4-b434-4c03-9ca7-c20c8593ccae")
 		(property "Reference" "J2"
-			(at 25.4 30.988 0)
+			(at 25.146 29.972 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "JST-XH_S2B-XH-A"
-			(at 25.4 27.178 0)
+		(property "Value" "114020164"
+			(at 25.4 43.18 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal"
-			(at 25.4 35.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 25.4 35.56 0)
+		(property "Footprint" "SeeedStudio - Horizontal Header -114020164:SEEEDSTUDIO_114020164"
+			(at 26.67 47.752 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5823,8 +5986,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 25.4 35.56 0)
+		(property "Datasheet" "https://www.mouser.fr/datasheet/2/744/Grove_Female_Header___SMD_4P_2_0mm_90D_Datasheet-3011316.pdf"
+			(at 24.892 50.038 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "GROVE FEMALE HEADER R/A"
+			(at 25.654 45.466 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5837,6 +6009,12 @@
 		)
 		(pin "1"
 			(uuid "a891a7e0-0375-4a64-94fd-7dc33e09705c")
+		)
+		(pin "4"
+			(uuid "046e4261-233e-443b-8096-707410e0a8c1")
+		)
+		(pin "3"
+			(uuid "da4cde22-53c6-427a-a5a2-c9a70e45faa6")
 		)
 		(instances
 			(project "carte-io"
@@ -5919,7 +6097,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 124.0012 182.8801 0)
+		(at 123.19 182.88 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -5928,7 +6106,7 @@
 		(fields_autoplaced yes)
 		(uuid "392be5da-b3d2-4515-ad93-faa0a9784983")
 		(property "Reference" "H3"
-			(at 126.5412 181.61 0)
+			(at 125.73 181.6099 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5937,7 +6115,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 126.5412 184.15 0)
+			(at 125.73 184.1499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5947,7 +6125,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 124.0012 182.8801 0)
+			(at 123.19 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5956,7 +6134,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 124.0012 182.8801 0)
+			(at 123.19 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5965,7 +6143,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 124.0012 182.8801 0)
+			(at 123.19 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6050,7 +6228,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 124.0012 176.5301 0)
+		(at 123.19 176.53 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -6059,7 +6237,7 @@
 		(fields_autoplaced yes)
 		(uuid "3c0078a9-c77e-4940-9357-0160e77ca9a9")
 		(property "Reference" "H2"
-			(at 126.5412 175.26 0)
+			(at 125.73 175.2599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6068,7 +6246,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 126.5412 177.8 0)
+			(at 125.73 177.7999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6078,7 +6256,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 124.0012 176.5301 0)
+			(at 123.19 176.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6087,7 +6265,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 124.0012 176.5301 0)
+			(at 123.19 176.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6096,7 +6274,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 124.0012 176.5301 0)
+			(at 123.19 176.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6180,42 +6358,33 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector_Generic:Conn_01x02")
-		(at 39.37 177.8 180)
+		(lib_id "SeeedStudio - Horizontal header:SeeedStudio - 114020164 - R/A")
+		(at 21.59 172.72 0)
+		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "48f13ed3-f9ab-43c7-9921-d030d529dd45")
 		(property "Reference" "J26"
-			(at 39.37 168.91 0)
+			(at 21.59 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "JST-PH-B2B"
-			(at 39.37 171.45 0)
+		(property "Value" "114020164"
+			(at 21.59 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_PH_B2B-PH-K_1x02_P2.00mm_Vertical"
-			(at 39.37 177.8 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 39.37 177.8 0)
+		(property "Footprint" "SeeedStudio - Horizontal Header -114020164:SEEEDSTUDIO_114020164"
+			(at 22.86 184.912 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6223,8 +6392,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 39.37 177.8 0)
+		(property "Datasheet" "https://www.mouser.fr/datasheet/2/744/Grove_Female_Header___SMD_4P_2_0mm_90D_Datasheet-3011316.pdf"
+			(at 21.082 187.198 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "GROVE FEMALE HEADER R/A"
+			(at 21.844 182.626 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6237,6 +6415,12 @@
 		)
 		(pin "1"
 			(uuid "ea89e854-05f9-4d14-84e2-0dfe2105e3b5")
+		)
+		(pin "4"
+			(uuid "cee135cf-bddb-407c-9837-5e8a085a8151")
+		)
+		(pin "3"
+			(uuid "c713b2b9-5d94-48e5-907b-7161d0425bbb")
 		)
 		(instances
 			(project ""
@@ -8646,7 +8830,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 124.0012 189.2301 0)
+		(at 123.19 189.23 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -8655,7 +8839,7 @@
 		(fields_autoplaced yes)
 		(uuid "e5f06ad1-bae0-4c5d-95b7-b2820f9ad9f8")
 		(property "Reference" "H4"
-			(at 126.5412 187.96 0)
+			(at 125.73 187.9599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8664,7 +8848,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 126.5412 190.5 0)
+			(at 125.73 190.4999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8674,7 +8858,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 124.0012 189.2301 0)
+			(at 123.19 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8683,7 +8867,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 124.0012 189.2301 0)
+			(at 123.19 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8692,7 +8876,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 124.0012 189.2301 0)
+			(at 123.19 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)

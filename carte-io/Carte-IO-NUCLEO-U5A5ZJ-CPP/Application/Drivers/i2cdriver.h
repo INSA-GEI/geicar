@@ -25,9 +25,7 @@ public:
 	~I2cDriver();
 
 	// Configuration des bus I2C
-	bool configure(I2C_HandleTypeDef* hi2c_internal,
-			I2C_HandleTypeDef* hi2c_external,
-			I2C_HandleTypeDef* hi2c_arbitrary,
+	bool configure(I2C_HandleTypeDef* hi2c,
 			I2cDriver_ModeTypeDef mode,
 			uint32_t timeout);
 
@@ -48,9 +46,6 @@ private:
 	I2C_HandleTypeDef *handler_;
 	I2cDriver_ModeTypeDef mode_;
 	uint32_t timeout_;
-
-	bool deleteBufferAfterTX_;
-	const uint8_t* txBuffer_;
 
 	SemaphoreHandle_t txCompleteSemaphore_;
 	SemaphoreHandle_t rxCompleteSemaphore_;

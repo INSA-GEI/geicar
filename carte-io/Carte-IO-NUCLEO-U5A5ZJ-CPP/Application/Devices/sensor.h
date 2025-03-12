@@ -18,7 +18,7 @@ public:
 		uint8_t* data;
 	} RawData_Typedef;
 
-	Sensor() {}
+	Sensor() = default;
 	virtual ~Sensor() {}
 
 	virtual bool initMessagesManagement(const char* queueName);

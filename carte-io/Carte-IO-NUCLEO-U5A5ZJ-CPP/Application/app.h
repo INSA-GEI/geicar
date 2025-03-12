@@ -19,6 +19,15 @@
 
 #include <Devices/gpio.h>
 #include <Drivers/uartdriver.h>
+#include <Drivers/i2cdriver.h>
+
+/**
+ * Liste des handlers de périphériques pre-configurés
+ */
+extern UART_HandleTypeDef huart1;
+extern I2C_HandleTypeDef hi2c1;
+extern I2C_HandleTypeDef hi2c2;
+extern I2C_HandleTypeDef hi2c3;
 
 class App {
 public:

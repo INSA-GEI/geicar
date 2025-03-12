@@ -22,12 +22,14 @@
 #define BUFFER_COM_RASPBERRY_LENGTH	256
 uint8_t bufferComRaspberry[BUFFER_COM_RASPBERRY_LENGTH];
 
-/**
- * Liste des handlers de périphériques pre-configurés
- */
-extern UART_HandleTypeDef huart1;
-
 UartDriver *uart1obj;
+
+/**
+ * Liste des drivers de bus
+ */
+I2cDriver i2cInternal;
+I2cDriver i2cExternal;
+I2cDriver i2cArbitrary;
 
 App::App() {
 	Debug::writeln("[App] Creation de l'objet App");
@@ -53,6 +55,9 @@ App::App() {
 		PANIC("[App] Erreur de creation de la file");
 	}
 
+	// Initialisation de la tâche périodique de debug (rapport)
+	debug = new Debug();
+
 	// Configure l'USART1 -> uart pour la communication avec la raspberry
 	huart1 = {0};
 	huart1.Instance = USART1;
@@ -65,8 +70,6 @@ App::App() {
 			MODE_DMA, MODE_CIRCULAR_DMA,
 			bufferComRaspberry, BUFFER_COM_RASPBERRY_LENGTH,
 			10); // TX et RX en DMA et DMA circulaire, buffer circulaire de 256 octets, timer à 10ms
-	// Initialisation de la tâche périodique de debug (rapport)
-	debug = new Debug();
 }
 
 App::~App() {
@@ -92,6 +95,16 @@ void App::probe() {
 	gpio_ = new Gpio("GPIO");
 	gpio_->initMessagesManagement("GPIO");
 	gpio_->setApplicationMailbox(messageQueue_);
+
+	// init des I2C
+	i2cInternal.configure(&hi2c1, I2cDriver::MODE_IRQ, portMAX_DELAY);
+	i2cExternal.configure(&hi2c2, I2cDriver::MODE_IRQ, portMAX_DELAY);
+	i2cArbitrary.configure(&hi2c3, I2cDriver::MODE_IRQ, portMAX_DELAY);
+
+	/**
+	 * Probe de tout les périphériques
+	 */
+
 
 	/**
 	 * On remet le compteur d'allocation mémoire à zero pour enlever toutes les allocations
