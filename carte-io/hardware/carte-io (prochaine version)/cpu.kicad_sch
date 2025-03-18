@@ -4597,6 +4597,10 @@
 		(uuid "01a52a6f-81e5-4f71-9e4f-d3a044128748")
 	)
 	(no_connect
+		(at 149.86 104.14)
+		(uuid "0f1754e4-161d-4af8-a6e1-51855a23a07c")
+	)
+	(no_connect
 		(at 104.14 86.36)
 		(uuid "15ce696d-7d27-4d66-b07e-b978e34da8f8")
 	)
@@ -4625,14 +4629,6 @@
 		(uuid "35f4887b-9d22-420d-95e9-4388b62107b2")
 	)
 	(no_connect
-		(at 104.14 88.9)
-		(uuid "40644c80-4e0b-41e9-9232-c4e3633f91fa")
-	)
-	(no_connect
-		(at 104.14 91.44)
-		(uuid "4db90cf4-5e71-42bd-a31b-5f7c55c92cdb")
-	)
-	(no_connect
 		(at 149.86 154.94)
 		(uuid "6043d764-4e21-49c0-b87a-5f9344f5bd06")
 	)
@@ -4655,6 +4651,10 @@
 	(no_connect
 		(at 104.14 60.96)
 		(uuid "b5e14efd-e5f5-40c6-b510-80d8be69600a")
+	)
+	(no_connect
+		(at 149.86 55.88)
+		(uuid "b656063f-0042-47f2-94b2-ca7a76d80a97")
 	)
 	(no_connect
 		(at 149.86 73.66)
@@ -5238,6 +5238,16 @@
 	)
 	(wire
 		(pts
+			(xy 91.44 88.9) (xy 104.14 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4b37ed88-12bb-4c04-b5d4-26e90637272c")
+	)
+	(wire
+		(pts
 			(xy 129.54 25.4) (xy 129.54 27.94)
 		)
 		(stroke
@@ -5355,16 +5365,6 @@
 			(type default)
 		)
 		(uuid "6316384c-424e-436b-80de-231132cab8e2")
-	)
-	(wire
-		(pts
-			(xy 149.86 104.14) (xy 163.83 104.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "632addb6-bfec-464e-bf8f-aee908d8565a")
 	)
 	(wire
 		(pts
@@ -5525,6 +5525,16 @@
 			(type default)
 		)
 		(uuid "71c1fc12-1022-45a6-b2d7-1a59d629e929")
+	)
+	(wire
+		(pts
+			(xy 91.44 91.44) (xy 104.14 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "725f2194-44dc-42f3-9d80-ac9aa264658b")
 	)
 	(wire
 		(pts
@@ -6148,16 +6158,6 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 55.88) (xy 163.83 55.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d8ef1236-9d79-402f-81f6-c9073564bd69")
-	)
-	(wire
-		(pts
 			(xy 44.45 55.88) (xy 44.45 58.42)
 		)
 		(stroke
@@ -6594,17 +6594,6 @@
 		)
 		(uuid "012d96fd-53e0-4db7-84d5-6eb3e3e752bf")
 	)
-	(hierarchical_label "GEN_PWM1"
-		(shape output)
-		(at 163.83 55.88 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "072873b4-a54d-42fd-a8e8-fedadd998222")
-	)
 	(hierarchical_label "US_PulseStart"
 		(shape output)
 		(at 163.83 127 0)
@@ -6715,16 +6704,16 @@
 		)
 		(uuid "38a18d3b-a0f6-47ef-a267-a040071752a5")
 	)
-	(hierarchical_label "GEN_PWM2"
-		(shape output)
-		(at 163.83 104.14 0)
+	(hierarchical_label "ADC_AN1"
+		(shape input)
+		(at 91.44 88.9 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
-		(uuid "53005cbd-b9f5-47c6-b767-416f0ad37c81")
+		(uuid "4daa59b6-367b-4ee9-976a-d66da44327df")
 	)
 	(hierarchical_label "INT_MAGNETO"
 		(shape input)
@@ -6846,6 +6835,17 @@
 			(justify right)
 		)
 		(uuid "8706f4a4-f691-432f-90f3-bde4f5a9b6ec")
+	)
+	(hierarchical_label "ADC_AN2"
+		(shape input)
+		(at 91.44 91.44 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9a945f8e-f725-49a6-9cc0-965fad52108e")
 	)
 	(hierarchical_label "COM_USB_TX"
 		(shape output)
@@ -7834,7 +7834,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "Button_Switch_THT:SW_TH_Tactile_Omron_B3F-10xx"
+		(property "Footprint" "Button_Switch_SMD:Panasonic_EVQPUJ_EVQPUA"
 			(at 243.84 49.53 0)
 			(effects
 				(font
@@ -7960,7 +7960,7 @@
 				)
 			)
 		)
-		(property "Value" "FTSH-105-01-L-DV-007"
+		(property "Value" "FTSH-105-01-L-DH"
 			(at 233.68 121.92 0)
 			(effects
 				(font
@@ -7968,7 +7968,7 @@
 				)
 			)
 		)
-		(property "Footprint" "FTSH-105-01-L-DV-007-K:SAMTEC_FTSH-105-X-X-DV-007-P-X"
+		(property "Footprint" "FTSH-105-01-L-DH:SAMTEC_FTSH-105-01-L-DH"
 			(at 233.68 132.08 0)
 			(effects
 				(font
@@ -8808,7 +8808,7 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" "Button_Switch_THT:SW_TH_Tactile_Omron_B3F-10xx"
+		(property "Footprint" "Button_Switch_SMD:Panasonic_EVQPUJ_EVQPUA"
 			(at 226.06 49.53 0)
 			(effects
 				(font
