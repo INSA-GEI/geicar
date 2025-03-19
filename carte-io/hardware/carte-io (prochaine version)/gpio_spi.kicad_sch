@@ -1225,6 +1225,12 @@
 		(uuid "390035f4-a81a-49b8-bd1b-6be8e6489aa2")
 	)
 	(junction
+		(at 93.98 189.23)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "4eb55ba8-4ba0-4734-b353-a86ddcc1289c")
+	)
+	(junction
 		(at 59.69 52.07)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1253,6 +1259,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "80b48857-5cb0-4ca2-8d27-2e41d5a02d3e")
+	)
+	(junction
+		(at 93.98 181.61)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a6749bb7-d9f3-49fc-bb79-5c1d17a326d4")
 	)
 	(junction
 		(at 185.42 87.63)
@@ -1338,6 +1350,16 @@
 	)
 	(wire
 		(pts
+			(xy 93.98 181.61) (xy 107.95 181.61)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "15f2c7e4-be2e-47bb-a76b-84b0be049493")
+	)
+	(wire
+		(pts
 			(xy 78.74 59.69) (xy 85.09 59.69)
 		)
 		(stroke
@@ -1408,7 +1430,7 @@
 	)
 	(wire
 		(pts
-			(xy 107.95 189.23) (xy 91.44 189.23)
+			(xy 107.95 189.23) (xy 93.98 189.23)
 		)
 		(stroke
 			(width 0)
@@ -1758,6 +1780,16 @@
 	)
 	(wire
 		(pts
+			(xy 93.98 189.23) (xy 80.01 189.23)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c57bb03a-d486-497d-828e-018cc5c508c9")
+	)
+	(wire
+		(pts
 			(xy 71.12 90.17) (xy 71.12 78.74)
 		)
 		(stroke
@@ -1818,7 +1850,7 @@
 	)
 	(wire
 		(pts
-			(xy 91.44 181.61) (xy 107.95 181.61)
+			(xy 80.01 181.61) (xy 93.98 181.61)
 		)
 		(stroke
 			(width 0)
@@ -3686,6 +3718,76 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C")
+		(at 93.98 185.42 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "84bd2615-7ac3-44b8-9e50-31ca21b72cc4")
+		(property "Reference" "C43"
+			(at 97.79 184.1499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "100nF"
+			(at 97.79 186.6899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
+			(at 94.9452 189.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 93.98 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 93.98 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "f884b26c-76cd-499d-b399-987207fddff5")
+		)
+		(pin "1"
+			(uuid "75197530-cd85-4986-8732-3aa8d54b10dc")
+		)
+		(instances
+			(project "carte-io"
+				(path "/acbeee85-bee7-482c-b859-0ad6bf15d6be/3f52fbb8-df6a-4282-9d71-7c6a457205c5"
+					(reference "C43")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:GND")
 		(at 107.95 190.5 0)
 		(unit 1)
@@ -3951,7 +4053,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 91.44 185.42 0)
+		(at 80.01 185.42 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3960,7 +4062,7 @@
 		(fields_autoplaced yes)
 		(uuid "a77f8dd9-e398-43f3-a891-9d194b459aa5")
 		(property "Reference" "C42"
-			(at 95.25 184.1499 0)
+			(at 83.82 184.1499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3969,7 +4071,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 95.25 186.6899 0)
+			(at 83.82 186.6899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3978,7 +4080,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
-			(at 92.4052 189.23 0)
+			(at 80.9752 189.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3987,7 +4089,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 91.44 185.42 0)
+			(at 80.01 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3996,7 +4098,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 91.44 185.42 0)
+			(at 80.01 185.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
