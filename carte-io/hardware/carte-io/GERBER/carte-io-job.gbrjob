@@ -3,15 +3,15 @@
     "GenerationSoftware": {
       "Vendor": "KiCad",
       "Application": "Pcbnew",
-      "Version": "8.0.8-8.0.8-0~ubuntu22.04.1"
+      "Version": "8.0.9-8.0.9-0~ubuntu22.04.1"
     },
-    "CreationDate": "2025-01-21T09:43:49+01:00"
+    "CreationDate": "2025-03-19T18:43:04+01:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
       "Name": "carte-io",
       "GUID": "63617274-652d-4696-9f2e-6b696361645f",
-      "Revision": "1.0"
+      "Revision": "1.1"
     },
     "Size": {
       "X": 117.55,
@@ -34,7 +34,7 @@
       "PadToPad": 0.0,
       "PadToTrack": 0.0,
       "TrackToTrack": 0.15,
-      "MinLineWidth": 0.3,
+      "MinLineWidth": 0.2,
       "TrackToRegion": 0.3,
       "RegionToRegion": 0.3
     }
@@ -103,16 +103,6 @@
     {
       "Path": "carte-io-Edge_Cuts.gbr",
       "FileFunction": "Profile",
-      "FilePolarity": "Positive"
-    },
-    {
-      "Path": "carte-io-F_Fab.gbr",
-      "FileFunction": "AssemblyDrawing,Top",
-      "FilePolarity": "Positive"
-    },
-    {
-      "Path": "carte-io-B_Fab.gbr",
-      "FileFunction": "AssemblyDrawing,Bot",
       "FilePolarity": "Positive"
     }
   ],

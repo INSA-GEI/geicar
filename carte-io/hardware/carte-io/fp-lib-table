@@ -5,4 +5,7 @@
   (lib (name "CM1293A-04SO")(type "KiCad")(uri "${KIPRJMOD}/libraries/CM1293A-04SO")(options "")(descr ""))
   (lib (name "74LVC125APW")(type "KiCad")(uri "${KIPRJMOD}/libraries/74LVC125APW")(options "")(descr ""))
   (lib (name "TXU0104PWR")(type "KiCad")(uri "${KIPRJMOD}/libraries/TXU0104PWR")(options "")(descr ""))
+  (lib (name "SeeedStudio - Vertical Header - 114020163")(type "KiCad")(uri "${KIPRJMOD}/../libraries/SeeedStudio - 114020163")(options "")(descr ""))
+  (lib (name "SeeedStudio - Horizontal Header -114020164")(type "KiCad")(uri "${KIPRJMOD}/../libraries/SeeedStudio - 114020164")(options "")(descr ""))
+  (lib (name "FTSH-105-01-L-DH")(type "KiCad")(uri "${KIPRJMOD}/../libraries/FTSH-105-01-L-DH")(options "")(descr ""))
 )
