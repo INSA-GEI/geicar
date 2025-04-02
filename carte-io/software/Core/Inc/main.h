@@ -64,14 +64,34 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
+void MX_CORDIC_Init(void);
+void MX_CRC_Init(void);
+void MX_FDCAN1_Init(void);
+void MX_FMAC_Init(void);
+void MX_I2C1_Init(void);
+void MX_LPUART1_UART_Init(void);
+void MX_UART4_Init(void);
+void MX_UART5_Init(void);
+void MX_USART1_UART_Init(void);
+void MX_USART3_UART_Init(void);
+void MX_RNG_Init(void);
+void MX_TIM3_Init(void);
+void MX_TIM4_Init(void);
+void MX_TIM5_Init(void);
+void MX_TIM6_Init(void);
+void MX_TIM8_Init(void);
+void MX_ADC1_Init(void);
+void MX_LPTIM2_Init(void);
+void MX_LPTIM1_Init(void);
+void MX_LPTIM3_Init(void);
+void MX_I2C4_Init(void);
+void MX_I2C2_Init(void);
 
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define SPI_CS3_Pin GPIO_PIN_2
-#define SPI_CS3_GPIO_Port GPIOE
 #define Encoder3_PHA_Pin GPIO_PIN_3
 #define Encoder3_PHA_GPIO_Port GPIOE
 #define Encoder3_PHB_Pin GPIO_PIN_4
@@ -96,6 +116,10 @@ void Error_Handler(void);
 #define MOT_PWM4_GPIO_Port GPIOA
 #define LED_ACTIVITY_Pin GPIO_PIN_4
 #define LED_ACTIVITY_GPIO_Port GPIOA
+#define ADC_AN1_Pin GPIO_PIN_6
+#define ADC_AN1_GPIO_Port GPIOA
+#define ADC_AN2_Pin GPIO_PIN_7
+#define ADC_AN2_GPIO_Port GPIOA
 #define COM_GPS_TX_Pin GPIO_PIN_4
 #define COM_GPS_TX_GPIO_Port GPIOC
 #define COM_GPS_RX_Pin GPIO_PIN_5
@@ -106,24 +130,14 @@ void Error_Handler(void);
 #define Encoder2_PHA_GPIO_Port GPIOB
 #define ADC_VBAT_Pin GPIO_PIN_2
 #define ADC_VBAT_GPIO_Port GPIOB
-#define Input1_Pin GPIO_PIN_7
-#define Input1_GPIO_Port GPIOE
-#define Input2_Pin GPIO_PIN_8
-#define Input2_GPIO_Port GPIOE
-#define Input3_Pin GPIO_PIN_9
-#define Input3_GPIO_Port GPIOE
-#define Input4_Pin GPIO_PIN_10
-#define Input4_GPIO_Port GPIOE
-#define Output1_Pin GPIO_PIN_11
-#define Output1_GPIO_Port GPIOE
-#define Output2_Pin GPIO_PIN_12
-#define Output2_GPIO_Port GPIOE
-#define Output3_Pin GPIO_PIN_14
-#define Output3_GPIO_Port GPIOE
-#define Output4_Pin GPIO_PIN_15
-#define Output4_GPIO_Port GPIOE
-#define GEN_PWM2_Pin GPIO_PIN_10
-#define GEN_PWM2_GPIO_Port GPIOB
+#define IO1_Pin GPIO_PIN_7
+#define IO1_GPIO_Port GPIOE
+#define IO2_Pin GPIO_PIN_8
+#define IO2_GPIO_Port GPIOE
+#define IO3_Pin GPIO_PIN_9
+#define IO3_GPIO_Port GPIOE
+#define IO4_Pin GPIO_PIN_10
+#define IO4_GPIO_Port GPIOE
 #define I2C_SCL_EXTERNAL_Pin GPIO_PIN_13
 #define I2C_SCL_EXTERNAL_GPIO_Port GPIOB
 #define I2C_SDA_EXTERNAL_Pin GPIO_PIN_14
@@ -142,8 +156,6 @@ void Error_Handler(void);
 #define SERVO_PWM3_GPIO_Port GPIOC
 #define SERVO_PWM4_Pin GPIO_PIN_9
 #define SERVO_PWM4_GPIO_Port GPIOC
-#define GEN_PWM1_Pin GPIO_PIN_8
-#define GEN_PWM1_GPIO_Port GPIOA
 #define COM_USB_TX_Pin GPIO_PIN_9
 #define COM_USB_TX_GPIO_Port GPIOA
 #define COM_USB_RX_Pin GPIO_PIN_10
@@ -178,10 +190,6 @@ void Error_Handler(void);
 #define I2C_SCL_INTERNAL_GPIO_Port GPIOB
 #define I2C_SDA_INTERNAL_Pin GPIO_PIN_9
 #define I2C_SDA_INTERNAL_GPIO_Port GPIOB
-#define SPI_CS1_Pin GPIO_PIN_0
-#define SPI_CS1_GPIO_Port GPIOE
-#define SPI_CS2_Pin GPIO_PIN_1
-#define SPI_CS2_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
 
