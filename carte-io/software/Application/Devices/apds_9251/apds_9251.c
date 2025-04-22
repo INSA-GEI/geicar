@@ -5,7 +5,7 @@
  *      Author: dimercur
  */
 
-#include "apds_9251.h"
+#include <Devices/apds_9251/apds_9251.h>
 
 int32_t apds_9251_reset(const stmdev_ctx_t *ctx) {
 	if (!ctx || !ctx->write_reg) return -1;

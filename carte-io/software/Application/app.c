@@ -36,7 +36,7 @@ QueueHandle_t APP_MessageQueue;
 void APP_ReceiveCMDTask(void *pvParameters) ;
 void APP_MessageHandlerTask(void *pvParameters);
 void processFrame(uint8_t type, uint8_t *data, uint8_t dataLength);
-void APP_UART_RxCompleteCallback(UART_HandleTypeDef *huart);
+void APP_UART_RxCallback(UART_HandleTypeDef *huart);
 void MX_USART1_UART_Init(void);
 
 TaskHandle_t APP_ReceiveCMDTaskhandle;
@@ -49,7 +49,8 @@ void APP_Init(void) {
 
 	/* Initialisation USART et DMA */
 	/* Activer l'utilisation des callbacks personnalisés */
-	HAL_UART_RegisterCallback(&huart1, HAL_UART_RX_COMPLETE_CB_ID, APP_UART_RxCompleteCallback);
+	HAL_UART_RegisterCallback(&huart1, HAL_UART_RX_COMPLETE_CB_ID, APP_UART_RxCallback);
+	HAL_UART_RegisterCallback(&huart1, HAL_UART_RX_HALFCOMPLETE_CB_ID, APP_UART_RxCallback);
 
 //	/* Création des sémaphores */
 //	APP_RXCompleteSemaphore = xSemaphoreCreateBinary();
@@ -102,7 +103,7 @@ void APP_MessageHandlerTask(void *pvParameters) {
 }
 
 /* Callback personnalisé : completion totale du DMA */
-void APP_UART_RxCompleteCallback(UART_HandleTypeDef *huart) {
+void APP_UART_RxCallback(UART_HandleTypeDef *huart) {
 	if (huart->Instance == USART1) {
 		BaseType_t xHigherPriorityTaskWoken = pdFALSE;
 		vTaskNotifyGiveFromISR(APP_ReceiveCMDTaskhandle, &xHigherPriorityTaskWoken);

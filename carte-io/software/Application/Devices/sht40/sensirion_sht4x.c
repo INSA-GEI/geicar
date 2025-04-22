@@ -36,7 +36,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#include "Sensors/sht40/sensirion_sht4x.h"
+#include <Devices/sht40/sensirion_sht4x.h>
 
 //#include <Arduino.h>
 

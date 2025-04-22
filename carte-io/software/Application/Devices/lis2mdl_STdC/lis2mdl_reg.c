@@ -17,7 +17,7 @@
   ******************************************************************************
   */
 
-#include "lis2mdl_reg.h"
+#include <Devices/lis2mdl_STdC/lis2mdl_reg.h>
 
 /**
   * @defgroup    LIS2MDL

@@ -17,7 +17,7 @@
   ******************************************************************************
   */
 
-#include "lps22df_reg.h"
+#include <Devices/lps22df_STdC/lps22df_reg.h>
 
 /**
   * @defgroup    LPS22DF
