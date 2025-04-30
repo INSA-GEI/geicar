@@ -35,8 +35,8 @@ extern "C" {
 
 #define HAL_ADC_MODULE_ENABLED
 /*#define HAL_COMP_MODULE_ENABLED */
-#define HAL_CORDIC_MODULE_ENABLED
-#define HAL_CRC_MODULE_ENABLED
+/*#define HAL_CORDIC_MODULE_ENABLED */
+/*#define HAL_CRC_MODULE_ENABLED */
 /*#define HAL_CRYP_MODULE_ENABLED */
 /*#define HAL_DAC_MODULE_ENABLED */
 #define HAL_DCACHE_MODULE_ENABLED
@@ -44,7 +44,7 @@ extern "C" {
 /*#define HAL_DMA2D_MODULE_ENABLED */
 /*#define HAL_DSI_MODULE_ENABLED */
 #define HAL_FDCAN_MODULE_ENABLED
-#define HAL_FMAC_MODULE_ENABLED
+/*#define HAL_FMAC_MODULE_ENABLED */
 /*#define HAL_GFXMMU_MODULE_ENABLED */
 /*#define HAL_GFXTIM_MODULE_ENABLED */
 /*#define HAL_GPU2D_MODULE_ENABLED */
@@ -69,7 +69,7 @@ extern "C" {
 /*#define HAL_PKA_MODULE_ENABLED */
 /*#define HAL_PSSI_MODULE_ENABLED */
 /*#define HAL_RAMCFG_MODULE_ENABLED */
-#define HAL_RNG_MODULE_ENABLED
+/*#define HAL_RNG_MODULE_ENABLED */
 /*#define HAL_RTC_MODULE_ENABLED */
 /*#define HAL_SAI_MODULE_ENABLED */
 /*#define HAL_SD_MODULE_ENABLED */
@@ -208,7 +208,7 @@ vary depending on the variations in voltage and temperature.*/
 #define  USE_HAL_GFXMMU_REGISTER_CALLBACKS     0U /* GFXMMU register callback disabled    */
 #define  USE_HAL_GFXTIM_REGISTER_CALLBACKS     0U /* GFXTIM register callback disabled    */
 #define  USE_HAL_GPU2D_REGISTER_CALLBACKS      0U /* GPU2D register callback disabled     */
-#define  USE_HAL_I2C_REGISTER_CALLBACKS        1U /* I2C register callback enabled       */
+#define  USE_HAL_I2C_REGISTER_CALLBACKS        0U /* I2C register callback disabled       */
 #define  USE_HAL_IWDG_REGISTER_CALLBACKS       0U /* IWDG register callback disabled      */
 #define  USE_HAL_IRDA_REGISTER_CALLBACKS       0U /* IRDA register callback disabled      */
 #define  USE_HAL_JPEG_REGISTER_CALLBACKS       0U /* JPEG register callback disabled      */

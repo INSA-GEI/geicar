@@ -23,13 +23,45 @@
 /* USER CODE BEGIN Includes */
 
 /* USER CODE END Includes */
+extern DMA_NodeTypeDef Node_GPDMA1_Channel0;
+
+extern DMA_QListTypeDef List_GPDMA1_Channel0;
+
+extern DMA_HandleTypeDef handle_GPDMA1_Channel0;
+
+extern DMA_HandleTypeDef handle_GPDMA1_Channel10;
+
+extern DMA_NodeTypeDef Node_GPDMA1_Channel9;
+
+extern DMA_QListTypeDef List_GPDMA1_Channel9;
+
+extern DMA_HandleTypeDef handle_GPDMA1_Channel9;
+
+extern DMA_HandleTypeDef handle_GPDMA1_Channel6;
+
+extern DMA_NodeTypeDef Node_GPDMA1_Channel2;
+
+extern DMA_QListTypeDef List_GPDMA1_Channel2;
+
 extern DMA_HandleTypeDef handle_GPDMA1_Channel2;
+
+extern DMA_HandleTypeDef handle_GPDMA1_Channel7;
+
+extern DMA_NodeTypeDef Node_GPDMA1_Channel3;
+
+extern DMA_QListTypeDef List_GPDMA1_Channel3;
 
 extern DMA_HandleTypeDef handle_GPDMA1_Channel3;
 
+extern DMA_HandleTypeDef handle_GPDMA1_Channel5;
+
+extern DMA_NodeTypeDef Node_GPDMA1_Channel1;
+
+extern DMA_QListTypeDef List_GPDMA1_Channel1;
+
 extern DMA_HandleTypeDef handle_GPDMA1_Channel1;
 
-extern DMA_HandleTypeDef handle_GPDMA1_Channel0;
+extern DMA_HandleTypeDef handle_GPDMA1_Channel8;
 
 extern DMA_NodeTypeDef Node_GPDMA1_Channel4;
 
@@ -89,6 +121,17 @@ void HAL_MspInit(void)
   /* PendSV_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(PendSV_IRQn, 15, 0);
 
+  /* Peripheral interrupt init */
+  /* FPU_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(FPU_IRQn, 2, 0);
+  HAL_NVIC_EnableIRQ(FPU_IRQn);
+  /* ICACHE_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(ICACHE_IRQn, 2, 0);
+  HAL_NVIC_EnableIRQ(ICACHE_IRQn);
+  /* DCACHE1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DCACHE1_IRQn, 2, 0);
+  HAL_NVIC_EnableIRQ(DCACHE1_IRQn);
+
   /* USER CODE BEGIN MspInit 1 */
 
   /* USER CODE END MspInit 1 */
@@ -103,6 +146,7 @@ void HAL_MspInit(void)
 void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
+  DMA_NodeConfTypeDef NodeConfig;
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
   if(hadc->Instance==ADC1)
   {
@@ -139,6 +183,65 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(ADC_VBAT_GPIO_Port, &GPIO_InitStruct);
 
+    /* ADC1 DMA Init */
+    /* GPDMA1_REQUEST_ADC1 Init */
+    NodeConfig.NodeType = DMA_GPDMA_LINEAR_NODE;
+    NodeConfig.Init.Request = GPDMA1_REQUEST_ADC1;
+    NodeConfig.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+    NodeConfig.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    NodeConfig.Init.SrcInc = DMA_SINC_FIXED;
+    NodeConfig.Init.DestInc = DMA_DINC_INCREMENTED;
+    NodeConfig.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+    NodeConfig.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+    NodeConfig.Init.SrcBurstLength = 1;
+    NodeConfig.Init.DestBurstLength = 1;
+    NodeConfig.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+    NodeConfig.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    NodeConfig.Init.Mode = DMA_NORMAL;
+    NodeConfig.TriggerConfig.TriggerPolarity = DMA_TRIG_POLARITY_MASKED;
+    NodeConfig.DataHandlingConfig.DataExchange = DMA_EXCHANGE_NONE;
+    NodeConfig.DataHandlingConfig.DataAlignment = DMA_DATA_RIGHTALIGN_ZEROPADDED;
+    if (HAL_DMAEx_List_BuildNode(&NodeConfig, &Node_GPDMA1_Channel0) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_InsertNode(&List_GPDMA1_Channel0, NULL, &Node_GPDMA1_Channel0) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_SetCircularMode(&List_GPDMA1_Channel0) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    handle_GPDMA1_Channel0.Instance = GPDMA1_Channel0;
+    handle_GPDMA1_Channel0.InitLinkedList.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+    handle_GPDMA1_Channel0.InitLinkedList.LinkStepMode = DMA_LSM_FULL_EXECUTION;
+    handle_GPDMA1_Channel0.InitLinkedList.LinkAllocatedPort = DMA_LINK_ALLOCATED_PORT0;
+    handle_GPDMA1_Channel0.InitLinkedList.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    handle_GPDMA1_Channel0.InitLinkedList.LinkedListMode = DMA_LINKEDLIST_CIRCULAR;
+    if (HAL_DMAEx_List_Init(&handle_GPDMA1_Channel0) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_LinkQ(&handle_GPDMA1_Channel0, &List_GPDMA1_Channel0) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_LINKDMA(hadc, DMA_Handle, handle_GPDMA1_Channel0);
+
+    if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel0, DMA_CHANNEL_NPRIV) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* ADC1 interrupt Init */
+    HAL_NVIC_SetPriority(ADC1_IRQn, 15, 0);
+    HAL_NVIC_EnableIRQ(ADC1_IRQn);
     /* USER CODE BEGIN ADC1_MspInit 1 */
 
     /* USER CODE END ADC1_MspInit 1 */
@@ -172,99 +275,14 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
 
     HAL_GPIO_DeInit(ADC_VBAT_GPIO_Port, ADC_VBAT_Pin);
 
+    /* ADC1 DMA DeInit */
+    HAL_DMA_DeInit(hadc->DMA_Handle);
+
+    /* ADC1 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(ADC1_IRQn);
     /* USER CODE BEGIN ADC1_MspDeInit 1 */
 
     /* USER CODE END ADC1_MspDeInit 1 */
-  }
-
-}
-
-/**
-  * @brief CORDIC MSP Initialization
-  * This function configures the hardware resources used in this example
-  * @param hcordic: CORDIC handle pointer
-  * @retval None
-  */
-void HAL_CORDIC_MspInit(CORDIC_HandleTypeDef* hcordic)
-{
-  if(hcordic->Instance==CORDIC)
-  {
-    /* USER CODE BEGIN CORDIC_MspInit 0 */
-
-    /* USER CODE END CORDIC_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_CORDIC_CLK_ENABLE();
-    /* USER CODE BEGIN CORDIC_MspInit 1 */
-
-    /* USER CODE END CORDIC_MspInit 1 */
-
-  }
-
-}
-
-/**
-  * @brief CORDIC MSP De-Initialization
-  * This function freeze the hardware resources used in this example
-  * @param hcordic: CORDIC handle pointer
-  * @retval None
-  */
-void HAL_CORDIC_MspDeInit(CORDIC_HandleTypeDef* hcordic)
-{
-  if(hcordic->Instance==CORDIC)
-  {
-    /* USER CODE BEGIN CORDIC_MspDeInit 0 */
-
-    /* USER CODE END CORDIC_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_CORDIC_CLK_DISABLE();
-    /* USER CODE BEGIN CORDIC_MspDeInit 1 */
-
-    /* USER CODE END CORDIC_MspDeInit 1 */
-  }
-
-}
-
-/**
-  * @brief CRC MSP Initialization
-  * This function configures the hardware resources used in this example
-  * @param hcrc: CRC handle pointer
-  * @retval None
-  */
-void HAL_CRC_MspInit(CRC_HandleTypeDef* hcrc)
-{
-  if(hcrc->Instance==CRC)
-  {
-    /* USER CODE BEGIN CRC_MspInit 0 */
-
-    /* USER CODE END CRC_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_CRC_CLK_ENABLE();
-    /* USER CODE BEGIN CRC_MspInit 1 */
-
-    /* USER CODE END CRC_MspInit 1 */
-
-  }
-
-}
-
-/**
-  * @brief CRC MSP De-Initialization
-  * This function freeze the hardware resources used in this example
-  * @param hcrc: CRC handle pointer
-  * @retval None
-  */
-void HAL_CRC_MspDeInit(CRC_HandleTypeDef* hcrc)
-{
-  if(hcrc->Instance==CRC)
-  {
-    /* USER CODE BEGIN CRC_MspDeInit 0 */
-
-    /* USER CODE END CRC_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_CRC_CLK_DISABLE();
-    /* USER CODE BEGIN CRC_MspDeInit 1 */
-
-    /* USER CODE END CRC_MspDeInit 1 */
   }
 
 }
@@ -284,6 +302,9 @@ void HAL_DCACHE_MspInit(DCACHE_HandleTypeDef* hdcache)
     /* USER CODE END DCACHE1_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_DCACHE1_CLK_ENABLE();
+    /* DCACHE1 interrupt Init */
+    HAL_NVIC_SetPriority(DCACHE1_IRQn, 2, 0);
+    HAL_NVIC_EnableIRQ(DCACHE1_IRQn);
     /* USER CODE BEGIN DCACHE1_MspInit 1 */
 
     /* USER CODE END DCACHE1_MspInit 1 */
@@ -307,6 +328,9 @@ void HAL_DCACHE_MspDeInit(DCACHE_HandleTypeDef* hdcache)
     /* USER CODE END DCACHE1_MspDeInit 0 */
     /* Peripheral clock disable */
     __HAL_RCC_DCACHE1_CLK_DISABLE();
+
+    /* DCACHE1 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(DCACHE1_IRQn);
     /* USER CODE BEGIN DCACHE1_MspDeInit 1 */
 
     /* USER CODE END DCACHE1_MspDeInit 1 */
@@ -355,9 +379,9 @@ void HAL_FDCAN_MspInit(FDCAN_HandleTypeDef* hfdcan)
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* FDCAN1 interrupt Init */
-    HAL_NVIC_SetPriority(FDCAN1_IT0_IRQn, 5, 0);
+    HAL_NVIC_SetPriority(FDCAN1_IT0_IRQn, 11, 0);
     HAL_NVIC_EnableIRQ(FDCAN1_IT0_IRQn);
-    HAL_NVIC_SetPriority(FDCAN1_IT1_IRQn, 5, 0);
+    HAL_NVIC_SetPriority(FDCAN1_IT1_IRQn, 11, 0);
     HAL_NVIC_EnableIRQ(FDCAN1_IT1_IRQn);
     /* USER CODE BEGIN FDCAN1_MspInit 1 */
 
@@ -400,51 +424,6 @@ void HAL_FDCAN_MspDeInit(FDCAN_HandleTypeDef* hfdcan)
 }
 
 /**
-  * @brief FMAC MSP Initialization
-  * This function configures the hardware resources used in this example
-  * @param hfmac: FMAC handle pointer
-  * @retval None
-  */
-void HAL_FMAC_MspInit(FMAC_HandleTypeDef* hfmac)
-{
-  if(hfmac->Instance==FMAC)
-  {
-    /* USER CODE BEGIN FMAC_MspInit 0 */
-
-    /* USER CODE END FMAC_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_FMAC_CLK_ENABLE();
-    /* USER CODE BEGIN FMAC_MspInit 1 */
-
-    /* USER CODE END FMAC_MspInit 1 */
-
-  }
-
-}
-
-/**
-  * @brief FMAC MSP De-Initialization
-  * This function freeze the hardware resources used in this example
-  * @param hfmac: FMAC handle pointer
-  * @retval None
-  */
-void HAL_FMAC_MspDeInit(FMAC_HandleTypeDef* hfmac)
-{
-  if(hfmac->Instance==FMAC)
-  {
-    /* USER CODE BEGIN FMAC_MspDeInit 0 */
-
-    /* USER CODE END FMAC_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_FMAC_CLK_DISABLE();
-    /* USER CODE BEGIN FMAC_MspDeInit 1 */
-
-    /* USER CODE END FMAC_MspDeInit 1 */
-  }
-
-}
-
-/**
   * @brief I2C MSP Initialization
   * This function configures the hardware resources used in this example
   * @param hi2c: I2C handle pointer
@@ -474,7 +453,7 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
     PB8     ------> I2C1_SCL
     PB9     ------> I2C1_SDA
     */
-    GPIO_InitStruct.Pin = I2C_SCL_INTERNAL_Pin|I2C_SDA_INTERNAL_Pin;
+    GPIO_InitStruct.Pin = I2C_SCL_INT_Pin|I2C_SDA_INT_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -483,6 +462,11 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 
     /* Peripheral clock enable */
     __HAL_RCC_I2C1_CLK_ENABLE();
+    /* I2C1 interrupt Init */
+    HAL_NVIC_SetPriority(I2C1_EV_IRQn, 12, 0);
+    HAL_NVIC_EnableIRQ(I2C1_EV_IRQn);
+    HAL_NVIC_SetPriority(I2C1_ER_IRQn, 12, 0);
+    HAL_NVIC_EnableIRQ(I2C1_ER_IRQn);
     /* USER CODE BEGIN I2C1_MspInit 1 */
 
     /* USER CODE END I2C1_MspInit 1 */
@@ -516,6 +500,11 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 
     /* Peripheral clock enable */
     __HAL_RCC_I2C2_CLK_ENABLE();
+    /* I2C2 interrupt Init */
+    HAL_NVIC_SetPriority(I2C2_EV_IRQn, 12, 0);
+    HAL_NVIC_EnableIRQ(I2C2_EV_IRQn);
+    HAL_NVIC_SetPriority(I2C2_ER_IRQn, 12, 0);
+    HAL_NVIC_EnableIRQ(I2C2_ER_IRQn);
     /* USER CODE BEGIN I2C2_MspInit 1 */
 
     /* USER CODE END I2C2_MspInit 1 */
@@ -557,6 +546,11 @@ void HAL_I2C_MspInit(I2C_HandleTypeDef* hi2c)
 
     /* Peripheral clock enable */
     __HAL_RCC_I2C4_CLK_ENABLE();
+    /* I2C4 interrupt Init */
+    HAL_NVIC_SetPriority(I2C4_ER_IRQn, 12, 0);
+    HAL_NVIC_EnableIRQ(I2C4_ER_IRQn);
+    HAL_NVIC_SetPriority(I2C4_EV_IRQn, 12, 0);
+    HAL_NVIC_EnableIRQ(I2C4_EV_IRQn);
     /* USER CODE BEGIN I2C4_MspInit 1 */
 
     /* USER CODE END I2C4_MspInit 1 */
@@ -584,10 +578,13 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
     PB8     ------> I2C1_SCL
     PB9     ------> I2C1_SDA
     */
-    HAL_GPIO_DeInit(I2C_SCL_INTERNAL_GPIO_Port, I2C_SCL_INTERNAL_Pin);
+    HAL_GPIO_DeInit(I2C_SCL_INT_GPIO_Port, I2C_SCL_INT_Pin);
 
-    HAL_GPIO_DeInit(I2C_SDA_INTERNAL_GPIO_Port, I2C_SDA_INTERNAL_Pin);
+    HAL_GPIO_DeInit(I2C_SDA_INT_GPIO_Port, I2C_SDA_INT_Pin);
 
+    /* I2C1 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(I2C1_EV_IRQn);
+    HAL_NVIC_DisableIRQ(I2C1_ER_IRQn);
     /* USER CODE BEGIN I2C1_MspDeInit 1 */
 
     /* USER CODE END I2C1_MspDeInit 1 */
@@ -608,6 +605,9 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
 
     HAL_GPIO_DeInit(I2C_SDA_EXTERNAL_GPIO_Port, I2C_SDA_EXTERNAL_Pin);
 
+    /* I2C2 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(I2C2_EV_IRQn);
+    HAL_NVIC_DisableIRQ(I2C2_ER_IRQn);
     /* USER CODE BEGIN I2C2_MspDeInit 1 */
 
     /* USER CODE END I2C2_MspDeInit 1 */
@@ -628,6 +628,9 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* hi2c)
 
     HAL_GPIO_DeInit(I2C_SDA_ARBITRARY_GPIO_Port, I2C_SDA_ARBITRARY_Pin);
 
+    /* I2C4 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(I2C4_ER_IRQn);
+    HAL_NVIC_DisableIRQ(I2C4_EV_IRQn);
     /* USER CODE BEGIN I2C4_MspDeInit 1 */
 
     /* USER CODE END I2C4_MspDeInit 1 */
@@ -669,19 +672,19 @@ void HAL_LPTIM_MspInit(LPTIM_HandleTypeDef* hlptim)
     PC2     ------> LPTIM1_IN2
     PB5     ------> LPTIM1_IN1
     */
-    GPIO_InitStruct.Pin = Encoder1_PHB_Pin;
+    GPIO_InitStruct.Pin = ENCODER_1_PHB_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF1_LPTIM1;
-    HAL_GPIO_Init(Encoder1_PHB_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(ENCODER_1_PHB_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = Encoder1_PHA_Pin;
+    GPIO_InitStruct.Pin = ENCODER_1_PHA_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF1_LPTIM1;
-    HAL_GPIO_Init(Encoder1_PHA_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(ENCODER_1_PHA_GPIO_Port, &GPIO_InitStruct);
 
     /* USER CODE BEGIN LPTIM1_MspInit 1 */
 
@@ -711,65 +714,23 @@ void HAL_LPTIM_MspInit(LPTIM_HandleTypeDef* hlptim)
     PB1     ------> LPTIM2_IN1
     PD9     ------> LPTIM2_IN2
     */
-    GPIO_InitStruct.Pin = Encoder2_PHA_Pin;
+    GPIO_InitStruct.Pin = ENCODER_2_PHA_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF14_LPTIM2;
-    HAL_GPIO_Init(Encoder2_PHA_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(ENCODER_2_PHA_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = Encoder2_PHB_Pin;
+    GPIO_InitStruct.Pin = ENCODER_2_PHB_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF2_LPTIM2;
-    HAL_GPIO_Init(Encoder2_PHB_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(ENCODER_2_PHB_GPIO_Port, &GPIO_InitStruct);
 
     /* USER CODE BEGIN LPTIM2_MspInit 1 */
 
     /* USER CODE END LPTIM2_MspInit 1 */
-  }
-  else if(hlptim->Instance==LPTIM3)
-  {
-    /* USER CODE BEGIN LPTIM3_MspInit 0 */
-
-    /* USER CODE END LPTIM3_MspInit 0 */
-
-  /** Initializes the peripherals clock
-  */
-    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_LPTIM34;
-    PeriphClkInit.Lptim34ClockSelection = RCC_LPTIM34CLKSOURCE_MSIK;
-    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
-    {
-      Error_Handler();
-    }
-
-    /* Peripheral clock enable */
-    __HAL_RCC_LPTIM3_CLK_ENABLE();
-
-    __HAL_RCC_GPIOC_CLK_ENABLE();
-    __HAL_RCC_GPIOD_CLK_ENABLE();
-    /**LPTIM3 GPIO Configuration
-    PC3     ------> LPTIM3_CH1
-    PD15     ------> LPTIM3_CH2
-    */
-    GPIO_InitStruct.Pin = US_PulseStart_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF2_LPTIM3;
-    HAL_GPIO_Init(US_PulseStart_GPIO_Port, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = US_PulseEnd_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF14_LPTIM3;
-    HAL_GPIO_Init(US_PulseEnd_GPIO_Port, &GPIO_InitStruct);
-
-    /* USER CODE BEGIN LPTIM3_MspInit 1 */
-
-    /* USER CODE END LPTIM3_MspInit 1 */
   }
 
 }
@@ -794,9 +755,9 @@ void HAL_LPTIM_MspDeInit(LPTIM_HandleTypeDef* hlptim)
     PC2     ------> LPTIM1_IN2
     PB5     ------> LPTIM1_IN1
     */
-    HAL_GPIO_DeInit(Encoder1_PHB_GPIO_Port, Encoder1_PHB_Pin);
+    HAL_GPIO_DeInit(ENCODER_1_PHB_GPIO_Port, ENCODER_1_PHB_Pin);
 
-    HAL_GPIO_DeInit(Encoder1_PHA_GPIO_Port, Encoder1_PHA_Pin);
+    HAL_GPIO_DeInit(ENCODER_1_PHA_GPIO_Port, ENCODER_1_PHA_Pin);
 
     /* USER CODE BEGIN LPTIM1_MspDeInit 1 */
 
@@ -814,33 +775,13 @@ void HAL_LPTIM_MspDeInit(LPTIM_HandleTypeDef* hlptim)
     PB1     ------> LPTIM2_IN1
     PD9     ------> LPTIM2_IN2
     */
-    HAL_GPIO_DeInit(Encoder2_PHA_GPIO_Port, Encoder2_PHA_Pin);
+    HAL_GPIO_DeInit(ENCODER_2_PHA_GPIO_Port, ENCODER_2_PHA_Pin);
 
-    HAL_GPIO_DeInit(Encoder2_PHB_GPIO_Port, Encoder2_PHB_Pin);
+    HAL_GPIO_DeInit(ENCODER_2_PHB_GPIO_Port, ENCODER_2_PHB_Pin);
 
     /* USER CODE BEGIN LPTIM2_MspDeInit 1 */
 
     /* USER CODE END LPTIM2_MspDeInit 1 */
-  }
-  else if(hlptim->Instance==LPTIM3)
-  {
-    /* USER CODE BEGIN LPTIM3_MspDeInit 0 */
-
-    /* USER CODE END LPTIM3_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_LPTIM3_CLK_DISABLE();
-
-    /**LPTIM3 GPIO Configuration
-    PC3     ------> LPTIM3_CH1
-    PD15     ------> LPTIM3_CH2
-    */
-    HAL_GPIO_DeInit(US_PulseStart_GPIO_Port, US_PulseStart_Pin);
-
-    HAL_GPIO_DeInit(US_PulseEnd_GPIO_Port, US_PulseEnd_Pin);
-
-    /* USER CODE BEGIN LPTIM3_MspDeInit 1 */
-
-    /* USER CODE END LPTIM3_MspDeInit 1 */
   }
 
 }
@@ -856,7 +797,127 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   DMA_NodeConfTypeDef NodeConfig;
   RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
-  if(huart->Instance==UART4)
+  if(huart->Instance==LPUART1)
+  {
+    /* USER CODE BEGIN LPUART1_MspInit 0 */
+
+    /* USER CODE END LPUART1_MspInit 0 */
+
+  /** Initializes the peripherals clock
+  */
+    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_LPUART1;
+    PeriphClkInit.Lpuart1ClockSelection = RCC_LPUART1CLKSOURCE_PCLK3;
+    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* Peripheral clock enable */
+    __HAL_RCC_LPUART1_CLK_ENABLE();
+
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+    /**LPUART1 GPIO Configuration
+    PC0     ------> LPUART1_RX
+    PC1     ------> LPUART1_TX
+    */
+    GPIO_InitStruct.Pin = COM_EXT_RX_Pin|COM_EXT_TX_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Alternate = GPIO_AF8_LPUART1;
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+    /* LPUART1 DMA Init */
+    /* GPDMA1_REQUEST_LPUART1_TX Init */
+    handle_GPDMA1_Channel10.Instance = GPDMA1_Channel10;
+    handle_GPDMA1_Channel10.Init.Request = GPDMA1_REQUEST_LPUART1_TX;
+    handle_GPDMA1_Channel10.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+    handle_GPDMA1_Channel10.Init.Direction = DMA_MEMORY_TO_PERIPH;
+    handle_GPDMA1_Channel10.Init.SrcInc = DMA_SINC_INCREMENTED;
+    handle_GPDMA1_Channel10.Init.DestInc = DMA_DINC_FIXED;
+    handle_GPDMA1_Channel10.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+    handle_GPDMA1_Channel10.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+    handle_GPDMA1_Channel10.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+    handle_GPDMA1_Channel10.Init.SrcBurstLength = 1;
+    handle_GPDMA1_Channel10.Init.DestBurstLength = 1;
+    handle_GPDMA1_Channel10.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+    handle_GPDMA1_Channel10.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    handle_GPDMA1_Channel10.Init.Mode = DMA_NORMAL;
+    if (HAL_DMA_Init(&handle_GPDMA1_Channel10) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_LINKDMA(huart, hdmatx, handle_GPDMA1_Channel10);
+
+    if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel10, DMA_CHANNEL_NPRIV) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* GPDMA1_REQUEST_LPUART1_RX Init */
+    NodeConfig.NodeType = DMA_GPDMA_LINEAR_NODE;
+    NodeConfig.Init.Request = GPDMA1_REQUEST_LPUART1_RX;
+    NodeConfig.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+    NodeConfig.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    NodeConfig.Init.SrcInc = DMA_SINC_FIXED;
+    NodeConfig.Init.DestInc = DMA_DINC_INCREMENTED;
+    NodeConfig.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+    NodeConfig.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+    NodeConfig.Init.SrcBurstLength = 1;
+    NodeConfig.Init.DestBurstLength = 1;
+    NodeConfig.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+    NodeConfig.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    NodeConfig.Init.Mode = DMA_NORMAL;
+    NodeConfig.TriggerConfig.TriggerPolarity = DMA_TRIG_POLARITY_MASKED;
+    NodeConfig.DataHandlingConfig.DataExchange = DMA_EXCHANGE_NONE;
+    NodeConfig.DataHandlingConfig.DataAlignment = DMA_DATA_RIGHTALIGN_ZEROPADDED;
+    if (HAL_DMAEx_List_BuildNode(&NodeConfig, &Node_GPDMA1_Channel9) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_InsertNode(&List_GPDMA1_Channel9, NULL, &Node_GPDMA1_Channel9) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_SetCircularMode(&List_GPDMA1_Channel9) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    handle_GPDMA1_Channel9.Instance = GPDMA1_Channel9;
+    handle_GPDMA1_Channel9.InitLinkedList.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+    handle_GPDMA1_Channel9.InitLinkedList.LinkStepMode = DMA_LSM_FULL_EXECUTION;
+    handle_GPDMA1_Channel9.InitLinkedList.LinkAllocatedPort = DMA_LINK_ALLOCATED_PORT0;
+    handle_GPDMA1_Channel9.InitLinkedList.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    handle_GPDMA1_Channel9.InitLinkedList.LinkedListMode = DMA_LINKEDLIST_CIRCULAR;
+    if (HAL_DMAEx_List_Init(&handle_GPDMA1_Channel9) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_LinkQ(&handle_GPDMA1_Channel9, &List_GPDMA1_Channel9) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_LINKDMA(huart, hdmarx, handle_GPDMA1_Channel9);
+
+    if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel9, DMA_CHANNEL_NPRIV) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* LPUART1 interrupt Init */
+    HAL_NVIC_SetPriority(LPUART1_IRQn, 11, 0);
+    HAL_NVIC_EnableIRQ(LPUART1_IRQn);
+    /* USER CODE BEGIN LPUART1_MspInit 1 */
+
+    /* USER CODE END LPUART1_MspInit 1 */
+  }
+  else if(huart->Instance==UART4)
   {
     /* USER CODE BEGIN UART4_MspInit 0 */
 
@@ -887,22 +948,77 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
     /* UART4 DMA Init */
+    /* GPDMA1_REQUEST_UART4_TX Init */
+    handle_GPDMA1_Channel6.Instance = GPDMA1_Channel6;
+    handle_GPDMA1_Channel6.Init.Request = GPDMA1_REQUEST_UART4_TX;
+    handle_GPDMA1_Channel6.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+    handle_GPDMA1_Channel6.Init.Direction = DMA_MEMORY_TO_PERIPH;
+    handle_GPDMA1_Channel6.Init.SrcInc = DMA_SINC_INCREMENTED;
+    handle_GPDMA1_Channel6.Init.DestInc = DMA_DINC_FIXED;
+    handle_GPDMA1_Channel6.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+    handle_GPDMA1_Channel6.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+    handle_GPDMA1_Channel6.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+    handle_GPDMA1_Channel6.Init.SrcBurstLength = 1;
+    handle_GPDMA1_Channel6.Init.DestBurstLength = 1;
+    handle_GPDMA1_Channel6.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+    handle_GPDMA1_Channel6.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    handle_GPDMA1_Channel6.Init.Mode = DMA_NORMAL;
+    if (HAL_DMA_Init(&handle_GPDMA1_Channel6) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_LINKDMA(huart, hdmatx, handle_GPDMA1_Channel6);
+
+    if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel6, DMA_CHANNEL_NPRIV) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
     /* GPDMA1_REQUEST_UART4_RX Init */
+    NodeConfig.NodeType = DMA_GPDMA_LINEAR_NODE;
+    NodeConfig.Init.Request = GPDMA1_REQUEST_UART4_RX;
+    NodeConfig.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+    NodeConfig.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    NodeConfig.Init.SrcInc = DMA_SINC_FIXED;
+    NodeConfig.Init.DestInc = DMA_DINC_INCREMENTED;
+    NodeConfig.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+    NodeConfig.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+    NodeConfig.Init.SrcBurstLength = 1;
+    NodeConfig.Init.DestBurstLength = 1;
+    NodeConfig.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+    NodeConfig.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    NodeConfig.Init.Mode = DMA_NORMAL;
+    NodeConfig.TriggerConfig.TriggerPolarity = DMA_TRIG_POLARITY_MASKED;
+    NodeConfig.DataHandlingConfig.DataExchange = DMA_EXCHANGE_NONE;
+    NodeConfig.DataHandlingConfig.DataAlignment = DMA_DATA_RIGHTALIGN_ZEROPADDED;
+    if (HAL_DMAEx_List_BuildNode(&NodeConfig, &Node_GPDMA1_Channel2) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_InsertNode(&List_GPDMA1_Channel2, NULL, &Node_GPDMA1_Channel2) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_SetCircularMode(&List_GPDMA1_Channel2) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
     handle_GPDMA1_Channel2.Instance = GPDMA1_Channel2;
-    handle_GPDMA1_Channel2.Init.Request = GPDMA1_REQUEST_UART4_RX;
-    handle_GPDMA1_Channel2.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
-    handle_GPDMA1_Channel2.Init.Direction = DMA_PERIPH_TO_MEMORY;
-    handle_GPDMA1_Channel2.Init.SrcInc = DMA_SINC_FIXED;
-    handle_GPDMA1_Channel2.Init.DestInc = DMA_DINC_FIXED;
-    handle_GPDMA1_Channel2.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
-    handle_GPDMA1_Channel2.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
-    handle_GPDMA1_Channel2.Init.Priority = DMA_LOW_PRIORITY_HIGH_WEIGHT;
-    handle_GPDMA1_Channel2.Init.SrcBurstLength = 1;
-    handle_GPDMA1_Channel2.Init.DestBurstLength = 1;
-    handle_GPDMA1_Channel2.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
-    handle_GPDMA1_Channel2.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
-    handle_GPDMA1_Channel2.Init.Mode = DMA_NORMAL;
-    if (HAL_DMA_Init(&handle_GPDMA1_Channel2) != HAL_OK)
+    handle_GPDMA1_Channel2.InitLinkedList.Priority = DMA_HIGH_PRIORITY;
+    handle_GPDMA1_Channel2.InitLinkedList.LinkStepMode = DMA_LSM_FULL_EXECUTION;
+    handle_GPDMA1_Channel2.InitLinkedList.LinkAllocatedPort = DMA_LINK_ALLOCATED_PORT0;
+    handle_GPDMA1_Channel2.InitLinkedList.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    handle_GPDMA1_Channel2.InitLinkedList.LinkedListMode = DMA_LINKEDLIST_CIRCULAR;
+    if (HAL_DMAEx_List_Init(&handle_GPDMA1_Channel2) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_LinkQ(&handle_GPDMA1_Channel2, &List_GPDMA1_Channel2) != HAL_OK)
     {
       Error_Handler();
     }
@@ -915,7 +1031,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     }
 
     /* UART4 interrupt Init */
-    HAL_NVIC_SetPriority(UART4_IRQn, 5, 0);
+    HAL_NVIC_SetPriority(UART4_IRQn, 9, 0);
     HAL_NVIC_EnableIRQ(UART4_IRQn);
     /* USER CODE BEGIN UART4_MspInit 1 */
 
@@ -960,22 +1076,77 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     HAL_GPIO_Init(COM_LIDAR2_RX_GPIO_Port, &GPIO_InitStruct);
 
     /* UART5 DMA Init */
+    /* GPDMA1_REQUEST_UART5_TX Init */
+    handle_GPDMA1_Channel7.Instance = GPDMA1_Channel7;
+    handle_GPDMA1_Channel7.Init.Request = GPDMA1_REQUEST_UART5_TX;
+    handle_GPDMA1_Channel7.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+    handle_GPDMA1_Channel7.Init.Direction = DMA_MEMORY_TO_PERIPH;
+    handle_GPDMA1_Channel7.Init.SrcInc = DMA_SINC_INCREMENTED;
+    handle_GPDMA1_Channel7.Init.DestInc = DMA_DINC_FIXED;
+    handle_GPDMA1_Channel7.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+    handle_GPDMA1_Channel7.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+    handle_GPDMA1_Channel7.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+    handle_GPDMA1_Channel7.Init.SrcBurstLength = 1;
+    handle_GPDMA1_Channel7.Init.DestBurstLength = 1;
+    handle_GPDMA1_Channel7.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+    handle_GPDMA1_Channel7.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    handle_GPDMA1_Channel7.Init.Mode = DMA_NORMAL;
+    if (HAL_DMA_Init(&handle_GPDMA1_Channel7) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_LINKDMA(huart, hdmatx, handle_GPDMA1_Channel7);
+
+    if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel7, DMA_CHANNEL_NPRIV) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
     /* GPDMA1_REQUEST_UART5_RX Init */
+    NodeConfig.NodeType = DMA_GPDMA_LINEAR_NODE;
+    NodeConfig.Init.Request = GPDMA1_REQUEST_UART5_RX;
+    NodeConfig.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+    NodeConfig.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    NodeConfig.Init.SrcInc = DMA_SINC_FIXED;
+    NodeConfig.Init.DestInc = DMA_DINC_INCREMENTED;
+    NodeConfig.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+    NodeConfig.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+    NodeConfig.Init.SrcBurstLength = 1;
+    NodeConfig.Init.DestBurstLength = 1;
+    NodeConfig.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+    NodeConfig.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    NodeConfig.Init.Mode = DMA_NORMAL;
+    NodeConfig.TriggerConfig.TriggerPolarity = DMA_TRIG_POLARITY_MASKED;
+    NodeConfig.DataHandlingConfig.DataExchange = DMA_EXCHANGE_NONE;
+    NodeConfig.DataHandlingConfig.DataAlignment = DMA_DATA_RIGHTALIGN_ZEROPADDED;
+    if (HAL_DMAEx_List_BuildNode(&NodeConfig, &Node_GPDMA1_Channel3) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_InsertNode(&List_GPDMA1_Channel3, NULL, &Node_GPDMA1_Channel3) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_SetCircularMode(&List_GPDMA1_Channel3) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
     handle_GPDMA1_Channel3.Instance = GPDMA1_Channel3;
-    handle_GPDMA1_Channel3.Init.Request = GPDMA1_REQUEST_UART5_RX;
-    handle_GPDMA1_Channel3.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
-    handle_GPDMA1_Channel3.Init.Direction = DMA_PERIPH_TO_MEMORY;
-    handle_GPDMA1_Channel3.Init.SrcInc = DMA_SINC_FIXED;
-    handle_GPDMA1_Channel3.Init.DestInc = DMA_DINC_FIXED;
-    handle_GPDMA1_Channel3.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
-    handle_GPDMA1_Channel3.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
-    handle_GPDMA1_Channel3.Init.Priority = DMA_LOW_PRIORITY_HIGH_WEIGHT;
-    handle_GPDMA1_Channel3.Init.SrcBurstLength = 1;
-    handle_GPDMA1_Channel3.Init.DestBurstLength = 1;
-    handle_GPDMA1_Channel3.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
-    handle_GPDMA1_Channel3.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
-    handle_GPDMA1_Channel3.Init.Mode = DMA_NORMAL;
-    if (HAL_DMA_Init(&handle_GPDMA1_Channel3) != HAL_OK)
+    handle_GPDMA1_Channel3.InitLinkedList.Priority = DMA_HIGH_PRIORITY;
+    handle_GPDMA1_Channel3.InitLinkedList.LinkStepMode = DMA_LSM_FULL_EXECUTION;
+    handle_GPDMA1_Channel3.InitLinkedList.LinkAllocatedPort = DMA_LINK_ALLOCATED_PORT0;
+    handle_GPDMA1_Channel3.InitLinkedList.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    handle_GPDMA1_Channel3.InitLinkedList.LinkedListMode = DMA_LINKEDLIST_CIRCULAR;
+    if (HAL_DMAEx_List_Init(&handle_GPDMA1_Channel3) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_LinkQ(&handle_GPDMA1_Channel3, &List_GPDMA1_Channel3) != HAL_OK)
     {
       Error_Handler();
     }
@@ -988,7 +1159,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     }
 
     /* UART5 interrupt Init */
-    HAL_NVIC_SetPriority(UART5_IRQn, 5, 0);
+    HAL_NVIC_SetPriority(UART5_IRQn, 10, 0);
     HAL_NVIC_EnableIRQ(UART5_IRQn);
     /* USER CODE BEGIN UART5_MspInit 1 */
 
@@ -1026,61 +1197,89 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
 
     /* USART1 DMA Init */
     /* GPDMA1_REQUEST_USART1_TX Init */
-    handle_GPDMA1_Channel1.Instance = GPDMA1_Channel1;
-    handle_GPDMA1_Channel1.Init.Request = GPDMA1_REQUEST_USART1_TX;
-    handle_GPDMA1_Channel1.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
-    handle_GPDMA1_Channel1.Init.Direction = DMA_PERIPH_TO_MEMORY;
-    handle_GPDMA1_Channel1.Init.SrcInc = DMA_SINC_FIXED;
-    handle_GPDMA1_Channel1.Init.DestInc = DMA_DINC_FIXED;
-    handle_GPDMA1_Channel1.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
-    handle_GPDMA1_Channel1.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
-    handle_GPDMA1_Channel1.Init.Priority = DMA_LOW_PRIORITY_HIGH_WEIGHT;
-    handle_GPDMA1_Channel1.Init.SrcBurstLength = 1;
-    handle_GPDMA1_Channel1.Init.DestBurstLength = 1;
-    handle_GPDMA1_Channel1.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
-    handle_GPDMA1_Channel1.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
-    handle_GPDMA1_Channel1.Init.Mode = DMA_NORMAL;
-    if (HAL_DMA_Init(&handle_GPDMA1_Channel1) != HAL_OK)
+    handle_GPDMA1_Channel5.Instance = GPDMA1_Channel5;
+    handle_GPDMA1_Channel5.Init.Request = GPDMA1_REQUEST_USART1_TX;
+    handle_GPDMA1_Channel5.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+    handle_GPDMA1_Channel5.Init.Direction = DMA_MEMORY_TO_PERIPH;
+    handle_GPDMA1_Channel5.Init.SrcInc = DMA_SINC_INCREMENTED;
+    handle_GPDMA1_Channel5.Init.DestInc = DMA_DINC_FIXED;
+    handle_GPDMA1_Channel5.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+    handle_GPDMA1_Channel5.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+    handle_GPDMA1_Channel5.Init.Priority = DMA_HIGH_PRIORITY;
+    handle_GPDMA1_Channel5.Init.SrcBurstLength = 1;
+    handle_GPDMA1_Channel5.Init.DestBurstLength = 1;
+    handle_GPDMA1_Channel5.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT1|DMA_DEST_ALLOCATED_PORT1;
+    handle_GPDMA1_Channel5.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    handle_GPDMA1_Channel5.Init.Mode = DMA_NORMAL;
+    if (HAL_DMA_Init(&handle_GPDMA1_Channel5) != HAL_OK)
     {
       Error_Handler();
     }
 
-    __HAL_LINKDMA(huart, hdmatx, handle_GPDMA1_Channel1);
+    __HAL_LINKDMA(huart, hdmatx, handle_GPDMA1_Channel5);
+
+    if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel5, DMA_CHANNEL_NPRIV) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    /* GPDMA1_REQUEST_USART1_RX Init */
+    NodeConfig.NodeType = DMA_GPDMA_LINEAR_NODE;
+    NodeConfig.Init.Request = GPDMA1_REQUEST_USART1_RX;
+    NodeConfig.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+    NodeConfig.Init.Direction = DMA_PERIPH_TO_MEMORY;
+    NodeConfig.Init.SrcInc = DMA_SINC_FIXED;
+    NodeConfig.Init.DestInc = DMA_DINC_INCREMENTED;
+    NodeConfig.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+    NodeConfig.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+    NodeConfig.Init.SrcBurstLength = 1;
+    NodeConfig.Init.DestBurstLength = 1;
+    NodeConfig.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT1|DMA_DEST_ALLOCATED_PORT1;
+    NodeConfig.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    NodeConfig.Init.Mode = DMA_NORMAL;
+    NodeConfig.TriggerConfig.TriggerPolarity = DMA_TRIG_POLARITY_MASKED;
+    NodeConfig.DataHandlingConfig.DataExchange = DMA_EXCHANGE_NONE;
+    NodeConfig.DataHandlingConfig.DataAlignment = DMA_DATA_RIGHTALIGN_ZEROPADDED;
+    if (HAL_DMAEx_List_BuildNode(&NodeConfig, &Node_GPDMA1_Channel1) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_InsertNode(&List_GPDMA1_Channel1, NULL, &Node_GPDMA1_Channel1) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_SetCircularMode(&List_GPDMA1_Channel1) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    handle_GPDMA1_Channel1.Instance = GPDMA1_Channel1;
+    handle_GPDMA1_Channel1.InitLinkedList.Priority = DMA_LOW_PRIORITY_HIGH_WEIGHT;
+    handle_GPDMA1_Channel1.InitLinkedList.LinkStepMode = DMA_LSM_FULL_EXECUTION;
+    handle_GPDMA1_Channel1.InitLinkedList.LinkAllocatedPort = DMA_LINK_ALLOCATED_PORT1;
+    handle_GPDMA1_Channel1.InitLinkedList.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    handle_GPDMA1_Channel1.InitLinkedList.LinkedListMode = DMA_LINKEDLIST_CIRCULAR;
+    if (HAL_DMAEx_List_Init(&handle_GPDMA1_Channel1) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    if (HAL_DMAEx_List_LinkQ(&handle_GPDMA1_Channel1, &List_GPDMA1_Channel1) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_LINKDMA(huart, hdmarx, handle_GPDMA1_Channel1);
 
     if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel1, DMA_CHANNEL_NPRIV) != HAL_OK)
     {
       Error_Handler();
     }
 
-    /* GPDMA1_REQUEST_USART1_RX Init */
-    handle_GPDMA1_Channel0.Instance = GPDMA1_Channel0;
-    handle_GPDMA1_Channel0.Init.Request = GPDMA1_REQUEST_USART1_RX;
-    handle_GPDMA1_Channel0.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
-    handle_GPDMA1_Channel0.Init.Direction = DMA_PERIPH_TO_MEMORY;
-    handle_GPDMA1_Channel0.Init.SrcInc = DMA_SINC_FIXED;
-    handle_GPDMA1_Channel0.Init.DestInc = DMA_DINC_FIXED;
-    handle_GPDMA1_Channel0.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
-    handle_GPDMA1_Channel0.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
-    handle_GPDMA1_Channel0.Init.Priority = DMA_LOW_PRIORITY_HIGH_WEIGHT;
-    handle_GPDMA1_Channel0.Init.SrcBurstLength = 1;
-    handle_GPDMA1_Channel0.Init.DestBurstLength = 1;
-    handle_GPDMA1_Channel0.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
-    handle_GPDMA1_Channel0.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
-    handle_GPDMA1_Channel0.Init.Mode = DMA_NORMAL;
-    if (HAL_DMA_Init(&handle_GPDMA1_Channel0) != HAL_OK)
-    {
-      Error_Handler();
-    }
-
-    __HAL_LINKDMA(huart, hdmarx, handle_GPDMA1_Channel0);
-
-    if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel0, DMA_CHANNEL_NPRIV) != HAL_OK)
-    {
-      Error_Handler();
-    }
-
     /* USART1 interrupt Init */
-    HAL_NVIC_SetPriority(USART1_IRQn, 5, 0);
+    HAL_NVIC_SetPriority(USART1_IRQn, 6, 0);
     HAL_NVIC_EnableIRQ(USART1_IRQn);
     /* USER CODE BEGIN USART1_MspInit 1 */
 
@@ -1117,18 +1316,45 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
     /* USART3 DMA Init */
+    /* GPDMA1_REQUEST_USART3_TX Init */
+    handle_GPDMA1_Channel8.Instance = GPDMA1_Channel8;
+    handle_GPDMA1_Channel8.Init.Request = GPDMA1_REQUEST_USART3_TX;
+    handle_GPDMA1_Channel8.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
+    handle_GPDMA1_Channel8.Init.Direction = DMA_MEMORY_TO_PERIPH;
+    handle_GPDMA1_Channel8.Init.SrcInc = DMA_SINC_INCREMENTED;
+    handle_GPDMA1_Channel8.Init.DestInc = DMA_DINC_FIXED;
+    handle_GPDMA1_Channel8.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
+    handle_GPDMA1_Channel8.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
+    handle_GPDMA1_Channel8.Init.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+    handle_GPDMA1_Channel8.Init.SrcBurstLength = 1;
+    handle_GPDMA1_Channel8.Init.DestBurstLength = 1;
+    handle_GPDMA1_Channel8.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+    handle_GPDMA1_Channel8.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
+    handle_GPDMA1_Channel8.Init.Mode = DMA_NORMAL;
+    if (HAL_DMA_Init(&handle_GPDMA1_Channel8) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
+    __HAL_LINKDMA(huart, hdmatx, handle_GPDMA1_Channel8);
+
+    if (HAL_DMA_ConfigChannelAttributes(&handle_GPDMA1_Channel8, DMA_CHANNEL_NPRIV) != HAL_OK)
+    {
+      Error_Handler();
+    }
+
     /* GPDMA1_REQUEST_USART3_RX Init */
     NodeConfig.NodeType = DMA_GPDMA_LINEAR_NODE;
     NodeConfig.Init.Request = GPDMA1_REQUEST_USART3_RX;
     NodeConfig.Init.BlkHWRequest = DMA_BREQ_SINGLE_BURST;
     NodeConfig.Init.Direction = DMA_PERIPH_TO_MEMORY;
     NodeConfig.Init.SrcInc = DMA_SINC_FIXED;
-    NodeConfig.Init.DestInc = DMA_DINC_FIXED;
+    NodeConfig.Init.DestInc = DMA_DINC_INCREMENTED;
     NodeConfig.Init.SrcDataWidth = DMA_SRC_DATAWIDTH_BYTE;
     NodeConfig.Init.DestDataWidth = DMA_DEST_DATAWIDTH_BYTE;
     NodeConfig.Init.SrcBurstLength = 1;
     NodeConfig.Init.DestBurstLength = 1;
-    NodeConfig.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT0|DMA_DEST_ALLOCATED_PORT0;
+    NodeConfig.Init.TransferAllocatedPort = DMA_SRC_ALLOCATED_PORT1|DMA_DEST_ALLOCATED_PORT1;
     NodeConfig.Init.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
     NodeConfig.Init.Mode = DMA_NORMAL;
     NodeConfig.TriggerConfig.TriggerPolarity = DMA_TRIG_POLARITY_MASKED;
@@ -1150,9 +1376,9 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     }
 
     handle_GPDMA1_Channel4.Instance = GPDMA1_Channel4;
-    handle_GPDMA1_Channel4.InitLinkedList.Priority = DMA_LOW_PRIORITY_LOW_WEIGHT;
+    handle_GPDMA1_Channel4.InitLinkedList.Priority = DMA_LOW_PRIORITY_MID_WEIGHT;
     handle_GPDMA1_Channel4.InitLinkedList.LinkStepMode = DMA_LSM_FULL_EXECUTION;
-    handle_GPDMA1_Channel4.InitLinkedList.LinkAllocatedPort = DMA_LINK_ALLOCATED_PORT0;
+    handle_GPDMA1_Channel4.InitLinkedList.LinkAllocatedPort = DMA_LINK_ALLOCATED_PORT1;
     handle_GPDMA1_Channel4.InitLinkedList.TransferEventMode = DMA_TCEM_BLOCK_TRANSFER;
     handle_GPDMA1_Channel4.InitLinkedList.LinkedListMode = DMA_LINKEDLIST_CIRCULAR;
     if (HAL_DMAEx_List_Init(&handle_GPDMA1_Channel4) != HAL_OK)
@@ -1173,7 +1399,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
     }
 
     /* USART3 interrupt Init */
-    HAL_NVIC_SetPriority(USART3_IRQn, 5, 0);
+    HAL_NVIC_SetPriority(USART3_IRQn, 8, 0);
     HAL_NVIC_EnableIRQ(USART3_IRQn);
     /* USER CODE BEGIN USART3_MspInit 1 */
 
@@ -1190,7 +1416,31 @@ void HAL_UART_MspInit(UART_HandleTypeDef* huart)
   */
 void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
 {
-  if(huart->Instance==UART4)
+  if(huart->Instance==LPUART1)
+  {
+    /* USER CODE BEGIN LPUART1_MspDeInit 0 */
+
+    /* USER CODE END LPUART1_MspDeInit 0 */
+    /* Peripheral clock disable */
+    __HAL_RCC_LPUART1_CLK_DISABLE();
+
+    /**LPUART1 GPIO Configuration
+    PC0     ------> LPUART1_RX
+    PC1     ------> LPUART1_TX
+    */
+    HAL_GPIO_DeInit(GPIOC, COM_EXT_RX_Pin|COM_EXT_TX_Pin);
+
+    /* LPUART1 DMA DeInit */
+    HAL_DMA_DeInit(huart->hdmatx);
+    HAL_DMA_DeInit(huart->hdmarx);
+
+    /* LPUART1 interrupt DeInit */
+    HAL_NVIC_DisableIRQ(LPUART1_IRQn);
+    /* USER CODE BEGIN LPUART1_MspDeInit 1 */
+
+    /* USER CODE END LPUART1_MspDeInit 1 */
+  }
+  else if(huart->Instance==UART4)
   {
     /* USER CODE BEGIN UART4_MspDeInit 0 */
 
@@ -1205,6 +1455,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     HAL_GPIO_DeInit(GPIOC, COM_LIDAR1_TX_Pin|COM_LIDAR1_RX_Pin);
 
     /* UART4 DMA DeInit */
+    HAL_DMA_DeInit(huart->hdmatx);
     HAL_DMA_DeInit(huart->hdmarx);
 
     /* UART4 interrupt DeInit */
@@ -1230,6 +1481,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     HAL_GPIO_DeInit(COM_LIDAR2_RX_GPIO_Port, COM_LIDAR2_RX_Pin);
 
     /* UART5 DMA DeInit */
+    HAL_DMA_DeInit(huart->hdmatx);
     HAL_DMA_DeInit(huart->hdmarx);
 
     /* UART5 interrupt DeInit */
@@ -1277,6 +1529,7 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     HAL_GPIO_DeInit(GPIOC, COM_GPS_TX_Pin|COM_GPS_RX_Pin);
 
     /* USART3 DMA DeInit */
+    HAL_DMA_DeInit(huart->hdmatx);
     HAL_DMA_DeInit(huart->hdmarx);
 
     /* USART3 interrupt DeInit */
@@ -1284,62 +1537,6 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* huart)
     /* USER CODE BEGIN USART3_MspDeInit 1 */
 
     /* USER CODE END USART3_MspDeInit 1 */
-  }
-
-}
-
-/**
-  * @brief RNG MSP Initialization
-  * This function configures the hardware resources used in this example
-  * @param hrng: RNG handle pointer
-  * @retval None
-  */
-void HAL_RNG_MspInit(RNG_HandleTypeDef* hrng)
-{
-  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
-  if(hrng->Instance==RNG)
-  {
-    /* USER CODE BEGIN RNG_MspInit 0 */
-
-    /* USER CODE END RNG_MspInit 0 */
-
-  /** Initializes the peripherals clock
-  */
-    PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RNG;
-    PeriphClkInit.RngClockSelection = RCC_RNGCLKSOURCE_HSI48;
-    if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
-    {
-      Error_Handler();
-    }
-
-    /* Peripheral clock enable */
-    __HAL_RCC_RNG_CLK_ENABLE();
-    /* USER CODE BEGIN RNG_MspInit 1 */
-
-    /* USER CODE END RNG_MspInit 1 */
-
-  }
-
-}
-
-/**
-  * @brief RNG MSP De-Initialization
-  * This function freeze the hardware resources used in this example
-  * @param hrng: RNG handle pointer
-  * @retval None
-  */
-void HAL_RNG_MspDeInit(RNG_HandleTypeDef* hrng)
-{
-  if(hrng->Instance==RNG)
-  {
-    /* USER CODE BEGIN RNG_MspDeInit 0 */
-
-    /* USER CODE END RNG_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_RNG_CLK_DISABLE();
-    /* USER CODE BEGIN RNG_MspDeInit 1 */
-
-    /* USER CODE END RNG_MspDeInit 1 */
   }
 
 }
@@ -1366,7 +1563,7 @@ void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
     PE3     ------> TIM3_CH1
     PE4     ------> TIM3_CH2
     */
-    GPIO_InitStruct.Pin = Encoder3_PHA_Pin|Encoder3_PHB_Pin;
+    GPIO_InitStruct.Pin = ENCODER_3_PHA_Pin|ENCODER_3_PHB_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -1391,19 +1588,19 @@ void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
     PD13     ------> TIM4_CH2
     PB6     ------> TIM4_CH1
     */
-    GPIO_InitStruct.Pin = Encoder4_PHB_Pin;
+    GPIO_InitStruct.Pin = ENCODER_4_PHB_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
-    HAL_GPIO_Init(Encoder4_PHB_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(ENCODER_4_PHB_GPIO_Port, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = Encoder4_PHA_Pin;
+    GPIO_InitStruct.Pin = ENCODER_4_PHA_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.Alternate = GPIO_AF2_TIM4;
-    HAL_GPIO_Init(Encoder4_PHA_GPIO_Port, &GPIO_InitStruct);
+    HAL_GPIO_Init(ENCODER_4_PHA_GPIO_Port, &GPIO_InitStruct);
 
     /* USER CODE BEGIN TIM4_MspInit 1 */
 
@@ -1413,14 +1610,14 @@ void HAL_TIM_Encoder_MspInit(TIM_HandleTypeDef* htim_encoder)
 }
 
 /**
-  * @brief TIM_Base MSP Initialization
+  * @brief TIM_PWM MSP Initialization
   * This function configures the hardware resources used in this example
-  * @param htim_base: TIM_Base handle pointer
+  * @param htim_pwm: TIM_PWM handle pointer
   * @retval None
   */
-void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
+void HAL_TIM_PWM_MspInit(TIM_HandleTypeDef* htim_pwm)
 {
-  if(htim_base->Instance==TIM5)
+  if(htim_pwm->Instance==TIM5)
   {
     /* USER CODE BEGIN TIM5_MspInit 0 */
 
@@ -1431,21 +1628,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* htim_base)
 
     /* USER CODE END TIM5_MspInit 1 */
   }
-  else if(htim_base->Instance==TIM6)
-  {
-    /* USER CODE BEGIN TIM6_MspInit 0 */
-
-    /* USER CODE END TIM6_MspInit 0 */
-    /* Peripheral clock enable */
-    __HAL_RCC_TIM6_CLK_ENABLE();
-    /* TIM6 interrupt Init */
-    HAL_NVIC_SetPriority(TIM6_IRQn, 5, 0);
-    HAL_NVIC_EnableIRQ(TIM6_IRQn);
-    /* USER CODE BEGIN TIM6_MspInit 1 */
-
-    /* USER CODE END TIM6_MspInit 1 */
-  }
-  else if(htim_base->Instance==TIM8)
+  else if(htim_pwm->Instance==TIM8)
   {
     /* USER CODE BEGIN TIM8_MspInit 0 */
 
@@ -1474,7 +1657,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
     PA2     ------> TIM5_CH3
     PA3     ------> TIM5_CH4
     */
-    GPIO_InitStruct.Pin = MOT_PWM1_Pin|MOT_PWM2_Pin|MOT_PWM3_Pin|MOT_PWM4_Pin;
+    GPIO_InitStruct.Pin = MOT_PWM1_Pin|MOT_PWM2_Pin|MOT_PWM3_Pin|MOT_PWM3A3_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -1491,22 +1674,14 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
 
     /* USER CODE END TIM8_MspPostInit 0 */
 
-    __HAL_RCC_GPIOB_CLK_ENABLE();
     __HAL_RCC_GPIOC_CLK_ENABLE();
     /**TIM8 GPIO Configuration
-    PB0     ------> TIM8_CH2N
     PC6     ------> TIM8_CH1
+    PC7     ------> TIM8_CH2
     PC8     ------> TIM8_CH3
     PC9     ------> TIM8_CH4
     */
-    GPIO_InitStruct.Pin = SERVO_PWM2N_Pin;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF3_TIM8;
-    HAL_GPIO_Init(SERVO_PWM2N_GPIO_Port, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = SERVO_PWM1_Pin|SERVO_PWM3_Pin|SERVO_PWM4_Pin;
+    GPIO_InitStruct.Pin = SERVO_PWM1_Pin|SERVO_PWM2_Pin|SERVO_PWM3_Pin|SERVO_PWM4_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -1539,7 +1714,7 @@ void HAL_TIM_Encoder_MspDeInit(TIM_HandleTypeDef* htim_encoder)
     PE3     ------> TIM3_CH1
     PE4     ------> TIM3_CH2
     */
-    HAL_GPIO_DeInit(GPIOE, Encoder3_PHA_Pin|Encoder3_PHB_Pin);
+    HAL_GPIO_DeInit(GPIOE, ENCODER_3_PHA_Pin|ENCODER_3_PHB_Pin);
 
     /* USER CODE BEGIN TIM3_MspDeInit 1 */
 
@@ -1557,9 +1732,9 @@ void HAL_TIM_Encoder_MspDeInit(TIM_HandleTypeDef* htim_encoder)
     PD13     ------> TIM4_CH2
     PB6     ------> TIM4_CH1
     */
-    HAL_GPIO_DeInit(Encoder4_PHB_GPIO_Port, Encoder4_PHB_Pin);
+    HAL_GPIO_DeInit(ENCODER_4_PHB_GPIO_Port, ENCODER_4_PHB_Pin);
 
-    HAL_GPIO_DeInit(Encoder4_PHA_GPIO_Port, Encoder4_PHA_Pin);
+    HAL_GPIO_DeInit(ENCODER_4_PHA_GPIO_Port, ENCODER_4_PHA_Pin);
 
     /* USER CODE BEGIN TIM4_MspDeInit 1 */
 
@@ -1569,14 +1744,14 @@ void HAL_TIM_Encoder_MspDeInit(TIM_HandleTypeDef* htim_encoder)
 }
 
 /**
-  * @brief TIM_Base MSP De-Initialization
+  * @brief TIM_PWM MSP De-Initialization
   * This function freeze the hardware resources used in this example
-  * @param htim_base: TIM_Base handle pointer
+  * @param htim_pwm: TIM_PWM handle pointer
   * @retval None
   */
-void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
+void HAL_TIM_PWM_MspDeInit(TIM_HandleTypeDef* htim_pwm)
 {
-  if(htim_base->Instance==TIM5)
+  if(htim_pwm->Instance==TIM5)
   {
     /* USER CODE BEGIN TIM5_MspDeInit 0 */
 
@@ -1587,21 +1762,7 @@ void HAL_TIM_Base_MspDeInit(TIM_HandleTypeDef* htim_base)
 
     /* USER CODE END TIM5_MspDeInit 1 */
   }
-  else if(htim_base->Instance==TIM6)
-  {
-    /* USER CODE BEGIN TIM6_MspDeInit 0 */
-
-    /* USER CODE END TIM6_MspDeInit 0 */
-    /* Peripheral clock disable */
-    __HAL_RCC_TIM6_CLK_DISABLE();
-
-    /* TIM6 interrupt DeInit */
-    HAL_NVIC_DisableIRQ(TIM6_IRQn);
-    /* USER CODE BEGIN TIM6_MspDeInit 1 */
-
-    /* USER CODE END TIM6_MspDeInit 1 */
-  }
-  else if(htim_base->Instance==TIM8)
+  else if(htim_pwm->Instance==TIM8)
   {
     /* USER CODE BEGIN TIM8_MspDeInit 0 */
 
