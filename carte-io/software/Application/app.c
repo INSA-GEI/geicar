@@ -16,6 +16,8 @@
 
 #include "config.h"
 
+#include "Services/uartdrv.h"
+
 /* Constantes */
 #define SOF 0x7F                  // Start of Frame
 #define HEADER_SIZE 2             // Taille de [SOF][Length][Type]
@@ -25,9 +27,7 @@
 
 /* Handlers */
 extern UART_HandleTypeDef huart1;
-
-/* FreeRTOS */
-//SemaphoreHandle_t APP_RXCompleteSemaphore;
+UART_Handle APP_UartHandle;
 
 /* Handle pour la file de messages */
 QueueHandle_t APP_MessageQueue;
@@ -37,28 +37,28 @@ void APP_ReceiveCMDTask(void *pvParameters) ;
 void APP_MessageHandlerTask(void *pvParameters);
 void processFrame(uint8_t type, uint8_t *data, uint8_t dataLength);
 void APP_UART_RxCallback(UART_HandleTypeDef *huart);
-void MX_USART1_UART_Init(void);
 
 TaskHandle_t APP_ReceiveCMDTaskhandle;
 TaskHandle_t APP_MessageHandlerTaskhandle;
 
+uint32_t APP_UARTCircularBufferSize = APP_UART_CIRCULAR_BUFFER_SIZE;
+uint8_t APP_UARTCircularBuffer[APP_UART_CIRCULAR_BUFFER_SIZE];
+
 /* Fonction principale */
 void APP_Init(void) {
 
-	MX_USART1_UART_Init();
+	printf ("[APP_Init] Initialisation... ");
 
-	/* Initialisation USART et DMA */
-	/* Activer l'utilisation des callbacks personnalisés */
-	HAL_UART_RegisterCallback(&huart1, HAL_UART_RX_COMPLETE_CB_ID, APP_UART_RxCallback);
-	HAL_UART_RegisterCallback(&huart1, HAL_UART_RX_HALFCOMPLETE_CB_ID, APP_UART_RxCallback);
+	/* Initialisation de l'uart 1 */
+	UART_Config appUARTConfig =
+	{
+			APP_UARTCircularBuffer,
+			APP_UARTCircularBufferSize,
+			10, 	// Période du timer de lecture, exprimé en ms (donc ici, 10 ms)
+			3000000				// Pour l'instant, ne sert à rien, codé en dur par cubeMX
+	};
 
-//	/* Création des sémaphores */
-//	APP_RXCompleteSemaphore = xSemaphoreCreateBinary();
-//	if (APP_RXCompleteSemaphore == NULL) {
-//		printf("[APP Init] Erreur de création du semaphore\n");
-//		while (1);
-//	}
-//	vQueueAddToRegistry(APP_RXCompleteSemaphore, "APP_RXCompleteSem" );
+	assert(UART_Init(&APP_UartHandle, USART1,  appUARTConfig)==HAL_OK); // On verifie que l'init de l'uart s'est bien passée
 
 	APP_MessageQueue = xQueueCreate(QUEUE_LENGTH, ITEM_SIZE);
 	if (APP_MessageQueue == NULL) {
@@ -69,7 +69,7 @@ void APP_Init(void) {
 
 	/* Création de la tâche FreeRTOS */
 	xTaskCreate(APP_ReceiveCMDTask,
-			"APP_ReceiveCmdS",
+			"APP_ReceiveCmds",
 			TASK_STACK_SIZE_APPLICATION,
 			NULL,
 			TASK_PRIO_APP_RCV_CMD,
@@ -84,6 +84,8 @@ void APP_Init(void) {
 			TASK_PRIO_APP_MSG_HANDLER,
 			&APP_MessageHandlerTaskhandle);
 	vTaskResume(APP_MessageHandlerTaskhandle);
+
+	printf ("Done\n");
 }
 
 /* Fonction de la tâche qui traite les messages */
@@ -102,15 +104,6 @@ void APP_MessageHandlerTask(void *pvParameters) {
 	}
 }
 
-/* Callback personnalisé : completion totale du DMA */
-void APP_UART_RxCallback(UART_HandleTypeDef *huart) {
-	if (huart->Instance == USART1) {
-		BaseType_t xHigherPriorityTaskWoken = pdFALSE;
-		vTaskNotifyGiveFromISR(APP_ReceiveCMDTaskhandle, &xHigherPriorityTaskWoken);
-		portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
-	}
-}
-
 /* Tâche FreeRTOS pour traiter les messages recus sur l'UART1 */
 void APP_ReceiveCMDTask(void *pvParameters) {
 	/* Buffers DMA et variables */
@@ -118,11 +111,24 @@ void APP_ReceiveCMDTask(void *pvParameters) {
 	char *message;
 
 	while (1) {
-		/* Démarrage du DMA */
-		HAL_UART_Receive_DMA(&huart1, headerBuffer, HEADER_SIZE);
 
-		// Attente que la réception DMA soit terminée
-		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+		// debug du driver d'uart
+		uint8_t bufferTest[26]={0}; // 25 Caractères + 0 terminal
+
+		//message = (char *)malloc(50 * sizeof(char)); // allocation avec que des zeros
+		while (1) {
+			//memset(message, 0, 50);
+
+			if (UART_Read(&APP_UartHandle, bufferTest, 25, portMAX_DELAY) == HAL_OK) {
+				//snprintf(message, 50, "[APP_Receive] Msg reçu: %s\n", bufferTest);
+				//printf(message);
+				UART_Write(&APP_UartHandle, bufferTest, 25, 100, 0);
+			} else {
+				printf("[APP_Receive] Échec du test de reception uart\n");
+			}
+		}
+
+		UART_Read(&APP_UartHandle, headerBuffer, HEADER_SIZE, portMAX_DELAY); // attente infinie sur un header
 
 		// Vérification du SOF
 		if (headerBuffer[0] != SOF) {
@@ -137,10 +143,11 @@ void APP_ReceiveCMDTask(void *pvParameters) {
 		uint8_t frameBuffer[frameLength];
 
 		// Réception du reste de la trame
-		HAL_UART_Receive_DMA(&huart1, frameBuffer, frameLength);
+		UART_Read(&APP_UartHandle, frameBuffer, frameLength, 100); // attente de 100ms pour recevoir le reste de la trame
+		//HAL_UART_Receive_DMA(&huart1, frameBuffer, frameLength);
 
 		// Attente que la réception DMA soit terminée
-		ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
+		//ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
 		// Calcul et vérification du checksum
 		uint8_t calculatedChecksum = 0;

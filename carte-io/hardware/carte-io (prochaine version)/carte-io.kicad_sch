@@ -1937,7 +1937,7 @@
 			)
 			(uuid "7b919ce7-bce4-41ff-8d28-6ea4582df6c6")
 		)
-		(pin "SERVO_PWM2N" output
+		(pin "SERVO_PWM2" output
 			(at 194.31 114.3 0)
 			(effects
 				(font

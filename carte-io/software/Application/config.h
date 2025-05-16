@@ -23,4 +23,7 @@
 #define TASK_STACK_SIZE_STD				256
 #define TASK_STACK_SIZE_APPLICATION		2*256
 
+// UARTs configuration
+#define APP_UART_CIRCULAR_BUFFER_SIZE	20
+
 #endif /* CONFIG_H_ */

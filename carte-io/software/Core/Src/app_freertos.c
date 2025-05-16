@@ -22,11 +22,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "app.h"
 
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
-typedef StaticTask_t osStaticThreadDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -47,15 +47,10 @@ typedef StaticTask_t osStaticThreadDef_t;
 /* USER CODE END Variables */
 /* Definitions for UnusedTask */
 osThreadId_t UnusedTaskHandle;
-uint32_t UnusedTaskBuffer[ 128 ];
-osStaticThreadDef_t UnusedTaskCBN;
 const osThreadAttr_t UnusedTask_attributes = {
   .name = "UnusedTask",
-  .stack_mem = &UnusedTaskBuffer[0],
-  .stack_size = sizeof(UnusedTaskBuffer),
-  .cb_mem = &UnusedTaskCBN,
-  .cb_size = sizeof(UnusedTaskCBN),
-  .priority = (osPriority_t) osPriorityLow,
+  .priority = (osPriority_t) osPriorityRealtime7,
+  .stack_size = 256 * 4
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -122,11 +117,14 @@ void MX_FREERTOS_Init(void) {
 void UnusedTaskFct(void *argument)
 {
   /* USER CODE BEGIN UnusedTask */
-  /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
-  }
+	/*
+	 * tache inutile, générée obligatoirement par cubeMX -> on s'en sert pour initialiser l'application et lancer ses taches
+	 * ensuite, la tache se termine et libère le CPU et la RAM
+	 * C'est pourquoi cette tâche est de + haute priorité
+	 */
+
+	APP_Init();
+	vTaskDelete( NULL );
   /* USER CODE END UnusedTask */
 }
 

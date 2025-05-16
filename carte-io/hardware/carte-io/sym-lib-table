@@ -7,4 +7,5 @@
   (lib (name "TXU0104PWR")(type "KiCad")(uri "${KIPRJMOD}/libraries/TXU0104PWR/TXU0104PWR.kicad_sym")(options "")(descr ""))
   (lib (name "SeeedStudio - Horizontal header")(type "KiCad")(uri "${KIPRJMOD}/../libraries/SeeedStudio - 114020164/114020164.kicad_sym")(options "")(descr ""))
   (lib (name "SeeedStudio - Vertical header")(type "KiCad")(uri "${KIPRJMOD}/../libraries/SeeedStudio - 114020163/114020163.kicad_sym")(options "")(descr ""))
+  (lib (name "MCXN236VKLT")(type "KiCad")(uri "/home-local/dimercur/Documents/Travail/Depots-Git/geicar/carte-io/hardware/libraries/MCXN236VKLT/KiCad/MCXN236VKLT.kicad_sym")(options "")(descr ""))
 )
