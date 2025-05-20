@@ -17,13 +17,11 @@
 #include "config.h"
 
 #include "Services/uartdrv.h"
+#include "Services/i2cdrv.h"
 
 /* Constantes */
 #define SOF 0x7F                  // Start of Frame
 #define HEADER_SIZE 2             // Taille de [SOF][Length][Type]
-
-#define QUEUE_LENGTH 5
-#define ITEM_SIZE sizeof(void*)
 
 /* Handlers */
 extern UART_HandleTypeDef huart1;
@@ -44,7 +42,10 @@ TaskHandle_t APP_MessageHandlerTaskhandle;
 uint32_t APP_UARTCircularBufferSize = APP_UART_CIRCULAR_BUFFER_SIZE;
 uint8_t APP_UARTCircularBuffer[APP_UART_CIRCULAR_BUFFER_SIZE];
 
-/* Fonction principale */
+/**
+ * @brief  Fonction d'initialisation de l'application
+ * @retval None
+ */
 void APP_Init(void) {
 
 	printf ("[APP_Init] Initialisation... ");
@@ -88,7 +89,11 @@ void APP_Init(void) {
 	printf ("Done\n");
 }
 
-/* Fonction de la tâche qui traite les messages */
+/**
+ * @brief  Tâche de gestion des messages
+ * @param  pvParameters: Paramètres de la tâche (non utilisés ici)
+ * @retval None
+ */
 void APP_MessageHandlerTask(void *pvParameters) {
 	void *receivedMessage;
 
@@ -104,30 +109,18 @@ void APP_MessageHandlerTask(void *pvParameters) {
 	}
 }
 
-/* Tâche FreeRTOS pour traiter les messages recus sur l'UART1 */
+/**
+ * @brief  Tâche de réception de commandes
+ * @param  pvParameters: Paramètres de la tâche (non utilisés ici)
+ * @retval None
+ */
 void APP_ReceiveCMDTask(void *pvParameters) {
 	/* Buffers DMA et variables */
 	uint8_t headerBuffer[HEADER_SIZE];
 	char *message;
 
 	while (1) {
-
-		// debug du driver d'uart
-		uint8_t bufferTest[26]={0}; // 25 Caractères + 0 terminal
-
-		//message = (char *)malloc(50 * sizeof(char)); // allocation avec que des zeros
-		while (1) {
-			//memset(message, 0, 50);
-
-			if (UART_Read(&APP_UartHandle, bufferTest, 25, portMAX_DELAY) == HAL_OK) {
-				//snprintf(message, 50, "[APP_Receive] Msg reçu: %s\n", bufferTest);
-				//printf(message);
-				UART_Write(&APP_UartHandle, bufferTest, 25, 100, 0);
-			} else {
-				printf("[APP_Receive] Échec du test de reception uart\n");
-			}
-		}
-
+        // Attente de la réception du header d'une trame
 		UART_Read(&APP_UartHandle, headerBuffer, HEADER_SIZE, portMAX_DELAY); // attente infinie sur un header
 
 		// Vérification du SOF
@@ -144,10 +137,6 @@ void APP_ReceiveCMDTask(void *pvParameters) {
 
 		// Réception du reste de la trame
 		UART_Read(&APP_UartHandle, frameBuffer, frameLength, 100); // attente de 100ms pour recevoir le reste de la trame
-		//HAL_UART_Receive_DMA(&huart1, frameBuffer, frameLength);
-
-		// Attente que la réception DMA soit terminée
-		//ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
 
 		// Calcul et vérification du checksum
 		uint8_t calculatedChecksum = 0;
@@ -185,7 +174,13 @@ void APP_ReceiveCMDTask(void *pvParameters) {
 	}
 }
 
-/* Traitement d'un message valide */
+/**
+ * @brief  Traite un message reçu
+ * @param  type: Type de message
+ * @param  data: Données du message
+ * @param  dataLength: Longueur des données
+ * @retval None
+ */
 void processFrame(uint8_t type, uint8_t *data, uint8_t dataLength) {
 	// Traitement spécifique au type
 	printf("Message Type: %d, Data Length: %d\n", type, dataLength);
