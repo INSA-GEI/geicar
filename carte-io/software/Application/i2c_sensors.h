@@ -15,7 +15,7 @@
  * @brief  Fonction d'initialisation des capteurs I2C
  * @retval None
  */
-void I2C_SensorsInit(void);
+void I2C_SensorsInit(QueueHandle_t *AppMsgQueue);
 
 /**
  * @brief  Retourne le handle de la file de messages I2C

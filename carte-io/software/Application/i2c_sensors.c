@@ -24,6 +24,7 @@
 QueueHandle_t I2C_Sensors_MessageQueue;
 TimerHandle_t I2C_Sensors_PeriodicTimer;          // Timer pour générer des évènements périodiques pour la scrutation des capteurs
 TaskHandle_t I2C_Sensors_MessageHandlerTaskhandle;
+static QueueHandle_t *ApplicationMessageQueue;    // Handle de la file de messages de l'application
 
 void I2C_Sensors_MessagesHandlerTask(void *pvParameters);
 static void onTimerEvent(TimerHandle_t xTimer);
@@ -31,7 +32,10 @@ static void onTimerEvent(TimerHandle_t xTimer);
  * @brief  Fonction d'initialisation des capteurs I2C
  * @retval None
  */
-void I2C_SensorsInit(void) {
+void I2C_SensorsInit(QueueHandle_t *AppMsgQueue) {
+	assert_param(AppMsgQueue!=NULL);
+	ApplicationMessageQueue = AppMsgQueue;
+
 	I2C_Sensors_MessageQueue = xQueueCreate(QUEUE_LENGTH, ITEM_SIZE);
 	if (I2C_Sensors_MessageQueue == NULL) {
 		printf("[I2C SensorsInit] Erreur de création de la file\n");

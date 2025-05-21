@@ -14,7 +14,7 @@
 #define VERSION_STRING "1.0"
 
 // Tasks priority, higher = higher priority
-#define TASK_PRIO_APP_RCV_CMD		20
+#define TASK_PRIO_COM_USB_RCV_CMD		20
 #define TASK_PRIO_APP_MSG_HANDLER	19
 #define TASK_PRIO_PROBE_RUN			18
 #define TASK_PRIO_I2C_SENSORS_MESSAGES_HANDLER_TASK        17
@@ -31,8 +31,15 @@
 #define APP_UART_CIRCULAR_BUFFER_SIZE	20
 
 // I2C configuration
-#define I2C_INTERNAL I2C1
-#define I2C_EXTERNAL I2C2
-#define I2C_ARBITRARY I2C4
+#define I2C_INTERNAL 	I2C1
+#define I2C_EXTERNAL 	I2C2
+#define I2C_ARBITRARY 	I2C4
+
+// I2C configuration
+#define UART_COM_USB 	USART1
+#define UART_ARBITRARY 	LPUART1
+#define UART_GPS 		USART3
+#define UART_LIDAR_1 	UART4
+#define UART_LIDAR_2 	UART5
 
 #endif /* CONFIG_H_ */
