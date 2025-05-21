@@ -16,10 +16,10 @@
 #include "config.h"
 
 #include "Services/uartdrv.h"
-//#include "Services/i2cdrv.h"
 #include "i2c_sensors.h"
 #include "debug.h"
 #include "com_usb.h"
+#include "motors_servos.h"
 
 /* Handle pour la file de messages */
 QueueHandle_t APP_MessageQueue;
@@ -58,6 +58,9 @@ void APP_Init(void) {
 	/* Initialisation des autres sous-systemes */
 	COM_USB_Init(&APP_MessageQueue);
 	I2C_SensorsInit(&APP_MessageQueue);
+
+	/* Recherche de périphériques */
+	I2C_Sensors_Probe(); /* Recherche de périphériques I2C */
 
 	printf ("Done\n");
 }

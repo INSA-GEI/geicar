@@ -39,6 +39,8 @@ void COM_USB_Init(QueueHandle_t *AppMsgQueue) {
 
 	ApplicationMessageQueue = AppMsgQueue;
 
+	printf ("[I2C SensorsInit] Initialisation... ");
+
 	/* Initialisation de l'uart 1 */
 	UART_Config COM_USB_Config =
 	{
@@ -48,16 +50,18 @@ void COM_USB_Init(QueueHandle_t *AppMsgQueue) {
 			3000000				// Pour l'instant, ne sert à rien, codé en dur par cubeMX
 	};
 
-	assert(UART_Init(USART1,  COM_USB_Config)==HAL_OK); // On verifie que l'init de l'uart s'est bien passée
+	assert(UART_Init(USART1, COM_USB_Config)==HAL_OK); // On verifie que l'init de l'uart s'est bien passée
 
 	/* Création de la tâche FreeRTOS */
 	xTaskCreate(COM_USB_ReceiveCMDTask,
 			"COM_USB_ReceiveCmds",
-			TASK_STACK_SIZE_APPLICATION,
+			TASK_STACK_SIZE_STD,
 			NULL,
 			TASK_PRIO_COM_USB_RCV_CMD,
 			&COM_USB_ReceiveCMDTaskhandle);
 	vTaskResume(COM_USB_ReceiveCMDTaskhandle);
+
+	printf ("Done\n");
 }
 
 /**
@@ -121,7 +125,7 @@ void COM_USB_ReceiveCMDTask(void *pvParameters) {
 		snprintf((char*)message->data, message->length, "Msg:\n\tType=%d\n\tLength=%d\n", type, frameLength-2);
 
 		/* Envoyer le message dans la file */
-		if (xQueueSend(*ApplicationMessageQueue, message, portMAX_DELAY) != pdPASS) {
+		if (xQueueSend(*ApplicationMessageQueue, (void*) &message, portMAX_DELAY) != pdPASS) {
 			printf("Échec de l'envoi du message\n");
 			DELETE_MESSAGE(message); // Libérer la mémoire en cas d'échec
 		}

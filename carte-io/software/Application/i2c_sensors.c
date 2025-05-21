@@ -28,6 +28,7 @@ static QueueHandle_t *ApplicationMessageQueue;    // Handle de la file de messag
 
 void I2C_Sensors_MessagesHandlerTask(void *pvParameters);
 static void onTimerEvent(TimerHandle_t xTimer);
+
 /**
  * @brief  Fonction d'initialisation des capteurs I2C
  * @retval None
@@ -35,6 +36,8 @@ static void onTimerEvent(TimerHandle_t xTimer);
 void I2C_SensorsInit(QueueHandle_t *AppMsgQueue) {
 	assert_param(AppMsgQueue!=NULL);
 	ApplicationMessageQueue = AppMsgQueue;
+
+	printf ("[I2C SensorsInit] Initialisation... ");
 
 	I2C_Sensors_MessageQueue = xQueueCreate(QUEUE_LENGTH, ITEM_SIZE);
 	if (I2C_Sensors_MessageQueue == NULL) {
@@ -46,10 +49,16 @@ void I2C_SensorsInit(QueueHandle_t *AppMsgQueue) {
 	/* Initialisation de l'I2C1 - I2C_INTERNAL  */
 	assert_param(I2C_Init(I2C_INTERNAL)==HAL_OK);
 
+	/* Initialisation de l'I2C2 - I2C_EXTERNAL  */
+	assert_param(I2C_Init(I2C_EXTERNAL)==HAL_OK);
+
+	/* Initialisation de l'I2C4 - I2C_ARBITRARY  */
+	assert_param(I2C_Init(I2C_ARBITRARY)==HAL_OK);
+
 	/* Création de la tâche FreeRTOS de gestion des messages */
 	xTaskCreate(I2C_Sensors_MessagesHandlerTask,
 			"I2C_Sensors_MessagesHandlerTask",
-			TASK_STACK_SIZE_APPLICATION,
+			TASK_STACK_SIZE_STD,
 			NULL,
 			TASK_PRIO_I2C_SENSORS_MESSAGES_HANDLER_TASK,
 			&I2C_Sensors_MessageHandlerTaskhandle);
@@ -66,6 +75,8 @@ void I2C_SensorsInit(QueueHandle_t *AppMsgQueue) {
 
 	// Démarrage du timer / lecture périodique
 	assert_param(xTimerStart(I2C_Sensors_PeriodicTimer,0) == pdPASS);
+
+	printf ("Done\n");
 }
 
 /**
@@ -74,6 +85,21 @@ void I2C_SensorsInit(QueueHandle_t *AppMsgQueue) {
  */
 QueueHandle_t* I2C_Sensors_GetMessageQueue(void) {
 	return &I2C_Sensors_MessageQueue;
+}
+
+/**
+ * @brief  Fonction pour lancer la recherche de périphériques I2C
+ * @retval None
+ */
+void I2C_Sensors_Probe(void){
+	Messages_TypeDef *message = NEW_MESSAGE(MSG_ID_PROBE_REQUEST, ApplicationMessageQueue);
+
+	// Envoi d'un message pour lancer la recherche de peripheriques I2C (Probe)
+	// L'adresse du message est COPIÉE dans la file, pas de passage par ref
+	if (xQueueSend(I2C_Sensors_MessageQueue, (void*) &message, portMAX_DELAY) != pdPASS) {
+		printf("[I2C_Sensors] Échec de l'envoi du message\n");
+		DELETE_MESSAGE(message);
+	}
 }
 
 /**

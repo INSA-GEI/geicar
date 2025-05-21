@@ -23,4 +23,10 @@ void I2C_SensorsInit(QueueHandle_t *AppMsgQueue);
  */
 QueueHandle_t* I2C_Sensors_GetMessageQueue(void);
 
+/**
+ * @brief  Fonction pour lancer la recherche de périphériques I2C
+ * @retval None
+ */
+void I2C_Sensors_Probe(void);
+
 #endif /* I2C_SENSORS_H_ */
