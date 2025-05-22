@@ -21,6 +21,8 @@
 #include "com_usb.h"
 #include "motors_servos.h"
 
+#include "probe.h"
+
 /* Handle pour la file de messages */
 QueueHandle_t APP_MessageQueue;
 
@@ -60,7 +62,7 @@ void APP_Init(void) {
 	I2C_SensorsInit(&APP_MessageQueue);
 
 	/* Recherche de périphériques */
-	I2C_Sensors_Probe(); /* Recherche de périphériques I2C */
+	PROBE_Init(&APP_MessageQueue);
 
 	printf ("Done\n");
 }

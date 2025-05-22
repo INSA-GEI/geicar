@@ -92,14 +92,7 @@ QueueHandle_t* I2C_Sensors_GetMessageQueue(void) {
  * @retval None
  */
 void I2C_Sensors_Probe(void){
-	Messages_TypeDef *message = NEW_MESSAGE(MSG_ID_PROBE_REQUEST, ApplicationMessageQueue);
-
-	// Envoi d'un message pour lancer la recherche de peripheriques I2C (Probe)
-	// L'adresse du message est COPIÉE dans la file, pas de passage par ref
-	if (xQueueSend(I2C_Sensors_MessageQueue, (void*) &message, portMAX_DELAY) != pdPASS) {
-		printf("[I2C_Sensors] Échec de l'envoi du message\n");
-		DELETE_MESSAGE(message);
-	}
+	// TODO: A reprendre, faire le scan de tous les périphériques I2C sur tous les bus
 }
 
 /**

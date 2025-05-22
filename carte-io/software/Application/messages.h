@@ -15,17 +15,32 @@
 #include <stdio.h>
 
 typedef enum {
+	// Entre 0 et 0x7F, les messages sont réservés à l'application
 	MSG_ID_EMPTY					=0,
 	MSG_ID_STRING,
-	MSG_ID_PROBE_REQUEST,
-	MSG_ID_PROBE_ANSWER,
+
 	MSG_ID_I2C_SENSORS_10MS_EVENT,
-	MSG_ID_I2C_SENSORS_50MS_EVENT
+	MSG_ID_I2C_SENSORS_50MS_EVENT,
+	// En dessous de cette ligne (0x80), les messages sont publiques et utilisables dans les trames de communication USB
+	MSG_ID_ERROR					=0x80,
+	MSG_ID_PROBE_RESULT,
+	MSG_ID_MOTORS_CONFIGURE,
+	MSG_ID_MOTORS_SET_SPEED,
+	MSG_ID_MOTORS_RESET_ODOMETER,
+	MSG_ID_MOTORS_GET_ODOMETER,
+	MSG_ID_SERVOS_CONFIGURE,
+	MSG_ID_SERVOS_SET_POSITION,
+
+	MSG_ID_GPIO_CONFIGURE,
+	MSG_ID_GPIO_SET_STATE,
+	MSG_ID_GPIO_GET_STATE
 } Messages_ID_TypeDef;
 
 typedef struct {
 	Messages_ID_TypeDef id;
 	QueueHandle_t *sender;
+	uint32_t param1;
+	uint32_t param2;
 	uint8_t *data;
 	uint16_t length;
 } Messages_TypeDef;
@@ -64,6 +79,8 @@ typedef struct {
         if (msg_ptr) {                  \
             if ((msg_ptr)->data) {      \
                 free((msg_ptr)->data);  \
+                (msg_ptr)->data = NULL; \
+                (msg_ptr)->length = 0;  \
             }                           \
             free(msg_ptr);              \
             (msg_ptr) = NULL;           \

@@ -8,6 +8,9 @@
 #ifndef PROBE_H_
 #define PROBE_H_
 
-void PROBE_Init(void);
+#include "FreeRTOS.h"
+#include "queue.h"
+
+void PROBE_Init(QueueHandle_t *AppMsgQueue);
 
 #endif /* PROBE_H_ */
