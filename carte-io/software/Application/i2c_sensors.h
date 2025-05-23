@@ -23,10 +23,15 @@ void I2C_SensorsInit(QueueHandle_t *AppMsgQueue);
  */
 QueueHandle_t* I2C_Sensors_GetMessageQueue(void);
 
+
+typedef struct {
+	uint32_t internalSensors; // Liste des capteurs internes;
+	uint32_t externalSensors[8]; // Liste des capteurs externes [8 voies], 32 capteurs possibles par voie;
+} I2C_Sensor_ProbeResults_TypeDef;
 /**
  * @brief  Fonction pour lancer la recherche de périphériques I2C
  * @retval None
  */
-void I2C_Sensors_Probe(void);
+I2C_Sensor_ProbeResults_TypeDef I2C_Sensors_Probe(void);
 
 #endif /* I2C_SENSORS_H_ */

@@ -16,10 +16,10 @@
 // Tasks priority, higher = higher priority
 #define TASK_PRIO_COM_USB_RCV_CMD							20
 #define TASK_PRIO_APP_MSG_HANDLER							19
-#define TASK_PRIO_PROBE_RUN									18
+
 #define TASK_PRIO_I2C_SENSORS_MESSAGES_HANDLER_TASK        	17
 #define TASK_PRIO_I2C_SENSORS_PERIODIC_TASK        			16
-#define TASK_PRIO_MOTORS_SERVOS_MESSAGES_HANDLER_TASK		15
+#define TASK_PRIO_PROBE_RUN									2
 #define TASK_PRIO_PERIODIC_DEBUG							1
 
 // Various config

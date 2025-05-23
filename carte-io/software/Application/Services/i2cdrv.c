@@ -75,14 +75,16 @@ static I2C_Context *I2C_GetContext(I2C_TypeDef *dev) {
 HAL_StatusTypeDef I2C_Init(I2C_TypeDef *dev) {
 	assert_param(dev != NULL);
 
+	char *sem_tx_name, *sem_rx_name, *mutex_name;
+
 	I2C_Context *ctx = I2C_GetContext(dev);
 	assert_param(ctx != NULL);
 
 	ctx->tx_semaphore = xSemaphoreCreateBinary();
 	assert_param(ctx->tx_semaphore != NULL);
 
-	ctx->tx_semaphore = xSemaphoreCreateBinary();
-	assert_param(ctx->tx_semaphore != NULL);
+	ctx->rx_semaphore = xSemaphoreCreateBinary();
+	assert_param(ctx->rx_semaphore != NULL);
 
 	ctx->mutex = xSemaphoreCreateMutex();
 	assert_param(ctx->mutex != NULL);
@@ -92,29 +94,33 @@ HAL_StatusTypeDef I2C_Init(I2C_TypeDef *dev) {
 			MX_I2C1_Init();
 	ctx->hi2c = &hi2c1;
 
-	vQueueAddToRegistry(ctx->tx_semaphore, "SEM I2C1 TX");
-	vQueueAddToRegistry(ctx->rx_semaphore, "SEM I2C1 RX");
-	vQueueAddToRegistry(ctx->rx_semaphore, "SEM I2C1 Mutex");
+	sem_tx_name="SEM I2C1 TX";
+	sem_rx_name="SEM I2C1 RX";
+	mutex_name="SEM I2C1 Mutex";
 	break;
 	case (uint32_t)I2C2:
 			MX_I2C2_Init();
 	ctx->hi2c = &hi2c2;
 
-	vQueueAddToRegistry(ctx->tx_semaphore, "SEM I2C2 TX");
-	vQueueAddToRegistry(ctx->rx_semaphore, "SEM I2C2 RX");
-	vQueueAddToRegistry(ctx->rx_semaphore, "SEM I2C2 Mutex");
+	sem_tx_name="SEM I2C2 TX";
+	sem_rx_name="SEM I2C2 RX";
+	mutex_name="SEM I2C2 Mutex";
 	break;
 	case (uint32_t)I2C4:
 			MX_I2C4_Init();
 	ctx->hi2c = &hi2c4;
 
-	vQueueAddToRegistry(ctx->tx_semaphore, "SEM I2C4 TX");
-	vQueueAddToRegistry(ctx->rx_semaphore, "SEM I2C4 RX");
-	vQueueAddToRegistry(ctx->rx_semaphore, "SEM I2C4 Mutex");
+	sem_tx_name="SEM I2C4 TX";
+	sem_rx_name="SEM I2C4 RX";
+	mutex_name="SEM I2C4 Mutex";
 	break;
 	default:
 		return HAL_ERROR;
 	}
+
+	vQueueAddToRegistry(ctx->tx_semaphore, sem_tx_name);
+	vQueueAddToRegistry(ctx->rx_semaphore, sem_rx_name);
+	vQueueAddToRegistry(ctx->mutex, mutex_name);
 
 	HAL_I2C_RegisterCallback(ctx->hi2c, HAL_I2C_MASTER_TX_COMPLETE_CB_ID, onTXEvent);
 	HAL_I2C_RegisterCallback(ctx->hi2c, HAL_I2C_MASTER_RX_COMPLETE_CB_ID, onRXEvent);

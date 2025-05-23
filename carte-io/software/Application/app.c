@@ -14,12 +14,14 @@
 #include <stdlib.h>
 
 #include "config.h"
+#include "messages.h"
 
 #include "Services/uartdrv.h"
 #include "i2c_sensors.h"
 #include "debug.h"
 #include "com_usb.h"
 #include "motors_servos.h"
+#include "gpio.h"
 
 #include "probe.h"
 
@@ -29,13 +31,13 @@ QueueHandle_t APP_MessageQueue;
 /* Prototypes */
 void APP_MessageHandlerTask(void *pvParameters);
 TaskHandle_t APP_MessageHandlerTaskhandle;
+void APP_SendVersion(void);
 
 /**
  * @brief  Fonction d'initialisation de l'application
  * @retval None
  */
 void APP_Init(void) {
-
 	printf ("[APP_Init] Initialisation... ");
 
 	APP_MessageQueue = xQueueCreate(QUEUE_LENGTH, ITEM_SIZE);
@@ -57,9 +59,13 @@ void APP_Init(void) {
 	/* Initialisation du support de debug */
 	DEBUG_Init();
 
-	/* Initialisation des autres sous-systemes */
+//	/* Initialisation des autres sous-systemes */
 	COM_USB_Init(&APP_MessageQueue);
 	I2C_SensorsInit(&APP_MessageQueue);
+	GPIO_Init(&APP_MessageQueue);
+	MOTORS_SERVOS_Init();
+
+//	APP_SendVersion();
 
 	/* Recherche de périphériques */
 	PROBE_Init(&APP_MessageQueue);
@@ -73,24 +79,61 @@ void APP_Init(void) {
  * @retval None
  */
 void APP_MessageHandlerTask(void *pvParameters) {
-	void *receivedMessage;
+	Messages_TypeDef *msg;
 
 	for (;;) {
 		/* Attendre indéfiniment un message dans la file */
-		if (xQueueReceive(APP_MessageQueue, &receivedMessage, portMAX_DELAY) == pdPASS) {
-			// A reprendre
-			printf("Message reçu : %s\n", (char *)receivedMessage);
+		if (xQueueReceive(APP_MessageQueue, (void*)&msg, portMAX_DELAY) == pdPASS) {
+
+			printf("[APP]Message recu, ID : %d\n", msg->id);
+
+			switch (msg->id) {
+			case MSG_ID_GPIO_CONFIGURE:
+			case MSG_ID_GPIO_SET_STATE:
+			case MSG_ID_GPIO_GET_STATE:
+				GPIO_MessageProcessor(msg);
+				break;
+			case MSG_ID_MOTORS_CONFIGURE:
+			case MSG_ID_SERVOS_CONFIGURE:
+			case MSG_ID_MOTORS_SET_SPEED:
+			case MSG_ID_SERVOS_SET_POSITION:
+				MOTORS_SERVOS_MessageProcessor(msg);
+				break;
+			case MSG_ID_PROBE_RESULT:
+				/* Traiter le message de résultat de probe */
+				printf("[APP] Probe result received: %d\n", msg->length);
+				break;
+			default:
+				printf("[APP] Message ID invalide");
+				break;
+			}
 
 			/* Libérer la mémoire du message après traitement */
-			free(receivedMessage);
+			//DELETE_MESSAGE(msg);
+			free(msg->data); // Libération de la mémoire allouée pour les données
+			free(msg); // Libération de la mémoire allouée pour le message
+
+			printf("[APP] Message libere\n");
 		}
 	}
 }
+/**
+ * @brief  Envoie la version de l'application sur le port USB
+ * @retval None
+ */
+void APP_SendVersion(void) {
+	Messages_TypeDef msg;
 
+	printf("[APP] Version %s\n", VERSION_STRING);
 
+	msg.id = MSG_ID_VERSION;
+	msg.length = 2; // 2 octets, 1 pour le major et 1 pour le minor
+	uint8_t verData[msg.length];
+	verData[0] = MAJOR_VER;
+	verData[1] = MINOR_VER;
 
+	msg.data = (uint8_t*)verData;
 
-
-
-
-
+	COM_USB_SendData(&msg);
+	// Pas de libération de mémoire ici, le buffer est alloué sur la stack
+}

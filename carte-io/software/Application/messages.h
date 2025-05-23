@@ -23,6 +23,7 @@ typedef enum {
 	MSG_ID_I2C_SENSORS_50MS_EVENT,
 	// En dessous de cette ligne (0x80), les messages sont publiques et utilisables dans les trames de communication USB
 	MSG_ID_ERROR					=0x80,
+	MSG_ID_VERSION,
 	MSG_ID_PROBE_RESULT,
 	MSG_ID_MOTORS_CONFIGURE,
 	MSG_ID_MOTORS_SET_SPEED,
@@ -39,8 +40,6 @@ typedef enum {
 typedef struct {
 	Messages_ID_TypeDef id;
 	QueueHandle_t *sender;
-	uint32_t param1;
-	uint32_t param2;
 	uint8_t *data;
 	uint16_t length;
 } Messages_TypeDef;

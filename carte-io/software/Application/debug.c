@@ -51,7 +51,7 @@ void DEBUG_PrintITM(uint8_t port, char *str) {
 void vDebugperiodicTask(void *pvParameters) {
 	char buffer[512];
 
-	while (1) {
+	for(;;) {
 		vTaskDelay(pdMS_TO_TICKS(1000)); // Wait 1s
 		vTaskList(buffer); // Collecte les stats
 

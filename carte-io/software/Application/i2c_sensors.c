@@ -91,8 +91,12 @@ QueueHandle_t* I2C_Sensors_GetMessageQueue(void) {
  * @brief  Fonction pour lancer la recherche de périphériques I2C
  * @retval None
  */
-void I2C_Sensors_Probe(void){
+I2C_Sensor_ProbeResults_TypeDef I2C_Sensors_Probe(void) {
+	I2C_Sensor_ProbeResults_TypeDef results= {0};
+
 	// TODO: A reprendre, faire le scan de tous les périphériques I2C sur tous les bus
+
+	return results;
 }
 
 /**
@@ -107,7 +111,7 @@ void I2C_Sensors_MessagesHandlerTask(void *pvParameters) {
 		/* Attendre indéfiniment un message dans la file */
 		if (xQueueReceive(I2C_Sensors_MessageQueue, (void*)&receivedMessage, portMAX_DELAY) == pdPASS) {
 			// A reprendre
-			printf("Message ID reçu : %u\n", (uint8_t)receivedMessage->id);
+			//printf("Message ID recu : %u\n", (uint8_t)receivedMessage->id);
 
 			/* Libérer la mémoire du message après traitement */
 			DELETE_MESSAGE(receivedMessage);

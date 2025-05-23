@@ -123,8 +123,9 @@ void UnusedTaskFct(void *argument)
 	 * C'est pourquoi cette tâche est de + haute priorité
 	 */
 
-	APP_Init();
+	APP_Init(); // On initialise l'application
 	vTaskDelete( NULL );
+
   /* USER CODE END UnusedTask */
 }
 
