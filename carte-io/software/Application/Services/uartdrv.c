@@ -15,6 +15,8 @@
 #include "timers.h"
 #include "semphr.h"
 
+#include "sw_timer.h"
+
 // Externes déclarés dans le projet
 extern void MX_LPUART1_UART_Init(void);
 extern void MX_UART4_Init(void);
@@ -40,7 +42,7 @@ typedef struct {
     UART_DeleteEnum deleteAfterSend;
     uint8_t* txBuffer;
 
-    TimerHandle_t rxPeriodicTimer;          // Timer pour surveiller la réception
+    sw_timer_id_t rxPeriodicTimer;          // Timer pour surveiller la réception
 
     uint8_t readInProgress;
     uint8_t* rxBuffer;
@@ -66,13 +68,8 @@ static bool UART_proceedCircularDMA(UART_Context *ctx, uint32_t currentDMAIndex)
 static void onTXEvent(UART_HandleTypeDef *huart);
 static void onRXEvent(UART_HandleTypeDef *huart);
 static void onErrorEvent(UART_HandleTypeDef *huart);
-static void onTimerEvent(TimerHandle_t xTimer);
-
-//static UART_Context* USART1_handle;
-//static UART_Context* USART3_handle;
-//static UART_Context* UART4_handle;
-//static UART_Context* UART5_handle;
-//static UART_Context* LPUART1_handle;
+//static void onTimerEvent(TimerHandle_t xTimer);
+static void onTimerEvent(void *arg);
 
 /**
  * @brief  Recupere un context UART en fonction de l'instance
@@ -192,13 +189,15 @@ HAL_StatusTypeDef UART_Init(USART_TypeDef *instance, UART_Config config) {
 	vQueueAddToRegistry(ctx->tx_semaphore, sem_tx_name);
 	vQueueAddToRegistry(ctx->rx_semaphore, sem_rx_name);
 
-	ctx->rxPeriodicTimer = xTimerCreate(timer_name,           // Nom du timer
-			pdMS_TO_TICKS(ctx->config.rxPeriodicTimerDelay),    // Période en ticks ( ex 500 ms)
-			pdTRUE,       // Auto-reload (pdTRUE = répète, pdFALSE = unique)
-			(void*) ctx,             // contexte de l'instance, pour récupérer la conf lors de l'appel
-			onTimerEvent      // Fonction callback
-	);
-	assert_param(ctx->rxPeriodicTimer != NULL);
+//	ctx->rxPeriodicTimer = xTimerCreate(timer_name,           // Nom du timer
+//			pdMS_TO_TICKS(ctx->config.rxPeriodicTimerDelay),    // Période en ticks ( ex 500 ms)
+//			pdTRUE,       // Auto-reload (pdTRUE = répète, pdFALSE = unique)
+//			(void*) ctx,             // contexte de l'instance, pour récupérer la conf lors de l'appel
+//			onTimerEvent      // Fonction callback
+//	);
+
+	ctx->rxPeriodicTimer = SW_TIMER_Configure(10, onTimerEvent, (void*) ctx, SW_TIMER_PERIODIC);
+	assert_param(ctx->rxPeriodicTimer != SW_TIMER_NO_TIMER_AVAILABLE);
 
 	/* Démarre la reception en DMA circulaire */
 	HAL_StatusTypeDef status = HAL_UART_Receive_DMA(ctx->huart, config.rxCircularBuffer, config.rxCircularBufferSize);
@@ -277,7 +276,8 @@ HAL_StatusTypeDef UART_Read(USART_TypeDef *instance, uint8_t *buffer, uint16_t l
 	ctx->counter=0;
 
 	// Démarrage du timer / lecture périodique
-	assert_param(xTimerStart(ctx->rxPeriodicTimer,0) == pdPASS);
+	//assert_param(xTimerStart(ctx->rxPeriodicTimer,0) == pdPASS);
+	assert_param(SW_TIMER_Start(ctx->rxPeriodicTimer) == pdTRUE);
 
 	// on part du principe que tout va bien se passer
 	status = HAL_OK;
@@ -325,7 +325,8 @@ static bool UART_proceedCircularDMA(UART_Context *ctx, uint32_t currentDMAIndex)
 
 			if (ctx->rxBufferWriteIndex == ctx->rxBufferSize) {
 				// On a reçu nos données, arrêt du timer périodique et on indique que l'on n'est plus en phase de reception
-				xTimerStop(ctx->rxPeriodicTimer, 0);
+				//xTimerStop(ctx->rxPeriodicTimer, 0);
+				SW_TIMER_Stop(ctx->rxPeriodicTimer);
 				ctx->readInProgress = 0;
 				return true;
 			}
@@ -340,8 +341,11 @@ static bool UART_proceedCircularDMA(UART_Context *ctx, uint32_t currentDMAIndex)
  * @param  xTimer: Handle du timer
  * @retval None
  */
-static void onTimerEvent(TimerHandle_t xTimer) {
-	UART_Context *ctx = (UART_Context*)pvTimerGetTimerID(xTimer);
+//static void onTimerEvent(TimerHandle_t xTimer) {
+static void onTimerEvent(void *arg) {
+	//UART_Context *ctx = (UART_Context*)pvTimerGetTimerID(xTimer);
+
+	UART_Context *ctx = (UART_Context *) arg;
 
 	if (ctx) {
 		/*if (UART_GetRxAvailable(handle) >= handle->rx_expected_length) {

@@ -116,6 +116,7 @@ void COM_USB_ReceiveCMDTask(void *pvParameters) {
 	for(;;) {
 		// Attente de la réception du header d'une trame
 		UART_Read(UART_COM_USB, headerBuffer, HEADER_SIZE, portMAX_DELAY); // attente infinie sur un header
+		//vTaskDelay(pdMS_TO_TICKS(1000)); // On attend 10ms pour laisser le temps à l'UART de recevoir des données
 
 		// Vérification du SOF
 		if (headerBuffer[0] != SOF) {

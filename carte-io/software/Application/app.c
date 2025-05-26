@@ -15,6 +15,7 @@
 
 #include "config.h"
 #include "messages.h"
+#include "sw_timer.h"
 
 #include "Services/uartdrv.h"
 #include "i2c_sensors.h"
@@ -59,13 +60,20 @@ void APP_Init(void) {
 	/* Initialisation du support de debug */
 	DEBUG_Init();
 
-//	/* Initialisation des autres sous-systemes */
+	/* Initialisation du timer logiciel */
+	if (SW_TIMER_Init() != pdTRUE) {
+		printf("[APP Init] Erreur d'initialisation du service de timers\n");
+		while (1)
+			; // Erreur, on boucle
+	}
+
+	/* Initialisation des autres sous-systemes */
 	COM_USB_Init(&APP_MessageQueue);
 	I2C_SensorsInit(&APP_MessageQueue);
 	GPIO_Init(&APP_MessageQueue);
 	MOTORS_SERVOS_Init();
 
-//	APP_SendVersion();
+	APP_SendVersion();
 
 	/* Recherche de périphériques */
 	PROBE_Init(&APP_MessageQueue);
@@ -137,3 +145,5 @@ void APP_SendVersion(void) {
 	COM_USB_SendData(&msg);
 	// Pas de libération de mémoire ici, le buffer est alloué sur la stack
 }
+
+

@@ -14,6 +14,7 @@
 #define VERSION_STRING "1.0"
 
 // Tasks priority, higher = higher priority
+#define TASK_PRIO_SW_TIMERS									21
 #define TASK_PRIO_COM_USB_RCV_CMD							20
 #define TASK_PRIO_APP_MSG_HANDLER							19
 
@@ -23,10 +24,14 @@
 #define TASK_PRIO_PERIODIC_DEBUG							1
 
 // Various config
-#define TASK_STACK_SIZE_STD				256
-#define TASK_STACK_SIZE_APPLICATION		2*256
+#define TASK_STACK_SIZE_STD				configMINIMAL_STACK_SIZE
+#define TASK_STACK_SIZE_APPLICATION		2*TASK_STACK_SIZE_STD
 #define QUEUE_LENGTH 5
 #define ITEM_SIZE sizeof(void*)
+
+// Définitions
+#define MAX_SW_TIMERS 5 // Nombre maximal de timers logiciels que tu peux configurer
+#define SW_TIMER_BASE_PERIOD_MS 10 // Période de base de la tâche du service de timer en ms
 
 // UARTs configuration
 #define APP_UART_CIRCULAR_BUFFER_SIZE	20
@@ -42,5 +47,6 @@
 #define UART_GPS 		USART3
 #define UART_LIDAR_1 	UART4
 #define UART_LIDAR_2 	UART5
+
 
 #endif /* CONFIG_H_ */
