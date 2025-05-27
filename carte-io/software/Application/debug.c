@@ -11,9 +11,16 @@
 #include "debug.h"
 #include "config.h"
 
+#include <stdio.h>
+
 // ITM Stimulus Port pour SWO
 #define ITM_STIMULUS_PORT_PRINTF 			0
 #define ITM_STIMULUS_PORT_PERIODIC_DEBUG 	1
+
+extern uint32_t Counter_Malloc;
+extern uint32_t Counter_Free;
+
+char DEBUG_buffer[DEBUG_BUFFER_SIZE];
 
 void vDebugperiodicTask(void *pvParameters);
 TaskHandle_t DEBUG_PeriodicTaskhandle;
@@ -21,7 +28,7 @@ TaskHandle_t DEBUG_PeriodicTaskhandle;
 void DEBUG_Init(void) {
 	xTaskCreate(vDebugperiodicTask,
 			"DebugPeriodic",
-			TASK_STACK_SIZE_STD*4,
+			TASK_STACK_DEBUG,
 			NULL,
 			TASK_PRIO_PERIODIC_DEBUG,
 			&DEBUG_PeriodicTaskhandle);
@@ -49,14 +56,25 @@ void DEBUG_PrintITM(uint8_t port, char *str) {
 }
 
 void vDebugperiodicTask(void *pvParameters) {
-	char buffer[512];
+	TickType_t xLastWakeTime;
+	const TickType_t xFrequency = pdMS_TO_TICKS(DEBUG_PERIODIC_TASK_DELAY);
+
+	// Initialise xLastWakeTime avec le temps courant pour que vTaskDelayUntil fonctionne correctement
+	xLastWakeTime = xTaskGetTickCount();
 
 	for(;;) {
-		vTaskDelay(pdMS_TO_TICKS(1000)); // Wait 1s
-		vTaskList(buffer); // Collecte les stats
+		// Attend la prochaine période, maintient une exécution à intervalle fixe
+		vTaskDelayUntil(&xLastWakeTime, xFrequency);
 
+		vTaskList(DEBUG_buffer); // Collecte les stats
 		DEBUG_PrintITM(ITM_STIMULUS_PORT_PERIODIC_DEBUG,"Task\tState\tPrio\tStack\tNum\n");
-		DEBUG_PrintITM(ITM_STIMULUS_PORT_PERIODIC_DEBUG,buffer);
+		DEBUG_PrintITM(ITM_STIMULUS_PORT_PERIODIC_DEBUG,DEBUG_buffer);
 		DEBUG_PrintITM(ITM_STIMULUS_PORT_PERIODIC_DEBUG,"\n");
+
+		snprintf(DEBUG_buffer,DEBUG_BUFFER_SIZE-1, "Mallocs: %lu\nFrees: %lu\nDelta: %lu\n\n", Counter_Malloc,Counter_Free, Counter_Malloc-Counter_Free);
+		DEBUG_PrintITM(ITM_STIMULUS_PORT_PERIODIC_DEBUG, DEBUG_buffer);
+
+		snprintf(DEBUG_buffer, DEBUG_BUFFER_SIZE-1, "%u\n", xPortGetFreeHeapSize());
+		DEBUG_PrintITM(ITM_STIMULUS_PORT_PERIODIC_DEBUG, DEBUG_buffer);
 	}
 }

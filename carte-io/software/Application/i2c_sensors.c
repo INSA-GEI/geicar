@@ -12,22 +12,24 @@
 #include "task.h"
 #include "semphr.h"
 #include "queue.h"
-#include "timers.h"
+//#include "timers.h"
 
 #include "config.h"
 #include "messages.h"
+#include "sw_timer.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
 /* Handle pour la file de messages */
 QueueHandle_t I2C_Sensors_MessageQueue;
-TimerHandle_t I2C_Sensors_PeriodicTimer;          // Timer pour générer des évènements périodiques pour la scrutation des capteurs
+sw_timer_id_t I2C_Sensors_PeriodicTimer;          // Timer pour générer des évènements périodiques pour la scrutation des capteurs
 TaskHandle_t I2C_Sensors_MessageHandlerTaskhandle;
 static QueueHandle_t *ApplicationMessageQueue;    // Handle de la file de messages de l'application
 
 void I2C_Sensors_MessagesHandlerTask(void *pvParameters);
-static void onTimerEvent(TimerHandle_t xTimer);
+//static void onTimerEvent(TimerHandle_t xTimer);
+static void onTimerEvent(void *arg);
 
 /**
  * @brief  Fonction d'initialisation des capteurs I2C
@@ -64,17 +66,24 @@ void I2C_SensorsInit(QueueHandle_t *AppMsgQueue) {
 			&I2C_Sensors_MessageHandlerTaskhandle);
 	vTaskResume(I2C_Sensors_MessageHandlerTaskhandle);
 
-	/* Creation du timer pour générer périodiquement des évènements pour la scrutation des capteurs */
-	I2C_Sensors_PeriodicTimer = xTimerCreate("I2C_Sensors_Timer",           // Nom du timer
-			pdMS_TO_TICKS(10),    // Période en ticks ( ici 10 ms)
-			pdTRUE,       // Auto-reload (pdTRUE = répète, pdFALSE = unique)
-			NULL,             // Non utilisé
-			onTimerEvent      // Fonction callback
-	);
-	assert_param(I2C_Sensors_PeriodicTimer != NULL);
+//	/* Creation du timer pour générer périodiquement des évènements pour la scrutation des capteurs */
+//	I2C_Sensors_PeriodicTimer = xTimerCreate("I2C_Sensors_Timer",           // Nom du timer
+//			pdMS_TO_TICKS(10),    // Période en ticks ( ici 10 ms)
+//			pdTRUE,       // Auto-reload (pdTRUE = répète, pdFALSE = unique)
+//			NULL,             // Non utilisé
+//			onTimerEvent      // Fonction callback
+//	);
+//	assert_param(I2C_Sensors_PeriodicTimer != NULL);
+//
+//	// Démarrage du timer / lecture périodique
+//	assert_param(xTimerStart(I2C_Sensors_PeriodicTimer,0) == pdPASS);
+
+	/* Création du timer pour générer périodiquement des évènements pour la scrutation des capteurs */
+	I2C_Sensors_PeriodicTimer = SW_TIMER_Configure(10, onTimerEvent, NULL, SW_TIMER_PERIODIC);
+	assert_param(I2C_Sensors_PeriodicTimer != SW_TIMER_NO_TIMER_AVAILABLE);
 
 	// Démarrage du timer / lecture périodique
-	assert_param(xTimerStart(I2C_Sensors_PeriodicTimer,0) == pdPASS);
+	assert_param(SW_TIMER_Start(I2C_Sensors_PeriodicTimer) == pdTRUE);
 
 	printf ("Done\n");
 }
@@ -124,7 +133,8 @@ void I2C_Sensors_MessagesHandlerTask(void *pvParameters) {
  * @param  xTimer: Paramètres du timer(non utilisés ici)
  * @retval None
  */
-static void onTimerEvent(TimerHandle_t xTimer) {
+//static void onTimerEvent(TimerHandle_t xTimer)
+static void onTimerEvent(void *arg){
 	static uint8_t counter =0;
 
 	Messages_TypeDef *message = NEW_MESSAGE(MSG_ID_I2C_SENSORS_10MS_EVENT, NULL);

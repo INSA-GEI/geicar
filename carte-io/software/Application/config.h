@@ -26,6 +26,7 @@
 // Various config
 #define TASK_STACK_SIZE_STD				configMINIMAL_STACK_SIZE
 #define TASK_STACK_SIZE_APPLICATION		2*TASK_STACK_SIZE_STD
+#define TASK_STACK_DEBUG                2*TASK_STACK_SIZE_STD
 #define QUEUE_LENGTH 5
 #define ITEM_SIZE sizeof(void*)
 
@@ -48,5 +49,7 @@
 #define UART_LIDAR_1 	UART4
 #define UART_LIDAR_2 	UART5
 
-
+// DEBUG configuration
+#define DEBUG_PERIODIC_TASK_DELAY    1000 // Délai de la tâche de debug en ms
+#define DEBUG_BUFFER_SIZE 512 // Taille du buffer de debug
 #endif /* CONFIG_H_ */

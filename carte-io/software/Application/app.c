@@ -110,6 +110,18 @@ void APP_MessageHandlerTask(void *pvParameters) {
 			case MSG_ID_PROBE_RESULT:
 				/* Traiter le message de résultat de probe */
 				printf("[APP] Probe result received: %d\n", msg->length);
+				Messages_TypeDef ansMsg;
+				ansMsg.id = MSG_ID_PROBE_RESULT;
+				ansMsg.length = msg->length; // Longueur des données du message
+				ansMsg.data = msg->data; // Les données sont allouées par l'emetteur, on ne recopie que la ref
+
+				// COM_USB_SendData() recopie les données dans un buffer interne : ansMsg peut donc etre alloué sur
+				// la stack : a la fin de la fonction, le buffer est libéré automatiquement mais ça ne perturbe pas
+				// l'envoi des données par COM_USB_SendData
+				// idem avec msg->data qui est alloué dynamiquement mais sera recopié dans un buffer interne par
+				// COM_USB_SendData. On peut donc le liberer à la fin du switch
+				COM_USB_SendData(&ansMsg);
+				// Pas de libération de mémoire ici, le buffer est alloué sur la stack
 				break;
 			default:
 				printf("[APP] Message ID invalide");
