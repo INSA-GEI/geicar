@@ -115,7 +115,6 @@ HAL_StatusTypeDef UART_Init(USART_TypeDef *instance, UART_Config config) {
 
 	char *sem_tx_name;
 	char *sem_rx_name;
-    char *timer_name;
 
 	UART_Context *ctx = UART_GetContext(instance);
 
@@ -135,35 +134,30 @@ HAL_StatusTypeDef UART_Init(USART_TypeDef *instance, UART_Config config) {
 		ctx->huart=&huart1;
 		sem_tx_name = "SEM USART1 TX";
 		sem_rx_name = "SEM USART1 RX";
-		timer_name = "TIMER USART1";
 		break;
 	case (uint32_t)USART3:
 		MX_USART3_UART_Init();
 		ctx->huart=&huart3;
 		sem_tx_name = "SEM USART3 TX";
 		sem_rx_name = "SEM USART3 RX";
-		timer_name = "TIMER USART3";
 		break;
 	case (uint32_t)UART4:
 		MX_UART4_Init();
 		ctx->huart=&huart4;
 		sem_tx_name = "SEM UART4 TX";
 		sem_rx_name = "SEM UART4 RX";
-		timer_name = "TIMER UART4";
 		break;
 	case (uint32_t)UART5:
 		MX_UART5_Init();
 		ctx->huart=&huart5;
 		sem_tx_name = "SEM UART5 TX";
 		sem_rx_name = "SEM UART5 RX";
-		timer_name = "TIMER UART5";
 		break;
 	case (uint32_t)LPUART1:
 		MX_LPUART1_UART_Init();
 		ctx->huart= &hlpuart1;
 		sem_tx_name = "SEM LPUART1 TX";
 		sem_rx_name = "SEM LPUART1 RX";
-		timer_name = "TIMER LPUART1";
 		break;
 	default:
 		return HAL_ERROR;
@@ -340,17 +334,17 @@ static bool UART_proceedCircularDMA(UART_Context *ctx, uint32_t currentDMAIndex)
  * @brief  Fonction de callback du timer périodique. Appelée à chaque fois que le timer expire
  * @param  xTimer: Handle du timer
  * @retval None
+ * @note  Cette fonction est appelée via une tache, pas sous interruption. Elle ne doit pas être trop longue mais
+ *        surtout ne doit pas utiliser les primitives d'API FreeRTOS *FromISR
  */
 //static void onTimerEvent(TimerHandle_t xTimer) {
 static void onTimerEvent(void *arg) {
-	//UART_Context *ctx = (UART_Context*)pvTimerGetTimerID(xTimer);
-
 	UART_Context *ctx = (UART_Context *) arg;
 
 	if (ctx) {
-		/*if (UART_GetRxAvailable(handle) >= handle->rx_expected_length) {
-			xSemaphoreGive(handle->rx_semaphore);*/
-		onRXEvent(ctx->huart);
+		if (UART_proceedCircularDMA(ctx, __HAL_DMA_GET_COUNTER(ctx->huart->hdmarx))==true) {
+			xSemaphoreGive(ctx->rx_semaphore);
+		}
 	}
 }
 
@@ -358,6 +352,7 @@ static void onTimerEvent(void *arg) {
  * @brief  Fonction de callback de fin de transmission de l'UART. Appelée à chaque fois que le DMA a fini l'envoi d'un buffer
  * @param  huart: Handle de l'UART
  * @retval None
+ * @note   Cette fonction est appelée sous interruption, elle doit utiliser les primitives d'API FreeRTOS *FromISR
  */
 static void onTXEvent(UART_HandleTypeDef *huart) {
 	UART_Context *ctx = UART_GetContext(huart->Instance);
@@ -379,6 +374,7 @@ static void onTXEvent(UART_HandleTypeDef *huart) {
  * @brief  Fonction de callback de fin de reception de l'UART. Appelée à chaque fois que le DMA a atteint le milieu ou la fin du buffer circulaire
  * @param  huart: Handle de l'UART
  * @retval None
+ * @note   Cette fonction est appelée sous interruption, elle doit utiliser les primitives d'API FreeRTOS *FromISR
  */
 static void onRXEvent(UART_HandleTypeDef *huart) {
 	UART_Context *ctx = UART_GetContext(huart->Instance);
@@ -399,6 +395,7 @@ static void onRXEvent(UART_HandleTypeDef *huart) {
  * @brief  Fonction de callback d'erreur de l'UART. Appelée à chaque fois qu'une erreur se produit sur l'UART
  * @param  huart: Handle de l'UART
  * @retval None
+ * @note   Cette fonction est appelée sous interruption, elle doit utiliser les primitives d'API FreeRTOS *FromISR
  */
 static void onErrorEvent(UART_HandleTypeDef *huart) {
 	// Conversion unsafe, mais sous contrôle //

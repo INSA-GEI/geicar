@@ -33,6 +33,7 @@ QueueHandle_t APP_MessageQueue;
 void APP_MessageHandlerTask(void *pvParameters);
 TaskHandle_t APP_MessageHandlerTaskhandle;
 void APP_SendVersion(void);
+BaseType_t APP_SendError(Messages_ErrorTypeDef errorType);
 
 /**
  * @brief  Fonction d'initialisation de l'application
@@ -88,6 +89,7 @@ void APP_Init(void) {
  */
 void APP_MessageHandlerTask(void *pvParameters) {
 	Messages_TypeDef *msg;
+	Messages_TypeDef ansMsg;
 
 	for (;;) {
 		/* Attendre indéfiniment un message dans la file */
@@ -110,7 +112,6 @@ void APP_MessageHandlerTask(void *pvParameters) {
 			case MSG_ID_PROBE_RESULT:
 				/* Traiter le message de résultat de probe */
 				printf("[APP] Probe result received: %d\n", msg->length);
-				Messages_TypeDef ansMsg;
 				ansMsg.id = MSG_ID_PROBE_RESULT;
 				ansMsg.length = msg->length; // Longueur des données du message
 				ansMsg.data = msg->data; // Les données sont allouées par l'emetteur, on ne recopie que la ref
@@ -123,15 +124,22 @@ void APP_MessageHandlerTask(void *pvParameters) {
 				COM_USB_SendData(&ansMsg);
 				// Pas de libération de mémoire ici, le buffer est alloué sur la stack
 				break;
+			case MSG_ID_ERROR:
+				/* Traiter le message d'erreur */
+				printf("[APP] Error message received\n");
+				APP_SendError(*(Messages_ErrorTypeDef*)msg->data);
+
+				break;
 			default:
 				printf("[APP] Message ID invalide");
+				APP_SendError(MSG_ERROR_INVALID_ID);
 				break;
 			}
 
 			/* Libérer la mémoire du message après traitement */
-			//DELETE_MESSAGE(msg);
-			free(msg->data); // Libération de la mémoire allouée pour les données
-			free(msg); // Libération de la mémoire allouée pour le message
+			DELETE_MESSAGE(msg);
+			//free(msg->data); // Libération de la mémoire allouée pour les données
+			//free(msg); // Libération de la mémoire allouée pour le message
 
 			printf("[APP] Message libere\n");
 		}
@@ -159,3 +167,14 @@ void APP_SendVersion(void) {
 }
 
 
+BaseType_t APP_SendError(Messages_ErrorTypeDef errorType) {
+	Messages_TypeDef msg;
+
+	msg.id = MSG_ID_ERROR;
+	msg.length = sizeof(Messages_ErrorTypeDef);
+	msg.data = &errorType; // On utilise un pointeur vers l'erreur, pas besoin d'allouer de mémoire ici;
+
+	COM_USB_SendData(&msg);
+
+	return pdTRUE;
+}

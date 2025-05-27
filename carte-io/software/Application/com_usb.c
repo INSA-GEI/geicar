@@ -92,7 +92,7 @@ HAL_StatusTypeDef COM_USB_SendData(Messages_TypeDef *msg) {
 	memcpy(&frame_to_send[HEADER_SIZE], msg->data, msg->length); // Données du message
 
 	uint8_t checksum = 0;
-	for (int i = 0; i < msg->length - 1; i++) { // Calcul du checksum sur l'ensemble de la trame sauf le dernier octet
+	for (int i = 0; i < length - 1; i++) { // Calcul du checksum sur l'ensemble de la trame sauf le dernier octet
 		checksum += frame_to_send[i];
 	}
 
@@ -134,7 +134,7 @@ void COM_USB_ReceiveCMDTask(void *pvParameters) {
 		frameBuffer[2] = headerBuffer[2]; // Type
 
 		// Réception du reste de la trame
-		UART_Read(UART_COM_USB, &frameBuffer[3], frameDataLength, 100); // attente de 100ms pour recevoir le reste de la trame
+		UART_Read(UART_COM_USB, &frameBuffer[3], frameDataLength+1, 100); // Longueur du champ data + 1 pour le checksum
 
 		// Calcul et vérification du checksum
 		uint8_t calculatedChecksum = 0;
@@ -144,28 +144,53 @@ void COM_USB_ReceiveCMDTask(void *pvParameters) {
 
 		if (calculatedChecksum != 0) {
 			printf("[COM_USB_Receive] Invalid checksum\n");
+
+			Messages_TypeDef *errorMessage = NEW_MESSAGE(MSG_ID_ERROR, NULL);
+			errorMessage->data = (uint8_t*) malloc(sizeof(Messages_ErrorTypeDef));
+			if (errorMessage->data == NULL) {
+				printf("[COM_USB_Receive] Erreur d'allocation mémoire pour le message d'erreur\n");
+				DELETE_MESSAGE(errorMessage); // Libérer la mémoire en cas d'échec
+				continue;
+			}
+
+			// Remplir le message d'erreur
+			((Messages_ErrorTypeDef*) errorMessage->data)[0] = MSG_ERROR_INVALID_CHECKSUM; // On cast pour remplir le champ de type Messages_ErrorTypeDef
+			errorMessage->length = sizeof(Messages_ErrorTypeDef);
+
+			// Envoyer le message d'erreur dans la file
+			if (xQueueSend(*ApplicationMessageQueue, (void* ) &errorMessage,
+					portMAX_DELAY) != pdPASS) {
+				printf("[COM_USB_Receive] Échec de l'envoi du message d'erreur\n");
+				DELETE_MESSAGE(errorMessage); // Libérer la mémoire en cas d'échec
+			}
+
 			continue;
 		}
 
 		// Traiter la trame reçue (par exemple : TYPE + DATA)
 		Messages_TypeDef *message = NEW_MESSAGE(frameBuffer[2], NULL);
-		if (frameDataLength > 0) {
-			message->data = (uint8_t*) malloc(frameDataLength * sizeof(uint8_t));
-			if (message->data == NULL) {
-				printf("Erreur d'allocation mémoire pour le message\n");
-				continue;
-			}
-
-			memcpy(message->data, &frameBuffer[3], frameDataLength);
-		}
 
 		/* Envoyer le message dans la file */
 		if (message != NULL) {
+			if (frameDataLength > 0) {
+				message->data = (uint8_t*) malloc(frameDataLength * sizeof(uint8_t));
+				if (message->data == NULL) {
+					printf("[COM_USB_Receive] Erreur d'allocation mémoire pour les data du message\n");
+
+					DELETE_MESSAGE(message); // Libérer la mémoire en cas d'échec
+					continue;
+				}
+
+				memcpy(message->data, &frameBuffer[3], frameDataLength);
+			}
+
 			// la liberation de mémoire est gérée par la tâche qui reçoit le message
 			if (xQueueSend(*ApplicationMessageQueue, (void*) &message, portMAX_DELAY) != pdPASS) {
 				printf("Échec de l'envoi du message\n");
 				DELETE_MESSAGE(message); // Libérer la mémoire en cas d'échec
 			}
+		} else {
+			printf("[COM_USB_Receive] Erreur d'allocation mémoire pour le message\n");
 		}
 	}
 }

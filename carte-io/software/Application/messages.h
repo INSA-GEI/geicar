@@ -44,6 +44,12 @@ typedef struct {
 	uint16_t length;
 } Messages_TypeDef;
 
+typedef enum {
+	MSG_ERROR_UNKNOWN=0,
+	MSG_ERROR_INVALID_ID,
+	MSG_ERROR_INVALID_CHECKSUM,
+} Messages_ErrorTypeDef;
+
 /**
  * @brief  Crée un nouveau message
  * @param  id_type: ID du message
