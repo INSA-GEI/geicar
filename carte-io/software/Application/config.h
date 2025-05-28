@@ -8,6 +8,34 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
+#include "FreeRTOS.h"
+
+typedef enum {
+	APP_STATE_INIT = 0,
+	APP_STATE_PROBE,
+	APP_STATE_RUNNING,
+	APP_STATE_LOW_BATTERY,
+	APP_STATE_ERROR,
+	APP_STATE_SHUTDOWN,
+} APP_State_EnumTypeDef;
+
+typedef enum {
+	APP_GPS_NOT_FIX = 0,
+	APP_GPS_FIX_2D,
+	APP_GPS_FIX_3D,
+	APP_GPS_FIX_DGPS,
+	APP_GPS_FIX_RTK_FLOAT,
+	APP_GPS_FIX_RTK_FIXED,
+} APP_GPSFix_TypeDef;
+
+typedef struct {
+	APP_State_EnumTypeDef state; // État actuel de l'application;
+	float batteryVoltage; // Tension de la batterie
+	APP_GPSFix_TypeDef gpsFix; // État du GPS
+} APP_MachineState_TypeDef;
+
+BaseType_t APP_ChangeState(APP_State_EnumTypeDef newState);
+
 // Version
 #define MAJOR_VER	1
 #define MINOR_VER	0

@@ -20,6 +20,11 @@ TaskHandle_t PROBE_Taskhandle;
 static QueueHandle_t *ApplicationMessageQueue;    // Handle de la file de messages de l'application
 static I2C_Sensor_ProbeResults_TypeDef i2c_results={0};
 
+/**
+ * @brief  Fonction d'initialisation du module de recherche de peripherique
+ * @param  AppMsgQueue: Pointeur vers la file de messages de l'application
+ * @return None
+ */
 void PROBE_Init(QueueHandle_t *AppMsgQueue) {
 	assert_param(AppMsgQueue!=NULL);
 	ApplicationMessageQueue = AppMsgQueue;
@@ -33,12 +38,30 @@ void PROBE_Init(QueueHandle_t *AppMsgQueue) {
 			NULL,
 			TASK_PRIO_PROBE_RUN,
 			&PROBE_Taskhandle);
-	vTaskResume(PROBE_Taskhandle);
+	vTaskSuspend(PROBE_Taskhandle); // On suspend la tâche, elle sera lancée par l'application
 
 	printf ("Done\n");
 }
 
-/* Fonction de la tâche qui traite les messages */
+/**
+ * @brief  Fonction de démarrage de la tâche de probe
+ * @return pdPASS si la tâche a été lancée avec succès, pdFAIL sinon
+ */
+BaseType_t PROBE_Start(void) {
+	/* On relance la tâche */
+	vTaskResume(PROBE_Taskhandle);
+
+	return pdPASS;
+}
+
+/**
+ * @brief  Tâche de recherche des capteurs et périphériques
+ * Cette tâche scanne les périphériques I2C et UART connus
+ * Elle envoie les résultats du scan sur la file de messages de l'application.
+ * Elle est suspendue à l'initialisation et doit être lancée par l'application (via PROBE_Start()).
+ * @param  pvParameters: Paramètres de la tâche (non utilisés ici)
+ * @retval None
+ */
 void PROBE_Task(void *pvParameters) {
 	Messages_TypeDef *msg;
 
@@ -54,8 +77,6 @@ void PROBE_Task(void *pvParameters) {
 	// de la heap4 mais elles ne sont pas allouées dynamiquement
 	msg->data = (uint8_t*)&i2c_results; // i2c_results n'est pas alloué dynamiquement, ni allouée sur la stack qui ell
 	msg->length = sizeof(i2c_results);
-//	msg->data = NULL;
-//	msg->length = 0;
 
 	// Envoie le message sur la queue de l'application
 	if (xQueueSend(*ApplicationMessageQueue, (void* ) &msg,

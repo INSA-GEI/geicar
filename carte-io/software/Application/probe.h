@@ -12,5 +12,6 @@
 #include "queue.h"
 
 void PROBE_Init(QueueHandle_t *AppMsgQueue);
+BaseType_t PROBE_Start(void);
 
 #endif /* PROBE_H_ */

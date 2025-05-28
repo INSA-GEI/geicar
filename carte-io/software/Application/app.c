@@ -23,6 +23,7 @@
 #include "com_usb.h"
 #include "motors_servos.h"
 #include "gpio.h"
+#include "leds.h"
 
 #include "probe.h"
 
@@ -34,6 +35,9 @@ void APP_MessageHandlerTask(void *pvParameters);
 TaskHandle_t APP_MessageHandlerTaskhandle;
 void APP_SendVersion(void);
 BaseType_t APP_SendError(Messages_ErrorTypeDef errorType);
+
+APP_MachineState_TypeDef APP_MachineState = { .state = APP_STATE_INIT,
+		.batteryVoltage = 0.0f, .gpsFix = APP_GPS_NOT_FIX, };
 
 /**
  * @brief  Fonction d'initialisation de l'application
@@ -58,6 +62,9 @@ void APP_Init(void) {
 			&APP_MessageHandlerTaskhandle);
 	vTaskResume(APP_MessageHandlerTaskhandle);
 
+	/* Initialisation des LEDs */
+	LEDS_Init();
+
 	/* Initialisation du support de debug */
 	DEBUG_Init();
 
@@ -78,6 +85,13 @@ void APP_Init(void) {
 
 	/* Recherche de périphériques */
 	PROBE_Init(&APP_MessageQueue);
+
+	/* Changement d'état vers l'état de probe */
+	if (APP_ChangeState(APP_STATE_PROBE) != pdTRUE) {
+		printf("[APP Init] Erreur de changement d'état vers l'état de probe\n");
+		while (1)
+			; // Erreur, on boucle
+	}
 
 	printf ("Done\n");
 }
@@ -107,7 +121,12 @@ void APP_MessageHandlerTask(void *pvParameters) {
 			case MSG_ID_SERVOS_CONFIGURE:
 			case MSG_ID_MOTORS_SET_SPEED:
 			case MSG_ID_SERVOS_SET_POSITION:
-				MOTORS_SERVOS_MessageProcessor(msg);
+				if (APP_MachineState.state != APP_STATE_INIT
+						&& APP_MachineState.state != APP_STATE_PROBE
+						&& APP_MachineState.state != APP_STATE_ERROR) {
+					MOTORS_SERVOS_MessageProcessor(msg); // Pas de configuration de moteurs/servos dans les etats autres que RUNNING et LOW BAT
+				}
+
 				break;
 			case MSG_ID_PROBE_RESULT:
 				/* Traiter le message de résultat de probe */
@@ -123,6 +142,14 @@ void APP_MessageHandlerTask(void *pvParameters) {
 				// COM_USB_SendData. On peut donc le liberer à la fin du switch
 				COM_USB_SendData(&ansMsg);
 				// Pas de libération de mémoire ici, le buffer est alloué sur la stack
+
+				/* Changement d'état vers l'état de running */
+				if (APP_ChangeState(APP_STATE_RUNNING) != pdTRUE) {
+					printf("[APP Init] Erreur de changement d'état vers l'état running\n");
+					while (1)
+						; // Erreur, on boucle
+				}
+
 				break;
 			case MSG_ID_ERROR:
 				/* Traiter le message d'erreur */
@@ -138,13 +165,60 @@ void APP_MessageHandlerTask(void *pvParameters) {
 
 			/* Libérer la mémoire du message après traitement */
 			DELETE_MESSAGE(msg);
-			//free(msg->data); // Libération de la mémoire allouée pour les données
-			//free(msg); // Libération de la mémoire allouée pour le message
 
 			printf("[APP] Message libere\n");
 		}
 	}
 }
+
+/**
+ * @brief  Change l'état de la machine d'état de l'application
+ * @param  newState: Nouvel état à atteindre
+ * @retval pdTRUE si le changement d'état a réussi, pdFALSE sinon
+ */
+BaseType_t APP_ChangeState(APP_State_EnumTypeDef newState) {
+	assert_param(newState >= APP_STATE_INIT && newState <= APP_STATE_SHUTDOWN);
+
+	if (APP_MachineState.state != newState) {
+		// Changement d'état
+		printf("[APP] Changement d'état de %d vers %d\n", APP_MachineState.state,
+				newState);
+		LEDS_SetActivityState(newState); // Mettre à jour l'état de la LED d'activité
+
+		switch (newState) {
+		case APP_STATE_INIT:
+			// Initialisation, rien à faire ici
+			break;
+		case APP_STATE_PROBE:
+			if (APP_MachineState.state == APP_STATE_INIT) {
+				PROBE_Start(); // Démarrer la tâche de probe
+			} else
+				newState = APP_MachineState.state; // On ne change pas l'état si on n'est pas dans l'état INIT
+			break;
+		case APP_STATE_RUNNING:
+			// Démarrer les tâches principales
+			break;
+		case APP_STATE_LOW_BATTERY:
+			printf("[APP] Alerte batterie faible !\n");
+			break;
+		case APP_STATE_ERROR:
+			printf("[APP] Erreur détectée !\n");
+			break;
+		case APP_STATE_SHUTDOWN:
+			printf("[APP] Arrêt du système...\n");
+			break;
+		default:
+			printf("[APP] État inconnu : %d\n", newState);
+			return pdFALSE; // État inconnu, on ne change pas l'état
+		}
+
+		APP_MachineState.state = newState;
+
+		return pdTRUE; // Changement d'état réussi
+	} else
+		return pdFALSE; // Pas de changement d'état, on retourne faux
+}
+
 /**
  * @brief  Envoie la version de l'application sur le port USB
  * @retval None
@@ -165,7 +239,6 @@ void APP_SendVersion(void) {
 	COM_USB_SendData(&msg);
 	// Pas de libération de mémoire ici, le buffer est alloué sur la stack
 }
-
 
 BaseType_t APP_SendError(Messages_ErrorTypeDef errorType) {
 	Messages_TypeDef msg;

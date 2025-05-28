@@ -21,6 +21,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Capteurs internes I2C
+#include "Devices/internals_sensors.h"
+
 /* Handle pour la file de messages */
 QueueHandle_t I2C_Sensors_MessageQueue;
 sw_timer_id_t I2C_Sensors_PeriodicTimer;          // Timer pour générer des évènements périodiques pour la scrutation des capteurs
@@ -66,18 +69,6 @@ void I2C_SensorsInit(QueueHandle_t *AppMsgQueue) {
 			&I2C_Sensors_MessageHandlerTaskhandle);
 	vTaskResume(I2C_Sensors_MessageHandlerTaskhandle);
 
-//	/* Creation du timer pour générer périodiquement des évènements pour la scrutation des capteurs */
-//	I2C_Sensors_PeriodicTimer = xTimerCreate("I2C_Sensors_Timer",           // Nom du timer
-//			pdMS_TO_TICKS(10),    // Période en ticks ( ici 10 ms)
-//			pdTRUE,       // Auto-reload (pdTRUE = répète, pdFALSE = unique)
-//			NULL,             // Non utilisé
-//			onTimerEvent      // Fonction callback
-//	);
-//	assert_param(I2C_Sensors_PeriodicTimer != NULL);
-//
-//	// Démarrage du timer / lecture périodique
-//	assert_param(xTimerStart(I2C_Sensors_PeriodicTimer,0) == pdPASS);
-
 	/* Création du timer pour générer périodiquement des évènements pour la scrutation des capteurs */
 	I2C_Sensors_PeriodicTimer = SW_TIMER_Configure(10, onTimerEvent, NULL, SW_TIMER_PERIODIC);
 	assert_param(I2C_Sensors_PeriodicTimer != SW_TIMER_NO_TIMER_AVAILABLE);
@@ -103,7 +94,8 @@ QueueHandle_t* I2C_Sensors_GetMessageQueue(void) {
 I2C_Sensor_ProbeResults_TypeDef I2C_Sensors_Probe(void) {
 	I2C_Sensor_ProbeResults_TypeDef results= {0};
 
-	// TODO: A reprendre, faire le scan de tous les périphériques I2C sur tous les bus
+	// Scan des peripheriques internes
+	INT_SENSORS_Probe((Sensor_ProbeResults_TypeDef*)&(results.internalSensors));
 
 	return results;
 }
