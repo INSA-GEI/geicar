@@ -1,0 +1,70 @@
+# Architecture
+
+## Utilisation des peripheriques
+
+### Clocks
+8Mhz HSE (PD0 - PD1) = Ne semble pas etre utilisé
+32Khz LSE (PC14 - PC15) = Ne semble pas etre utilisé
+
+### Timers
+
+Systick (Periode 1 ms) = sert à envoyer des messages can periodiquement
+
+TIM1_CH1 (PA8) = Moteur Gauche (PWM) 
+TIM1_CH1N (PA7) = Moteur Gauche (PWM)
+
+TIM1_CH2 (PA9) = Moteur Droit (PWM)
+TIM1_CH2N (PB0) = Moteur Droit (PWM)
+
+TIM1_CH3 (PA10) = Moteur Direction (PWM)
+TIM1_CH3N (PB1) =
+
+TIM2_CH3 (PB10) = Encodeur Moteur Gauche
+
+A revoir TIM3_CH3 (PA6) =
+TIM3 = Timer microseconde pour mesure ultrason 
+
+TIM4_CH3 (PB8) = Encodeur Moteur Droit (voir si on ne peut pas le passer sur le timer 2, ch x)
+
+### Com
+
+CAN_TX (PA12) = Controlleur CAN
+CAN_RX (PA11) = Controlleur CAN
+
+USART2_TX (PA2) = Controlleur UART (ne semble pas utilisé)
+USART2_RX (PA3) = Controlleur UART
+
+### ADC
+ADC1_IN0 (PA0) = VBat
+ADC1_IN1 (PA1) = Angle Direction
+ADC1_IN4 (PA4) = Courant moteur arriere gauche
+ADC1_IN5 (PA5) = Courant moteur arriere droit
+ADC1_IN10 (PC0) = Courant moteur direction
+
+### GPIO
+PC13 = Blue PushButton
+PC12 = Enable Direction
+PC11 = Enable Moteur Droit
+PC10 = Enable Moteur Gauche
+
+PA6 = Auto maintien alimentation
+
+PC1 = Trigger Ultrason Avant Gauche
+PC2 = Trigger Ultrason Avant Centre
+PC3 = Trigger Ultrason Avant Droit
+PC4 = Trigger Ultrason Arriere Gauche
+PC5 = Trigger Ultrason Arriere Centre
+PC7 = Trigger Ultrason Arriere Droit
+PC6 = Mesure Ultrason Gauche
+PC8 = Mesure Ultrason Centre
+PC9 = Mesure Ultrason Droit
+
+PB14 = Bouton direction Gauche
+PB15 = Bouton direction Droit
+
+### Flash
+Pour le stockage des parametres
+Coef_a = STEERING_CALIBRATION_A_ADDR = 0x800A100
+Coef_b = STEERING_CALIBRATION_B_ADDR = 0x800B100
+
+## Fonctionnement

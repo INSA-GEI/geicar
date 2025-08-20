@@ -1,48 +1,27 @@
+/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * File Name          : CAN.c
-  * Description        : This file provides code for the configuration
-  *                      of the CAN instances.
+  * @file    can.c
+  * @brief   This file provides code for the configuration
+  *          of the CAN instances.
   ******************************************************************************
-  ** This notice applies to any and all portions of this file
-  * that are not between comment pairs USER CODE BEGIN and
-  * USER CODE END. Other portions of this file, whether 
-  * inserted by the user or by software development tools
-  * are owned by their respective copyright owners.
+  * @attention
   *
-  * COPYRIGHT(c) 2018 STMicroelectronics
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
   *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
-
+/* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "can.h"
 
-#include "gpio.h"
-
 /* USER CODE BEGIN 0 */
+//#include "stm32f1xx_hal_can_ex.h" // for can filtering
 
 extern int mode;
 extern int cmdLRM, cmdRRM, cmdSFM, cmdPOS;
@@ -53,7 +32,6 @@ extern int rightRearSpeed;
 extern int steeringSpeed;
 extern int UPDATE_CMD_FLAG;
 extern int commCheckingRequest;
-
 /* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan;
@@ -61,32 +39,40 @@ CAN_HandleTypeDef hcan;
 /* CAN init function */
 void MX_CAN_Init(void)
 {
+
+  /* USER CODE BEGIN CAN_Init 0 */
+
+  /* USER CODE END CAN_Init 0 */
+
+  /* USER CODE BEGIN CAN_Init 1 */
+
+  /* USER CODE END CAN_Init 1 */
   hcan.Instance = CAN1;
   hcan.Init.Prescaler = 8;
   hcan.Init.Mode = CAN_MODE_NORMAL;
-  hcan.Init.SJW = CAN_SJW_1TQ;
-  hcan.Init.BS1 = CAN_BS1_7TQ;
-  hcan.Init.BS2 = CAN_BS2_2TQ;
-  hcan.Init.TTCM = DISABLE;
-  hcan.Init.ABOM = DISABLE;
-  hcan.Init.AWUM = DISABLE;
-  hcan.Init.NART = DISABLE;
-  hcan.Init.RFLM = DISABLE;
-  hcan.Init.TXFP = DISABLE;
+  hcan.Init.SyncJumpWidth = CAN_SJW_1TQ;
+  hcan.Init.TimeSeg1 = CAN_BS1_7TQ;
+  hcan.Init.TimeSeg2 = CAN_BS2_2TQ;
+  hcan.Init.TimeTriggeredMode = DISABLE;
+  hcan.Init.AutoBusOff = DISABLE;
+  hcan.Init.AutoWakeUp = DISABLE;
+  hcan.Init.AutoRetransmission = DISABLE;
+  hcan.Init.ReceiveFifoLocked = DISABLE;
+  hcan.Init.TransmitFifoPriority = DISABLE;
   if (HAL_CAN_Init(&hcan) != HAL_OK)
   {
-    _Error_Handler(__FILE__, __LINE__);
+    Error_Handler();
   }
+  /* USER CODE BEGIN CAN_Init 2 */
 
-  CAN_FilterConfig();
+  /* USER CODE END CAN_Init 2 */
 
-  __HAL_CAN_ENABLE_IT(&hcan, CAN_IT_FMP0);
 }
 
 void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
 {
 
-  GPIO_InitTypeDef GPIO_InitStruct;
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
   if(canHandle->Instance==CAN1)
   {
   /* USER CODE BEGIN CAN1_MspInit 0 */
@@ -94,11 +80,11 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
   /* USER CODE END CAN1_MspInit 0 */
     /* CAN1 clock enable */
     __HAL_RCC_CAN1_CLK_ENABLE();
-    __HAL_RCC_GPIOA_CLK_ENABLE();
 
-    /**CAN GPIO Configuration    
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    /**CAN GPIO Configuration
     PA11     ------> CAN_RX
-    PA12     ------> CAN_TX 
+    PA12     ------> CAN_TX
     */
     GPIO_InitStruct.Pin = GPIO_PIN_11;
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
@@ -111,7 +97,7 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* CAN1 interrupt Init */
-    HAL_NVIC_SetPriority(USB_LP_CAN1_RX0_IRQn, 0, 1U);
+    HAL_NVIC_SetPriority(USB_LP_CAN1_RX0_IRQn, 1, 0);
     HAL_NVIC_EnableIRQ(USB_LP_CAN1_RX0_IRQn);
   /* USER CODE BEGIN CAN1_MspInit 1 */
 
@@ -130,10 +116,9 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
     /* Peripheral clock disable */
     __HAL_RCC_CAN1_CLK_DISABLE();
 
-
-    /**CAN GPIO Configuration    
+    /**CAN GPIO Configuration
     PA11     ------> CAN_RX
-    PA12     ------> CAN_TX 
+    PA12     ------> CAN_TX
     */
     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_11|GPIO_PIN_12);
 
@@ -143,101 +128,51 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 
   /* USER CODE END CAN1_MspDeInit 1 */
   }
-} 
+}
 
 /* USER CODE BEGIN 1 */
-
 void CAN_FilterConfig(void)
 {
-	CAN_FilterConfTypeDef sFilterConfig;	
-	
-	sFilterConfig.FilterNumber = 0;
-	sFilterConfig.FilterMode = CAN_FILTERMODE_IDLIST;
-	sFilterConfig.FilterScale = CAN_FILTERSCALE_16BIT;
-	sFilterConfig.FilterIdHigh = CAN_ID_MOTORS_CMD<<5;
-	sFilterConfig.FilterIdLow = CAN_ID_CALIBRATION_MODE<<5;
-	sFilterConfig.FilterMaskIdHigh = CAN_ID_COMM_CHECKING<<5;
-	//sFilterConfig.FilterMaskIdLow = 0xFFFF;
-	sFilterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-	sFilterConfig.FilterActivation = ENABLE;
-	sFilterConfig.BankNumber = 14;
+//	CAN_FilterConfTypeDef sFilterConfig;
+//
+//	sFilterConfig.FilterNumber = 0;
+//	sFilterConfig.FilterMode = CAN_FILTERMODE_IDLIST;
+//	sFilterConfig.FilterScale = CAN_FILTERSCALE_16BIT;
+//	sFilterConfig.FilterIdHigh = CAN_ID_MOTORS_CMD<<5;
+//	sFilterConfig.FilterIdLow = CAN_ID_CALIBRATION_MODE<<5;
+//	sFilterConfig.FilterMaskIdHigh = CAN_ID_COMM_CHECKING<<5;
+//	//sFilterConfig.FilterMaskIdLow = 0xFFFF;
+//	sFilterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+//	sFilterConfig.FilterActivation = ENABLE;
+//	sFilterConfig.BankNumber = 14;
+//
+//
+//	if( HAL_CAN_ConfigFilter(&hcan, &sFilterConfig) != HAL_OK )
+//	{
+//		 Error_Handler();
+//	}
 
+	CAN_FilterTypeDef canFilterConfig;
 
-	if( HAL_CAN_ConfigFilter(&hcan, &sFilterConfig) != HAL_OK )
+	//canFilterConfig.FilterNumber = 0;
+	canFilterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
+	canFilterConfig.FilterScale = CAN_FILTERSCALE_16BIT;
+	canFilterConfig.FilterIdHigh = CAN_ID_MOTORS_CMD << 5;
+	canFilterConfig.FilterIdLow = CAN_ID_CALIBRATION_MODE << 5;
+	canFilterConfig.FilterMaskIdHigh = CAN_ID_COMM_CHECKING << 5;
+	//canFilterConfig.FilterMaskIdLow = 0xFFFF;
+	canFilterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+	canFilterConfig.FilterActivation = ENABLE;
+	//canFilterConfig.BankNumber = 14;
+
+	if( HAL_CAN_ConfigFilter(&hcan, &canFilterConfig) != HAL_OK )
 	{
-		_Error_Handler(__FILE__, __LINE__);
+		 Error_Handler();
 	}
 }
 
+void CAN_Send(uint8_t* data, uint32_t id) {
 
-void CAN_Send(uint8_t* data, uint32_t id)
-{		
-	hcan.pTxMsg->StdId = id;
-	hcan.pTxMsg->RTR = CAN_RTR_DATA;
-	hcan.pTxMsg->IDE = CAN_ID_STD;
-	hcan.pTxMsg->DLC = 8;
-		
-	for(int i=0; i < 8; i++)
-		hcan.pTxMsg->Data[i] = data[i];
-	
-		
-	if( HAL_CAN_Transmit(&hcan, 10) != HAL_OK )
-	{
-		Error_Handler();
-	}
 }
 
-
-int read_cmd(uint8_t data, GPIO_PinState *en_M)
-{
-	uint8_t tmp;
-	uint8_t VMdata;
-
-	tmp= data>>7;
-	if (tmp!=0) *en_M=GPIO_PIN_SET;
-	else *en_M=GPIO_PIN_RESET;
-
-	VMdata = data & 0x7F;
-	return (int)VMdata;
-}
-
-int read_mode(uint8_t data) //En soit cette fonction ne sert a rien parce qu'on pourrait simplement recuperer la data en la typecastant int
-{
-	uint8_t VMdata;
-
-	VMdata = data & 0xFF; //On recupere ici les 8 bits (l'encodage du MODE se fait sur les 8 bits)
-	return (int)VMdata;
-}
-
-void HAL_CAN_RxCpltCallback(CAN_HandleTypeDef* hcan)
-{
-
-	/* PWM commands (steering and propulsion) */
-	if(hcan->pRxMsg->StdId == CAN_ID_MOTORS_CMD)
-	{
-		leftRearSpeed = read_mode(hcan->pRxMsg->Data[0]);
-		rightRearSpeed = read_mode(hcan->pRxMsg->Data[1]);
-		steeringSpeed = read_mode(hcan->pRxMsg->Data[2]);
-		UPDATE_CMD_FLAG = 1;
-
-	}else if (hcan->pRxMsg->StdId == CAN_ID_CALIBRATION_MODE && hcan->pRxMsg->Data[0]== CALIBRATION_REQUEST){
-		mode = 0;	//Enter in calibration mode
-
-	}else if (hcan->pRxMsg->StdId == CAN_ID_COMM_CHECKING && hcan->pRxMsg->Data[0]==COMM_CHECKING_REQUEST){	//Communication checking request
-
-		commCheckingRequest = 1;
-	}
-		
-	__HAL_CAN_ENABLE_IT(hcan, CAN_IT_FMP0);
-}
 /* USER CODE END 1 */
-
-/**
-  * @}
-  */
-
-/**
-  * @}
-  */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
