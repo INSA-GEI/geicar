@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>F103</name>
+	<name>fw_geicar_motor_steering_us</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -34,7 +34,13 @@
 		<link>
 			<name>Drivers/CMSIS/system_stm32f1xx.c</name>
 			<type>1</type>
-			<locationURI>PROJECT_LOC/Src/system_stm32f1xx.c</locationURI>
+			<locationURI>copy_PROJECT_LOC/Src/system_stm32f1xx.c</locationURI>
 		</link>
 	</linkedResources>
+	<variableList>
+		<variable>
+			<name>copy_PROJECT_LOC</name>
+			<value>$%7BPARENT-3-PROJECT_LOC%7D/Documents/Travail/Depots-Git/geicar/nucleoF103/firmware</value>
+		</variable>
+	</variableList>
 </projectDescription>

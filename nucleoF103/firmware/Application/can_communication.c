@@ -1,0 +1,148 @@
+/**
+ ******************************************************************************
+ * @file    can.c
+ * @brief   This file provides code for the configuration
+ *          of the CAN instances.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2025 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
+/* Includes ------------------------------------------------------------------*/
+#include "gpio.h"
+#include "can.h"
+#include "stm32f1xx_hal.h"
+#include "can_communication.h"
+
+extern int mode;
+extern int cmdLRM, cmdRRM, cmdSFM, cmdPOS;
+extern GPIO_PinState en_MARG, en_MARD, en_MAV, en_POS;
+
+extern int leftRearSpeed;
+extern int rightRearSpeed;
+extern int steeringSpeed;
+extern int UPDATE_CMD_FLAG;
+extern int commCheckingRequest;
+
+extern CAN_HandleTypeDef hcan;
+
+CAN_TxHeaderTypeDef   TxHeader;
+CAN_RxHeaderTypeDef   RxHeader;
+uint8_t               TxData[8];
+uint8_t               RxData[8];
+uint32_t              TxMailbox;
+
+void CAN_COM_Init(void) {
+
+}
+
+void CAN_COM_FilterConfig(void)
+{
+	CAN_FilterTypeDef canFilterConfig;
+
+	//canFilterConfig.FilterNumber = 0;
+	canFilterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
+	canFilterConfig.FilterScale = CAN_FILTERSCALE_16BIT;
+	canFilterConfig.FilterIdHigh = CAN_ID_MOTORS_CMD << 5;
+	canFilterConfig.FilterIdLow = CAN_ID_CALIBRATION_MODE << 5;
+	canFilterConfig.FilterMaskIdHigh = CAN_ID_COMM_CHECKING << 5;
+	//canFilterConfig.FilterMaskIdLow = 0xFFFF;
+	canFilterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+	canFilterConfig.FilterActivation = ENABLE;
+	//canFilterConfig.BankNumber = 14;
+
+	if( HAL_CAN_ConfigFilter(&hcan, &canFilterConfig) != HAL_OK )
+	{
+		Error_Handler();
+	}
+
+	/* Start the CAN peripheral */
+	if (HAL_CAN_Start(&hcan) != HAL_OK)
+	{
+		/* Start Error */
+		Error_Handler();
+	}
+
+	/* Activate CAN RX notification */
+	if (HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
+	{
+		/* Notification Error */
+		Error_Handler();
+	}
+}
+
+void CAN_COM_Send(uint32_t id, uint8_t* data, uint8_t length) {
+	/* Start the Transmission process */
+	/* Configure Transmission header */
+	TxHeader.StdId = id; // Set the ID of the message
+	TxHeader.ExtId = 0x00; // Extended ID not used
+	TxHeader.RTR = CAN_RTR_DATA;
+	TxHeader.IDE = CAN_ID_STD;
+	TxHeader.DLC = length;
+	TxHeader.TransmitGlobalTime = DISABLE;
+
+	/* Copy data to TxData
+	 * This enable to free data buffer for other usage during buffer transfer */
+	for (int i = 0; i < length; i++) {
+		TxData[i] = data[i]; // copy data to TxData
+	}
+
+	if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK) {
+		/* Transmission request Error */
+		Error_Handler();
+	}
+}
+
+/**
+ * @brief  Rx Fifo 0 message pending callback in non blocking mode
+ * @param  CanHandle: pointer to a CAN_HandleTypeDef structure that contains
+ *         the configuration information for the specified CAN.
+ * @retval None
+ */
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *CanHandle)
+{
+	/* Get RX message */
+	if (HAL_CAN_GetRxMessage(CanHandle, CAN_RX_FIFO0, &RxHeader, RxData) != HAL_OK) {
+		/* Reception Error */
+		Error_Handler();
+	}
+
+	if (RxHeader.StdId == CAN_ID_MOTORS_CMD)	{
+		leftRearSpeed = (int) RxData[0]; // Read left rear motor speed
+		rightRearSpeed = (int) RxData[1]; // Read right rear motor speed
+		steeringSpeed = (int) RxData[2]; // Read steering motor speed
+
+		UPDATE_CMD_FLAG = 1;
+	} else if (RxHeader.StdId == CAN_ID_CALIBRATION_MODE && RxData[0] == CALIBRATION_REQUEST) {
+		mode = 0;	// Enter in calibration mode
+	} else if (RxHeader.StdId == CAN_ID_COMM_CHECKING && RxData[0] == COMM_CHECKING_REQUEST) {
+		commCheckingRequest = 1; // Communication checking request
+	}
+}
+
+//void HAL_CAN_RxCpltCallback(CAN_HandleTypeDef* hcan) {
+//	/* PWM commands (steering and propulsion) */
+//	if(hcan->pRxMsg->StdId == CAN_ID_MOTORS_CMD)
+//	{
+//		leftRearSpeed = read_mode(hcan->pRxMsg->Data[0]);
+//		rightRearSpeed = read_mode(hcan->pRxMsg->Data[1]);
+//		steeringSpeed = read_mode(hcan->pRxMsg->Data[2]);
+//		UPDATE_CMD_FLAG = 1;
+//
+//	}else if (hcan->pRxMsg->StdId == CAN_ID_CALIBRATION_MODE && hcan->pRxMsg->Data[0]== CALIBRATION_REQUEST){
+//		mode = 0;	//Enter in calibration mode
+//
+//	}else if (hcan->pRxMsg->StdId == CAN_ID_COMM_CHECKING && hcan->pRxMsg->Data[0]==COMM_CHECKING_REQUEST){	//Communication checking request
+//
+//		commCheckingRequest = 1;
+//	}
+//
+//	__HAL_CAN_ENABLE_IT(hcan, CAN_IT_FMP0);
+//}

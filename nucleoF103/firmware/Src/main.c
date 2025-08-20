@@ -27,17 +27,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "timer.h"
-#include "steering.h"
-#include "power.h"
-#include "calibrate.h"
-#include "FLASH_PAGE_F1.h"
-
-/* Modes
- * 0- Calibration
- * 1- Control
- */
-int mode = 1;
+#include "app.h"
 
 /* USER CODE END Includes */
 
@@ -60,60 +50,6 @@ int mode = 1;
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-int UPDATE_CMD_FLAG = 1;
-int US_FLAG = 1;
-
-int CAN_SEND_MOTORS = 1;
-int CAN_SEND_US = 0;
-int CAN_SEND_BATT = 1;
-
-/* Tous ADC sur 12 bits pleine echelle 3.3V
- ADCBUF[0] mesure batterie
- ADCBUF[1] angle direction
- ADCBUF[2] I moteur arriere gauche
- ADCBUF[3] I moteur arriere droit
- ADCBUF[4] I moteur avant
- */
-uint32_t ADCBUF[5];
-
-uint32_t VMG_mes = 0, VMD_mes = 0, per_vitesseG = 0, per_vitesseD = 0;
-int nbImpulsionG = 0;
-int nbImpulsionD = 0;
-
-int usEchoStart = 1;
-int usEchoReceived = 0;
-uint64_t usEchoRisingTime = 0;
-uint64_t usEchoDuration=0;
-int currentUs = 0;
-
-uint16_t usTriggerPin[6] = {US_Front_Left_Trig_Pin,US_Front_Center_Trig_Pin,US_Front_Right_Trig_Pin,US_Rear_Left_Trig_Pin,US_Rear_Center_Trig_Pin,US_Rear_Right_Trig_Pin};
-
-/*usDistance[] : Ultrasonic measurements [cm]
- * usDistance[0] front left
- * usDistance[1] front center
- * usDistance[2] front right
- * usDistance[3] rear left
- * usDistance[4] rear center
- * usDistance[5] rear right
- */
-uint16_t usDistance[6] = {0,0,0,0,0,0};
-
-// TODO : A reprendre
-//CanTxMsgTypeDef TxMessage;
-//CanRxMsgTypeDef RxMessage;
-// TODO : fin
-
-uint8_t data[8] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88};
-
-//Speed cmd
-int leftRearSpeed = -1;
-int rightRearSpeed = -1;
-int steeringSpeed = -1;
-
-//Communication checking request
-int commCheckingRequest = 0;
-
-extern CAN_HandleTypeDef hcan;
 
 /* USER CODE END PV */
 
@@ -126,78 +62,6 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
-    if (htim->Instance==TIM2)
-    {
-        VMG_mes = 0;
-
-    } else if (htim->Instance==TIM4){
-        VMD_mes = 0;
-
-    }else if (htim->Instance==TIM3){
-
-    	microSecondTimerOverflow();
-    }
-}
-
-void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
-{
-
-    /***               Mesures des vitesses moteurs                      ***
-     * F�quences entr�es micro, sorties capteurs, entre environ 2hz � 80 hz *
-     * Timer 2,4 sur 16 bits (65535)cp ->compte p�riode 9999 pour 1s (1Hz)   *
-     *                               ->compte p�riode 1000 pour 0.1s (10Hz)  *
-     * Rapport r�duction 2279/64 ~ 36 impulsions/tour de roue                *
-     * unite de 0.01*tr/mn = 168495/ cp                                     *
-     */
-    if (htim->Instance==TIM2)
-    {
-        per_vitesseG =	HAL_TIM_ReadCapturedValue (&htim2,TIM_CHANNEL_3);//PB10
-        VMG_mes = 1684949/per_vitesseG ;// X 0.01 tr/mn
-        
-        __HAL_TIM_SET_COUNTER(&htim2,0);// mise a zero compteur apres capture
-        nbImpulsionG +=1;
-    }
-    if (htim->Instance==TIM4)
-    {
-        per_vitesseD =	HAL_TIM_ReadCapturedValue (&htim4,TIM_CHANNEL_3);//PB8
-        VMD_mes = 1684949/per_vitesseD ;// X 0.01 tr/mn
-        
-        __HAL_TIM_SET_COUNTER(&htim4,0);// mise a zero compteur apres capture
-        nbImpulsionD +=1;
-    }
-}
-
-// EXTI External Interrupt ISR Handler CallBackFun
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-	if(usEchoStart){ //check pin state : rising
-		usEchoRisingTime = microSecond();
-		usEchoStart = 0;
-
-	}else{
-		uint64_t echoDuration = microSecond() - usEchoRisingTime;
-
-		if (echoDuration >= 0)
-			usEchoDuration = echoDuration;
-		else
-			usEchoDuration=-1;
-
-		usEchoStart = 1;
-		usEchoReceived = 1;
-
-	}
-
-}
-
-void SYS_MicroDelay(uint32_t delay)
-{
-    volatile uint32_t cnt=(delay*6)+5;
-
-    while (cnt >0) {
-        cnt--;
-    }
-}
 
 /* USER CODE END 0 */
 
@@ -209,10 +73,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
-	// TODO : a reprendre
-    //hcan.pTxMsg = &TxMessage;
-    //hcan.pRxMsg = &RxMessage;
-    // TODO : fin
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -243,179 +104,19 @@ int main(void)
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
     
-    /* Initialisations */
-    
-    /* PWM MOTEURS */
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
-    HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
-    
-    //Sorties complementaires
-    HAL_TIMEx_OCN_Start(&htim1,TIM_CHANNEL_1);
-    HAL_TIMEx_OCN_Start(&htim1,TIM_CHANNEL_2);
-    HAL_TIMEx_OCN_Start(&htim1,TIM_CHANNEL_3);
-    /*Vitesse*/
-    __HAL_TIM_ENABLE_IT(&htim2, TIM_IT_UPDATE);
-    __HAL_TIM_ENABLE_IT(&htim4, TIM_IT_UPDATE);
-
-    HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_1);
-    HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_2);
-
-    HAL_TIM_IC_Start_IT (&htim2,TIM_CHANNEL_3);//autorisation IT capture CH3
-    HAL_TIM_IC_Start_IT (&htim4,TIM_CHANNEL_3);//autorisation IT capture CH3
-    
-    /* ADC1 */
-    HAL_ADC_Start_DMA (&hadc1,ADCBUF,5);
-    
-    //US timer
-    __HAL_TIM_ENABLE_IT(&htim3, TIM_IT_UPDATE);
-    HAL_TIM_IC_Start_IT(&htim3, TIM_CHANNEL_1);
-    startMicroSecondCounter();
-
-
+  APP_Init();
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-    
-    /* Steering Initialization*/
-
-    //Write default calibration values in flash memory (first use only)
-    if ((int)Flash_Read_NUM(STEERING_CALIBRATION_A_DEFAULT_ADDR)!=(int)STEERING_CALIBRATION_A_DEFAULT
-    	|| (int)Flash_Read_NUM(STEERING_CALIBRATION_B_DEFAULT_ADDR)!=(int)STEERING_CALIBRATION_B_DEFAULT)
-		{
-
-    	Flash_Write_NUM(STEERING_CALIBRATION_A_DEFAULT_ADDR, STEERING_CALIBRATION_A_DEFAULT);
-    	Flash_Write_NUM(STEERING_CALIBRATION_B_DEFAULT_ADDR, STEERING_CALIBRATION_B_DEFAULT);
-
-    	Flash_Write_NUM(STEERING_CALIBRATION_A_ADDR, STEERING_CALIBRATION_A_DEFAULT);
-    	Flash_Write_NUM(STEERING_CALIBRATION_B_ADDR, STEERING_CALIBRATION_B_DEFAULT);
-    }
-    
-
+    APP_Run();    /* Never returns */
     while (1)
     {
     /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-    	if (US_FLAG==1)
-		{
-			US_FLAG=0;
-
-			if (currentUs >= 6){
-				currentUs = 0;
-			}
-
-			usEchoStart = 1;
-
-			HAL_GPIO_WritePin( US_GPIO_Port, usTriggerPin[currentUs], GPIO_PIN_SET); //Trigger ON
-			SYS_MicroDelay(10);
-			HAL_GPIO_WritePin( US_GPIO_Port, usTriggerPin[currentUs], GPIO_PIN_RESET); //Trigger OFF
-
-			HAL_Delay(40);	//Waiting to receive the echo
-
-			if (usEchoReceived)	//If we received the echo
-				usDistance[currentUs] = usEchoDuration/58;
-
-			else //If the echo is not received (i.e. sensor failure)
-				usDistance[currentUs] = 1000;	//Set distance value out of range
-
-			usEchoReceived = 0;
-			currentUs+=1;
-
-			if (currentUs == 6){	//When all the us sensors have been performed, restart with first us sensor (0) and send data to can
-				currentUs = 0;
-				CAN_SEND_US = 1;
-			}
-		}
-
-        /* Update motors command*/
-        if (UPDATE_CMD_FLAG){
-            UPDATE_CMD_FLAG = 0;
-            
-			if (mode == 0){	//Calibration Mode
-            	calibrate();
-            	mode = 1;
-			}
-			else{	//Control Mode
-            	car_control(leftRearSpeed,rightRearSpeed, steeringSpeed);
-			}
-        }
-        
-        /* CAN : Sending data*/
-        if (CAN_SEND_MOTORS){
-
-        	//Motors data
-        	CAN_SEND_MOTORS = 0;
-
-        	//Number of sensor pulses since last message (left rear wheel and right rear wheel)
-        	data[0] = nbImpulsionG;
-        	data[1] = nbImpulsionD;
-        	nbImpulsionG = 0;
-        	nbImpulsionD = 0;
-
-            data[2] = (VMG_mes >> 8) & 0xFF; // Left Rear Speed MSB
-            data[3] = VMG_mes & 0xFF; 	//LSB
-            
-            data[4] = (VMD_mes >> 8) & 0xFF; // Right Rear Speed MSB
-            data[5] = VMD_mes & 0xFF; // LSB
-            
-            data[6] = steering_get_angle() & 0xFF;	//Steering Angle MSB
-            
-            CAN_Send(data, CAN_ID_MOTORS_DATA);
-
-         }
-         if (CAN_SEND_BATT){
-        	//Battery Level
-			CAN_SEND_BATT= 0;
-
-            data[0] = (ADCBUF[0] >> 8) & 0xFF; // Vbatt MSB
-            data[1] = ADCBUF[0] & 0xFF; 	//LSB
-
-			CAN_Send(data, CAN_ID_BATT_LEVEL);
-
-		 }
-
-         if (CAN_SEND_US){
-        	//Sending US1 data (front)
-			data[0] = (usDistance[0] >> 8) & 0xFF;	//US Front Left
-			data[1] = usDistance[0] & 0xFF;
-
-			data[2] = (usDistance[1] >> 8) & 0xFF;	//US Front Center
-			data[3] = usDistance[1] & 0xFF;
-
-			data[4] = (usDistance[2] >> 8) & 0xFF;	//US Front Right
-			data[5] = usDistance[2] & 0xFF;
-
-			CAN_Send(data, CAN_ID_US1);
-
-			//Sending US2 data (rear)
-			data[0] = (usDistance[3] >> 8) & 0xFF;	//US Rear Left
-			data[1] = usDistance[3] & 0xFF;
-
-			data[2] = (usDistance[4] >> 8) & 0xFF;	//US Rear Center
-			data[3] = usDistance[4] & 0xFF;
-
-			data[4] = (usDistance[5] >> 8) & 0xFF;	//US Rear Right
-			data[5] = usDistance[5] & 0xFF;
-
-			CAN_Send(data, CAN_ID_US2);
-
-			CAN_SEND_US = 0;
-        }
-
-
-        if (commCheckingRequest){
-
-			data[1] = COMM_CHECKING_ACK;
-
-			CAN_Send(data,CAN_ID_COMM_CHECKING); //Send ack
-
-			commCheckingRequest = 0;
-        }
-        
     }
+    /* USER CODE BEGIN 3 */
+
   /* USER CODE END 3 */
 }
 

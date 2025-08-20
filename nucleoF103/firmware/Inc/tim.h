@@ -41,7 +41,18 @@ extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
 
 /* USER CODE BEGIN Private defines */
-
+// Timer & Channel definitions
+#define TIM_MOTOR_LEFT TIM1
+#define TIM_MOTOR_RIGHT TIM1
+#define TIM_STEERING TIM4
+#define TIM_ENCODER_LEFT TIM2
+#define TIM_ENCODER_RIGHT TIM2
+#define TIM_US TIM3
+#define TIM_MOTOR_LEFT_CHANNEL TIM_CHANNEL_1
+#define TIM_MOTOR_RIGHT_CHANNEL TIM_CHANNEL_2
+#define TIM_STEERING_CHANNEL TIM_CHANNEL_1
+#define TIM_ENCODER_LEFT_CHANNEL TIM_CHANNEL_3
+#define TIM_ENCODER_RIGHT_CHANNEL TIM_CHANNEL_1
 /* USER CODE END Private defines */
 
 void MX_TIM1_Init(void);

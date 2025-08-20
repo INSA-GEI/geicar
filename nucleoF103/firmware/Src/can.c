@@ -131,48 +131,5 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 }
 
 /* USER CODE BEGIN 1 */
-void CAN_FilterConfig(void)
-{
-//	CAN_FilterConfTypeDef sFilterConfig;
-//
-//	sFilterConfig.FilterNumber = 0;
-//	sFilterConfig.FilterMode = CAN_FILTERMODE_IDLIST;
-//	sFilterConfig.FilterScale = CAN_FILTERSCALE_16BIT;
-//	sFilterConfig.FilterIdHigh = CAN_ID_MOTORS_CMD<<5;
-//	sFilterConfig.FilterIdLow = CAN_ID_CALIBRATION_MODE<<5;
-//	sFilterConfig.FilterMaskIdHigh = CAN_ID_COMM_CHECKING<<5;
-//	//sFilterConfig.FilterMaskIdLow = 0xFFFF;
-//	sFilterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-//	sFilterConfig.FilterActivation = ENABLE;
-//	sFilterConfig.BankNumber = 14;
-//
-//
-//	if( HAL_CAN_ConfigFilter(&hcan, &sFilterConfig) != HAL_OK )
-//	{
-//		 Error_Handler();
-//	}
-
-	CAN_FilterTypeDef canFilterConfig;
-
-	//canFilterConfig.FilterNumber = 0;
-	canFilterConfig.FilterMode = CAN_FILTERMODE_IDMASK;
-	canFilterConfig.FilterScale = CAN_FILTERSCALE_16BIT;
-	canFilterConfig.FilterIdHigh = CAN_ID_MOTORS_CMD << 5;
-	canFilterConfig.FilterIdLow = CAN_ID_CALIBRATION_MODE << 5;
-	canFilterConfig.FilterMaskIdHigh = CAN_ID_COMM_CHECKING << 5;
-	//canFilterConfig.FilterMaskIdLow = 0xFFFF;
-	canFilterConfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-	canFilterConfig.FilterActivation = ENABLE;
-	//canFilterConfig.BankNumber = 14;
-
-	if( HAL_CAN_ConfigFilter(&hcan, &canFilterConfig) != HAL_OK )
-	{
-		 Error_Handler();
-	}
-}
-
-void CAN_Send(uint8_t* data, uint32_t id) {
-
-}
 
 /* USER CODE END 1 */

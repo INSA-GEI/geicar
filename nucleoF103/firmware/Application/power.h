@@ -14,12 +14,12 @@
 /**
 * Set the power
 **/
-void power_boostrap(void);
+void POWER_Boostrap(void);
 
 /**
 * shutdown the power
 **/
-void power_shutdown(void);
+void POWER_Shutdown(void);
 
 
 #endif /* power_h */

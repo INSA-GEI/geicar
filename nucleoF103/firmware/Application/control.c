@@ -8,8 +8,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 
-#include "control.h"
+#include "steering.h"
+#include "wheels.h"
 
+#include "control.h"
 
 /* Private define ------------------------------------------------------------*/
 
@@ -21,20 +23,20 @@
 /**
 *	Update motor speeds
 **/
-void car_control(int left_rear_speed, int right_rear_speed, int steering_speed){
+void CAR_CONTROL_Manage(int left_rear_speed, int right_rear_speed, int steering_speed) {
 
-	if (left_rear_speed == DISABLED && right_rear_speed == DISABLED && steering_speed == DISABLED){
-
-		wheels_set_speed(GPIO_PIN_RESET, GPIO_PIN_RESET, STOP, STOP);
-		steering_set_speed(GPIO_PIN_RESET, STOP);
-
-	} else {
-
+	if (left_rear_speed == DISABLED && right_rear_speed == DISABLED && steering_speed == DISABLED) {
 		//Propulsion
-		wheels_set_speed(GPIO_PIN_SET, GPIO_PIN_SET, right_rear_speed, left_rear_speed);
+		WHEELS_SetSpeed(GPIO_PIN_RESET, GPIO_PIN_RESET, STOP, STOP);
 
 		//Steering
-		steering_set_speed(GPIO_PIN_SET, steering_speed);
+		STEERING_SetSpeed(GPIO_PIN_RESET, STOP);
+	} else {
+		//Propulsion
+		WHEELS_SetSpeed(GPIO_PIN_SET, GPIO_PIN_SET, right_rear_speed, left_rear_speed);
+
+		//Steering
+		STEERING_SetSpeed(GPIO_PIN_SET, steering_speed);
 	}
 }
 

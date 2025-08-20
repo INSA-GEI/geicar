@@ -16,15 +16,15 @@ TIM1_CH1N (PA7) = Moteur Gauche (PWM)
 TIM1_CH2 (PA9) = Moteur Droit (PWM)
 TIM1_CH2N (PB0) = Moteur Droit (PWM)
 
-TIM1_CH3 (PA10) = Moteur Direction (PWM)
-TIM1_CH3N (PB1) =
+TIM1_CH3 (PA10) = Moteur Direction (PWM) ( a supprimer)
+TIM1_CH3N (PB1) = Moteur Direction (PWM) ( a supprimer)
 
 TIM2_CH3 (PB10) = Encodeur Moteur Gauche
+TIM2_CH1 (PA15) = Encodeur Moteur Droit
 
-A revoir TIM3_CH3 (PA6) =
 TIM3 = Timer microseconde pour mesure ultrason 
 
-TIM4_CH3 (PB8) = Encodeur Moteur Droit (voir si on ne peut pas le passer sur le timer 2, ch x)
+TIM4_CH1 (PB6) = PWM servo direction
 
 ### Com
 

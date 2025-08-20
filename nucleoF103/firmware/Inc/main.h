@@ -127,13 +127,13 @@ void Error_Handler(void);
 
 /* USER CODE BEGIN Private defines */
 
-	//L/R buttons
+//L/R buttons
 #define RightSteeringButton_Pin GPIO_PIN_14
 #define RightSteeringButton_GPIO_Port GPIOB
 #define LeftSteeringButton_Pin GPIO_PIN_15
 #define LeftSteeringButton_GPIO_Port GPIOB
 
-	//US
+//US
 #define US_Front_Left_Trig_Pin GPIO_PIN_1
 #define US_Front_Center_Trig_Pin GPIO_PIN_2
 #define US_Front_Right_Trig_Pin GPIO_PIN_3
@@ -148,12 +148,12 @@ void Error_Handler(void);
 
 #define US_GPIO_Port GPIOC
 
-
 #define PERIOD_UPDATE_US 50 //Period in ms to update us data
 
-	//CAN
+//CAN
 #define PERIOD_SEND_MOTORS 100 // Period in ms to send motors data
 #define PERIOD_SEND_BATT 2000 // Period in ms to send battery level
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

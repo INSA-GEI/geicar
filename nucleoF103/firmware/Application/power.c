@@ -7,13 +7,13 @@
 
 #include "power.h"
 
-void power_boostrap(void){
+void POWER_Boostrap(void){
     /* auto-maintien alim */
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_SET);
 }
 
 
-void power_shutdown(void){
+void POWER_Shutdown(void){
     //coupure alim
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
 }
