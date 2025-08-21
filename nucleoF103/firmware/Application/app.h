@@ -12,6 +12,8 @@
 #ifndef APP_H_
 #define APP_H_
 
+#define APP_VERSION "1.0.0"
+
 /**
  * @brief Initialize the application.
  * This function sets up the necessary software components

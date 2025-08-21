@@ -1,4 +1,13 @@
 # Overview of the NucleoF103 software architecture
+**Modification S DI MERCURIO [21-08-25]** Remplacement du moteur de direction AV par un servomoteur.
+Changement d'affectation de pin suivants:
+* Suppression des lignes liées au driver moteur AV (PA10 (TIM1_CH3), PB1 (TIM1_CH3N), PC12, PC0 (ADC1_IN10)
+* Deplacement de la lecture encodeur moteur ARD de PB8 (TIM4_CH3) à PA15 (TIM2_CH1)
+* Branchement de la command servomoteur de direction sur PB6 (TIM4_CH1)
+
+CHangement de fonctionnement:
+* Trame CAN pour la commande moteur et direction: Remplacement de la vitesse de rotation moteur AV par une commande d'angle entre 0 (completement à gauche) et 100 (completement a droite), 50 pour etre centré
+* Trame CAN pour les valeurs de vitesse et retour angle direction: suppression des valeurs de courant et d'angle de la direction
 
 ## Contents
 1. Pin configuration
@@ -22,9 +31,10 @@ The Nucleo board controls the vehicle's engines and steering, the ultrasonic sen
 | Port | Configuration | Remap | Description                     |
 |------|---------------|-------|---------------------------------|
 | PA0  | Analog Input  | ADC1 IN0 |Battery Level             |
-| PA1  | Analog Input  | ADC1 IN1 | Steering wheel angle     |
+| **PA1**  | Analog Input  | ADC1 IN1 | Steering wheel angle **(Obsolete)**    |
 | PB10 | AF Output PP  | TIM2 CH3 | Position left motor |
-| PB8 | AF Output PP  | TIM4 CH3 | Position right motor   |
+| **PB8** | AF Output PP  | TIM4 CH3 | Position right motor **(Supprimé)**  |
+| **PA15** | AF Output PP  | TIM2 CH1 | Position right motor **(Nouveau)**  |
 
 ### Left wheel motor
 | Port | Configuration | Remap | Description                  |
@@ -51,10 +61,12 @@ The Nucleo board controls the vehicle's engines and steering, the ultrasonic sen
 ### Steering wheel motor
 | Port | Configuration | Remap | Description                  |
 |------|---------------|-------|------------------------------|
-| PC12 | Output PP 10MHz| -       | Enable steering motor         |
-| PA10 | AF Output PP  | TIM1 CH3 |  Control steering motor (IN1) |
-| PB1  | AF Output PP  | TIM1 CH3N|  Control steering motor (IN2) |
-| PC0  | Analog Input  | ADC1 IN10 | Current steering motor      |
+| PC12 | Output PP 10MHz| -       | Enable steering motor **(Supprimé)** |
+| PA10 | AF Output PP  | TIM1 CH3 |  Control steering motor (IN1) **(Supprimé)** |
+| PB1  | AF Output PP  | TIM1 CH3N|  Control steering motor (IN2) **(Supprimé)** |
+| **PC0** | Analog Input  | ADC1 IN10 | Current steering motor **(Supprimé)**     |
+| **PB6**  | AF Output PP  | TIM4_CH1 | Cmd steering motor (angle) **(Nouveau)**  |
+
 
 ### Ultrasonic sensors
 #### Trigger pins

@@ -31,45 +31,79 @@ extern uint32_t ADCBUF[5];
 /* Programs ------------------------------------------------------------------*/
 
 void STEERING_Init(void) {
-	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1); // Start PWM on TIM4 CH1 for steering motor
+	//HAL_TIM_Enable(&htim4); // Enable TIM4 clock
+	STEERING_SetAngle(100); // Set initial angle to center (100 = Center position)
+
+	HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1); // Start PWM on TIM4 CH1 for steering motor (100 Hz)
 }
 
 //Set the speed of the steering motor. Speed value has to be between 0% and 100%
 void STEERING_SetSpeed(GPIO_PinState en_steering, int speed){
 
-	//Normalize value between LEFT_MAX_SPEED_STEERING and RIGHT_MAX_SPEED_STEERING (because CAN order is between 0 and 100)
-	speed = ((RIGHT_MAX_SPEED_STEERING-LEFT_MAX_SPEED_STEERING)/100.0) * speed + LEFT_MAX_SPEED_STEERING;
+//	//Normalize value between LEFT_MAX_SPEED_STEERING and RIGHT_MAX_SPEED_STEERING (because CAN order is between 0 and 100)
+//	speed = ((RIGHT_MAX_SPEED_STEERING-LEFT_MAX_SPEED_STEERING)/100.0) * speed + LEFT_MAX_SPEED_STEERING;
+//
+//	/* Threshold rotating speed of steering wheels*/
+//	if (speed > RIGHT_MAX_SPEED_STEERING){
+//		speed = RIGHT_MAX_SPEED_STEERING;
+//	} else if (speed < LEFT_MAX_SPEED_STEERING){
+//		speed  = LEFT_MAX_SPEED_STEERING;
+//	}
+//
+//	speed = 3200 * ( speed/ 100.0 );
+//	TIM1->CCR3 = speed;
+//
+//	HAL_GPIO_WritePin( GPIOC, GPIO_PIN_12, en_steering);  //PC12  AV
+}
 
-	/* Threshold rotating speed of steering wheels*/
-	if (speed > RIGHT_MAX_SPEED_STEERING){
-		speed = RIGHT_MAX_SPEED_STEERING;
-	} else if (speed < LEFT_MAX_SPEED_STEERING){
-		speed  = LEFT_MAX_SPEED_STEERING;
+#define STEERING_PWM_MIN 6400   // 1.0 ms en ticks
+#define STEERING_PWM_MAX 12800  // 2.0 ms en ticks
+
+/**
+ * @brief Set the steering angle
+ * @param angle Angle in degrees, where 0 is full left and 200 is full right
+ * Normalizes the angle to be within the range of 0 to 200 and converts it to a PWM value.
+ *
+ * STEERING_SetAngle(0) → CCR = 6400 → 1 ms
+ * STEERING_SetAngle(100) → CCR = 9600 → 1,5 ms (milieu)
+ * STEERING_SetAngle(200) → CCR = 12800 → 2 ms
+ */
+void STEERING_SetAngle(int angle) {
+	// Normalize the angle to be between 0 and 200
+	if (angle > STEERING_MAX_ANGLE_RIGHT) {
+		angle = STEERING_MAX_ANGLE_RIGHT;
+	} else if (angle <= STEERING_MAX_ANGLE_LEFT) {
+		angle = STEERING_MAX_ANGLE_LEFT;
 	}
 
-	speed = 3200 * ( speed/ 100.0 );
-	TIM1->CCR3 = speed;
+	// Convert angle to PWM value
+	int pwm_value = (int) ((angle - STEERING_MAX_ANGLE_LEFT)
+			* (STEERING_PWM_MAX - STEERING_PWM_MIN)
+			/ (STEERING_MAX_ANGLE_RIGHT - STEERING_MAX_ANGLE_LEFT) + STEERING_PWM_MIN);
 
-	HAL_GPIO_WritePin( GPIOC, GPIO_PIN_12, en_steering);  //PC12  AV
+	// Set the PWM value for steering motor
+	__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_1, pwm_value);
 }
 
 //return the current angle between 0 (full left) and 200 (full right)
 int STEERING_GetAngle(void){
-	if (need_read_calibration==1){
-		STEERING_ReadCalibrationData();
-		need_read_calibration=0;
-	}
+//	if (need_read_calibration==1){
+//		STEERING_ReadCalibrationData();
+//		need_read_calibration=0;
+//	}
+//
+//	int steeringSensor = (int) ADCBUF[1];
+//	int currentAngle = (steering_sensor_coef_a*steeringSensor + steering_sensor_coef_b);
+//	if (currentAngle > ANGLE_RIGHT_VALUE){
+//		currentAngle = ANGLE_RIGHT_VALUE;
+//
+//	}else if (currentAngle < ANGLE_LEFT_VALUE){
+//		currentAngle = ANGLE_LEFT_VALUE;
+//	}
+//
+//	return currentAngle;
 
-	int steeringSensor = (int) ADCBUF[1];
-	int currentAngle = (steering_sensor_coef_a*steeringSensor + steering_sensor_coef_b);
-	if (currentAngle > ANGLE_RIGHT_VALUE){
-		currentAngle = ANGLE_RIGHT_VALUE;
-
-	}else if (currentAngle < ANGLE_LEFT_VALUE){
-		currentAngle = ANGLE_LEFT_VALUE;
-	}
-
-	return currentAngle;
+	return 100; // Always return center
 }
 
 int STEERING_IsAButtonPressed(){

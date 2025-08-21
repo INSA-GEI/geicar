@@ -35,34 +35,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := F103
+BUILD_ARTIFACT_NAME := fw_geicar_motor_steering_us
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-F103.elf \
+fw_geicar_motor_steering_us.elf \
 
 MAP_FILES += \
-F103.map \
+fw_geicar_motor_steering_us.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-F103.list \
+fw_geicar_motor_steering_us.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: F103.elf secondary-outputs
+main-build: fw_geicar_motor_steering_us.elf secondary-outputs
 
 # Tool invocations
-F103.elf F103.map: $(OBJS) $(USER_OBJS) /home-local/dimercur/Documents/Travail/Depots-Git/geicar/nucleoF103/firmware/STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "F103.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home-local/dimercur/Documents/Travail/Depots-Git/geicar/nucleoF103/firmware/STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="F103.map" -Wl,--gc-sections -static -Wl,--no-warn-rwx-segments --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+fw_geicar_motor_steering_us.elf fw_geicar_motor_steering_us.map: $(OBJS) $(USER_OBJS) /home-local/dimercur/Documents/Travail/Depots-Git/geicar/nucleoF103/firmware/STM32F103RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "fw_geicar_motor_steering_us.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home-local/dimercur/Documents/Travail/Depots-Git/geicar/nucleoF103/firmware/STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="fw_geicar_motor_steering_us.map" -Wl,--gc-sections -static -Wl,--no-warn-rwx-segments --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -71,14 +71,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-F103.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "F103.list"
+fw_geicar_motor_steering_us.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "fw_geicar_motor_steering_us.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) F103.elf F103.list F103.map default.size.stdout
+	-$(RM) default.size.stdout fw_geicar_motor_steering_us.elf fw_geicar_motor_steering_us.list fw_geicar_motor_steering_us.map
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

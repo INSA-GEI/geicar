@@ -37,6 +37,8 @@
 #define STEERING_CALIBRATION_A_DEFAULT	-0.23866348 	//coef a (default value)
 #define STEERING_CALIBRATION_B_DEFAULT 	666.109802	//coef b (default value)
 
+#define STEERING_MAX_ANGLE_LEFT 0 // Full left
+#define STEERING_MAX_ANGLE_RIGHT 200 // Full right
 /**
 *	Set the max and min value of the steering wheels sensor
 **/
@@ -46,6 +48,12 @@ void STEERING_Init(void);
 * Set the speed of the steering motor. Speed value has to be between 0% and 100%
 **/
 void STEERING_SetSpeed(GPIO_PinState en_steering, int speed);
+
+/**
+ * Set the steering angle.
+ * Angle should be between STEERING_MAX_ANGLE_LEFT (0) and STEERING_MAX_ANGLE_RIGHT (200).
+ */
+void STEERING_SetAngle(int angle);
 
 /**
 * Return the steering angle.

@@ -29,6 +29,12 @@
 #include "can_communication.h"
 #include "measures.h"
 
+#include <stdio.h>
+
+#if defined (__TESTS__)
+#include "tests.h"
+#endif
+
 /* Modes
  * 0- Calibration
  * 1- Control
@@ -99,6 +105,9 @@ void APP_Init(void){
 
 	// CAN communications
 	CAN_COM_Init();
+
+    printf("FW Geicar motor - steering - ultrasonic sensors.\r\n");
+	printf("Application version: %s\r\n\n", APP_VERSION);
 }
 
 /**
@@ -110,8 +119,13 @@ void APP_Init(void){
  * @remark: this function never returns, it runs indefinitely.
  */
 void APP_Run(void){
-	/* Steering Initialization*/
+	printf("Application started\r\n");
 
+#if defined (__TESTS__)
+    TESTS_Run(); // Run tests if defined
+#else
+
+	/* Steering Initialization*/
 	// Write default calibration values in flash memory (first use only)
 	if ((int)Flash_Read_NUM(STEERING_CALIBRATION_A_DEFAULT_ADDR)!=(int)STEERING_CALIBRATION_A_DEFAULT
 			|| (int)Flash_Read_NUM(STEERING_CALIBRATION_B_DEFAULT_ADDR)!=(int)STEERING_CALIBRATION_B_DEFAULT)
@@ -229,6 +243,7 @@ void APP_Run(void){
 			commCheckingRequest = 0;
 		}
 	}
+#endif /* __TESTS__ */
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
@@ -256,4 +271,14 @@ void APP_PeriodicCountersUpdate(void) {
 		CAN_SEND_BATT = 1;
 		cmpt_batt = 0;
 	}
+}
+
+/**
+ * @brief  Retargets the C library printf function to the USART.
+ * @param  ch: Character to be printed
+ * @retval Character sent
+ */
+int __io_putchar(int ch) {
+	HAL_UART_Transmit(&huart2, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+	return ch;
 }
