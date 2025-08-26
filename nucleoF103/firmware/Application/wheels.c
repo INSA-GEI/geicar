@@ -22,59 +22,6 @@ uint32_t lastCaptureD = 0;
 uint8_t ovfCountG = 0;
 uint8_t ovfCountD = 0;
 
-void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
-{
-	uint32_t capture;
-	uint32_t diff;
-
-	if ((htim->Instance == TIM_ENCODER_LEFT) || (htim->Instance == TIM_ENCODER_RIGHT))	{
-		if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1) {   // Moteur droit
-			capture = HAL_TIM_ReadCapturedValue(&htim2, TIM_CHANNEL_1);
-
-			if (capture >= lastCaptureD)
-				diff = capture - lastCaptureD;
-			else
-				diff = (0xFFFF - lastCaptureD) + capture + 1;
-
-			lastCaptureD = capture;
-
-			per_vitesseD = diff;
-			VMD_mes = 1684949 / diff;
-			nbImpulsionD++;
-
-			ovfCountD = 0;   // reset overflow count moteur D
-		} else if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_3) { // Moteur gauche
-			capture = HAL_TIM_ReadCapturedValue(&htim2, TIM_CHANNEL_3);
-
-			if (capture >= lastCaptureG)
-				diff = capture - lastCaptureG;
-			else
-				diff = (0xFFFF - lastCaptureG) + capture + 1;
-
-			lastCaptureG = capture;
-
-			per_vitesseG = diff;
-			VMG_mes = 1684949 / diff;
-			nbImpulsionG++;
-
-			ovfCountG = 0;   // reset overflow count moteur G
-		}
-	}
-}
-
-void WHEELS_OverflowManager() {
-	// Incrémentation des compteurs d’overflow
-	if (++ovfCountG >= 2) {
-		VMG_mes = 0;     // moteur gauche arrêté
-		ovfCountG = 2;   // éviter overflow du compteur logiciel
-	}
-
-	if (++ovfCountD >= 2) {
-		VMD_mes = 0;     // moteur droit arrêté
-		ovfCountD = 2;
-	}
-}
-
 void WHEELS_Init() {
 	/* PWM MOTEURS */
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
@@ -85,15 +32,16 @@ void WHEELS_Init() {
 	HAL_TIMEx_OCN_Start(&htim1,TIM_CHANNEL_1);
 	HAL_TIMEx_OCN_Start(&htim1,TIM_CHANNEL_2);
 	HAL_TIMEx_OCN_Start(&htim1,TIM_CHANNEL_3);
+
 	/*Vitesse*/
 	__HAL_TIM_ENABLE_IT(&htim2, TIM_IT_UPDATE);
-	__HAL_TIM_ENABLE_IT(&htim4, TIM_IT_UPDATE);
+	//__HAL_TIM_ENABLE_IT(&htim4, TIM_IT_UPDATE);
 
-	HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_1);
-	HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_2);
+	//HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_1);
+	//HAL_TIM_IC_Start_IT(&htim1, TIM_CHANNEL_2);
 
-	HAL_TIM_IC_Start_IT (&htim2,TIM_CHANNEL_3);//autorisation IT capture CH3
-	HAL_TIM_IC_Start_IT (&htim4,TIM_CHANNEL_3);//autorisation IT capture CH3
+	HAL_TIM_IC_Start_IT (&htim2,TIM_CHANNEL_3);//autorisation IT capture CH3 (moteur gauche)
+	HAL_TIM_IC_Start_IT (&htim2,TIM_CHANNEL_1);//autorisation IT capture CH1 (moteur droit)
 }
 
 void WHEELS_SetSpeed(GPIO_PinState en_right, GPIO_PinState en_left, int speed_right, int speed_left){
@@ -126,4 +74,90 @@ void WHEELS_SetSpeed(GPIO_PinState en_right, GPIO_PinState en_left, int speed_ri
 
 	HAL_GPIO_WritePin( GPIOC, GPIO_PIN_10, en_left); //PC10  Right Rear
 	HAL_GPIO_WritePin( GPIOC, GPIO_PIN_11, en_right); //PC11  Left Rear
+}
+
+uint32_t WHEELS_GetSensor(uint8_t motor) {
+uint32_t value=0;
+	if (motor == WHEELS_MOTOR_LEFT) {
+		value = VMG_mes; // Left motor
+	} else if (motor == WHEELS_MOTOR_RIGHT) {
+		value = VMD_mes; // right motor
+	}
+
+	return value;
+}
+
+uint32_t WHEELS_GetPERVitesse(uint8_t motor) {
+uint32_t value=0;
+	if (motor == WHEELS_MOTOR_LEFT) {
+		value = per_vitesseG; // Left motor
+	} else if (motor == WHEELS_MOTOR_RIGHT) {
+		value = per_vitesseD; // right motor
+	}
+
+	return value;
+}
+
+int WHEELS_GetOdometer(uint8_t motor) {
+int value=0;
+	if (motor == WHEELS_MOTOR_LEFT) {
+		value = nbImpulsionG; // Left motor
+	} else if (motor == WHEELS_MOTOR_RIGHT) {
+		value = nbImpulsionD; // right motor
+	}
+
+	return value;
+}
+
+void WHEELS_OverflowManager() {
+	// Incrémentation des compteurs d’overflow
+	if (++ovfCountG >= 2) {
+		VMG_mes = 0;     // moteur gauche arrêté
+		ovfCountG = 2;   // éviter overflow du compteur logiciel
+	}
+
+	if (++ovfCountD >= 2) {
+		VMD_mes = 0;     // moteur droit arrêté
+		ovfCountD = 2;
+	}
+}
+
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
+	uint32_t capture;
+	uint32_t diff;
+
+	if ((htim->Instance == TIM_ENCODER_LEFT) || (htim->Instance == TIM_ENCODER_RIGHT))	{
+		if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1) {   // Moteur droit
+			capture = HAL_TIM_ReadCapturedValue(&htim2, TIM_CHANNEL_1);
+
+
+			if (capture >= lastCaptureD)
+				diff = capture - lastCaptureD;
+			else
+				diff = (0xFFFF - lastCaptureD) + capture + 1;
+
+			lastCaptureD = capture;
+
+			per_vitesseD = diff;
+			VMD_mes = 1684949 / diff;
+			nbImpulsionD++;
+
+			ovfCountD = 0;   // reset overflow count moteur D
+		} else if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_3) { // Moteur gauche
+			capture = HAL_TIM_ReadCapturedValue(&htim2, TIM_CHANNEL_3);
+
+			if (capture >= lastCaptureG)
+				diff = capture - lastCaptureG;
+			else
+				diff = (0xFFFF - lastCaptureG) + capture + 1;
+
+			lastCaptureG = capture;
+
+			per_vitesseG = diff;
+			VMG_mes = 1684949 / diff;
+			nbImpulsionG++;
+
+			ovfCountG = 0;   // reset overflow count moteur G
+		}
+	}
 }

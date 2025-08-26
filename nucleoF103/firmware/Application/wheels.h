@@ -23,4 +23,10 @@ void WHEELS_OverflowManager();
 **/
 void WHEELS_SetSpeed(GPIO_PinState en_right, GPIO_PinState en_left, int speed_right, int speed_left);
 
+#define WHEELS_MOTOR_LEFT  0
+#define WHEELS_MOTOR_RIGHT 1
+uint32_t WHEELS_GetSensor(uint8_t motor);
+uint32_t WHEELS_GetPERVitesse(uint8_t motor);
+int WHEELS_GetOdometer(uint8_t motor);
+
 #endif
