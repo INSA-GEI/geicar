@@ -6,6 +6,7 @@
 "./Application/measures.o"
 "./Application/power.o"
 "./Application/steering.o"
+"./Application/tests.o"
 "./Application/ultrasound.o"
 "./Application/wheels.o"
 "./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o"
@@ -37,4 +38,4 @@
 "./Src/system_stm32f1xx.o"
 "./Src/tim.o"
 "./Src/usart.o"
-"./Startup/startup_stm32f103rbtx.o"
+"./Startup/startup_stm32f103xb.o"

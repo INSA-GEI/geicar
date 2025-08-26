@@ -13,53 +13,34 @@
 #include "ultrasound.h"
 
 // Variables pour les mesures US
-int usEchoStart = 1;
-int usEchoReceived = 0;
-uint64_t usEchoRisingTime = 0;
-uint64_t usEchoDuration=0;
+//volatile uint64_t fuck1;
+//volatile uint64_t fuck2;
+//volatile uint64_t fuck3;
+//volatile uint64_t fuck4;
+//volatile uint64_t fuck5;
+//volatile uint64_t fuck6;
+uint8_t usEchoStart;
+uint8_t usEchoReceived;
+//uint64_t usEchoRisingTime = ;
+uint32_t usEchoDuration;
+uint32_t ustimerOverflow;
 
 uint16_t usTriggerPin[6] = {US_Front_Left_Trig_Pin,US_Front_Center_Trig_Pin,US_Front_Right_Trig_Pin,US_Rear_Left_Trig_Pin,US_Rear_Center_Trig_Pin,US_Rear_Right_Trig_Pin};
 
-uint64_t timerOverflow = 0;
-uint64_t microSecondTime = 0;
-
-//Start TIM3 counter
-void startMicroSecondCounter(){
-	TIM3->CR1 |= TIM_CR1_CEN;
-}
-
-
-
 //return current time in microsecond
-uint64_t microSecond(){
-	microSecondTime = timerOverflow * TIM3->ARR + TIM3->CNT;
+
+void US_ResetTimer(void) {
+	TIM3->CNT = 0;
+	ustimerOverflow = 0;
+}
+
+uint32_t US_MicroSecond(){
+	//microSecondTime = ustimerOverflow * TIM3->ARR + TIM3->CNT;
+	uint32_t microSecondTime = (ustimerOverflow<<16) + TIM3->CNT;
 	return microSecondTime;
-
 }
 
-// EXTI External Interrupt ISR Handler CallBackFun
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-	if(usEchoStart){ //check pin state : rising
-		usEchoRisingTime = microSecond();
-		usEchoStart = 0;
-
-	}else{
-		uint64_t echoDuration = microSecond() - usEchoRisingTime;
-
-		if (echoDuration >= 0)
-			usEchoDuration = echoDuration;
-		else
-			usEchoDuration=-1;
-
-		usEchoStart = 1;
-		usEchoReceived = 1;
-
-	}
-}
-
-void US_MicroDelay(uint32_t delay)
-{
+void US_MicroDelay(uint32_t delay) {
 	volatile uint32_t cnt=(delay*6)+5;
 
 	while (cnt >0) {
@@ -67,15 +48,29 @@ void US_MicroDelay(uint32_t delay)
 	}
 }
 
-void US_Init(void) {
-	__HAL_TIM_ENABLE_IT(&htim3, TIM_IT_UPDATE);
-	HAL_TIM_IC_Start_IT(&htim3, TIM_CHANNEL_1);
-	startMicroSecondCounter();
-}
-
 //Count overflows
 void US_OverflowManager(){
-	timerOverflow +=1 ;
+	ustimerOverflow ++;
+}
+
+/**
+ * @brief Initialize the ultrasonic sensors.
+ * This function configures the necessary peripherals for the ultrasonic sensors,
+ * including GPIO and Timer 3 for microsecond timing.
+ */
+void US_Init(void) {
+//	fuck1=0;
+//	fuck2=0;
+//	fuck3=0;
+//	fuck4=0;
+//	fuck5=0;
+//	fuck6=0;
+	/* Enable overflow interrupt for Timer 3 */
+	__HAL_TIM_ENABLE_IT(&htim3, TIM_IT_UPDATE);
+	//HAL_TIM_IC_Start_IT(&htim3, TIM_CHANNEL_1);
+
+	/* Start Timer 3 */
+	__HAL_TIM_ENABLE(&htim3);
 }
 
 uint16_t US_GetDistance(uint8_t channel) {
@@ -87,7 +82,7 @@ uint16_t US_GetDistance(uint8_t channel) {
 	US_MicroDelay(10);
 	HAL_GPIO_WritePin( US_GPIO_Port, usTriggerPin[channel], GPIO_PIN_RESET); //Trigger OFF
 
-	HAL_Delay(40);	//Waiting to receive the echo
+	HAL_Delay(40);	// Waiting to receive the echo (40 ms max for 7m distance)
 
 	if (usEchoReceived)	//If we received the echo
 		distance = usEchoDuration/58;
@@ -99,3 +94,24 @@ uint16_t US_GetDistance(uint8_t channel) {
 	return distance;
 }
 
+// EXTI External Interrupt ISR Handler CallBackFun
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	if (usEchoStart) { //check pin state : rising
+		US_ResetTimer();
+		//usEchoRisingTime = 0;
+		usEchoStart = 0;
+	} else { // Mesure falling edge
+		// uint64_t echoDuration = microSecond() - usEchoRisingTime;
+		//uint64_t echoDuration = US_MicroSecond();
+
+		/*if (echoDuration >= 0)
+			usEchoDuration = echoDuration;
+		else
+			usEchoDuration=-1;*/
+
+		//usEchoStart = 1;
+		usEchoDuration = US_MicroSecond();
+		usEchoReceived = 1;
+	}
+}

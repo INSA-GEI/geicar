@@ -15,11 +15,14 @@
  ADCBUF[3] I moteur arriere droit
  ADCBUF[4] I moteur avant
  */
-//uint32_t ADCBUF[5]; /* pourquoi en 32bits ???*/
-uint32_t ADCBUF[5] = {0, 0, 0, 0, 0}; // Initialisation des valeurs ADC
+uint16_t ADCBUF[5];
 
 void MEASURES_Init(void) {
-	HAL_ADC_Start_DMA (&hadc1, ADCBUF,5);
+	/* Calibration of ADC1 (Important on STM32F1 */
+	HAL_ADCEx_Calibration_Start(&hadc1);
+
+	/* Start ADC in DMA mode */
+	HAL_ADC_Start_DMA (&hadc1, (uint32_t *)ADCBUF, 5);
 }
 
 uint16_t MEASURES_GetBatteryLevel(void) {

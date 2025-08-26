@@ -4,6 +4,6 @@
 ../Src/tim.c:199:6:MX_TIM4_Init	64	static
 ../Src/tim.c:253:6:HAL_TIM_PWM_MspInit	24	static
 ../Src/tim.c:269:6:HAL_TIM_Base_MspInit	56	static
-../Src/tim.c:337:6:HAL_TIM_MspPostInit	48	static
-../Src/tim.c:394:6:HAL_TIM_PWM_MspDeInit	16	static
-../Src/tim.c:410:6:HAL_TIM_Base_MspDeInit	16	static
+../Src/tim.c:333:6:HAL_TIM_MspPostInit	48	static
+../Src/tim.c:390:6:HAL_TIM_PWM_MspDeInit	16	static
+../Src/tim.c:406:6:HAL_TIM_Base_MspDeInit	16	static

@@ -178,9 +178,8 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
     /* User can add his own implementation to report the HAL error return state */
-    /*while(1)
-     {
-     }*/
+	printf("\r\nERROR - SYSTEM HALTED\r\n");
+    for (;;);
   /* USER CODE END Error_Handler_Debug */
 }
 
@@ -195,7 +194,7 @@ void Error_Handler(void)
 void assert_failed(uint8_t *file, uint32_t line)
 {
   /* USER CODE BEGIN 6 */
-  printf("Wrong parameters value: file %s on line %ld\r\n", file, line);
+  printf("Assert failed in file %s on line %ld\r\n", file, line);
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */

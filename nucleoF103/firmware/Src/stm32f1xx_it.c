@@ -60,7 +60,6 @@ extern DMA_HandleTypeDef hdma_adc1;
 extern CAN_HandleTypeDef hcan;
 extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
-extern TIM_HandleTypeDef htim4;
 /* USER CODE BEGIN EV */
 
 void APP_PeriodicCountersUpdate(void);
@@ -145,6 +144,22 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles EXTI line[9:5] interrupts.
+  */
+void EXTI9_5_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI9_5_IRQn 0 */
+
+  /* USER CODE END EXTI9_5_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(US_MEASURE_LEFT_Pin);
+  HAL_GPIO_EXTI_IRQHandler(US_MEASURE_CENTER_Pin);
+  HAL_GPIO_EXTI_IRQHandler(US_MEASURE_RIGHT_Pin);
+  /* USER CODE BEGIN EXTI9_5_IRQn 1 */
+
+  /* USER CODE END EXTI9_5_IRQn 1 */
+}
+
+/**
   * @brief This function handles TIM2 global interrupt.
   */
 void TIM2_IRQHandler(void)
@@ -173,26 +188,19 @@ void TIM3_IRQHandler(void)
 }
 
 /**
-  * @brief This function handles TIM4 global interrupt.
+  * @brief This function handles EXTI line[15:10] interrupts.
   */
-void TIM4_IRQHandler(void)
+void EXTI15_10_IRQHandler(void)
 {
-  /* USER CODE BEGIN TIM4_IRQn 0 */
+  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
 
-  /* USER CODE END TIM4_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim4);
-  /* USER CODE BEGIN TIM4_IRQn 1 */
+  /* USER CODE END EXTI15_10_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(PB_BLUE_BUTTON_Pin);
+  /* USER CODE BEGIN EXTI15_10_IRQn 1 */
 
-  /* USER CODE END TIM4_IRQn 1 */
+  /* USER CODE END EXTI15_10_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
-
-void EXTI9_5_IRQHandler(void)
-{
-  HAL_GPIO_EXTI_IRQHandler(US_Left_Echo_Pin);
-  HAL_GPIO_EXTI_IRQHandler(US_Center_Echo_Pin);
-  HAL_GPIO_EXTI_IRQHandler(US_Right_Echo_Pin);
-}
 
 /* USER CODE END 1 */
