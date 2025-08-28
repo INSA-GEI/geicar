@@ -27,7 +27,7 @@ extern GPIO_PinState en_MARG, en_MARD, en_MAV, en_POS;
 
 extern int leftRearSpeed;
 extern int rightRearSpeed;
-extern int steeringSpeed;
+extern int steeringAngle;
 extern int UPDATE_CMD_FLAG;
 extern int commCheckingRequest;
 
@@ -166,7 +166,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 		if (RxHeader.StdId == CAN_ID_MOTORS_CMD)	{
 			leftRearSpeed = (int) RxData[0]; // Read left rear motor speed
 			rightRearSpeed = (int) RxData[1]; // Read right rear motor speed
-			steeringSpeed = (int) RxData[2]; // Read steering motor speed
+			steeringAngle = (int) RxData[2]; // Read steering motor speed
 
 			UPDATE_CMD_FLAG = 1;
 		} else if (RxHeader.StdId == CAN_ID_CALIBRATION_MODE && RxData[0] == CALIBRATION_REQUEST) {

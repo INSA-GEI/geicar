@@ -87,7 +87,7 @@ private:
 
       frame.data[0] = motorsOrder.left_rear_pwm;
       frame.data[1] = motorsOrder.right_rear_pwm;
-      frame.data[2] = motorsOrder.steering_pwm;
+      frame.data[2] = motorsOrder.steering_angle;
 
       return canSend(frame);
     }

@@ -75,7 +75,7 @@ uint8_t data[8] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88};
 // Speed cmd
 int leftRearSpeed = -1;
 int rightRearSpeed = -1;
-int steeringSpeed = -1;
+int steeringAngle = -1;
 
 // Periodic counters
 static int cmpt_can_motors = 0;
@@ -165,7 +165,7 @@ void APP_Run(void){
 				CAL_SteeringCalibration();
 				mode = 1;
 			} else {	//Control Mode
-				CAR_CONTROL_Manage(leftRearSpeed,rightRearSpeed, steeringSpeed);
+				CAR_CONTROL_Manage(leftRearSpeed,rightRearSpeed, steeringAngle);
 			}
 		}
 
@@ -178,15 +178,15 @@ void APP_Run(void){
 			nbImpulsionG = 0;
 			nbImpulsionD = 0;
 
-			data[2] = (VMG_mes >> 8) & 0xFF; // Left Rear Speed MSB
-			data[3] = VMG_mes & 0xFF; 	//LSB
+			data[2] = (uint8_t)((VMG_mes >> 8) & 0xFF); // Left Rear Speed MSB
+			data[3] = (uint8_t)(VMG_mes & 0xFF); 	//LSB
 
-			data[4] = (VMD_mes >> 8) & 0xFF; // Right Rear Speed MSB
-			data[5] = VMD_mes & 0xFF; // LSB
+			data[4] = (uint8_t)((VMD_mes >> 8) & 0xFF); // Right Rear Speed MSB
+			data[5] = (uint8_t)(VMD_mes & 0xFF); // LSB
 
-			data[6] = STEERING_GetAngle() & 0xFF;	//Steering Angle MSB
+			//data[6] = (uint8_t)(STEERING_GetAngle());	//Steering Angle MSB
 
-			CAN_COM_Send(CAN_ID_MOTORS_DATA, data, 7);
+			CAN_COM_Send(CAN_ID_MOTORS_DATA, data, 6);
 
 			CAN_SEND_MOTORS = 0;
 		}

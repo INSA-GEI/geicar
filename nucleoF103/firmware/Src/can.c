@@ -29,7 +29,7 @@ extern GPIO_PinState en_MARG, en_MARD, en_MAV, en_POS;
 
 extern int leftRearSpeed;
 extern int rightRearSpeed;
-extern int steeringSpeed;
+extern int steeringAngle;
 extern int UPDATE_CMD_FLAG;
 extern int commCheckingRequest;
 /* USER CODE END 0 */

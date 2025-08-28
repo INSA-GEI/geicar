@@ -103,7 +103,7 @@ private:
     * 
     */
     void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback & motorsFeedback){
-        currentAngle = motorsFeedback.steering_angle;
+        //currentAngle = motorsFeedback.steering_angle;
     }
 
 
@@ -122,7 +122,7 @@ private:
         if (!start){    //Car stopped
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
-            steeringPwmCmd = STOP;
+            //steeringPwmCmd = STOP;
 
 
         }else{ //Car started
@@ -132,7 +132,7 @@ private:
                 
                 manualPropulsionCmd(requestedThrottle, reverse, leftRearPwmCmd,rightRearPwmCmd);
 
-                steeringCmd(requestedSteerAngle,currentAngle, steeringPwmCmd);
+                //steeringCmd(requestedSteerAngle,currentAngle, steeringPwmCmd);
 
 
             //Autonomous Mode
@@ -145,7 +145,9 @@ private:
         //Send order to motors
         motorsOrder.left_rear_pwm = leftRearPwmCmd;
         motorsOrder.right_rear_pwm = rightRearPwmCmd;
-        motorsOrder.steering_pwm = steeringPwmCmd;
+
+        motorsOrder.steering_angle = (uint8_t)((uint8_t)(requestedSteerAngle*100.0)+100); //Scale [-1,1] to [0,200]
+        currentAngle = requestedSteerAngle;
 
         publisher_can_->publish(motorsOrder);
     }
