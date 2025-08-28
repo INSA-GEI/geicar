@@ -1,15 +1,20 @@
-//
-//  power.h
-//  
-//
-//  Created by pehladik on 26/10/2019.
-//
+/**
+ * @file power.c
+ * @author Pehladik
+ * @version V1.0
+ * @date 26 Octobre 2019
+ * @brief Power management for the car application.
+ * This file contains functions to manage the power state of the car, including bootstrapping and shutdown procedures.
+ *
+ * - Version 1.0 : Initial release
+ */
 
-#ifndef power_h
-#define power_h
+#ifndef __POWER_H__
+#define __POWER_H__
 
-#include "stm32f1xx_hal.h"
-#include "stm32f1xx_hal_gpio.h"
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /**
 * Set the power
@@ -21,5 +26,8 @@ void POWER_Boostrap(void);
 **/
 void POWER_Shutdown(void);
 
+#ifdef __cplusplus
+}
+#endif
 
-#endif /* power_h */
+#endif /* __POWER_H__ */

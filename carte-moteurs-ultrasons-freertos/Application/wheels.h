@@ -1,8 +1,18 @@
-#ifndef _WHEELS_H_
-#define _WHEELS_H_
+/**
+ * @file wheels.h
+ * @author Sebastien DI MERCURIO
+ * @version V1.0
+ * @date 20 Aout 2023
+ * @brief Header file for wheels.c
+ * This file contains the declarations for functions to control the propulsion wheels of the car.
+ */
 
-//#include "stm32f1xx_hal.h"
-//#include "stm32f1xx_hal_gpio.h"
+#ifndef __WHEELS_H__
+#define __WHEELS_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 #include "app.h"
 
@@ -40,4 +50,10 @@ uint32_t WHEELS_GetPERVitesse(uint8_t motor);
 int WHEELS_GetOdometer(uint8_t motor);
 void WHEELS_ResetOdometer(uint8_t motor);
 
+void WHEELS_SendMesures();
+
+#ifdef __cplusplus
+}
 #endif
+
+#endif /* __WHEELS_H__ */

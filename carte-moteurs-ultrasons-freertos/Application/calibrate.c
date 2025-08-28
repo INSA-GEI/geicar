@@ -1,8 +1,13 @@
-/*
- * calibrate.c
+/**
+ * @file calibrate.c
+ * @author Carole MEYER
+ * @date 19 nov 2021
+ * @version V1.1
+ * @brief Calibration functions for the car application.
+ * This file contains functions to perform calibration of the steering module.
  *
- *  Created on: 19 nov. 2021
- *      Author: carol
+ * Version 1.0: Initial release
+ * Version 1.1: 08/2025 - Rework of the steering calibration function (DI MERCURIO Sebastien)
  */
 
 #include "stm32f1xx_hal.h"

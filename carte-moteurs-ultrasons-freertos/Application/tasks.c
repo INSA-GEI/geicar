@@ -1,8 +1,11 @@
-/*
- * tasks.c
- *
- *  Created on: Aug 27, 2025
- *      Author: dimercur
+/**
+ * @file    tasks.c
+ * @author  Sebastien DI MERCURIO
+ * @version V1.0
+ * @date    27 Aout 2025
+ * @brief   FreeRTOS tasks, queues, semaphores and timers management.
+ * This file contains the implementation of FreeRTOS tasks, queues, semaphores, and timers used in the car application.
+ * It defines the tasks for application logic, debugging, ultrasonic sensor management, control loop, and calibration events.
  */
 
 #include "tasks.h"
@@ -12,6 +15,9 @@
 
 #include "calibrate.h"
 #include "control.h"
+#include "ultrasound.h"
+#include "wheels.h"
+#include "measures.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
@@ -88,11 +94,18 @@ static StaticSemaphore_t xCalibrationSemaphoreBuffer;
 SemaphoreHandle_t xCalibrationSemaphore = NULL;
 
 /* -------------------------------------------------------------------------
- * Déclaration du timer pour les événements périodiques (statique)
+ * Déclaration du timer pour l'envoi des données moteurs (statique)
  * ------------------------------------------------------------------------- */
-static StaticTimer_t TASKS_TimerBuffer;
-TimerHandle_t TASKS_TimerHandle = NULL;
-void TASKS_TimerCallback(TimerHandle_t xTimer);
+static void MotorTimerCallback(TimerHandle_t xTimer);
+static StaticTimer_t xMotorTimerBuffer;
+static TimerHandle_t xMotorTimer   = NULL;
+
+/* -------------------------------------------------------------------------
+ * Déclaration du timer pour l'envoi de la mesure de la batterie (statique)
+ * ------------------------------------------------------------------------- */
+static void BatteryTimerCallback(TimerHandle_t xTimer);
+static StaticTimer_t xBatteryTimerBuffer;
+static TimerHandle_t xBatteryTimer   = NULL;
 
 /*
  * @brief  Initialize tasks, queues, semaphores and timers.
@@ -153,7 +166,7 @@ void TASKS_Init(void) {
 			USLOOP_TASK_PRIORITY,     // priorité
 			xUltrasoundLoopTaskStack,         // buffer pile
 			&xUltrasoundLoopTaskTCB           // buffer TCB
-			);
+	);
 
 	if (xUltrasoundLoopTaskHandle == NULL) {
 		// Erreur : pas de mémoire statique ?
@@ -169,7 +182,7 @@ void TASKS_Init(void) {
 			CONTROLLOOP_TASK_PRIORITY,     // priorité
 			xControlLoopTaskStack,         // buffer pile
 			&xControlLoopTaskTCB           // buffer TCB
-			);
+	);
 
 	if (xControlLoopTaskHandle == NULL) {
 		// Erreur : pas de mémoire statique ?
@@ -184,7 +197,7 @@ void TASKS_Init(void) {
 			CALIBRATION_TASK_PRIORITY,     // priorité
 			xCalibrationTaskStack,         // buffer pile
 			&xCalibrationTaskTCB           // buffer TCB
-			);
+	);
 
 	if (xCalibrationTaskHandle == NULL) {
 		// Erreur : pas de mémoire statique ?
@@ -201,18 +214,49 @@ void TASKS_Init(void) {
 	/* Au démarrage, le sémaphore est "pris" */
 	xSemaphoreTake(xCalibrationSemaphore, 0);
 
-	/* Creation de un timer pour les evenements periodiques */
-	TASKS_TimerHandle = xTimerCreateStatic("PeriodicTimers", pdMS_TO_TICKS(1), pdTRUE, (void *) 0, TASKS_TimerCallback, &TASKS_TimerBuffer);
-	if (TASKS_TimerHandle == NULL) {
+	/* Timer moteur */
+	xMotorTimer = xTimerCreateStatic(
+			"MotorTimer",                                  // nom
+			pdMS_TO_TICKS(MOTOR_TIMER_PERIOD_MS),          // période
+			pdTRUE,                                        // auto-reload
+			(void*)0,                                      // identifiant (optionnel)
+			MotorTimerCallback,                            // callback
+			&xMotorTimerBuffer                             // buffer statique
+	);
+	configASSERT(xMotorTimer != NULL);
+	if (xMotorTimer == NULL) {
 		// Erreur : pas de mémoire statique ?
 		Error_Handler();
 	}
-	if (xTimerStart(TASKS_TimerHandle, 0) != pdPASS) {
+
+	/* Timer batterie */
+	xBatteryTimer = xTimerCreateStatic(
+			"BatteryTimer",
+			pdMS_TO_TICKS(BATTERY_TIMER_PERIOD_MS),
+			pdTRUE,
+			(void*)0,
+			BatteryTimerCallback,
+			&xBatteryTimerBuffer
+	);
+	configASSERT(xBatteryTimer != NULL);
+
+	if (xTimerStart(xMotorTimer, 0) != pdPASS) {
+		// Erreur : pas de mémoire statique ?
+		Error_Handler();
+	}
+
+	if (xTimerStart(xBatteryTimer, 0) != pdPASS) {
 		// Erreur : pas de mémoire statique ?
 		Error_Handler();
 	}
 }
 
+/**
+ * @brief  Task function for the main application loop.
+ * This function processes messages received in the application queue.
+ * It runs indefinitely, handling messages as they arrive.
+ * @param  argument: Not used
+ */
 void TASKS_AppLoop(void *argument ) {
 	void *pReceived = NULL;
 
@@ -236,6 +280,12 @@ void TASKS_AppLoop(void *argument ) {
 	}
 }
 
+/**
+ * @brief  Task function for the debug loop.
+ * This function runs periodically to perform debug tasks.
+ * It runs indefinitely, executing its logic at defined intervals.
+ * @param  argument: Not used
+ */
 void TASKS_DebugLoop(void *argument) {
 	TickType_t xLastWakeTime;
 	const TickType_t xPeriod = pdMS_TO_TICKS(DEBUG_LOOP_PERIOD_MS);
@@ -250,6 +300,12 @@ void TASKS_DebugLoop(void *argument) {
 	}
 }
 
+/**
+ * @brief  Task function for the ultrasound measurement loop.
+ * This function continuously triggers ultrasonic measurements.
+ * It runs indefinitely, starting new measurements as soon as the previous ones are finished.
+ * @param  argument: Not used
+ */
 void TASKS_UltrasoundLoop(void *argument) {
 	// no waiting time here : ultrasonic sensors measurements are started as soon as previous one are finished
 	for (;;) {
@@ -257,6 +313,12 @@ void TASKS_UltrasoundLoop(void *argument) {
 	}
 }
 
+/**
+ * @brief  Task function for the car control loop.
+ * This function runs periodically to manage the car's control system.
+ * It executes the control logic at defined intervals.
+ * @param  argument: Not used
+ */
 void TASKS_ControlLoop(void *argument) {
 	TickType_t xLastWakeTime;
 	const TickType_t xPeriod = pdMS_TO_TICKS(PERIOD_CAR_CONTROL_LOOP);
@@ -272,39 +334,57 @@ void TASKS_ControlLoop(void *argument) {
 		// Time is compensated from others events that can make processing longer
 		vTaskDelayUntil(&xLastWakeTime, xPeriod);
 	}
-//		if (mode == 0) {	//Calibration Mode
-//			CAL_SteeringCalibration();
-//			mode = 1;
-//		} else {	//Control Mode
-//			CAR_CONTROL_Manage(leftRearSpeed,rightRearSpeed, steeringAngle);
-//		}
+	//		if (mode == 0) {	//Calibration Mode
+	//			CAL_SteeringCalibration();
+	//			mode = 1;
+	//		} else {	//Control Mode
+	//			CAR_CONTROL_Manage(leftRearSpeed,rightRearSpeed, steeringAngle);
+	//		}
 }
 
+/**
+ * @brief  Task function for handling calibration events.
+ * This function waits for a semaphore to be given, indicating a calibration request.
+ * Upon receiving the semaphore, it performs the steering calibration.
+ * @param  argument: Not used
+ */
 void TASKS_CalibrationEvent(void *argument) {
 	// non periodic task, triggered by semaphore when calibration request is received
 
 	for (;;) {
 		// Exemple : tâche de gestion du CAN
 		// Attente sur semaphore
-		//vSemaphoreTake(xCalibrationSemaphore, portMAX_DELAY);
+		xSemaphoreTake(xCalibrationSemaphore, portMAX_DELAY);
 
-		// Suspention de la tache de control
-		//vTaskSuspend(xAppLoopTaskHandle);
+		// Suspension de la tache de controle moteur (eviter les interferences)
+		vTaskSuspend(xControlLoopTaskHandle);
 
-		// Calibration
+		// Calibration de la direction
 		CAL_SteeringCalibration();
+
+		// Reprise de la tache de controle moteur
+		vTaskResume(xControlLoopTaskHandle);
 	}
 }
 
 /**
- * @brief Timer callback for periodic events.
- *
- * This function is called when the periodic timer expires.
- * It updates various periodic counters used in the application.
+ * @brief  Callback function for the motor timer.
+ * This function is called when the motor timer expires.
+ * It performs sending motors measurements.
  */
-// TODO :  a reprendre
-void TASKS_TimerCallback(TimerHandle_t xTimer) {
-	APP_PeriodicCountersUpdate();
+static void MotorTimerCallback(TimerHandle_t xTimer) {
+	/* Send motors measurements to application main loop, for CAN formating */
+	WHEELS_SendMesures();
+}
+
+/**
+ * @brief  Callback function for the battery timer.
+ * This function is called when the battery timer expires.
+ * It performs sending battery measurements.
+ */
+static void BatteryTimerCallback(TimerHandle_t xTimer) {
+	/* Send battery level to application main loop, for CAN formating */
+	MEASURES_SendBatteryLevel();
 }
 
 

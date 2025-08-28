@@ -14,19 +14,18 @@
  * TIM3->ARR = 63999; // Auto-reload value for 100 Hz
  *
  */
-/* Includes ------------------------------------------------------------------*/
 
 #include "steering.h"
 #include "tim.h"
 #include "gpio.h"
 #include "measures.h"
 
-int need_read_calibration = 1;
+// int need_read_calibration = 1;
 
 float steering_sensor_coef_a;
 float steering_sensor_coef_b;
 
-extern uint32_t ADCBUF[5];
+//extern uint32_t ADCBUF[5];
 
 int lastAngle = 100; // Last angle position (initially center position)
 

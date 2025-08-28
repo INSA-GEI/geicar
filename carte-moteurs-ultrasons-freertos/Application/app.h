@@ -12,6 +12,10 @@
 #ifndef APP_H_
 #define APP_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "main.h"
 
 typedef struct {
@@ -35,5 +39,9 @@ void APP_Init(void);
 void APP_Run(AppMessage_typeDef *msg);
 
 void APP_PeriodicCountersUpdate(void);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* APP_H_ */

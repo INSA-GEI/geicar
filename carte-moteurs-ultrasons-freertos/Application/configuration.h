@@ -1,8 +1,10 @@
-/*
- * configuration.h
- *
- *  Created on: Aug 27, 2025
- *      Author: dimercur
+/**
+ * @file configuration.h
+ * @author Sebastien DI MERCURIO
+ * @version V1.0
+ * @date 20 Aout 2023
+ * @brief Configuration file for the car application.
+ * This file contains definitions and configurations for the car's hardware and software components.
  */
 
 #ifndef CONFIGURATION_H_
@@ -38,10 +40,11 @@
 #define PERIOD_CAR_CONTROL_LOOP 30 		// Period in ms for car control loop
 										// (30 ms is, because, at max speed, speed sensors update at 25-30 ms
                                         // No need to be faster
-#define PERIOD_UPDATE_US 		50 		// Period in ms to update us data
-#define PERIOD_SEND_MOTORS 		100		// Period in ms to send motors data (speed and odometers)
-#define PERIOD_SEND_BATT 		2000 	// Period in ms to send battery level
+#define MOTOR_TIMER_PERIOD_MS 	100		// Period in ms to send motors data (speed and odometers)
+#define BATTERY_TIMER_PERIOD_MS	2000 	// Period in ms to send battery level
 #define DEBUG_LOOP_PERIOD_MS	1000	// Debug loop period in ms
+
+#define US_MAX_WAIT_TIME_MS 	50 		// Period in ms to update us data
 
 #define TIM_MOTOR_LEFT 			TIM1
 #define TIM_MOTOR_RIGHT 		TIM1
@@ -74,13 +77,18 @@
 #define DEBUGLOOP_TASK_PRIORITY 	(tskIDLE_PRIORITY + 1) // Lowest priority
 
 // APP messages IDs
-//#define CAR_CONTROL_UPDATE_ID 	1
-#define US_UPDATE_ID 			2
-#define CAN_SEND_MOTORS_ID		3
-#define CAN_SEND_US_ID			4
-#define CAN_SEND_BATT_ID		5
-//#define COMM_CHECKING_ID		6
-//#define START_CALIBRATION_ID	7
-#define CAN_RECEIVED_FRAME_ID	8
+#define MOTORS_MEASURES_ID		1
+#define ULTRASOUND_MEASURES_ID	2
+#define BATTERY_MEASURE_ID		3
+#define CAN_RECEIVED_FRAME_ID	4
+
+// #define CAR_CONTROL_UPDATE_ID 	1
+// #define US_UPDATE_ID 			2
+// #define MOTORS_MEASURES_ID		3
+// #define ULTRASOUND_MEASURES_ID	4
+// #define BATTERY_MEASURE_ID		5
+// #define COMM_CHECKING_ID		6
+// #define START_CALIBRATION_ID	7
+// #define CAN_RECEIVED_FRAME_ID	8
 
 #endif /* CONFIGURATION_H_ */

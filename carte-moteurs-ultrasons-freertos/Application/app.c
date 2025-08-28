@@ -39,41 +39,20 @@
 #include "tests.h"
 #endif
 
-/* Modes
- * 0- Calibration
- * 1- Control
- */
-int mode = 1;
+///* Modes
+// * 0- Calibration
+// * 1- Control
+// */
+//int mode = 1;
+//
+//int UPDATE_CMD_FLAG = 1;
+//int US_FLAG = 1;
+//int CAN_SEND_MOTORS = 1;
+//int CAN_SEND_US = 0;
+//int CAN_SEND_BATT = 1;
 
-int UPDATE_CMD_FLAG = 1;
-int US_FLAG = 1;
-int CAN_SEND_MOTORS = 1;
-int CAN_SEND_US = 0;
-int CAN_SEND_BATT = 1;
 
-/***************************
- * Ultrasonic sensors data *
- ***************************/
-/* Current ultrasonic sensor index
- * 0- Front Left
- * 1- Front Center
- * 2- Front Right
- * 3- Rear Left
- * 4- Rear Center
- * 5- Rear Right
- */
-int currentUs = 0;
-
-/* usDistance[] : Ultrasonic measurements [cm]
- * usDistance[0] front left
- * usDistance[1] front center
- * usDistance[2] front right
- * usDistance[3] rear left
- * usDistance[4] rear center
- * usDistance[5] rear right
- */
-uint16_t usDistance[6] = {0,0,0,0,0,0};
-
+/* Data buffer for CAN messages */
 uint8_t data[8] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88};
 
 // Speed cmd
@@ -82,19 +61,22 @@ uint8_t data[8] = {0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88};
 //int steeringAngle = -1;
 
 // Periodic counters
-static int cmpt_can_motors = 0;
-static int cmpt_us = 0;
-static int cmpt_batt = 0;
+//static int cmpt_can_motors = 0;
+//static int cmpt_us = 0;
+//static int cmpt_batt = 0;
 
 //Communication checking request
-int commCheckingRequest = 0;
+//int commCheckingRequest = 0;
 
 /**
  * @brief Initialize the application.
  * This function sets up the necessary software components
  */
 void APP_Init(void) {
-	/* Initialisations */
+	// First of all, maintain power
+	POWER_Boostrap();
+
+	// Then, initialize all the peripherals subsystems
 	// Moteurs
 	WHEELS_Init();
 
@@ -178,67 +160,67 @@ void APP_Run(AppMessage_typeDef *msg){
 			break;
 		}
 		break;
-		case CAN_SEND_MOTORS_ID:
-			WheelsState_typeDef *wheelsState = (WheelsState_typeDef*) msg;
+	case MOTORS_MEASURES_ID:
+		WheelsState_typeDef *wheelsState = (WheelsState_typeDef*) msg;
 
-			WHEELS_ResetOdometer(WHEELS_MOTOR_LEFT);
-			WHEELS_ResetOdometer(WHEELS_MOTOR_RIGHT);
+		WHEELS_ResetOdometer(WHEELS_MOTOR_LEFT);
+		WHEELS_ResetOdometer(WHEELS_MOTOR_RIGHT);
 
-			//Number of sensor pulses since last message (left rear wheel and right rear wheel)
-			data[0] = (uint8_t) wheelsState->nbImpulsionG;
-			data[1] = (uint8_t) wheelsState->nbImpulsionD;
+		//Number of sensor pulses since last message (left rear wheel and right rear wheel)
+		data[0] = (uint8_t) wheelsState->nbImpulsionG;
+		data[1] = (uint8_t) wheelsState->nbImpulsionD;
 
-			data[2] = (uint8_t)((wheelsState->VMG_mes >> 8) & 0xFF); // Left Rear Speed MSB
-			data[3] = (uint8_t)(wheelsState->VMG_mes & 0xFF); 	//LSB
+		data[2] = (uint8_t)((wheelsState->VMG_mes >> 8) & 0xFF); // Left Rear Speed MSB
+		data[3] = (uint8_t)(wheelsState->VMG_mes & 0xFF); 	//LSB
 
-			data[4] = (uint8_t)((wheelsState->VMD_mes >> 8) & 0xFF); // Right Rear Speed MSB
-			data[5] = (uint8_t)(wheelsState->VMD_mes & 0xFF); // LSB
+		data[4] = (uint8_t)((wheelsState->VMD_mes >> 8) & 0xFF); // Right Rear Speed MSB
+		data[5] = (uint8_t)(wheelsState->VMD_mes & 0xFF); // LSB
 
-			//data[6] = (uint8_t)(STEERING_GetAngle());	//Steering Angle MSB
+		//data[6] = (uint8_t)(STEERING_GetAngle());	//Steering Angle MSB
 
-			CAN_COM_Send(CAN_ID_MOTORS_DATA, data, 6);
-			break;
-		case CAN_SEND_BATT_ID:
-			BatteryMeasure_typeDef *battState = (BatteryMeasure_typeDef*) msg;
-			//Battery Level
+		CAN_COM_Send(CAN_ID_MOTORS_DATA, data, 6);
+		break;
+	case BATTERY_MEASURE_ID:
+		BatteryMeasure_typeDef *battState = (BatteryMeasure_typeDef*) msg;
+		//Battery Level
 
-			//uint16_t vbat = MEASURES_GetBatteryLevel();
+		//uint16_t vbat = MEASURES_GetBatteryLevel();
 
-			data[0] = (battState->batteryLevel >> 8) & 0xFF; // Vbat MSB
-			data[1] = battState->batteryLevel & 0xFF; 	//LSB
+		data[0] = (battState->batteryLevel >> 8) & 0xFF; // Vbat MSB
+		data[1] = battState->batteryLevel & 0xFF; 	//LSB
 
-			CAN_COM_Send(CAN_ID_BATT_LEVEL, data, 2);
-			break;
-		case CAN_SEND_US_ID:
-			UltrasoundMesures_typeDef *usState = (UltrasoundMesures_typeDef*) msg;
+		CAN_COM_Send(CAN_ID_BATT_LEVEL, data, 2);
+		break;
+	case ULTRASOUND_MEASURES_ID:
+		UltrasoundMesures_typeDef *usState = (UltrasoundMesures_typeDef*) msg;
 
-			//Sending US1 data (front)
-			data[0] = (usState->usDistance[0] >> 8) & 0xFF;	//US Front Left
-			data[1] = usState->usDistance[0] & 0xFF;
+		//Sending US1 data (front)
+		data[0] = (usState->usDistance[0] >> 8) & 0xFF;	//US Front Left
+		data[1] = usState->usDistance[0] & 0xFF;
 
-			data[2] = (usState->usDistance[1] >> 8) & 0xFF;	//US Front Center
-			data[3] = usState->usDistance[1] & 0xFF;
+		data[2] = (usState->usDistance[1] >> 8) & 0xFF;	//US Front Center
+		data[3] = usState->usDistance[1] & 0xFF;
 
-			data[4] = (usState->usDistance[2] >> 8) & 0xFF;	//US Front Right
-			data[5] = usState->usDistance[2] & 0xFF;
+		data[4] = (usState->usDistance[2] >> 8) & 0xFF;	//US Front Right
+		data[5] = usState->usDistance[2] & 0xFF;
 
-			CAN_COM_Send(CAN_ID_US1, data, 6);
+		CAN_COM_Send(CAN_ID_US1, data, 6);
 
-			//Sending US2 data (rear)
-			data[0] = (usState->usDistance[3] >> 8) & 0xFF;	//US Rear Left
-			data[1] = usState->usDistance[3] & 0xFF;
+		//Sending US2 data (rear)
+		data[0] = (usState->usDistance[3] >> 8) & 0xFF;	//US Rear Left
+		data[1] = usState->usDistance[3] & 0xFF;
 
-			data[2] = (usState->usDistance[4] >> 8) & 0xFF;	//US Rear Center
-			data[3] = usState->usDistance[4] & 0xFF;
+		data[2] = (usState->usDistance[4] >> 8) & 0xFF;	//US Rear Center
+		data[3] = usState->usDistance[4] & 0xFF;
 
-			data[4] = (usState->usDistance[5] >> 8) & 0xFF;	//US Rear Right
-			data[5] = usState->usDistance[5] & 0xFF;
+		data[4] = (usState->usDistance[5] >> 8) & 0xFF;	//US Rear Right
+		data[5] = usState->usDistance[5] & 0xFF;
 
-			CAN_COM_Send(CAN_ID_US2, data, 6);
-			break;
+		CAN_COM_Send(CAN_ID_US2, data, 6);
+		break;
 
-		default:
-			break;
+	default:
+		break;
 	}
 
 	free(msg);
@@ -358,24 +340,24 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	}
 }
 
-void APP_PeriodicCountersUpdate(void) {
-	cmpt_can_motors ++;
-	cmpt_us++;
-	cmpt_batt++;
-
-	if (cmpt_can_motors == PERIOD_SEND_MOTORS){
-		CAN_SEND_MOTORS = 1;
-		cmpt_can_motors = 0;
-	}
-	if (cmpt_us == PERIOD_UPDATE_US){
-		US_FLAG = 1;
-		cmpt_us = 0;
-	}
-	if (cmpt_batt == PERIOD_SEND_BATT){
-		CAN_SEND_BATT = 1;
-		cmpt_batt = 0;
-	}
-}
+//void APP_PeriodicCountersUpdate(void) {
+//	cmpt_can_motors ++;
+//	cmpt_us++;
+//	cmpt_batt++;
+//
+//	if (cmpt_can_motors == PERIOD_SEND_MOTORS){
+//		CAN_SEND_MOTORS = 1;
+//		cmpt_can_motors = 0;
+//	}
+//	if (cmpt_us == US_MAX_WAIT_TIME_MS){
+//		US_FLAG = 1;
+//		cmpt_us = 0;
+//	}
+//	if (cmpt_batt == PERIOD_SEND_BATT){
+//		CAN_SEND_BATT = 1;
+//		cmpt_batt = 0;
+//	}
+//}
 
 /**
  * @brief  Retargets the C library printf function to the USART.

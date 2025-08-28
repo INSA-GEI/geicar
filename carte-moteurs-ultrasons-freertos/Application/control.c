@@ -1,10 +1,14 @@
-/*
- * control.c
+/**
+ * @file control.c
+ * @author Carole Meyer
+ * @version V1.1
+ * @date 12 November 2021
+ * @brief Functions to control the car's propulsion and steering.
+ * This file contains the implementation of functions to manage the car's propulsion wheels and steering mechanism.
  *
- *  Created on: 12 nov. 2021
- *      Author: Carole Meyer
+ * Version 1.0 - Carole Meyer - Initial implementation
+ * Version 1.1 - S. DI MERCURIO - Added CAR_CONTROL_Update function for updating control parameters, added freeRTOS support
  */
-
 
 /* Includes ------------------------------------------------------------------*/
 

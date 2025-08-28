@@ -1,21 +1,12 @@
 /**
-  ******************************************************************************
-  * @file    can.h
-  * @brief   This file contains all the function prototypes for
-  *          the can.c file
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2025 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
-/* Define to prevent recursive inclusion -------------------------------------*/
+ * @file    can_communication.c
+ * @author  Sebastien DI MERCURIO
+ * @version V1.0
+ * @date    20 Aout 2023
+ * @brief   Functions for CAN communication.
+ * This file contains the implementation of functions to initialize and manage CAN communication,
+ */
+
 #ifndef __CAN_COMMUNICATION_H__
 #define __CAN_COMMUNICATION_H__
 

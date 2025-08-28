@@ -1,5 +1,19 @@
+/**
+ * @file steering.c
+ * @brief Steering control functions
+ * @date 2025
+ * @author DI MERCURIO Sebastien
+ * This file contains functions to control the steering motor, read the steering angle,
+ * and manage button inputs for steering control.
+ *
+ */
+
 #ifndef _STERRING_H_
-#define _STERRING_H_
+#define __STERRING_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 //#include "stm32f1xx_hal.h"
 //#include "stm32f1xx_hal_gpio.h"
@@ -78,5 +92,8 @@ int STEERING_IsAButtonPressed(void);
 //Update calibration data from flash memory
 void STEERING_ReadCalibrationData();
 
-
+#ifdef __cplusplus
+}
 #endif
+
+#endif /* _STERRING_H_ */

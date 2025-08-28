@@ -1,24 +1,11 @@
 /**
- ******************************************************************************
- * @file    can.c
- * @brief   This file provides code for the configuration
- *          of the CAN instances.
- ******************************************************************************
- * @attention
- *
- * Copyright (c) 2025 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
- *
- ******************************************************************************
+ * @file    can_communication.c
+ * @author  Sebastien DI MERCURIO
+ * @version V1.0
+ * @date    20 Aout 2023
+ * @brief   Functions for CAN communication.
+ * This file contains the implementation of functions to initialize and manage CAN communication,
  */
-/* Includes ------------------------------------------------------------------*/
-//#include "gpio.h"
-//#include "can.h"
-//#include "stm32f1xx_hal.h"
 
 #include "can_communication.h"
 #include "configuration.h"
@@ -165,6 +152,8 @@ void CAN_COM_Send(uint32_t id, uint8_t* data, uint8_t length) {
  * @retval None
  */
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
+	BaseType_t xHigherPriorityTaskWoken = pdFALSE; // used for task scheduling after using xQueueSendFromISR
+
 	/* Get RX message */
 	if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, RxData) != HAL_OK) {
 		/* Reception Error */
@@ -183,13 +172,16 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 			}
 
 			// Send to APP task
-			if (xQueueSend(xAppLoopQueue, &canFrame, 0) != pdPASS) {
+			if (xQueueSendFromISR(xAppLoopQueue, &canFrame, &xHigherPriorityTaskWoken) != pdPASS)  {
 				// Queue full, drop the message
 				vPortFree(canFrame);
 			}
 		} else {
 			// Memory allocation failed, drop the message
 		}
+
+		/* Si une tâche plus prioritaire est réveillée, on force un context switch */
+		portYIELD_FROM_ISR(xHigherPriorityTaskWoken);
 
 //		if (RxHeader.StdId == CAN_ID_MOTORS_CMD) {
 //

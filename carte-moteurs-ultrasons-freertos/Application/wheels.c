@@ -7,11 +7,15 @@
  */
 
 #include "wheels.h"
-
 #include "configuration.h"
 
 #include "tim.h"
 #include "gpio.h"
+
+#include "FreeRTOS.h"
+#include "queue.h"
+
+#include "tasks.h" // for xAppLoopQueue"
 
 uint32_t VMG_mes = 0, VMD_mes = 0, per_vitesseG = 0, per_vitesseD = 0;
 int nbImpulsionG = 0;
@@ -169,5 +173,31 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
 
 			ovfCountG = 0;   // reset overflow count moteur G
 		}
+	}
+}
+
+/**
+ * @brief Send wheel measurements to the application loop queue.
+ * This function allocates memory for a WheelsState_typeDef structure,
+ * populates it with the current wheel measurements, and sends it to the
+ * application loop queue. If the queue is full or memory allocation fails,
+ * appropriate error handling is performed.
+ */
+void WHEELS_SendMesures() {
+	WheelsState_typeDef *wheelsState = pvPortMalloc(sizeof(WheelsState_typeDef));
+	if (wheelsState != NULL) {
+		wheelsState->header.id = MOTORS_MEASURES_ID;
+		wheelsState->nbImpulsionG = nbImpulsionG;
+		wheelsState->nbImpulsionD = nbImpulsionD;
+		wheelsState->VMG_mes = VMG_mes;
+		wheelsState->VMD_mes = VMD_mes;
+
+		if (xQueueSend(xAppLoopQueue, &wheelsState, 0) != pdPASS) {
+			// Queue full, drop the message
+			vPortFree(wheelsState);
+		}
+	} else {
+		// Memory allocation error
+		Error_Handler();
 	}
 }
