@@ -112,10 +112,9 @@ private:
                 motorsFeedbackMsg.left_rear_speed = 0.01 * leftSpeedMes ; 
                 motorsFeedbackMsg.right_rear_speed = 0.01 * rightSpeedMes ; 
 
-                //Update Steering Angle
-                int steer = frame.data[6];  //Receive steer in [0;200]
-                motorsFeedbackMsg.steering_angle = (steer - 100.0)/100.0; //Convert steer in [-1;1]
-
+                //Update Steering Angle (not used now)
+                //int steer = frame.data[6];  //Receive steer in [0;200]
+                //motorsFeedbackMsg.steering_angle = (steer - 100.0)/100.0; //Convert steer in [-1;1]
 
                 //Publication on topics
                 RCLCPP_DEBUG(this->get_logger(), "Publishing to motors_feedback and general_data topics");

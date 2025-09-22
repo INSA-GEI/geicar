@@ -53,7 +53,8 @@ private:
 
     //Update steering angle from the can feedback 
     void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback & feedback) {
-        steeringAngle = feedback.steering_angle;
+        //steeringAngle = feedback.steering_angle;
+        (void)feedback; // not used for now
     }
 
 

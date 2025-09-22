@@ -103,6 +103,7 @@ private:
     * 
     */
     void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback & motorsFeedback){
+        (void)motorsFeedback; // not used for now
         //currentAngle = motorsFeedback.steering_angle;
     }
 
