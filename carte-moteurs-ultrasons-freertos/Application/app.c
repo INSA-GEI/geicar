@@ -150,10 +150,9 @@ void APP_Run(AppMessage_typeDef *msg){
 		case CAN_ID_COMM_CHECKING:
 			if (canFrame->length >= 1 &&
 					canFrame->data[0] == COMM_CHECKING_REQUEST) {
-				// data[1] = COMM_CHECKING_ACK; // pourquoi 1 ?
-				data[0] = COMM_CHECKING_ACK;
+				data[1] = COMM_CHECKING_ACK;
 
-				CAN_COM_Send(CAN_ID_COMM_CHECKING, data, 1); // Send ack
+				CAN_COM_Send(CAN_ID_COMM_CHECKING, data, 2); // Send ack
 			}
 			break;
 		default:
@@ -223,7 +222,7 @@ void APP_Run(AppMessage_typeDef *msg){
 		break;
 	}
 
-	free(msg);
+	vPortFree((void*)msg);
 #endif /* __TESTS__ */
 
 	// Perform ultrasonic sensors measurements

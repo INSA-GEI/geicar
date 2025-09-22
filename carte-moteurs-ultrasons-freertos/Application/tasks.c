@@ -18,12 +18,15 @@
 #include "ultrasound.h"
 #include "wheels.h"
 #include "measures.h"
+#include "can_communication.h"
 
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
 #include "semphr.h"
 #include "timers.h"
+
+#include "debug.h"
 
 #if defined (__TESTS__)
 #include "tests.h"
@@ -79,6 +82,16 @@ static StackType_t xCalibrationTaskStack[ CALIBRATION_TASK_STACK_SIZE ];
 static StaticTask_t xCalibrationTaskTCB;
 /* Handle vers la tâche */
 static TaskHandle_t xCalibrationTaskHandle = NULL;
+
+/* -------------------------------------------------------------------------
+ * Déclaration de la tâche TASKS_CANCommunicationEvent (statique)
+ * ------------------------------------------------------------------------- */
+void TASKS_CANCommunicationEvent(void *argument);
+/* Buffer pour la pile et le TCB */
+static StackType_t xCANCommunicationTaskStack[ CAN_COMMUNICATION_TASK_STACK_SIZE ];
+static StaticTask_t xCANCommunicationTaskTCB;
+/* Handle vers la tâche */
+static TaskHandle_t xCANCommunicationTaskHandle = NULL;
 
 /* -------------------------------------------------------------------------
  * Déclaration du buffer pour la queue xAppLoopQueue
@@ -204,6 +217,21 @@ void TASKS_Init(void) {
 		Error_Handler();
 	}
 
+	/* Création de la tâche CANCommunicationEvent (statiquement) */
+	xCANCommunicationTaskHandle = xTaskCreateStatic(TASKS_CANCommunicationEvent, // fonction de la tâche
+			"CalibrationEvent",             // nom (debug)
+			CAN_COMMUNICATION_TASK_STACK_SIZE,   // taille pile (en mots de 32 bits)
+			NULL,                  // paramètre d’entrée
+			CAN_COMMUNICATION_TASK_PRIORITY,     // priorité
+			xCANCommunicationTaskStack,         // buffer pile
+			&xCANCommunicationTaskTCB           // buffer TCB
+	);
+
+	if (xCANCommunicationTaskHandle == NULL) {
+		// Erreur : pas de mémoire statique ?
+		Error_Handler();
+	}
+
 	/* Création du sémaphore de calibration (statiquement) */
 	xCalibrationSemaphore = xSemaphoreCreateBinaryStatic(&xCalibrationSemaphoreBuffer);
 	if (xCalibrationSemaphore == NULL) {
@@ -294,6 +322,7 @@ void TASKS_DebugLoop(void *argument) {
 	xLastWakeTime = xTaskGetTickCount();
 
 	for (;;) {
+		DEBUG_PrintPeriodicInfo();
 
 		// Time is compensated from others events that can make processing longer
 		vTaskDelayUntil(&xLastWakeTime, xPeriod);
@@ -364,6 +393,21 @@ void TASKS_CalibrationEvent(void *argument) {
 
 		// Reprise de la tache de controle moteur
 		vTaskResume(xControlLoopTaskHandle);
+	}
+}
+
+/**
+ * @brief  Task function for handling CAN communication events.
+ * This function processes incoming CAN messages.
+ * It runs indefinitely, handling CAN communication as messages are received.
+ * @param  argument: Not used
+ */
+void TASKS_CANCommunicationEvent(void *argument) {
+	CAN_COM_ReceiveTask();
+
+	for (;;) {
+		// This function never returns, it runs indefinitely
+		vTaskDelay(pdMS_TO_TICKS(1000)); // Just to avoid compiler warning
 	}
 }
 

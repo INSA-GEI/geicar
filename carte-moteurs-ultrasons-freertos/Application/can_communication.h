@@ -44,6 +44,7 @@ typedef struct {
 
 void CAN_COM_Init(void);
 void CAN_COM_Send(uint32_t id, uint8_t* data, uint8_t length) ;
+void CAN_COM_ReceiveTask(void);
 
 #ifdef __cplusplus
 }

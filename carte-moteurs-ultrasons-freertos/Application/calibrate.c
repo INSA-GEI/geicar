@@ -48,21 +48,25 @@ int CAL_IsBlueButtonPressed(){
  *	TODO : A reprendre
  */
 void CAL_SteeringCalibration(void) {
-	int right_ok = 0;
-	int left_ok = 0;
-	int centre_ok = 0;
+//	int right_ok = 0;
+//	int left_ok = 0;
+//	int centre_ok = 0;
+//
+//	float capt_L = 0.0;
+//	float capt_R = 0.0;
+//	float capt_C = 0.0;
+//
+//	float coef_a;
+//	float coef_b;
 
-	float capt_L = 0.0;
-	float capt_R = 0.0;
-	float capt_C = 0.0;
-
-	float coef_a;
-	float coef_b;
+	uint8_t dataCalibration[8] = {CALIBRATION_IN_PROGRESS, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 	//CAR_CONTROL_Manage (DISABLED, DISABLED, DISABLED);	//Stop the car
 	WHEELS_SetSpeed(GPIO_PIN_RESET, GPIO_PIN_RESET, STOP, STOP); //Stop the car
 	STEERING_SetAngle(ANGLE_CENTER_VALUE);	//Set steering to center position
 
+	dataCalibration[0] = CALIBRATION_SUCCESS;
+	CAN_COM_Send(CAN_ID_CALIBRATION_MODE, dataCalibration, 1);	//Indicate calibration status (success/fail) (to raspberry)
 // TODO: A revoir
 //	uint8_t dataCalibration[8] = {CALIBRATION_IN_PROGRESS, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 //	CAN_COM_Send(CAN_ID_CALIBRATION_MODE, dataCalibration, 1);	//Indicate that calibration is in progress (to raspberry)

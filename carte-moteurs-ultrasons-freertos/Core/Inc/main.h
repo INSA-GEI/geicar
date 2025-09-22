@@ -121,6 +121,8 @@ void Error_Handler(void);
 #define ENABLE_MOTOR_RIGHT_GPIO_Port GPIOC
 #define PWM_SERVO_STEERING_Pin GPIO_PIN_6
 #define PWM_SERVO_STEERING_GPIO_Port GPIOB
+#define PWM_SERVO_SPARE_Pin GPIO_PIN_7
+#define PWM_SERVO_SPARE_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 

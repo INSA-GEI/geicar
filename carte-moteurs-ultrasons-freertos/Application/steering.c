@@ -57,8 +57,11 @@ void STEERING_SetSpeed(GPIO_PinState en_steering, int speed){
 //	HAL_GPIO_WritePin( GPIOC, GPIO_PIN_12, en_steering);  //PC12  AV
 }
 
-#define STEERING_PWM_MIN 6400   // 1.0 ms en ticks
-#define STEERING_PWM_MAX 12800  // 2.0 ms en ticks
+#define STEERING_PWM_MIN 3195   // 1.0 ms en ticks
+#define STEERING_PWM_MAX 6390   // 2.0 ms en ticks
+
+//#define STEERING_PWM_MIN 6400   // 1.0 ms en ticks
+//#define STEERING_PWM_MAX 12800  // 2.0 ms en ticks
 
 /**
  * @brief Set the steering angle

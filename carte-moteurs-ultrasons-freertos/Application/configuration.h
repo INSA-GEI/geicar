@@ -40,7 +40,8 @@
 #define PERIOD_CAR_CONTROL_LOOP 30 		// Period in ms for car control loop
 										// (30 ms is, because, at max speed, speed sensors update at 25-30 ms
                                         // No need to be faster
-#define MOTOR_TIMER_PERIOD_MS 	100		// Period in ms to send motors data (speed and odometers)
+//#define MOTOR_TIMER_PERIOD_MS 	100		// Period in ms to send motors data (speed and odometers)
+#define MOTOR_TIMER_PERIOD_MS 	1000		// Period in ms to send motors data (speed and odometers)
 #define BATTERY_TIMER_PERIOD_MS	2000 	// Period in ms to send battery level
 #define DEBUG_LOOP_PERIOD_MS	1000	// Debug loop period in ms
 
@@ -68,9 +69,11 @@
 #define USLOOP_TASK_STACK_SIZE  	128 	// en mots de 32 bits. Pas besoin d'une stack enorme
 #define CONTROLLOOP_TASK_STACK_SIZE 256 	// en mots de 32 bits. A revoir plus tard mais dans le doute, si on fait pas mal de calcul, prevoir de la place.
 #define CALIBRATION_TASK_STACK_SIZE 128 	// en mots de 32 bits. Pas besoin d'une stack enorme
+#define CAN_COMMUNICATION_TASK_STACK_SIZE 	128 	// en mots de 32 bits. Pas besoin d'une stack enorme
 
 // Tasks priorities
-#define USLOOP_TASK_PRIORITY    	(tskIDLE_PRIORITY + 5) // Highest priority, no blocking function inside
+#define CAN_COMMUNICATION_TASK_PRIORITY    	(tskIDLE_PRIORITY + 6) // Highest priority, no blocking function inside
+#define USLOOP_TASK_PRIORITY    	(tskIDLE_PRIORITY + 5)
 #define CONTROLLOOP_TASK_PRIORITY 	(tskIDLE_PRIORITY + 4)
 #define APPLOOP_TASK_PRIORITY   	(tskIDLE_PRIORITY + 3)
 #define CALIBRATION_TASK_PRIORITY 	(tskIDLE_PRIORITY + 2)
@@ -90,5 +93,7 @@
 // #define COMM_CHECKING_ID		6
 // #define START_CALIBRATION_ID	7
 // #define CAN_RECEIVED_FRAME_ID	8
+
+#define DEBUG_BUFFER_SIZE 	1024
 
 #endif /* CONFIGURATION_H_ */
