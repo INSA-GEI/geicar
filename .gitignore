@@ -48,4 +48,8 @@ Release/
 fp-info-cache
 _autosave*
 
-
+# ROS2
+*.pyc
+build/
+install/
+log/
