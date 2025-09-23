@@ -27,7 +27,9 @@ float steering_sensor_coef_b;
 
 //extern uint32_t ADCBUF[5];
 
-int lastAngle = 100; // Last angle position (initially center position)
+int8_t lastAngle = 0; // Last angle position (initially center position)
+int32_t pwm_value = 9600;
+int8_t input_angle=0;
 
 /* Programs ------------------------------------------------------------------*/
 
@@ -57,42 +59,53 @@ void STEERING_SetSpeed(GPIO_PinState en_steering, int speed){
 //	HAL_GPIO_WritePin( GPIOC, GPIO_PIN_12, en_steering);  //PC12  AV
 }
 
-#define STEERING_PWM_MIN 3195   // 1.0 ms en ticks
-#define STEERING_PWM_MAX 6390   // 2.0 ms en ticks
+#define STEERING_PWM_MIN 3250   // 1.0 ms en ticks
+#define STEERING_PWM_MAX 6150   // 2.0 ms en ticks
+#define STEERING_PWM_NEUTRAL 4750 // 1.5 ms en ticks
 
 //#define STEERING_PWM_MIN 6400   // 1.0 ms en ticks
 //#define STEERING_PWM_MAX 12800  // 2.0 ms en ticks
 
 /**
  * @brief Set the steering angle
- * @param angle Angle in degrees, where 0 is full left and 200 is full right
- * Normalizes the angle to be within the range of 0 to 200 and converts it to a PWM value.
+ * @param angle Angle in degrees, where -127 is full left and +127 is full right
+ * Normalizes the angle to be within the range of -127 to +127 and converts it to a PWM value.
  *
- * STEERING_SetAngle(0) → CCR = 6400 → 1 ms
- * STEERING_SetAngle(100) → CCR = 9600 → 1,5 ms (milieu)
- * STEERING_SetAngle(200) → CCR = 12800 → 2 ms
+ * STEERING_SetAngle(-127) → CCR = 6400 → 1 ms
+ * STEERING_SetAngle(0) → CCR = 9600 → 1,5 ms (milieu)
+ * STEERING_SetAngle(+127) → CCR = 12800 → 2 ms
  */
-void STEERING_SetAngle(int angle) {
-	// Normalize the angle to be between 0 and 200
-	if (angle > STEERING_MAX_ANGLE_RIGHT) {
-		angle = STEERING_MAX_ANGLE_RIGHT;
-	} else if (angle <= STEERING_MAX_ANGLE_LEFT) {
-		angle = STEERING_MAX_ANGLE_LEFT;
-	}
+void STEERING_SetAngle(int8_t angle) {
+	input_angle = angle;
 
-	lastAngle = angle; // Save last angle position
+    // Normalise l'angle pour qu'il soit dans la plage autorisée
+//    if (angle > STEERING_MAX_ANGLE_RIGHT) {
+//        angle = STEERING_MAX_ANGLE_RIGHT;
+//    } else if (angle < STEERING_MAX_ANGLE_LEFT) {
+//        angle = STEERING_MAX_ANGLE_LEFT;
+//    }
 
-	// Convert angle to PWM value
-	int pwm_value = (int) ((angle - STEERING_MAX_ANGLE_LEFT)
-			* (STEERING_PWM_MAX - STEERING_PWM_MIN)
-			/ (STEERING_MAX_ANGLE_RIGHT - STEERING_MAX_ANGLE_LEFT) + STEERING_PWM_MIN);
+    lastAngle = angle; // Sauvegarde la dernière position
 
-	// Set the PWM value for steering motor
-	__HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_1, pwm_value);
+    if (angle > 0) {
+        // Commande vers la droite (de 0 à STEERING_MAX_ANGLE_RIGHT)
+        // La conversion se fait de STEERING_PWM_NEUTRAL à STEERING_PWM_MAX
+        pwm_value = (int32_t)angle * (STEERING_PWM_MAX - STEERING_PWM_NEUTRAL) / STEERING_MAX_ANGLE_RIGHT + STEERING_PWM_NEUTRAL;
+    } else if (angle < 0) {
+        // Commande vers la gauche (de STEERING_MAX_ANGLE_LEFT à 0)
+        // La conversion se fait de STEERING_PWM_MIN à STEERING_PWM_NEUTRAL
+        pwm_value = STEERING_PWM_NEUTRAL - (int32_t)angle * (STEERING_PWM_NEUTRAL - STEERING_PWM_MIN) / STEERING_MAX_ANGLE_LEFT;
+    } else {
+        // Commande neutre (angle = 0)
+        pwm_value = STEERING_PWM_NEUTRAL;
+    }
+
+    // Définit la valeur PWM pour le servomoteur
+    __HAL_TIM_SET_COMPARE(&htim4, TIM_CHANNEL_1, (uint32_t)pwm_value);
 }
 
-//return the current angle between 0 (full left) and 200 (full right)
-int STEERING_GetAngle(void){
+//return the current angle between -127 (full left) and +127 (full right)
+int8_t STEERING_GetAngle(void){
 //	if (need_read_calibration==1){
 //		STEERING_ReadCalibrationData();
 //		need_read_calibration=0;

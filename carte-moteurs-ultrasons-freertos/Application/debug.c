@@ -23,6 +23,8 @@
 //extern uint32_t Counter_Free;
 
 char DEBUG_buffer[DEBUG_BUFFER_SIZE];
+extern int32_t pwm_value;
+extern int8_t input_angle;
 
 //int __io_putchar(int ch) {
 //	return (int)ITM_SendChar(ch);
@@ -62,4 +64,12 @@ void DEBUG_PrintPeriodicInfo(void) {
 		snprintf(DEBUG_buffer,DEBUG_BUFFER_SIZE-1,"WARNING: Low heap memory!\n");
 		DEBUG_PrintITM(ITM_STIMULUS_PORT_PERIODIC_DEBUG,DEBUG_buffer);
 	}
+
+	// Show pwm steering value
+	snprintf(DEBUG_buffer,DEBUG_BUFFER_SIZE-1,"Steering PWM value: %ld\n", pwm_value);
+	DEBUG_PrintITM(ITM_STIMULUS_PORT_PERIODIC_DEBUG,DEBUG_buffer);
+
+	// Show pwm steering value
+	snprintf(DEBUG_buffer,DEBUG_BUFFER_SIZE-1,"Input value: %d\n", input_angle);
+	DEBUG_PrintITM(ITM_STIMULUS_PORT_PERIODIC_DEBUG,DEBUG_buffer);
 }

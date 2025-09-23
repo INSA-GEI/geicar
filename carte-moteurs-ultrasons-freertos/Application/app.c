@@ -136,7 +136,7 @@ void APP_Run(AppMessage_typeDef *msg) {
 			if (canFrame->length >= 3) {
 				CAR_CONTROL_Update((int) canFrame->data[0], // Get left rear motor speed
 						(int) canFrame->data[1], // Get right rear motor speed
-						(int) canFrame->data[2]);// Get steering motor speed
+						(int8_t) canFrame->data[2]);// Get steering motor speed
 			}
 			break;
 		case CAN_ID_CALIBRATION_MODE:

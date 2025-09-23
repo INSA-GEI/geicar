@@ -31,7 +31,7 @@ void CAR_CONTROL_Init(void);
 **/
 void CAR_CONTROL_Manage(void);
 
-void CAR_CONTROL_Update(int left_rear_speed, int right_rear_speed, int steering_angle);
+void CAR_CONTROL_Update(int left_rear_speed, int right_rear_speed, int8_t steering_angle);
 
 #ifdef __cplusplus
 }

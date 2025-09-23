@@ -19,12 +19,12 @@
 
 int CAR_CONTROL_left_rear_speed;
 int CAR_CONTROL_right_rear_speed;
-int CAR_CONTROL_steering_angle;
+int8_t CAR_CONTROL_steering_angle;
 
 void CAR_CONTROL_Init(void) {
 	CAR_CONTROL_left_rear_speed = DISABLED;
 	CAR_CONTROL_right_rear_speed = DISABLED;
-	CAR_CONTROL_steering_angle = 100;
+	CAR_CONTROL_steering_angle = 0;
 
 	WHEELS_SetSpeed(GPIO_PIN_RESET, GPIO_PIN_RESET, STOP, STOP);
 	STEERING_SetAngle(CAR_CONTROL_steering_angle);
@@ -48,7 +48,7 @@ void CAR_CONTROL_Manage(void) {
 	//STEERING_SetAngle(CAR_CONTROL_steering_angle);
 }
 
-void CAR_CONTROL_Update(int left_rear_speed, int right_rear_speed, int steering_angle) {
+void CAR_CONTROL_Update(int left_rear_speed, int right_rear_speed, int8_t steering_angle) {
 
 	CAR_CONTROL_left_rear_speed = left_rear_speed;
 	CAR_CONTROL_right_rear_speed = right_rear_speed;
