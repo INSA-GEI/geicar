@@ -142,12 +142,11 @@ private:
             }
         }
 
-
         //Send order to motors
         motorsOrder.left_rear_pwm = leftRearPwmCmd;
         motorsOrder.right_rear_pwm = rightRearPwmCmd;
 
-        motorsOrder.steering_angle = (uint8_t)((uint8_t)(requestedSteerAngle*100.0)+100); //Scale [-1,1] to [0,200]
+        motorsOrder.steering_angle = (int8_t)((int8_t)(requestedSteerAngle*127.0)); //Scale [-1,1] to [-127,+127]
         currentAngle = requestedSteerAngle;
 
         publisher_can_->publish(motorsOrder);

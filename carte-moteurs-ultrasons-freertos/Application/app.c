@@ -112,6 +112,7 @@ void APP_Init(void) {
 
 	printf("Motor - steering - ultrasonic sensors.\r\n");
 	printf("Application version: %s\r\n\n", APP_VERSION);
+	printf("Application started\r\n");
 }
 
 /**
@@ -122,9 +123,7 @@ void APP_Init(void) {
  *
  * @remark: this function never returns, it runs indefinitely.
  */
-void APP_Run(AppMessage_typeDef *msg){
-	printf("Application started\r\n");
-
+void APP_Run(AppMessage_typeDef *msg) {
 #if defined (__TESTS__)
 	TESTS_Run(); // Run tests if defined
 #else
@@ -150,6 +149,7 @@ void APP_Run(AppMessage_typeDef *msg){
 		case CAN_ID_COMM_CHECKING:
 			if (canFrame->length >= 1 &&
 					canFrame->data[0] == COMM_CHECKING_REQUEST) {
+				data[0] = COMM_CHECKING_REQUEST;
 				data[1] = COMM_CHECKING_ACK;
 
 				CAN_COM_Send(CAN_ID_COMM_CHECKING, data, 2); // Send ack
