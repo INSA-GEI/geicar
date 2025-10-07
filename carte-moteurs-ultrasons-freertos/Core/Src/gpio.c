@@ -53,6 +53,9 @@ void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, US_TRIGGER_FRONT_LEFT_Pin|US_TRIGGER_FRONT_CENTER_Pin|US_TRIGGER_FRONT_RIGHT_Pin|US_TRIGGER_REAR_LEFT_Pin
                           |US_TRIGGER_REAR_CENTER_Pin|US_TRIGGER_REAR_RIGHT_Pin|ENABLE_MOTOR_LEFT_Pin|ENABLE_MOTOR_RIGHT_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(POWER_ENABLE_GPIO_Port, POWER_ENABLE_Pin, GPIO_PIN_SET);
+
   /*Configure GPIO pin : PB_BLUE_BUTTON_Pin */
   GPIO_InitStruct.Pin = PB_BLUE_BUTTON_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
@@ -67,6 +70,13 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : POWER_ENABLE_Pin */
+  GPIO_InitStruct.Pin = POWER_ENABLE_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(POWER_ENABLE_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PB_STEERING_LEFT_Pin PB_STEERING_RIGHT_Pin */
   GPIO_InitStruct.Pin = PB_STEERING_LEFT_Pin|PB_STEERING_RIGHT_Pin;
