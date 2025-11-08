@@ -8,7 +8,8 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(geometry_msgs REQUIRED)
+#find_package(geometry_msgs REQUIRED)
+find_package(interfaces REQUIRED)
 find_package(nav_msgs REQUIRED)
 
 find_package(nlohmann_json REQUIRED)
@@ -17,7 +18,7 @@ add_executable(bridge_node src/bridge_node.cpp)
 
 ament_target_dependencies(bridge_node
   rclcpp
-  geometry_msgs
+  interfaces
   nav_msgs
 )
 

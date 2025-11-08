@@ -1,5 +1,6 @@
 #include <rclcpp/rclcpp.hpp>
-#include <geometry_msgs/msg/twist.hpp>
+//#include <geometry_msgs/msg/twist.hpp>
+#include "interfaces/msg/joystick_order.hpp"
 #include <nav_msgs/msg/odometry.hpp>
 #include <nlohmann/json.hpp> // Nécessite la bibliothèque nlohmann/json
 
@@ -26,15 +27,20 @@ using namespace std::placeholders;
 struct ClientInfo {
     std::string ip;
     int recv_udp_port;
-    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_pub;
+    //rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_pub;
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub;
 };
+
+int mode = 0;
+bool start = false;
+bool systemCheckPrintRequest = false;
 
 class TcpUdpBridge : public rclcpp::Node
 {
 public:
     TcpUdpBridge() : Node("tcp_udp_bridge")
     {
+
         // Déclaration des paramètres ROS 2
         this->declare_parameter<int>("tcp_control_port", 5001);
         this->declare_parameter<int>("udp_data_port", 5000);
@@ -47,7 +53,8 @@ public:
         RCLCPP_INFO(this->get_logger(), "Port de données UDP : %d", udp_data_port_);
         // Créer les topics fixes (toujours les mêmes) dès le démarrage
         // Topics globaux : /cmd_vel (publisher) et /odom (subscriber)
-        cmd_vel_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
+        //cmd_vel_pub_ = this->create_publisher<geometry_msgs::msg::Twist>("/cmd_vel", 10);
+        publisher_joystick_order_ = this->create_publisher<interfaces::msg::JoystickOrder>("joystick_order", 1);
         odom_sub_ = this->create_subscription<nav_msgs::msg::Odometry>(
             "/odom", 10,
             std::bind(&TcpUdpBridge::odom_callback, this, std::placeholders::_1)
@@ -78,7 +85,6 @@ private:
         struct sockaddr_in address;
         int opt = 1;
         int addrlen = sizeof(address);
-        char buffer[1024] = {0};
 
         server_fd = socket(AF_INET, SOCK_STREAM, 0);
         setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
@@ -224,6 +230,7 @@ private:
                     RCLCPP_WARN(this->get_logger(), "Arrêt d'urgence reçu de %s", client_ip.c_str());
                     
                     // Ici, on pourrait publier une commande d'arrêt sur un topic ROS 2 si nécessaire
+                    start = false;
 
                     json response = {{"ok", true}, {"message", "Emergency stop acknowledged"}};
                     std::string resp_str = response.dump();
@@ -232,7 +239,30 @@ private:
 
                     // Le client demande la fermeture de la session
                     break;
+                } else if (msg.contains("type") && msg["type"] == "start") {
+                    // Gérer la commande de démarrage
+                    RCLCPP_INFO(this->get_logger(), "Commande de démarrage reçue de %s", client_ip.c_str());
 
+                    if (mode != 2) {
+                        start = true;
+                    }
+
+                    json response = {{"ok", true}, {"message", "Start command acknowledged"}};
+                    std::string resp_str = response.dump();
+                    send(client_socket, resp_str.c_str(), resp_str.length(), 0);
+                } else if (msg.contains("type") && msg["type"] == "set_mode") {
+                    // Gérer le changement de mode
+                    int new_mode = msg.value("mode", 0);
+                    RCLCPP_INFO(this->get_logger(), "Changement de mode reçu de %s : %d", client_ip.c_str(), new_mode);
+                    
+                    mode = new_mode;
+                    if (mode == 2) {
+                        start = false; 
+                    }
+
+                    json response = {{"ok", true}, {"message", "Mode change acknowledged"}};
+                    std::string resp_str = response.dump();
+                    send(client_socket, resp_str.c_str(), resp_str.length(), 0);
                 } else if (msg.contains("type") && msg["type"] == "heartbeat_ack") {
                     // Gérer l'accusé de réception du heartbeat
                     RCLCPP_INFO(this->get_logger(), "Accusé de réception du heartbeat de %s", client_ip.c_str());
@@ -298,11 +328,27 @@ private:
                 if (data_msg["type"] == "cmd_vel")
                 {
                     // Dans le modèle à client unique, on publie directement sur le topic global /cmd_vel
-                    auto twist = std::make_unique<geometry_msgs::msg::Twist>();
-                    twist->linear.x = data_msg.value("linear_x", 0.0);
-                    twist->angular.z = data_msg.value("angular_z", 0.0);
-                    if (cmd_vel_pub_) {
-                        cmd_vel_pub_->publish(std::move(twist));
+                    float linear_x = data_msg.value("linear_x", 0.0);
+                    float angular_z = data_msg.value("angular_z", 0.0);
+
+                    auto joystick_order = std::make_shared<interfaces::msg::JoystickOrder>();
+
+                    if (linear_x < 0.0) {
+                        linear_x = -linear_x; // Assurer que la vitesse est positive
+                        joystick_order->reverse = true;
+                    }else{
+                        joystick_order->reverse = false;
+                    }
+
+                    joystick_order->throttle = linear_x;
+                    joystick_order->steer = angular_z;
+                    joystick_order->start = start ? mode != 2 : false;
+                    joystick_order->mode = mode;
+                    
+                    if (publisher_joystick_order_) {
+                        // rclcpp::Publisher expects a message object (const ref), not a shared_ptr.
+                        // Dereference the shared_ptr and publish the message itself.
+                        publisher_joystick_order_->publish(*joystick_order);
                     }
                 }
             } catch (json::parse_error& e) {
@@ -361,11 +407,6 @@ private:
                (const struct sockaddr*)&dest_addr, sizeof(dest_addr));
     }
 
-
-    // Variables membres
-    std::map<std::string, ClientInfo> clients_;
-    std::mutex clients_mutex_;
-
     // Modèle à client unique
     bool single_client_connected_ = false;
     std::string single_client_ip_;
@@ -373,7 +414,8 @@ private:
     std::mutex single_client_mutex_;
 
     // Topics fixes initialisés au démarrage
-    rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_pub_;
+    //rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_pub_;
+    rclcpp::Publisher<interfaces::msg::JoystickOrder>::SharedPtr publisher_joystick_order_;
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
 
     int tcp_control_port_;
