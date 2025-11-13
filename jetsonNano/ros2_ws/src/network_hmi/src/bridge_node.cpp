@@ -269,10 +269,10 @@ class TcpUdpBridge : public rclcpp::Node
                     std::chrono::steady_clock::now().time_since_epoch()).count());
 
                     if (!this->send_tcp_message(hb_socket, hb.dump())) {
-                    // Failed to send, session is likely dead.
-                    RCLCPP_WARN(this->get_logger(), "Heartbeat send failed, stopping HB thread.");
-                    alive->store(false);
-                    break;
+                        // Failed to send, session is likely dead.
+                        RCLCPP_WARN(this->get_logger(), "Heartbeat send failed, stopping HB thread.");
+                        alive->store(false);
+                        break;
                     }
                     
                     // Wait for heartbeat interval
@@ -288,26 +288,34 @@ class TcpUdpBridge : public rclcpp::Node
             send_tcp_message(client_socket, response.dump());
 
             } else if (msg.contains("type") && msg["type"] == "ping") {
-            // Respond to ping
-            json response = {{"type", "pong"}};
-            send_tcp_message(client_socket, response.dump());
+                // Respond to ping
+                json response = {{"type", "pong"}};
+                send_tcp_message(client_socket, response.dump());
             } else if (msg.contains("type") && msg["type"] == "emergency_stop") {
-            RCLCPP_WARN(this->get_logger(), "Emergency stop received from %s", client_ip.c_str());
-            
-            {
-                std::lock_guard<std::mutex> lock(state_mutex_);
-                start_ = false;
-            }
+                RCLCPP_WARN(this->get_logger(), "Emergency stop received from %s", client_ip.c_str());
+                
+                {
+                    std::lock_guard<std::mutex> lock(state_mutex_);
+                    start_ = false;
+                }
 
-            json response = {{"ok", true}, {"message", "Emergency stop acknowledged"}};
-            send_tcp_message(client_socket, response.dump());
+                json response = {{"ok", true}, {"message", "Emergency stop acknowledged"}};
+                send_tcp_message(client_socket, response.dump());
             } else if (msg.contains("type") && msg["type"] == "close") {
-            // Client requests to close session
-            break;
+                // Client requests to close session
+
+                {   // On session end, ensure vehicle is stopped if not in autonomous mode
+                    std::lock_guard<std::mutex> lock(state_mutex_);
+                    if (mode_ != 1) { // Do not stop if in autonomous mode
+                        start_ = false;
+                    }
+                }
+
+                break;
             } else if (msg.contains("type") && msg["type"] == "start") {
             RCLCPP_INFO(this->get_logger(), "Start command received from %s", client_ip.c_str());
 
-            {
+            {  
                 std::lock_guard<std::mutex> lock(state_mutex_);
                 if (mode_ != 2) {
                 start_ = true;
@@ -372,6 +380,13 @@ class TcpUdpBridge : public rclcpp::Node
         single_client_connected_ = false;
         single_client_ip_.clear();
         single_client_recv_port_ = 0;
+        }
+
+        {   // On session end, ensure vehicle is stopped if not in autonomous mode
+            std::lock_guard<std::mutex> lock(state_mutex_);
+            if (mode_ != 1) { // Do not stop if in autonomous mode
+                start_ = false;
+            }
         }
 
         RCLCPP_INFO(
