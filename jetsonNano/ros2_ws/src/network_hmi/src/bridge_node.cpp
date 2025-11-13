@@ -35,6 +35,7 @@ struct ClientInfo
 int mode = 0;
 bool start = false;
 bool systemCheckPrintRequest = false;
+long long last_heartbeat_ms = 0;
 
 class TcpUdpBridge : public rclcpp::Node
 {
@@ -224,6 +225,10 @@ private:
                 // Ignorer les erreurs de send, but send with newline so client can split messages
                 this->send_tcp_message(hb_socket, hb_str);
 
+                // Mettre à jour le temps du dernier heartbeat envoyé
+                last_heartbeat_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+                  std::chrono::steady_clock::now().time_since_epoch()).count();
+
                 // Attendre intervalle de heartbeat
                 std::this_thread::sleep_for(std::chrono::seconds(13));
 
@@ -300,6 +305,14 @@ private:
           RCLCPP_INFO(
             this->get_logger(), "Accusé de réception du heartbeat de %s",
             client_ip.c_str());
+
+          // Calculer le délai entre l'envoi du heartbeat et la réception de l'ack
+          long long now = std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::steady_clock::now().time_since_epoch()).count();
+          long long rtt_ms = now - last_heartbeat_ms;
+          RCLCPP_INFO(
+            this->get_logger(), "Délai aller-retour du heartbeat avec %s : %lld ms",
+            client_ip.c_str(), rtt_ms);
         } else {
           // Messages non gérés : log
           RCLCPP_WARN(
