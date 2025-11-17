@@ -163,26 +163,44 @@ private:
         }
 
         // Forward + straight limits
-        if (!reverse && EmergencyStop[1]) stop = true;
+        //if (!reverse && EmergencyStop[1]) stop = true;
+//
+        //// Reverse + straight limits
+        //else if (reverse && EmergencyStop[4]) stop = true;
 
-        // Reverse + straight limits
-        else if (reverse && EmergencyStop[4]) stop = true;
+        if (!reverse){
+            for (int i=0; i<3; i++){
+                if (EmergencyStop[i]){
+                    stop = true;
+                    break;
+                }
+            }
+        }
 
-        // Forward + steering right
-        else if (!reverse && EmergencyStop[0] && motorsOrder.steering_angle > STOP)
-            stop = true;
+        else{
+            for (int i=3; i<6; i++){
+                if (EmergencyStop[i]){
+                    stop = true;
+                    break;
+                }
+            }
+        }
 
-        // Forward + steering left
-        else if (!reverse && EmergencyStop[2] && motorsOrder.steering_angle < STOP)
-            stop = true;
-
-        // Reverse + steering left
-        else if (reverse && EmergencyStop[5] && motorsOrder.steering_angle < STOP)
-            stop = true;
-
-        // Reverse + steering right (rear right)
-        else if (reverse && EmergencyStop[3] && motorsOrder.steering_angle > STOP)
-            stop = true;
+        //// Forward + steering right
+        //else if (!reverse && EmergencyStop[0] && motorsOrder.steering_angle > STOP)
+        //    stop = true;
+//
+        //// Forward + steering left
+        //else if (!reverse && EmergencyStop[2] && motorsOrder.steering_angle < STOP)
+        //    stop = true;
+//
+        //// Reverse + steering left
+        //else if (reverse && EmergencyStop[5] && motorsOrder.steering_angle < STOP)
+        //    stop = true;
+//
+        //// Reverse + steering right (rear right)
+        //else if (reverse && EmergencyStop[3] && motorsOrder.steering_angle > STOP)
+        //    stop = true;
 
         if (stop) {
             leftRearPwmCmd  = STOP;
@@ -259,16 +277,12 @@ private:
     /*EMERGENCY STOP*/
         void EmergencyCallback(const interfaces::msg::Ultrasonic::SharedPtr USMsg) {// in centemetre
             /*I think we have to do some math to get the distance of the obstecle but i'm simplifing it now and saying it gives us directly a distance*/
-
-           if (USMsg->front_left < 30 || USMsg->front_right < 30 || USMsg->front_center < 30 ||
-               USMsg->rear_left  < 30 || USMsg->rear_right  < 30 || USMsg->rear_center  < 30) {
-                EmergencyStop[0] = (USMsg->front_left  < 30);
-                EmergencyStop[1] = (USMsg->front_center < 30);
-                EmergencyStop[2] = (USMsg->front_right < 30);
-                EmergencyStop[3] = (USMsg->rear_right  < 30);
-                EmergencyStop[4] = (USMsg->rear_center < 30);
-                EmergencyStop[5] = (USMsg->rear_left   < 30);
-           }
+            EmergencyStop[0] = (USMsg->front_left  < 50);
+            EmergencyStop[1] = (USMsg->front_center < 50);
+            EmergencyStop[2] = (USMsg->front_right < 50);
+            EmergencyStop[3] = (USMsg->rear_right  < 50);
+            EmergencyStop[4] = (USMsg->rear_center < 50);
+            EmergencyStop[5] = (USMsg->rear_left   < 50);
     }
 
 
