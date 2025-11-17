@@ -7,6 +7,7 @@
 #include "interfaces/msg/motors_feedback.hpp"
 #include "interfaces/msg/steering_calibration.hpp"
 #include "interfaces/msg/joystick_order.hpp"
+#include "interfaces/msg/ultrasonic.hpp"
 
 #include "std_srvs/srv/empty.hpp"
 
@@ -28,6 +29,7 @@ public:
         mode = 0;
         requestedThrottle = 0;
         requestedSteerAngle = 0;
+        EmergencyStop= false;
     
 
         publisher_can_= this->create_publisher<interfaces::msg::MotorsOrder>("motors_order", 10);
@@ -45,8 +47,9 @@ public:
         subscription_steering_calibration_ = this->create_subscription<interfaces::msg::SteeringCalibration>(
         "steering_calibration", 10, std::bind(&car_control::steeringCalibrationCallback, this, _1));
 
+        subscription_us_emergency_ = this->create_subscription<interfaces::msg::Ultrasonic>(
+        "us_data", 10, std::bind(&car_control::EmergencyCallback, this, _1));
 
-        
 
         server_calibration_ = this->create_service<std_srvs::srv::Empty>(
                             "steering_calibration", std::bind(&car_control::steeringCalibration, this, std::placeholders::_1, std::placeholders::_2));
@@ -120,7 +123,9 @@ private:
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
 
-        if (!start){    //Car stopped
+
+        if (!startp){    //Car stopped or Emergency Stop
+
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
             //steeringPwmCmd = STOP;
@@ -142,12 +147,40 @@ private:
             }
         }
 
-        //Send order to motors
-        motorsOrder.left_rear_pwm = leftRearPwmCmd;
-        motorsOrder.right_rear_pwm = rightRearPwmCmd;
+        // Forward + straight limits
+        if (!reverse && EmergencyStop[1]) stop = true;
 
-        motorsOrder.steering_angle = (int8_t)((int8_t)(requestedSteerAngle*127.0)); //Scale [-1,1] to [-127,+127]
-        currentAngle = requestedSteerAngle;
+        // Reverse + straight limits
+        else if (reverse && EmergencyStop[4]) stop = true;
+
+        // Forward + steering right
+        else if (!reverse && EmergencyStop[0] && motorsOrder.steering_angle > STOP)
+            stop = true;
+
+        // Forward + steering left
+        else if (!reverse && EmergencyStop[2] && motorsOrder.steering_angle < STOP)
+            stop = true;
+
+        // Reverse + steering left
+        else if (reverse && EmergencyStop[5] && motorsOrder.steering_angle < STOP)
+            stop = true;
+
+        // Reverse + steering right
+        else if (reverse && EmergencyStop[6] && motorsOrder.steering_angle > STOP)
+            stop = true;
+
+        if (stop) {
+            leftRearPwmCmd  = STOP;
+            rightRearPwmCmd = STOP;
+        }else{
+
+            //Send order to motors
+            motorsOrder.left_rear_pwm = leftRearPwmCmd;
+            motorsOrder.right_rear_pwm = rightRearPwmCmd;
+            
+            motorsOrder.steering_angle = (int8_t)((int8_t)(requestedSteerAngle*127.0)); //Scale [-1,1] to [-127,+127]
+            currentAngle = requestedSteerAngle;
+        }
 
         publisher_can_->publish(motorsOrder);
     }
@@ -207,11 +240,30 @@ private:
         }
     
     }
+
+    /*EMERGENCY STOP*/
+        void EmergencyCallback(const interfaces::msg::Ultrasonic & USMsg) {// in centemetre
+            /*I think we have to do some math to get the distance of the obstecle but i'm simplifing it now and saying it gives us directly a distance*/
+
+           if(USMsg.front_left < 30 || USMsg.front_right < 30 || USMsg.front_center < 30)||(USMsg.rear_left < 30 || USMsg.rear_right < 30 || USMsg.rear_center < 30){
+                RCLCPP_ERROR("JESUS CHRIST STOP OMG");
+                EmergencyStop[0] = USMsg.front_left < 30;
+                EmergencyStop[1] = USMsg.front_center < 30;
+                EmergencyStop[2] = USMsg.front_right < 30;
+                EmergencyStop[3] = USMsg.rear_right < 30;
+                EmergencyStop[4] = USMsg.rear_center < 30;
+                EmergencyStop[5] = USMsg.rear_left < 30;
+           }
+    }
+
+
     
     // ---- Private variables ----
 
     //General variables
     bool start;
+    bool stop = false;
+    std::vector<bool> EmergencyStop(10,0); //0: No Emergency stop  1 : Front left obstacle  2 : Front Central obstacle  1 : Front Right obstacle  2 : Rear Right obstacle 1 : Rear Central obstacle  2 : Raer  obstacle  
     int mode;    //0 : Manual    1 : Auto    2 : Calibration
 
     
@@ -236,6 +288,7 @@ private:
     rclcpp::Subscription<interfaces::msg::JoystickOrder>::SharedPtr subscription_joystick_order_;
     rclcpp::Subscription<interfaces::msg::MotorsFeedback>::SharedPtr subscription_motors_feedback_;
     rclcpp::Subscription<interfaces::msg::SteeringCalibration>::SharedPtr subscription_steering_calibration_;
+    rclcpp::Subscription<interfaces::msg::Ultrasonic>::SharedPtr subscription_us_emergency_;
 
     //Timer
     rclcpp::TimerBase::SharedPtr timer_;
