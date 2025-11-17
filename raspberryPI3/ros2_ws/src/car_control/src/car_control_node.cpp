@@ -2,6 +2,9 @@
 #include <chrono>
 #include <functional>
 #include <memory>
+#include <array>
+#include <cstdint>
+#include <cmath>
 
 #include "interfaces/msg/motors_order.hpp"
 #include "interfaces/msg/motors_feedback.hpp"
@@ -16,6 +19,7 @@
 #include "../include/car_control/car_control_node.h"
 
 using namespace std;
+using namespace std::chrono_literals; // for PERIOD_UPDATE_CMD (1ms)
 using placeholders::_1;
 
 
@@ -27,9 +31,14 @@ public:
     {
         start = false;
         mode = 0;
-        requestedThrottle = 0;
-        requestedSteerAngle = 0;
-        EmergencyStop= false;
+        requestedThrottle = 0.0f;
+        requestedSteerAngle = 0.0f;
+        reverse = false;
+        stop = false;
+        currentAngle = 0.0f;
+        leftRearPwmCmd = STOP;
+        rightRearPwmCmd = STOP;
+        steeringPwmCmd = STOP;
     
 
         publisher_can_= this->create_publisher<interfaces::msg::MotorsOrder>("motors_order", 10);
@@ -38,17 +47,17 @@ public:
 
         
 
-        subscription_joystick_order_ = this->create_subscription<interfaces::msg::JoystickOrder>(
-        "joystick_order", 10, std::bind(&car_control::joystickOrderCallback, this, _1));
+    subscription_joystick_order_ = this->create_subscription<interfaces::msg::JoystickOrder>(
+    "joystick_order", 10, std::bind(&car_control::joystickOrderCallback, this, _1));
 
-        subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
-        "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1));
+    subscription_motors_feedback_ = this->create_subscription<interfaces::msg::MotorsFeedback>(
+    "motors_feedback", 10, std::bind(&car_control::motorsFeedbackCallback, this, _1));
 
-        subscription_steering_calibration_ = this->create_subscription<interfaces::msg::SteeringCalibration>(
-        "steering_calibration", 10, std::bind(&car_control::steeringCalibrationCallback, this, _1));
+    subscription_steering_calibration_ = this->create_subscription<interfaces::msg::SteeringCalibration>(
+    "steering_calibration", 10, std::bind(&car_control::steeringCalibrationCallback, this, _1));
 
-        subscription_us_emergency_ = this->create_subscription<interfaces::msg::Ultrasonic>(
-        "us_data", 10, std::bind(&car_control::EmergencyCallback, this, _1));
+    subscription_us_emergency_ = this->create_subscription<interfaces::msg::Ultrasonic>(
+    "us_data", 10, std::bind(&car_control::EmergencyCallback, this, _1));
 
 
         server_calibration_ = this->create_service<std_srvs::srv::Empty>(
@@ -68,10 +77,10 @@ private:
     * This function is called when a message is published on the "/joystick_order" topic
     * 
     */
-    void joystickOrderCallback(const interfaces::msg::JoystickOrder & joyOrder) {
+    void joystickOrderCallback(const interfaces::msg::JoystickOrder::SharedPtr joyOrder) {
 
-        if (joyOrder.start != start){
-            start = joyOrder.start;
+        if (joyOrder->start != start){
+            start = joyOrder->start;
 
             if (start)
                 RCLCPP_INFO(this->get_logger(), "START");
@@ -80,8 +89,8 @@ private:
         }
         
 
-        if (joyOrder.mode != mode && joyOrder.mode != -1){ //if mode change
-            mode = joyOrder.mode;
+        if (joyOrder->mode != mode && joyOrder->mode != -1){ //if mode change
+            mode = joyOrder->mode;
 
             if (mode==0){
                 RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode");
@@ -94,9 +103,9 @@ private:
         }
         
         if (mode == 0 && start){  //if manual mode -> update requestedThrottle, requestedSteerAngle and reverse from joystick order
-            requestedThrottle = joyOrder.throttle;
-            requestedSteerAngle = joyOrder.steer;
-            reverse = joyOrder.reverse;
+            requestedThrottle = joyOrder->throttle;
+            requestedSteerAngle = joyOrder->steer;
+            reverse = joyOrder->reverse;
         }
     }
 
@@ -105,9 +114,9 @@ private:
     * This function is called when a message is published on the "/motors_feedback" topic
     * 
     */
-    void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback & motorsFeedback){
+    void motorsFeedbackCallback(const interfaces::msg::MotorsFeedback::SharedPtr motorsFeedback){
         (void)motorsFeedback; // not used for now
-        //currentAngle = motorsFeedback.steering_angle;
+        //currentAngle = motorsFeedback->steering_angle;
     }
 
 
@@ -123,8 +132,14 @@ private:
 
         auto motorsOrder = interfaces::msg::MotorsOrder();
 
+        // reset transient stop flag and compute steering command early so emergency checks
+        // can use a defined value
+        stop = false;
 
-        if (!startp){    //Car stopped or Emergency Stop
+        int8_t steeringVal = static_cast<int8_t>(std::round(requestedSteerAngle * 127.0f));
+        motorsOrder.steering_angle = steeringVal;
+
+        if (!start){    //Car stopped or Emergency Stop
 
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
@@ -165,8 +180,8 @@ private:
         else if (reverse && EmergencyStop[5] && motorsOrder.steering_angle < STOP)
             stop = true;
 
-        // Reverse + steering right
-        else if (reverse && EmergencyStop[6] && motorsOrder.steering_angle > STOP)
+        // Reverse + steering right (rear right)
+        else if (reverse && EmergencyStop[3] && motorsOrder.steering_angle > STOP)
             stop = true;
 
         if (stop) {
@@ -178,7 +193,7 @@ private:
             motorsOrder.left_rear_pwm = leftRearPwmCmd;
             motorsOrder.right_rear_pwm = rightRearPwmCmd;
             
-            motorsOrder.steering_angle = (int8_t)((int8_t)(requestedSteerAngle*127.0)); //Scale [-1,1] to [-127,+127]
+            // steering already computed above
             currentAngle = requestedSteerAngle;
         }
 
@@ -218,21 +233,21 @@ private:
     *
     * This function is called when a message is published on the "/steering_calibration" topic
     */
-    void steeringCalibrationCallback (const interfaces::msg::SteeringCalibration & calibrationMsg){
+    void steeringCalibrationCallback (const interfaces::msg::SteeringCalibration::SharedPtr calibrationMsg){
 
-        if (calibrationMsg.in_progress == true && calibrationMsg.user_need == false){
+        if (calibrationMsg->in_progress == true && calibrationMsg->user_need == false){
         RCLCPP_INFO(this->get_logger(), "Steering Calibration in progress, please wait ....");
 
-        } else if (calibrationMsg.in_progress == true && calibrationMsg.user_need == true){
+        } else if (calibrationMsg->in_progress == true && calibrationMsg->user_need == true){
             RCLCPP_WARN(this->get_logger(), "Please use the buttons (L/R) to center the steering wheels.\nThen, press the blue button on the NucleoF103 to continue");
         
-        } else if (calibrationMsg.status == 1){
+        } else if (calibrationMsg->status == 1){
             RCLCPP_INFO(this->get_logger(), "Steering calibration [SUCCESS]");
             RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode");
             mode = 0;    //Switch to manual mode
             start = false;  //Stop car
         
-        } else if (calibrationMsg.status == -1){
+        } else if (calibrationMsg->status == -1){
             RCLCPP_ERROR(this->get_logger(), "Steering calibration [FAILED]");
             RCLCPP_INFO(this->get_logger(), "Switching to MANUAL Mode");
             mode = 0;    //Switch to manual mode
@@ -242,17 +257,17 @@ private:
     }
 
     /*EMERGENCY STOP*/
-        void EmergencyCallback(const interfaces::msg::Ultrasonic & USMsg) {// in centemetre
+        void EmergencyCallback(const interfaces::msg::Ultrasonic::SharedPtr USMsg) {// in centemetre
             /*I think we have to do some math to get the distance of the obstecle but i'm simplifing it now and saying it gives us directly a distance*/
 
-           if(USMsg.front_left < 30 || USMsg.front_right < 30 || USMsg.front_center < 30)||(USMsg.rear_left < 30 || USMsg.rear_right < 30 || USMsg.rear_center < 30){
-                RCLCPP_ERROR("JESUS CHRIST STOP OMG");
-                EmergencyStop[0] = USMsg.front_left < 30;
-                EmergencyStop[1] = USMsg.front_center < 30;
-                EmergencyStop[2] = USMsg.front_right < 30;
-                EmergencyStop[3] = USMsg.rear_right < 30;
-                EmergencyStop[4] = USMsg.rear_center < 30;
-                EmergencyStop[5] = USMsg.rear_left < 30;
+           if (USMsg->front_left < 30 || USMsg->front_right < 30 || USMsg->front_center < 30 ||
+               USMsg->rear_left  < 30 || USMsg->rear_right  < 30 || USMsg->rear_center  < 30) {
+                EmergencyStop[0] = (USMsg->front_left  < 30);
+                EmergencyStop[1] = (USMsg->front_center < 30);
+                EmergencyStop[2] = (USMsg->front_right < 30);
+                EmergencyStop[3] = (USMsg->rear_right  < 30);
+                EmergencyStop[4] = (USMsg->rear_center < 30);
+                EmergencyStop[5] = (USMsg->rear_left   < 30);
            }
     }
 
@@ -263,7 +278,10 @@ private:
     //General variables
     bool start;
     bool stop = false;
-    std::vector<bool> EmergencyStop(10,0); //0: No Emergency stop  1 : Front left obstacle  2 : Front Central obstacle  1 : Front Right obstacle  2 : Rear Right obstacle 1 : Rear Central obstacle  2 : Raer  obstacle  
+    // EmergencyStop indices:
+    // 0: front_left, 1: front_center, 2: front_right,
+    // 3: rear_right, 4: rear_center, 5: rear_left
+    std::array<bool, 6> EmergencyStop{}; // all false initially
     int mode;    //0 : Manual    1 : Auto    2 : Calibration
 
     
