@@ -13,10 +13,28 @@ find_package(nav_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(interfaces REQUIRED)
 find_package(nlohmann_json REQUIRED)
+find_package(OpenCV REQUIRED)
+find_package(cv_bridge REQUIRED)
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(GSTREAMER REQUIRED gstreamer-1.0)
+pkg_check_modules(GSTREAMER_BASE REQUIRED gstreamer-base-1.0)
+
+include_directories(
+  ${OpenCV_INCLUDE_DIRS}
+  ${GSTREAMER_INCLUDE_DIRS}
+  ${GSTREAMER_BASE_INCLUDE_DIRS}
+)
+
+link_directories(
+  ${GSTREAMER_LIBRARY_DIRS}
+  ${GSTREAMER_BASE_LIBRARY_DIRS}
+)
 
 # ---- Library with components ----
 add_library(network_hmi_lib
   src/client_session.cpp
+  src/h264_streamer.cpp
   src/shared_client_info.cpp
   src/shared_vehicle_state.cpp
   src/tcp_control_server.cpp
@@ -34,6 +52,9 @@ target_include_directories(network_hmi_lib
 target_link_libraries(network_hmi_lib
   PUBLIC
     nlohmann_json::nlohmann_json
+    ${OpenCV_LIBRARIES}
+    ${GSTREAMER_LIBRARIES}
+    ${GSTREAMER_BASE_LIBRARIES}
 )
 
 ament_target_dependencies(network_hmi_lib
@@ -42,6 +63,7 @@ ament_target_dependencies(network_hmi_lib
   interfaces
   nav_msgs
   sensor_msgs
+  cv_bridge
 )
 
 # ---- Executable ----

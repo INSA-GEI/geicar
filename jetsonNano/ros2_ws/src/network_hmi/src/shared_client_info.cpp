@@ -1,6 +1,11 @@
 #include "network_hmi/shared_client_info.hpp"
+#include "network_hmi/h264_streamer.hpp"
 #include <cstring> // For memset
 #include <arpa/inet.h> // For inet_pton
+
+SharedClientInfo::SharedClientInfo(rclcpp::Logger logger)
+: logger_(logger)
+{}
 
 bool SharedClientInfo::is_connected()
 {
@@ -33,11 +38,15 @@ bool SharedClientInfo::register_client(const std::string& ip, int data_port, int
 
     // Pre-build the image address struct
     if (image_port_ > 0) {
-        memset(&image_addr_.addr, 0, sizeof(image_addr_.addr));
-        image_addr_.addr.sin_family = AF_INET;
-        image_addr_.addr.sin_port = htons(image_port_);
-        inet_pton(AF_INET, ip_.c_str(), &image_addr_.addr.sin_addr);
+        //memset(&image_addr_.addr, 0, sizeof(image_addr_.addr));
+        //image_addr_.addr.sin_family = AF_INET;
+        //image_addr_.addr.sin_port = htons(image_port_);
+        //inet_pton(AF_INET, ip_.c_str(), &image_addr_.addr.sin_addr);
         image_addr_.valid = true;
+
+        // Initialize GStreamer
+        h264_streamer_ = std::make_unique<H264Streamer>(logger_, ip_, image_port_, 640, 480, 10, 2000);
+
     } else {
         image_addr_.valid = false;
     }
@@ -54,6 +63,7 @@ void SharedClientInfo::deregister_client()
     image_port_ = 0;
     data_addr_.valid = false;
     image_addr_.valid = false;
+    h264_streamer_.reset();
 }
 
 SharedClientInfo::UdpAddress SharedClientInfo::get_data_address()
@@ -67,3 +77,10 @@ SharedClientInfo::UdpAddress SharedClientInfo::get_image_address()
     std::lock_guard<std::mutex> lock(mutex_);
     return image_addr_;
 }
+
+H264Streamer* SharedClientInfo::get_h264_streamer()
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    return h264_streamer_.get();
+}
+

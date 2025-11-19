@@ -1,4 +1,9 @@
 #include "network_hmi/tcp_udp_bridge_node.hpp"
+#include "network_hmi/h264_streamer.hpp"
+
+#include <sensor_msgs/image_encodings.hpp>
+#include <cv_bridge/cv_bridge.h>
+
 #include <nlohmann/json.hpp>
 #include <arpa/inet.h> // For htonl, htons
 #include <cstring> // For memcpy
@@ -26,7 +31,7 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
 
     // --- Create core components ---
     vehicle_state_ = std::make_shared<SharedVehicleState>();
-    client_info_ = std::make_shared<SharedClientInfo>();
+    client_info_ = std::make_shared<SharedClientInfo>(this->get_logger());
     udp_sender_ = std::make_unique<UdpDataSender>();
     
     // The receiver needs the node to create a publisher
@@ -91,37 +96,17 @@ void TcpUdpBridgeNode::odom_callback(const nav_msgs::msg::Odometry::SharedPtr ms
 
 void TcpUdpBridgeNode::image_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg)
 {
-    auto dest = client_info_->get_image_address();
-    if (!dest.valid) {
-        return; // No client connected or client didn't want images
-    }
+    try {
+        // 1. Convert ROS message to OpenCV Mat
+        cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
 
-    const size_t total_data_size = msg->data.size();
-    const uint32_t frame_id = udp_sender_->get_next_frame_id();
-    const uint16_t total_packets = static_cast<uint16_t>(
-        (total_data_size + IMAGE_PACKET_PAYLOAD_SIZE - 1) / IMAGE_PACKET_PAYLOAD_SIZE
-    );
-    
-    size_t data_sent = 0;
-    for (uint16_t i = 0; i < total_packets; ++i) {
-        ImagePacketHeader header;
-        header.frame_id = htonl(frame_id); // Network byte order
-        header.packet_index = htons(i);
-        header.total_packets = htons(total_packets);
+        // 2. Push the image to the streamer
+        auto streamer = client_info_->get_h264_streamer();
+        if (streamer) {
+            streamer->push_image(cv_ptr->image);
+        }
 
-        size_t chunk_size = std::min(
-            static_cast<size_t>(IMAGE_PACKET_PAYLOAD_SIZE),
-            total_data_size - data_sent
-        );
-        
-        size_t packet_size = HEADER_SIZE + chunk_size;
-
-        // Copy header and data into the pre-allocated buffer
-        memcpy(image_packet_buffer_.data(), &header, HEADER_SIZE);
-        memcpy(image_packet_buffer_.data() + HEADER_SIZE, msg->data.data() + data_sent, chunk_size);
-
-        udp_sender_->send_image_packet(image_packet_buffer_, packet_size, dest);
-
-        data_sent += chunk_size;
+    } catch (cv_bridge::Exception &e) {
+        RCLCPP_ERROR(this->get_logger(), "cv_bridge exception: %s", e.what());
     }
 }
