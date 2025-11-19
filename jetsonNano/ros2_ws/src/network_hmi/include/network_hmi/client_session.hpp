@@ -8,6 +8,7 @@
 #include <nlohmann/json.hpp>
 #include "network_hmi/shared_client_info.hpp"   // <-- Renamed include
 #include "network_hmi/shared_vehicle_state.hpp" // <-- Renamed include
+#include "network_hmi/h264_streamer.hpp"
 
 // Manages the complete lifecycle of a single connected TCP client
 class ClientSession
