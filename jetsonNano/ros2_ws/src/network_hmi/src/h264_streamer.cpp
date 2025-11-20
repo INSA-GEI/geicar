@@ -10,12 +10,22 @@ H264Streamer::H264Streamer(rclcpp::Logger logger,
     gst_init(nullptr, nullptr);
 
     // Build the GStreamer pipeline string
+    // Use a small leaky queue after appsrc to bound latency, and tune x264 for low-latency
+    // - key-int-max=30 forces more frequent IDR (reduce startup wait)
+    // - bframes=0 and rc-lookahead=0 reduce encoder lookahead/latency
+    // - udpsink sync=false avoids additional sink-side synchronization delays
     std::string pipeline_str = 
         "appsrc name=ros_src ! "
-        "videoconvert ! "
-        "x264enc tune=zerolatency bitrate=" + std::to_string(bitrate) + " speed-preset=superfast ! "
+        "queue max-size-buffers=2 leaky=2 ! "
+        //"videoconvert ! "
+        //"x264enc tune=zerolatency key-int-max=30 bframes=0 rc-lookahead=0 bitrate=" + std::to_string(bitrate) + " speed-preset=superfast ! "
+        //"rtph264pay config-interval=1 pt=96 ! "
+        "videoconvert ! video/x-raw,format=I420 ! "
+        "x264enc tune=zerolatency key-int-max=10 bframes=0 rc-lookahead=0 "
+        "bitrate=" + std::to_string(bitrate) + " speed-preset=superfast "
+        "byte-stream=true ! "
         "rtph264pay config-interval=1 pt=96 ! "
-        "udpsink host=" + host + " port=" + std::to_string(port);
+        "udpsink host=" + host + " port=" + std::to_string(port) + " sync=false async=false";
 
     RCLCPP_INFO(logger_, "Using GStreamer pipeline: %s", pipeline_str.c_str());
 
@@ -89,9 +99,8 @@ void H264Streamer::push_image(const cv::Mat& image)
     GstBuffer *buffer = gst_buffer_new_allocate(NULL, data_size, NULL);
     gst_buffer_fill(buffer, 0, image.data, data_size);
 
-    GST_BUFFER_PTS(buffer) = timestamp_;
-    GST_BUFFER_DURATION(buffer) = gst_util_uint64_scale_int(1, GST_SECOND, framerate_);
-    timestamp_ += GST_BUFFER_DURATION(buffer);
+    // Let appsrc timestamp buffers (do-timestamp = TRUE). Do not set PTS/DURATION here
+    // to avoid scheduling buffers far in the future which can introduce delay.
 
     GstFlowReturn ret;
     g_signal_emit_by_name(appsrc_, "push-buffer", buffer, &ret);
