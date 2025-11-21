@@ -60,12 +60,28 @@ def generate_launch_description():
         condition=UnlessCondition(LaunchConfiguration('disable_lidar'))
     )
 
+    usb_cam_share = get_package_share_directory('usb_cam')
+
+    usb_cam_share = get_package_share_directory('usb_cam')
+
     camera_node = Node(
         package="usb_cam",
         executable="usb_cam_node_exe",
+        namespace="usb_cam_0",
+        parameters=[os.path.join(usb_cam_share, 'config', 'params_1.yaml')],
         emulate_tty=True,
         condition=UnlessCondition(LaunchConfiguration('disable_camera'))
     )
+
+    camera_node_2 = Node(
+        package="usb_cam",
+        executable="usb_cam_node_exe",
+        namespace="usb_cam_1",
+        parameters=[os.path.join(usb_cam_share, 'config', 'params_2.yaml')],
+        emulate_tty=True,
+        condition=UnlessCondition(LaunchConfiguration('disable_camera'))
+    )
+
 
     system_check_ack_node = Node(
         package="system_check_ack",
@@ -92,6 +108,7 @@ def generate_launch_description():
     # Add the nodes (they will only be executed if their condition is met)
     ld.add_action(lidar_node)
     ld.add_action(camera_node)
+    ld.add_action(camera_node_2)
     ld.add_action(system_check_ack_node)
     ld.add_action(bridge_node)
 
