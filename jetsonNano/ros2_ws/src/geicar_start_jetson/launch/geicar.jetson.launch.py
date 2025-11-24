@@ -61,7 +61,7 @@ def generate_launch_description():
 
     usb_cam_share = get_package_share_directory('usb_cam')
 
-    camera_node = Node(
+    camera_node_1 = Node(
         package="usb_cam",
         executable="usb_cam_node_exe",
         namespace="usb_cam_0",
@@ -104,7 +104,7 @@ def generate_launch_description():
 
     # Add the nodes (they will only be executed if their condition is met)
     ld.add_action(lidar_node)
-    ld.add_action(camera_node)
+    ld.add_action(camera_node_1)
     ld.add_action(camera_node_2)
     ld.add_action(system_check_ack_node)
     ld.add_action(bridge_node)
