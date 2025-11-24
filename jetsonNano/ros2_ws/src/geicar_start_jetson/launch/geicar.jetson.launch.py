@@ -45,22 +45,19 @@ def generate_launch_description():
     # "Launch this node UNLESS the 'disable_camera' argument is 'true'."
 
     lidar_node = Node(
-        name='rplidar_composition',
-        package='rplidar_ros',
-        executable='rplidar_composition',
-        output='screen',
-        parameters=[{
-            'serial_port': '/dev/ttyUSB0',
-            'serial_baudrate': 115200,  # A1 / A2
-            'frame_id': 'laser',
-            'inverted': False,
-            'angle_compensate': True,
-        }],
-        emulate_tty=True,
-        condition=UnlessCondition(LaunchConfiguration('disable_lidar'))
+            package='rplidar_ros',
+            executable='rplidar_node',
+            name='rplidar_node',
+            parameters=[{'channel_type':'serial',
+                         'serial_port': '/dev/ttyUSB0',
+                         'serial_baudrate': 256000,
+                         'frame_id': 'rplidar_link',
+                         'inverted': False,
+                         'angle_compensate': True,
+                         'scan_mode': 'Sensitivity'}],
+            output='screen',
+            condition=UnlessCondition(LaunchConfiguration('disable_lidar'))
     )
-
-    usb_cam_share = get_package_share_directory('usb_cam')
 
     usb_cam_share = get_package_share_directory('usb_cam')
 
