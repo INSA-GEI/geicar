@@ -94,7 +94,7 @@ def generate_launch_description():
         condition=UnlessCondition(LaunchConfiguration('disable_bridge'))
     )
 
-    # --- Add Actions to Launch Description ---
+    # --- Add Actions to Launch Description ----
 
     # Add the argument declarations
     ld.add_action(declare_disable_lidar_arg)
