@@ -7,68 +7,66 @@ H264Streamer::H264Streamer(rclcpp::Logger logger,
     : logger_(logger), width_(width), height_(height), framerate_(framerate), timestamp_(0)
 {
     // Initialize GStreamer
-    gst_init(nullptr, nullptr);
+    if (!gst_is_initialized()) {
+        gst_init(nullptr, nullptr);
+    }
 
-    // Build the GStreamer pipeline string
-    // Use a small leaky queue after appsrc to bound latency, and tune x264 for low-latency
-    // - key-int-max=30 forces more frequent IDR (reduce startup wait)
-    // - bframes=0 and rc-lookahead=0 reduce encoder lookahead/latency
-    // - udpsink sync=false avoids additional sink-side synchronization delays
+    // --- PIPELINE CONSTRUCTION ---
+    // We replicate your working CLI command almost exactly.
+    // CLI: ximagesrc -> videoconvert -> videoscale -> x264enc -> rtph264pay -> udpsink
+    // C++: appsrc    -> videoconvert -> videoscale -> x264enc -> rtph264pay -> udpsink
+    
     std::string pipeline_str = 
-        "appsrc name=ros_src ! "
-        "queue max-size-buffers=2 leaky=2 ! "
-        //"videoconvert ! "
-        //"x264enc tune=zerolatency key-int-max=30 bframes=0 rc-lookahead=0 bitrate=" + std::to_string(bitrate) + " speed-preset=superfast ! "
-        //"rtph264pay config-interval=1 pt=96 ! "
-        "videoconvert ! video/x-raw,format=I420 ! "
-        "x264enc tune=zerolatency key-int-max=10 bframes=0 rc-lookahead=0 "
-        "bitrate=" + std::to_string(bitrate) + " speed-preset=superfast "
-        "byte-stream=true ! "
-        "rtph264pay config-interval=1 pt=96 ! "
+        "appsrc name=ros_src format=3 is-live=true do-timestamp=false ! " 
+        "queue max-size-buffers=5 leaky=2 ! "
+        "videoconvert ! "
+        "videoscale ! video/x-raw,width=1280,height=720 ! " // Ensure output is scaled
+        // --- ENCODER CHANGES ---
+        "x264enc tune=zerolatency "
+        "bitrate=" + std::to_string(bitrate) + " "
+        "speed-preset=ultrafast "
+        "intra-refresh=true "       // <--- CRITICAL FIX: Self-healing stream
+        "key-int-max=60 "           // Refresh cycle size
+        "sliced-threads=true ! "    // Lower latency threading
+        // -----------------------
+        "rtph264pay config-interval=-1 pt=96 mtu=1400 ! " // config-interval=-1 sends headers often
         "udpsink host=" + host + " port=" + std::to_string(port) + " sync=false async=false";
 
-    RCLCPP_INFO(logger_, "Using GStreamer pipeline: %s", pipeline_str.c_str());
+    RCLCPP_INFO(logger_, "Using Pipeline: %s", pipeline_str.c_str());
 
     GError *error = nullptr;
     pipeline_ = gst_parse_launch(pipeline_str.c_str(), &error);
 
     if (error) {
-        std::string err_msg = "Failed to create GStreamer pipeline: " + std::string(error->message);
+        std::string err_msg = "Pipeline error: " + std::string(error->message);
         g_error_free(error);
         throw std::runtime_error(err_msg);
     }
 
-    if (!pipeline_) {
-        throw std::runtime_error("Failed to create GStreamer pipeline (null).");
-    }
-
-    // Get the appsrc element
+    // --- APPSRC SETUP ---
     appsrc_ = gst_bin_get_by_name(GST_BIN(pipeline_), "ros_src");
-    if (!appsrc_) {
-        gst_object_unref(pipeline_);
-        throw std::runtime_error("Failed to get 'ros_src' appsrc from pipeline.");
-    }
+    if (!appsrc_) throw std::runtime_error("Could not get appsrc");
 
-    // Configure appsrc caps (what we will push into it)
+    // Tell appsrc what OpenCV is feeding it (BGR)
+    // NOTE: We don't need to specify 1280x720 here if the input image is different.
+    // 'videoscale' in the pipeline handles the resize to the target width/height.
+    // We just need to tell it what the INPUT (OpenCV Mat) format is.
+    // Ideally, pass the input image size to this constructor, OR update caps dynamically.
+    // For now, assuming constructor width/height matches input image.
     std::string caps_str = "video/x-raw,format=BGR,width=" + std::to_string(width_) + 
                            ",height=" + std::to_string(height_) + 
                            ",framerate=" + std::to_string(framerate_) + "/1";
+                           
     GstCaps *caps = gst_caps_from_string(caps_str.c_str());
-    g_object_set(G_OBJECT(appsrc_), "caps", caps,
-                 "format", GST_FORMAT_TIME,
-                 "is-live", TRUE,
-                 "do-timestamp", TRUE,
-                 NULL);
+    gst_app_src_set_caps(GST_APP_SRC(appsrc_), caps);
+    gst_app_src_set_stream_type(GST_APP_SRC(appsrc_), GST_APP_STREAM_TYPE_STREAM);
     gst_caps_unref(caps);
 
-    // Start the pipeline
     gst_element_set_state(pipeline_, GST_STATE_PLAYING);
-    RCLCPP_INFO(logger_, "GStreamer pipeline created and playing.");
 }
 
 H264Streamer::~H264Streamer()
 {
-    RCLCPP_INFO(logger_, "Shutting down GStreamer pipeline.");
     if (pipeline_) {
         gst_element_set_state(pipeline_, GST_STATE_NULL);
         gst_object_unref(pipeline_);
@@ -77,36 +75,30 @@ H264Streamer::~H264Streamer()
 
 void H264Streamer::push_image(const cv::Mat& image)
 {
-    if (image.empty()) {
-        RCLCPP_WARN(logger_, "Received empty image frame.");
-        return;
+    if (image.empty()) return;
+
+    // 1. Ensure Memory Continuity (Crucial for C++ -> GStreamer)
+    cv::Mat frame_to_send;
+    if (!image.isContinuous()) {
+        frame_to_send = image.clone();
+    } else {
+        frame_to_send = image;
     }
 
-    // Sanity check
-    if (image.cols != width_ || image.rows != height_) {
-        // Use a persistent clock for throttled warnings. Creating a shared_ptr avoids
-        // calling non-existent `.get()` and matches the common usage of
-        // RCLCPP_WARN_THROTTLE(logger, *clock_ptr, period_ms, ...).
-        static rclcpp::Clock::SharedPtr warn_clock = std::make_shared<rclcpp::Clock>(RCL_ROS_TIME);
-        RCLCPP_WARN_THROTTLE(logger_, *warn_clock, 5000,
-                             "Image size mismatch. Expected %dx%d, got %dx%d. Dropping frame.",
-                             width_, height_, image.cols, image.rows);
-        return;
-    }
-
-    // --- Push frame into GStreamer ---
-    gsize data_size = image.total() * image.elemSize();
+    // 2. Create Buffer
+    gsize data_size = frame_to_send.total() * frame_to_send.elemSize();
     GstBuffer *buffer = gst_buffer_new_allocate(NULL, data_size, NULL);
-    gst_buffer_fill(buffer, 0, image.data, data_size);
+    gst_buffer_fill(buffer, 0, frame_to_send.data, data_size);
 
-    // Let appsrc timestamp buffers (do-timestamp = TRUE). Do not set PTS/DURATION here
-    // to avoid scheduling buffers far in the future which can introduce delay.
+    // 3. Manual Timestamping (The C++ equivalent of ximagesrc's automatic timing)
+    GstClockTime duration = gst_util_uint64_scale_int(1, GST_SECOND, framerate_);
+    GST_BUFFER_PTS(buffer) = timestamp_;
+    GST_BUFFER_DTS(buffer) = timestamp_;
+    GST_BUFFER_DURATION(buffer) = duration;
+    timestamp_ += duration;
 
+    // 4. Push
     GstFlowReturn ret;
     g_signal_emit_by_name(appsrc_, "push-buffer", buffer, &ret);
     gst_buffer_unref(buffer);
-
-    if (ret != GST_FLOW_OK) {
-        RCLCPP_WARN(logger_, "Error pushing buffer to GStreamer.");
-    }
 }

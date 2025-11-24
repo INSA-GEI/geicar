@@ -19,16 +19,19 @@ find_package(PkgConfig REQUIRED)
 
 pkg_check_modules(GSTREAMER REQUIRED gstreamer-1.0)
 pkg_check_modules(GSTREAMER_BASE REQUIRED gstreamer-base-1.0)
+pkg_check_modules(GST REQUIRED gstreamer-app-1.0)
 
 include_directories(
   ${OpenCV_INCLUDE_DIRS}
   ${GSTREAMER_INCLUDE_DIRS}
   ${GSTREAMER_BASE_INCLUDE_DIRS}
+  ${GST_INCLUDE_DIRS}
 )
 
 link_directories(
   ${GSTREAMER_LIBRARY_DIRS}
   ${GSTREAMER_BASE_LIBRARY_DIRS}
+  ${GST_LIBRARY_DIRS}
 )
 
 # ---- Library with components ----
@@ -55,6 +58,7 @@ target_link_libraries(network_hmi_lib
     ${OpenCV_LIBRARIES}
     ${GSTREAMER_LIBRARIES}
     ${GSTREAMER_BASE_LIBRARIES}
+    ${GST_LIBRARIES}
 )
 
 ament_target_dependencies(network_hmi_lib
