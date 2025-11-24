@@ -45,7 +45,7 @@ bool SharedClientInfo::register_client(const std::string& ip, int data_port, int
         image_addr_.valid = true;
 
         // Initialize GStreamer
-        h264_streamer_ = std::make_unique<H264Streamer>(logger_, ip_, image_port_, 640, 480, 1, 2000);
+        h264_streamer_ = std::make_unique<H264Streamer>(logger_, ip_, image_port_, 640, 480, 5, 500);
 
     } else {
         image_addr_.valid = false;
