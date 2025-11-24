@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>image_tools</name>
+  <name>my_image_tools</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="chourret.thomas@gmail.com">thomas</maintainer>
-  <license>TODO: License declaration</license>
+  <description>Image Tools Packages</description>
+  <maintainer email="chourret.thomas@gmail.com">Thomas Chourret</maintainer>
+  <license>MIT</license>
 
   <depend>rclpy</depend>
   <depend>sensor_msgs</depend>

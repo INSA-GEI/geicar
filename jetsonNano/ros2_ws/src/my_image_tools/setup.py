@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'image_tools'
+package_name = 'my_image_tools'
 
 setup(
     name=package_name,
@@ -13,10 +13,10 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='thomas',
+    maintainer='Thomas Chourret',
     maintainer_email='chourret.thomas@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Image Tools Packages',
+    license='MIT',
     extras_require={
         'test': [
             'pytest',
@@ -24,7 +24,7 @@ setup(
     },
     entry_points={
     'console_scripts': [
-        'saver_node = image_tools.dual_image_saver:main',
+        'saver_node = my_image_tools.dual_image_saver:main',
         ],
     },
 )
