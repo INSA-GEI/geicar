@@ -18,7 +18,7 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
     // Declare and get parameters
     this->declare_parameter<int>("tcp_control_port", 5001);
     this->declare_parameter<int>("udp_data_port", 5000);
-    this->declare_parameter<std::string>("image_topic", "/out/compressed");
+    this->declare_parameter<std::string>("image_topic", "/usb_cam_0/image_raw/compressed");
 
     tcp_control_port_ = this->get_parameter("tcp_control_port").as_int();
     udp_data_port_ = this->get_parameter("udp_data_port").as_int();
