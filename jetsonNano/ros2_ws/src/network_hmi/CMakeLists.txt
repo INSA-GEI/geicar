@@ -17,6 +17,14 @@ find_package(OpenCV REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(PkgConfig REQUIRED)
 
+# This ensures that when the node runs, it looks here first, ignoring /usr/lib
+set(CMAKE_SKIP_BUILD_RPATH FALSE)
+set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
+set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+
+# Add the ROS lib path to the RPATH explicitly
+set(CMAKE_INSTALL_RPATH "${OpenCV_LIB_PATH};/opt/ros/$ENV{ROS_DISTRO}/lib")
+
 pkg_check_modules(GSTREAMER REQUIRED gstreamer-1.0)
 pkg_check_modules(GSTREAMER_BASE REQUIRED gstreamer-base-1.0)
 pkg_check_modules(GST REQUIRED gstreamer-app-1.0)
