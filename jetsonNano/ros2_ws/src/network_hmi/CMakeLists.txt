@@ -13,9 +13,27 @@ find_package(nav_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(interfaces REQUIRED)
 find_package(nlohmann_json REQUIRED)
-find_package(OpenCV REQUIRED)
+#find_package(OpenCV REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(PkgConfig REQUIRED)
+
+#set(OpenCV_DIR "/opt/ros/$ENV{ROS_DISTRO}/share/opencv4") # Path to ROS OpenCV config
+#find_package(OpenCV 4.5 REQUIRED PATHS "/opt/ros/$ENV{ROS_DISTRO}" NO_DEFAULT_PATH)
+
+set(MANUAL_OPENCV_LIBS
+    "/lib/aarch64-linux-gnu/libopencv_core.so.4.5d"
+    "/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.5d"
+    "/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.5d"
+    "/lib/aarch64-linux-gnu/libopencv_highgui.so.4.5d"
+    # Add others here if you use them (e.g. videoio, calib3d)
+)
+
+set(MANUAL_OPENCV_INCLUDE "/usr/include/opencv4")
+
+message(STATUS "OpenCV_FOUND: ${OpenCV_FOUND}")
+message(STATUS "OpenCV_VERSION: ${OpenCV_VERSION}")
+message(STATUS "OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}")
+message(STATUS "OpenCV_LIBRARIES: ${OpenCV_LIBRARIES}")
 
 # This ensures that when the node runs, it looks here first, ignoring /usr/lib
 set(CMAKE_SKIP_BUILD_RPATH FALSE)
@@ -58,12 +76,15 @@ target_include_directories(network_hmi_lib
   PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
+    ${MANUAL_OPENCV_INCLUDE}
 )
 
 target_link_libraries(network_hmi_lib
   PUBLIC
     nlohmann_json::nlohmann_json
-    ${OpenCV_LIBRARIES}
+    ${cv_bridge_LIBRARIES}
+    #${OpenCV_LIBRARIES}
+    ${MANUAL_OPENCV_LIBS}
     ${GSTREAMER_LIBRARIES}
     ${GSTREAMER_BASE_LIBRARIES}
     ${GST_LIBRARIES}
