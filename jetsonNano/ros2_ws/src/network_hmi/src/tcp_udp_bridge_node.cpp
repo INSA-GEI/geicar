@@ -19,15 +19,18 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
     this->declare_parameter<int>("tcp_control_port", 5001);
     this->declare_parameter<int>("udp_data_port", 5000);
     this->declare_parameter<std::string>("image_topic", "/usb_cam_0/image_raw/compressed");
+    this->declare_parameter<std::string>("general_data_topic", "/general_data");
 
     tcp_control_port_ = this->get_parameter("tcp_control_port").as_int();
     udp_data_port_ = this->get_parameter("udp_data_port").as_int();
     image_topic_ = this->get_parameter("image_topic").as_string();
+    general_data_topic_ = this->get_parameter("general_data_topic").as_string();
 
     RCLCPP_INFO(this->get_logger(), "Starting bridge node...");
     RCLCPP_INFO(this->get_logger(), " - TCP Control Port: %d", tcp_control_port_);
     RCLCPP_INFO(this->get_logger(), " - UDP Data Port: %d", udp_data_port_);
     RCLCPP_INFO(this->get_logger(), " - Image Topic: %s", image_topic_.c_str());
+    RCLCPP_INFO(this->get_logger(), " - General Data Topic: %s", general_data_topic_.c_str());
 
     // --- Create core components ---
     vehicle_state_ = std::make_shared<SharedVehicleState>();
@@ -59,6 +62,11 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
     image_sub_ = this->create_subscription<sensor_msgs::msg::CompressedImage>(
         image_topic_, 1, // QoS 1, only need the latest
         std::bind(&TcpUdpBridgeNode::image_callback, this, _1)
+    );
+
+    general_data_sub_ = this->create_subscription<interfaces::msg::GeneralData>(
+        general_data_topic_, 10,
+        std::bind(&TcpUdpBridgeNode::general_data_callback, this, _1)
     );
 
     // --- Start network threads ---
@@ -109,4 +117,19 @@ void TcpUdpBridgeNode::image_callback(const sensor_msgs::msg::CompressedImage::S
     } catch (cv_bridge::Exception &e) {
         RCLCPP_ERROR(this->get_logger(), "cv_bridge exception: %s", e.what());
     }
+}
+
+void TcpUdpBridgeNode::general_data_callback(const interfaces::msg::GeneralData::SharedPtr msg)
+{
+    auto dest = client_info_->get_data_address();
+    if (!dest.valid) {
+        return; // No client connected or client didn't want data
+    }
+
+    json general_data_msg = {
+        {"type", "general_data"},
+        {"battery_level", msg->battery_level}
+    };
+    
+    udp_sender_->send_json(general_data_msg.dump(), dest);
 }
