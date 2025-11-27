@@ -3,6 +3,10 @@ from launch_ros.actions import Node
 from launch.substitutions import Command
 import os
 from ament_index_python.packages import get_package_share_directory
+from launch.actions import DeclareLaunchArgument
+from launch.conditions import UnlessCondition
+from launch.substitutions import LaunchConfiguration
+
 
 def generate_launch_description():
     urdf_model_path = os.path.join(
@@ -10,6 +14,30 @@ def generate_launch_description():
         'src',
         'description',
         'geicar_description.urdf'
+    )
+
+    disable_car_control_arg = DeclareLaunchArgument(
+        'disable_car_control',
+        default_value='false',
+        description='Disable the car control node'
+    )
+
+    disable_can_arg = DeclareLaunchArgument(
+        'disable_can',
+        default_value='false',
+        description='Disable the CAN nodes'
+    )
+
+    disable_joystick_arg = DeclareLaunchArgument(
+        'disable_joystick', 
+        default_value='false',
+        description='Disable the joystick nodes'
+    )
+
+    disable_system_check_arg = DeclareLaunchArgument(
+        'disable_system_check',
+        default_value='false',
+        description='Disable the system check node'
     )
     
     ld = LaunchDescription()
@@ -25,31 +53,36 @@ def generate_launch_description():
     joystick_node = Node(
         package="joystick",
         executable="joystick_ros2.py",
-        emulate_tty=True
+        emulate_tty=True,
+        condition=UnlessCondition(LaunchConfiguration('disable_joystick'))
     )
 
     joystick_to_cmd_node = Node(
         package="joystick",
         executable="joystick_to_cmd",
-        emulate_tty=True
+        emulate_tty=True,
+        condition=UnlessCondition(LaunchConfiguration('disable_joystick'))
     )
 
     can_rx_node = Node(
         package="can",
         executable="can_rx_node",
-        emulate_tty=True
+        emulate_tty=True,
+        condition=UnlessCondition(LaunchConfiguration('disable_can'))
     )
 
     can_tx_node = Node(
         package="can",
         executable="can_tx_node",
-        emulate_tty=True
+        emulate_tty=True,
+        condition=UnlessCondition(LaunchConfiguration('disable_can'))
     )
 
     car_control_node = Node(
         package="car_control",
         executable="car_control_node",
-        emulate_tty=True
+        emulate_tty=True,
+        condition=UnlessCondition(LaunchConfiguration('disable_car_control'))
     )
 
 
@@ -66,16 +99,23 @@ def generate_launch_description():
     system_check_node = Node(
         package="system_check",
         executable="system_check_node",
-        emulate_tty=True
+        emulate_tty=True,
+        condition=UnlessCondition(LaunchConfiguration('disable_system_check'))
     )
 
+    # Arguments Actions
+    ld.add_action(disable_car_control_arg)
+    ld.add_action(disable_can_arg)
+    ld.add_action(disable_joystick_arg)
+    ld.add_action(disable_system_check_arg)
 
+    # Nodes Actions
     ld.add_action(joystick_node)
     ld.add_action(joystick_to_cmd_node)
     ld.add_action(can_rx_node)
     ld.add_action(can_tx_node)
     ld.add_action(car_control_node)
-    ld.add_action(imu_filter_madgwick_node)
+    # ld.add_action(imu_filter_madgwick_node)   # Not needed because not using Magnetometer
     ld.add_action(system_check_node)
     ld.add_action(robot_state_publisher_node)
 
