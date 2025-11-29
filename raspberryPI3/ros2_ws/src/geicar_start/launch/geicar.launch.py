@@ -16,6 +16,12 @@ def generate_launch_description():
         'geicar_description.urdf'
     )
 
+    disable_robot_state_publisher_arg = DeclareLaunchArgument(
+        'disable_robot_state_publisher',
+        default_value='false',
+        description='Disable the robot state publisher node'
+    )
+
     disable_car_control_arg = DeclareLaunchArgument(
         'disable_car_control',
         default_value='false',
@@ -48,6 +54,7 @@ def generate_launch_description():
         name='robot_state_publisher',
         output='screen',
         parameters=[{'robot_description': Command(['xacro ', str(urdf_model_path)])}],
+        condition=UnlessCondition(LaunchConfiguration('disable_robot_state_publisher'))
     )
 
     joystick_node = Node(
@@ -88,10 +95,16 @@ def generate_launch_description():
 
     config_dir = os.path.join(get_package_share_directory('imu_filter_madgwick'), 'config')
 
-    imu_filter_madgwick_node = Node(
-        package="imu_filter_madgwick",
-        executable="imu_filter_madgwick_node",
-        parameters=[os.path.join(config_dir, 'imu_filter.yaml')],
+    # imu_filter_madgwick_node = Node(
+    #     package="imu_filter_madgwick",
+    #     executable="imu_filter_madgwick_node",
+    #     parameters=[os.path.join(config_dir, 'imu_filter.yaml')],
+    #     emulate_tty=True
+    # )
+
+    imu_calibration_node = Node(
+        package="imu_calibration",
+        executable="imu_calibration_node",
         emulate_tty=True
     )
 
@@ -104,6 +117,7 @@ def generate_launch_description():
     )
 
     # Arguments Actions
+    ld.add_action(disable_robot_state_publisher_arg)
     ld.add_action(disable_car_control_arg)
     ld.add_action(disable_can_arg)
     ld.add_action(disable_joystick_arg)
@@ -116,6 +130,7 @@ def generate_launch_description():
     ld.add_action(can_tx_node)
     ld.add_action(car_control_node)
     # ld.add_action(imu_filter_madgwick_node)   # Not needed because not using Magnetometer
+    ld.add_action(imu_calibration_node)
     ld.add_action(system_check_node)
     ld.add_action(robot_state_publisher_node)
 
