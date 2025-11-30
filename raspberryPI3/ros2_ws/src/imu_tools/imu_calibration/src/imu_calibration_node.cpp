@@ -36,7 +36,9 @@ public:
             5s,
             std::bind(&ImuCalibration::calibrate, this)
         );
-
+        // Pause the timer until first IMU data is received
+        calibrate_timer_->cancel();
+        
         // Initialize offsets
         mean_offset_.linear_acceleration.x = 0.0;
         mean_offset_.linear_acceleration.y = 0.0;
@@ -50,21 +52,28 @@ private:
     {
         // Accumulate data for calibration
         if (calibrated_ == false){
+            if (!first_data_received_ && calibrate_timer_->is_canceled()){
+                first_data_received_ = true;
+                // Start the timer on first data reception
+                RCLCPP_INFO(this->get_logger(), "[IMU Calibration] First IMU data received. Starting 5 seconds calibration period...");
+                calibrate_timer_->reset();
+            }
             mean_offset_.linear_acceleration.x += msg.linear_acceleration.x;
             mean_offset_.linear_acceleration.y += msg.linear_acceleration.y;
             mean_offset_.linear_acceleration.z += msg.linear_acceleration.z;       
             data_count_++;
+        } else {
+            // Prepare IMU calibrated data message
+            auto imu_data_msg = sensor_msgs::msg::Imu();
+            imu_data_msg.header.stamp = msg.header.stamp;
+
+            // Apply calibration offsets
+            imu_data_msg.linear_acceleration.x = msg.linear_acceleration.x - mean_offset_.linear_acceleration.x*calibrated_;
+            imu_data_msg.linear_acceleration.y = msg.linear_acceleration.y - mean_offset_.linear_acceleration.y*calibrated_;
+            imu_data_msg.linear_acceleration.z = msg.linear_acceleration.z - mean_offset_.linear_acceleration.z*calibrated_;
+
+            data_publisher_->publish(imu_data_msg);
         }
-        // Prepare IMU data message
-        auto imu_data_msg = sensor_msgs::msg::Imu();
-        imu_data_msg.header.stamp = msg.header.stamp;
-
-        // Apply calibration offsets
-        imu_data_msg.linear_acceleration.x = msg.linear_acceleration.x - mean_offset_.linear_acceleration.x;
-        imu_data_msg.linear_acceleration.y = msg.linear_acceleration.y - mean_offset_.linear_acceleration.y;
-        imu_data_msg.linear_acceleration.z = msg.linear_acceleration.z - mean_offset_.linear_acceleration.z;
-
-        data_publisher_->publish(imu_data_msg);
         return;
     }
 
@@ -74,7 +83,7 @@ private:
         if (calibrated_)
             return;
         
-        RCLCPP_INFO(this->get_logger(), "[IMU Calibration] Apply IMU Offsets to acceleration.");
+        RCLCPP_INFO(this->get_logger(), "[IMU Calibration] Calibration complete. Apply IMU Offsets to acceleration.");
 
         if (data_count_ > 0)
         {
@@ -104,6 +113,7 @@ private:
 
     size_t data_count_ = 0;
     bool calibrated_ = false;
+    bool first_data_received_ = false;
 
     const float GRAVITY = 9.80665; // m/s²
 };
