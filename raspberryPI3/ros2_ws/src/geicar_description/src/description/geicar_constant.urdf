@@ -23,6 +23,7 @@
     <xacro:property name="rplidar_xoff" value="-0.34"/>
     <xacro:property name="rplidar_yoff" value="0.0"/>
     <xacro:property name="rplidar_zoff" value="0.45"/>
+    <xacro:property name="rplidar_rotz" value="${pi/2 - pi/22.5}"/>
 
     <!-- IMU -->
     <xacro:property name="imu_xoff" value="-0.16"/>
