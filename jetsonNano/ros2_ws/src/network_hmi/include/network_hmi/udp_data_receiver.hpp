@@ -14,7 +14,8 @@ public:
     UdpDataReceiver(
         rclcpp::Node* node, // For publishing
         std::shared_ptr<SharedVehicleState> state,
-        int port
+        int port,
+        std::string name
     );
     ~UdpDataReceiver();
 
@@ -30,6 +31,7 @@ private:
     std::shared_ptr<SharedVehicleState> vehicle_state_;
     
     int data_port_;
+    std::string name_;
     int data_socket_ = -1;
     std::thread thread_;
     std::atomic<bool> running_{false};

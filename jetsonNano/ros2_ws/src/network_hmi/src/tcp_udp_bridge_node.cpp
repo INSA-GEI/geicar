@@ -41,7 +41,8 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
     udp_receiver_ = std::make_unique<UdpDataReceiver>(
         this, 
         vehicle_state_, 
-        udp_data_port_
+        udp_data_port_,
+        "network_joystick_order"
     );
     
     // The server needs the shared state objects to pass to new sessions
