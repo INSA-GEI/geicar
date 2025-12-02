@@ -142,35 +142,6 @@ def generate_launch_description():
                     {'use_sim_time': LaunchConfiguration('use_sim_time')}]
     )
 
-    rf2o_laser_odometry_node = Node(
-        package='rf2o_laser_odometry',
-        executable='rf2o_laser_odometry_node',
-        name='rf2o_laser_odometry',
-        output='screen',
-        parameters=[{
-            'laser_scan_topic' : '/scan',
-            'odom_topic' : '/odom',
-            'publish_tf' : True,
-            'base_frame_id' : 'base_link',
-            'odom_frame_id' : 'odom',
-            'init_pose_from_topic' : '',
-            'freq' : 15.0},
-            {'use_sim_time': LaunchConfiguration('use_sim_time')}],
-        condition=UnlessCondition(LaunchConfiguration('disable_lio'))
-    )
-
-    robot_localization_node = Node(
-        package='robot_localization',
-        executable='ekf_node',
-        name='ekf_filter_node',
-        output='screen',
-        remappings=[
-            ('/odometry/filtered', '/odom'),     # Rename output odom
-        ],
-        parameters=[{os.path.join(pkg_share, 'config/ekf.yaml')},
-                    {'use_sim_time': LaunchConfiguration('use_sim_time')}]
-    )
-
     # --- Add Actions to Launch Description ---
 
     # Add the argument declarations
