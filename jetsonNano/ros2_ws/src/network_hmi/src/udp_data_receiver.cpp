@@ -10,13 +10,15 @@ using json = nlohmann::json;
 UdpDataReceiver::UdpDataReceiver(
     rclcpp::Node* node,
     std::shared_ptr<SharedVehicleState> state,
-    int port)
+    int port,
+    std::string name)
 : logger_(node->get_logger().get_child("udp_receiver")),
   vehicle_state_(state),
-  data_port_(port)
+  data_port_(port),
+  name_(name)
 {
     // Create the publisher from the node
-    joystick_pub_ = node->create_publisher<interfaces::msg::JoystickOrder>("joystick_order", 1);
+    joystick_pub_ = node->create_publisher<interfaces::msg::JoystickOrder>(name_, 1);
 }
 
 UdpDataReceiver::~UdpDataReceiver()
