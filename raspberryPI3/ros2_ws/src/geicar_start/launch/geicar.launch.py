@@ -16,6 +16,8 @@ def generate_launch_description():
         'geicar_description.urdf'
     )
 
+    # --- Declare Launch Arguments ---
+
     disable_robot_state_publisher_arg = DeclareLaunchArgument(
         'disable_robot_state_publisher',
         default_value='false',
@@ -45,6 +47,14 @@ def generate_launch_description():
         default_value='false',
         description='Disable the system check node'
     )
+
+    use_sim_time_arg = DeclareLaunchArgument(
+        'use_sim_time',
+        default_value='false',
+        description='Use simulation time (Gazebo/Bag) if true'
+    )
+
+    # --- Initialize Launch Description ---
     
     ld = LaunchDescription()
 
@@ -53,7 +63,8 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher',
         output='screen',
-        parameters=[{'robot_description': Command(['xacro ', str(urdf_model_path)])}],
+        parameters=[{'robot_description': Command(['xacro ', str(urdf_model_path)])}, 
+                    {'use_sim_time': LaunchConfiguration('use_sim_time')}],
         condition=UnlessCondition(LaunchConfiguration('disable_robot_state_publisher'))
     )
 
@@ -89,22 +100,24 @@ def generate_launch_description():
         package="car_control",
         executable="car_control_node",
         emulate_tty=True,
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
         condition=UnlessCondition(LaunchConfiguration('disable_car_control'))
     )
 
 
-    config_dir = os.path.join(get_package_share_directory('imu_filter_madgwick'), 'config')
+    # madgwick_config_dir = os.path.join(get_package_share_directory('imu_filter_madgwick'), 'config')
 
     # imu_filter_madgwick_node = Node(
     #     package="imu_filter_madgwick",
     #     executable="imu_filter_madgwick_node",
-    #     parameters=[os.path.join(config_dir, 'imu_filter.yaml')],
+    #     parameters=[os.path.join(madgwick_config_dir, 'imu_filter.yaml')],
     #     emulate_tty=True
     # )
 
     imu_calibration_node = Node(
         package="imu_calibration",
         executable="imu_calibration_node",
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
         emulate_tty=True
     )
 
@@ -122,6 +135,7 @@ def generate_launch_description():
     ld.add_action(disable_can_arg)
     ld.add_action(disable_joystick_arg)
     ld.add_action(disable_system_check_arg)
+    ld.add_action(use_sim_time_arg)
 
     # Nodes Actions
     ld.add_action(joystick_node)

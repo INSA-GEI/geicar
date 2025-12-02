@@ -31,8 +31,10 @@ public:
         // Create publisher
         data_publisher_ = this->create_publisher<sensor_msgs::msg::Imu>("/imu/data", 10);
 
-        // Create 5-second timer
-        calibrate_timer_ = this->create_wall_timer(
+        // Create 5-second timer for calibration
+        calibrate_timer_ = rclcpp::create_timer(
+            this,
+            this->get_clock(),
             5s,
             std::bind(&ImuCalibration::calibrate, this)
         );
