@@ -87,7 +87,7 @@
     <joint name="rplidar_joint" type="fixed">
         <parent link="base_link"/>
         <child link="rplidar_link"/>
-        <origin xyz="${rplidar_xoff} ${rplidar_yoff} ${rplidar_zoff}" rpy="0 0 ${pi/2}"/>
+        <origin xyz="${rplidar_xoff} ${rplidar_yoff} ${rplidar_zoff}" rpy="${pi} 0 ${-pi/2}"/>
     </joint>
 
     <link name="imu_link">
