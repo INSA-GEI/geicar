@@ -9,6 +9,15 @@
 
     <!-- Robot Footprint -->
     <link name="base_footprint">
+    <visual>
+      <origin xyz="0.0 0.0 ${base_height}" rpy="0.0 0.0 0.0"/>
+      <geometry>
+        <box size="${base_length} ${base_width} ${base_height}"/>
+      </geometry>
+      <material name='mohammed'>
+        <color rgba="0.25 0.25 0.25 1.0"/>
+      </material>
+    </visual>
     </link>
 
     <joint name="base_joint" type="fixed">
@@ -16,9 +25,18 @@
         <child link="base_footprint"/>
         <origin xyz="0.0 0.0 ${-(wheel_radius+wheel_zoff)}" rpy="0 0 0"/>
     </joint>
-    
+
     <!-- Wheels -->
     <link name="wheel_front_left_steer_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <geometry>
+                <cylinder length="0.001" radius="0.01"/>
+            </geometry>
+            <material name="wheel_material">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
     </link>
 
     <joint name="wheel_front_left_steer_joint" type="revolute">
@@ -30,6 +48,15 @@
     </joint>
 
     <link name="wheel_front_left_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+            </geometry>
+            <material name="wheel_material">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
     </link>
 
     <joint name="wheel_front_left_joint" type="continuous">
@@ -51,6 +78,15 @@
     </joint>
 
     <link name="wheel_front_right_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+            </geometry>
+            <material name="wheel_material">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
     </link>
 
     <joint name="wheel_front_right_joint" type="continuous">
@@ -61,6 +97,15 @@
     </joint>
 
     <link name="wheel_back_left_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+            </geometry>
+            <material name="wheel_material">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
     </link>
 
     <joint name="wheel_back_left_joint" type="continuous">
@@ -71,12 +116,21 @@
     </joint>
 
     <link name="wheel_back_right_link">
+        <visual>
+            <origin xyz="0.0 0.0 0.0" rpy="1.570795 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+            </geometry>
+            <material name="wheel_material">
+                <color rgba="0.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
     </link>
 
     <joint name="wheel_back_right_joint" type="continuous">
         <parent link="base_link"/>
         <child link="wheel_back_right_link"/>
-        <origin xyz="${-1*wheel_xoff} ${-1*wheel_yoff} ${wheel_zoff}" rpy="0 0 0"/>
+        <origin xyz="-${wheel_xoff} -${wheel_yoff} ${wheel_zoff}" rpy="0 0 0"/>
         <axis xyz="0 1 0"/>
     </joint>
 
