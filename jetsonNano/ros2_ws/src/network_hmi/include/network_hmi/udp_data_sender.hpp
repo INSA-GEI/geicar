@@ -17,9 +17,6 @@ public:
     UdpDataSender& operator=(const UdpDataSender&) = delete;
 
     void send_json(const std::string& payload, const SharedClientInfo::UdpAddress& dest);
-    void send_image_packet(const std::vector<uint8_t>& packet_data, size_t length, const SharedClientInfo::UdpAddress& dest);
-    
-    uint32_t get_next_frame_id();
 
 private:
     int send_socket_ = -1;
