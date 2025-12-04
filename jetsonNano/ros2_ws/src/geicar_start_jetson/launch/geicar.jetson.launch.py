@@ -120,8 +120,8 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'laser_scan_topic' : '/scan',
-            'odom_topic' : '/odom/laser_odom',
-            'publish_tf' : False,
+            'odom_topic' : '/odom',
+            'publish_tf' : True,
             'base_frame_id' : 'base_link',
             'odom_frame_id' : 'odom',
             'init_pose_from_topic' : '',
@@ -159,6 +159,6 @@ def generate_launch_description():
     ld.add_action(system_check_ack_node)
     ld.add_action(bridge_node)
     ld.add_action(rf2o_laser_odometry_node)
-    ld.add_action(robot_localization_node)
+    #ld.add_action(robot_localization_node)
 
     return ld

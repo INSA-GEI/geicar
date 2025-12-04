@@ -14,20 +14,21 @@ find_package(sensor_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
 find_package(geometry_msgs  REQUIRED)
 
-add_executable(car_control_node_iyed 
+add_executable(car_control_node 
   src/car_control_node.cpp
   src/steeringCmd.cpp
   src/propulsionCmd.cpp
 )
+
 add_executable(vehicle_controller 
   src/vehicle_controller.cpp
 )
 
 ament_target_dependencies(vehicle_controller rclcpp std_msgs geometry_msgs)
-ament_target_dependencies(car_control_node_iyed  rclcpp interfaces sensor_msgs std_srvs)
+ament_target_dependencies(car_control_node  rclcpp interfaces sensor_msgs std_srvs)
 ament_export_include_directories(include)
 
-target_include_directories(car_control_node_iyed  PUBLIC
+target_include_directories(car_control_node  PUBLIC
 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 $<INSTALL_INTERFACE:include>)
 
@@ -36,10 +37,10 @@ $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 $<INSTALL_INTERFACE:include>)
 
 
-target_compile_features(car_control_node_iyed  PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
+target_compile_features(car_control_node  PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
 
-install(TARGETS car_control_node_iyed 
+install(TARGETS car_control_node 
   DESTINATION lib/${PROJECT_NAME})
 
 install(TARGETS

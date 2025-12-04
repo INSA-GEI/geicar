@@ -129,6 +129,18 @@ def generate_launch_description():
         condition=UnlessCondition(LaunchConfiguration('disable_system_check'))
     )
 
+    vehicle_controller_node = Node(package='car_control',
+                                executable='vehicle_controller',
+                                parameters=[ {
+                                            'body_width': 0.985,          # meters
+                                            'body_length': 0.523,         # meters
+                                            'wheel_radius': 0.095,        # meters
+                                            'wheel_width': 0.076,         # meters
+                                            'max_steering_angle': 0.6108652,   # radians
+                                            'max_velocity': 0.5          # m/s
+                                        }],
+                                output='screen')
+
     # Arguments Actions
     ld.add_action(disable_robot_state_publisher_arg)
     ld.add_action(disable_car_control_arg)
@@ -147,5 +159,7 @@ def generate_launch_description():
     ld.add_action(imu_calibration_node)
     ld.add_action(system_check_node)
     ld.add_action(robot_state_publisher_node)
+    ld.add_action(vehicle_controller_node)
+
 
     return ld
