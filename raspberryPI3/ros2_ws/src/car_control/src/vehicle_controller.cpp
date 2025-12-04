@@ -121,7 +121,7 @@ void VehicleController::cmd_vel_callback(const geometry_msgs::msg::Twist ::Share
   if(msg->linear.x == 0 ){
     steering_angle_=0;
   }else{
-  steering_angle_ = std::atan((wheel_base_ * msg->angular.z) / msg->linear.x);
+  steering_angle_ = (-1)*std::atan((wheel_base_ * msg->angular.z) / msg->linear.x);
 
   if (steering_angle_ > max_steering_angle_) {
     steering_angle_ = max_steering_angle_;
