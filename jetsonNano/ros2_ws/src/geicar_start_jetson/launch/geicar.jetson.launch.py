@@ -5,6 +5,7 @@ from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.substitutions import LaunchConfiguration
 from launch.conditions import UnlessCondition # Use IfCondition for "enable" flags
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
     ld = LaunchDescription()
