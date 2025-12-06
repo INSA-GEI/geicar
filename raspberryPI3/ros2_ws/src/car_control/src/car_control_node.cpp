@@ -220,7 +220,7 @@ private:
     // ---- Private variables ----
 
     //General variables
-    bool start;
+    bool start = false;
     bool stop = false;
     // EmergencyStop indices:
     // 0: front_left, 1: front_center, 2: front_right,

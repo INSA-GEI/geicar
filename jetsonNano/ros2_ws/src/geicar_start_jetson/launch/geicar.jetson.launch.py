@@ -79,8 +79,8 @@ def generate_launch_description():
     camera_node_1 = Node(
         package="usb_cam",
         executable="usb_cam_node_exe",
-        namespace="usb_cam_0",
-        parameters=[{os.path.join(usb_cam_share, 'config', 'params_1.yaml')},
+        namespace="usb_cam__right",
+        parameters=[{os.path.join(usb_cam_share, 'config', 'params_right.yaml')},
                     {'use_sim_time': LaunchConfiguration('use_sim_time')}],
         emulate_tty=True,
         condition=UnlessCondition(LaunchConfiguration('disable_camera'))
@@ -89,8 +89,8 @@ def generate_launch_description():
     camera_node_2 = Node(
         package="usb_cam",
         executable="usb_cam_node_exe",
-        namespace="usb_cam_1",
-        parameters=[{os.path.join(usb_cam_share, 'config', 'params_2.yaml')},
+        namespace="usb_cam__left",
+        parameters=[{os.path.join(usb_cam_share, 'config', 'params_left.yaml')},
                     {'use_sim_time': LaunchConfiguration('use_sim_time')}],
         emulate_tty=True,
         condition=UnlessCondition(LaunchConfiguration('disable_camera'))
