@@ -2,7 +2,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
-from launch.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
 from launch.substitutions import LaunchConfiguration
 from launch.conditions import UnlessCondition # Use IfCondition for "enable" flags
 
@@ -79,7 +79,7 @@ def generate_launch_description():
     camera_node_1 = Node(
         package="usb_cam",
         executable="usb_cam_node_exe",
-        namespace="usb_cam__right",
+        namespace="usb_cam_right",
         parameters=[{os.path.join(usb_cam_share, 'config', 'params_right.yaml')},
                     {'use_sim_time': LaunchConfiguration('use_sim_time')}],
         emulate_tty=True,
@@ -89,7 +89,7 @@ def generate_launch_description():
     camera_node_2 = Node(
         package="usb_cam",
         executable="usb_cam_node_exe",
-        namespace="usb_cam__left",
+        namespace="usb_cam_left",
         parameters=[{os.path.join(usb_cam_share, 'config', 'params_left.yaml')},
                     {'use_sim_time': LaunchConfiguration('use_sim_time')}],
         emulate_tty=True,
@@ -142,6 +142,18 @@ def generate_launch_description():
                     {'use_sim_time': LaunchConfiguration('use_sim_time')}]
     )
 
+    slam_toolbox_launch_file = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory('slam_toolbox'),
+                'launch',
+                'online_async_launch.py')),
+        launch_arguments={
+            'slam_params_file': os.path.join(pkg_share, 'config', 'slam_params.yaml'),
+            'use_sim_time': LaunchConfiguration('use_sim_time')
+        }.items(),
+    )
+
     # --- Add Actions to Launch Description ---
 
     # Add the argument declarations
@@ -160,5 +172,6 @@ def generate_launch_description():
     ld.add_action(bridge_node)
     ld.add_action(rf2o_laser_odometry_node)
     #ld.add_action(robot_localization_node)
+    ld.add_action(slam_toolbox_launch_file)
 
     return ld
