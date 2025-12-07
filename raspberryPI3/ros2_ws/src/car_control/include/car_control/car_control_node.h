@@ -10,9 +10,9 @@
 #define STOP 50               //PWM value to stop motors
 
 // Steering constants
-#define SERVO_FULL_LEFT -127
+#define SERVO_FULL_LEFT -1
 #define SERVO_ZERO 0
-#define SERVO_FULL_RIGHT 127
+#define SERVO_FULL_RIGHT 1
 
 #define STEERING_MAX_LEFT  -0.6108652 // radian
 #define STEERING_CENTER    0.0f        // radian

@@ -232,7 +232,8 @@ private:
     // 3: rear_right, 4: rear_center, 5: rear_left
     std::array<bool, 6> EmergencyStop{}; // all false initially
     int mode;    //0 : Manual    1 : Auto    2 : Calibration
-    double maxSpeed = 0.53; // vitesse lineaire du robot
+    const double wheel_radius = 0.095; // in meters
+    double maxSpeed = 0.53/ wheel_radius; // vitesse angulaire du robot
     int inputSource = -1; // 0: joystick, 1: HMI
     
     //Motors feedback variables
