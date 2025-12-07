@@ -65,7 +65,7 @@ def generate_launch_description():
             name='rplidar_node',
             parameters=[{'channel_type':'serial',
                          'serial_port': '/dev/ttyUSB0',
-                         'serial_baudrate': '256000',
+                         'serial_baudrate': 256000,
                          'frame_id': 'rplidar_link',
                          'inverted': False,
                          'angle_compensate': True,
@@ -110,7 +110,8 @@ def generate_launch_description():
         package="network_hmi",
         executable="bridge_node",
         emulate_tty=True,
-        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time'),
+                     'image_topic': '/usb_cam_left/image_raw/compressed'}],
         condition=UnlessCondition(LaunchConfiguration('disable_bridge'))
     )
 
