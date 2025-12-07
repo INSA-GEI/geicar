@@ -40,7 +40,7 @@ public:
         currentAngle = 0.0f;
         leftRearPwmCmd = STOP;
         rightRearPwmCmd = STOP;
-        steeringPwmCmd = STOP;
+        steeringPwmCmd = SERVO_ZERO;
     
 
         publisher_can_= this->create_publisher<interfaces::msg::MotorsOrder>("motors_order", 10);
@@ -175,7 +175,7 @@ private:
         if (!start) {
             leftRearPwmCmd = STOP;
             rightRearPwmCmd = STOP;
-            steeringVal = STOP;
+            steeringVal = SERVO_ZERO;
         } else {
             //Manual Mode
             if (mode == MODE_MANUAL){
