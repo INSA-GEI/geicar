@@ -213,7 +213,12 @@ private:
 
     void SteerCallback(const std_msgs::msg::Float64MultiArray Msg) {
         if (mode == MODE_AUTONOMOUS){
-            requestedSteerAngle = Msg.data[0];
+            if (Msg.data[0] < STEERING_CENTER){
+                requestedSteerAngle = Msg.data[0]*SERVO_FULL_LEFT/STEERING_MAX_LEFT;
+            }
+            else{
+                requestedSteerAngle = Msg.data[0]*SERVO_FULL_RIGHT/STEERING_MAX_RIGHT;
+            }
         }
     }
     
@@ -227,7 +232,7 @@ private:
     // 3: rear_right, 4: rear_center, 5: rear_left
     std::array<bool, 6> EmergencyStop{}; // all false initially
     int mode;    //0 : Manual    1 : Auto    2 : Calibration
-    double maxSpeed = 0.53; // vitesse angulaire du robot
+    double maxSpeed = 0.53; // vitesse lineaire du robot
     int inputSource = -1; // 0: joystick, 1: HMI
     
     //Motors feedback variables
