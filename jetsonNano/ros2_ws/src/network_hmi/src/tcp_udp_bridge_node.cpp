@@ -18,19 +18,22 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
     // Declare and get parameters
     this->declare_parameter<int>("tcp_control_port", 5001);
     this->declare_parameter<int>("udp_data_port", 5000);
-    this->declare_parameter<std::string>("image_topic", "/usb_cam_0/image_raw/compressed");
+    this->declare_parameter<std::string>("image_topic", "/usb_cam_left/image_raw/compressed");
     this->declare_parameter<std::string>("general_data_topic", "/general_data");
+    this->declare_parameter<std::string>("map_topic", "/map");
 
     tcp_control_port_ = this->get_parameter("tcp_control_port").as_int();
     udp_data_port_ = this->get_parameter("udp_data_port").as_int();
     image_topic_ = this->get_parameter("image_topic").as_string();
     general_data_topic_ = this->get_parameter("general_data_topic").as_string();
+    map_topic_ = this->get_parameter("map_topic").as_string();
 
     RCLCPP_INFO(this->get_logger(), "Starting bridge node...");
     RCLCPP_INFO(this->get_logger(), " - TCP Control Port: %d", tcp_control_port_);
     RCLCPP_INFO(this->get_logger(), " - UDP Data Port: %d", udp_data_port_);
     RCLCPP_INFO(this->get_logger(), " - Image Topic: %s", image_topic_.c_str());
     RCLCPP_INFO(this->get_logger(), " - General Data Topic: %s", general_data_topic_.c_str());
+    RCLCPP_INFO(this->get_logger(), " - Map Topic: %s", map_topic_.c_str());
 
     // --- Create core components ---
     vehicle_state_ = std::make_shared<SharedVehicleState>();
@@ -69,6 +72,12 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
         general_data_topic_, 10,
         std::bind(&TcpUdpBridgeNode::general_data_callback, this, _1)
     );
+
+    map_sub_ = this->create_subscription<nav_msgs::msg::OccupancyGrid>(
+        map_topic_, 1,
+        std::bind(&TcpUdpBridgeNode::map_callback, this, _1)
+    );
+
 
     // --- Start network threads ---
     udp_receiver_->start();
@@ -122,6 +131,13 @@ void TcpUdpBridgeNode::image_callback(const sensor_msgs::msg::CompressedImage::S
 
 void TcpUdpBridgeNode::general_data_callback(const interfaces::msg::GeneralData::SharedPtr msg)
 {
+    static time_t last_log_time = 0;
+    time_t current_time = time(nullptr);
+    if (current_time - last_log_time < 5)
+    { // Ignore logs more frequent than every 5 seconds
+        return;    
+    }
+
     auto dest = client_info_->get_data_address();
     if (!dest.valid) {
         return; // No client connected or client didn't want data
@@ -133,4 +149,54 @@ void TcpUdpBridgeNode::general_data_callback(const interfaces::msg::GeneralData:
     };
     
     udp_sender_->send_json(general_data_msg.dump(), dest);
+    last_log_time = current_time;
+}
+
+void TcpUdpBridgeNode::map_callback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg)
+{
+    auto dest = client_info_->get_data_address();
+    if (!dest.valid) {
+        return; // No client connected or client didn't want data
+    }
+
+    uint32_t w = msg->info.width;
+    uint32_t h = msg->info.height;
+    
+    // Downsample map if too large
+    float x_scale = 1.0f;
+    float y_scale = 1.0f;
+    if (w > MAP_SIZE_LIMIT) {
+        x_scale = static_cast<float>(w) / MAP_SIZE_LIMIT;
+    }
+    if (h > MAP_SIZE_LIMIT) {
+        y_scale = static_cast<float>(h) / MAP_SIZE_LIMIT;
+    }
+    float scale = std::max(x_scale, y_scale);
+    uint32_t r_w = static_cast<uint32_t>(w / scale);
+    uint32_t r_h = static_cast<uint32_t>(h / scale);
+    std::vector<int8_t> r_map(r_w * r_h);
+    for (uint32_t y = 0; y < r_h; ++y) {
+        for (uint32_t x = 0; x < r_w; ++x) {
+            uint32_t orig_x = static_cast<uint32_t>(x * scale);
+            uint32_t orig_y = static_cast<uint32_t>(y * scale);
+            r_map[y * r_w + x] = msg->data[orig_y * w + orig_x];
+        }
+    }
+
+    json map_info_msg = {
+        {"type", "occupancy_grid"},
+        {"width", r_w},
+        {"height", r_h},
+        {"resolution", msg->info.resolution * scale},
+        {"origin_position_x", msg->info.origin.position.x},
+        {"origin_position_y", msg->info.origin.position.y},
+        {"origin_position_z", msg->info.origin.position.z},
+        {"origin_orientation_x", msg->info.origin.orientation.x},
+        {"origin_orientation_y", msg->info.origin.orientation.y},
+        {"origin_orientation_z", msg->info.origin.orientation.z},
+        {"origin_orientation_w", msg->info.origin.orientation.w},
+        {"data", r_map}
+    };
+
+    udp_sender_->send_json(map_info_msg.dump(), dest);
 }

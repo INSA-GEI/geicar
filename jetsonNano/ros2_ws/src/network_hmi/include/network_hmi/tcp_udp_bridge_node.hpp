@@ -3,6 +3,7 @@
 #include <rclcpp/rclcpp.hpp>
 #include <nav_msgs/msg/odometry.hpp>
 #include <sensor_msgs/msg/compressed_image.hpp>
+#include <nav_msgs/msg/occupancy_grid.hpp>
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/general_data.hpp"
 
@@ -16,6 +17,10 @@
 #include <memory>
 #include <vector>
 
+#ifndef MAP_SIZE_LIMIT
+#define MAP_SIZE_LIMIT 50 // Pixels in each dimension
+#endif
+
 // The main ROS Node class, acts as the "conductor"
 class TcpUdpBridgeNode : public rclcpp::Node
 {
@@ -27,17 +32,20 @@ private:
     void odom_callback(const nav_msgs::msg::Odometry::SharedPtr msg);
     void image_callback(const sensor_msgs::msg::CompressedImage::SharedPtr msg);
     void general_data_callback(const interfaces::msg::GeneralData::SharedPtr msg);
+    void map_callback(const nav_msgs::msg::OccupancyGrid::SharedPtr msg);
 
     // --- ROS Parameters ---
     int tcp_control_port_;
     int udp_data_port_;
     std::string image_topic_;
     std::string general_data_topic_;
+    std::string map_topic_;
 
     // --- ROS Interfaces ---
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
     rclcpp::Subscription<sensor_msgs::msg::CompressedImage>::SharedPtr image_sub_;
     rclcpp::Subscription<interfaces::msg::GeneralData>::SharedPtr general_data_sub_;
+    rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr map_sub_;
     // The UdpDataReceiver will publish to this, so it's not strictly "owned" by the node
     rclcpp::Publisher<interfaces::msg::JoystickOrder>::SharedPtr joystick_order_pub_;
 
