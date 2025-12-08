@@ -26,6 +26,7 @@ RUN apt-get install -y ros-humble-navigation2 \
                         ros-humble-ros2-controllers \
                         ros-humble-gz-ros2-control \
                         ros-humble-apriltag-ros \
+                        ros-humble-foxglove-bridge \
                         ros-humble-rmw-cyclonedds-cpp
 ENV SHELL=/bin/bash
 
