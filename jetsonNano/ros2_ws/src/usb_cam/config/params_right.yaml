@@ -1,16 +1,15 @@
 /**:
     ros__parameters:
-      video_device: "/dev/video4"
+      video_device: "/dev/video0"
       framerate: 5.0
       io_method: "mmap"
-      frame_id: "camera2"
+      frame_id: "camera_right_link"
       pixel_format: "yuyv"
       #av_device_format: "YUV422P"
       image_width: 640
       image_height: 480
-      camera_name: "test_camera2"
-      # reusing same camera intrinsics only for demo, should really be unique for camera2"
-      camera_info_url: "package://usb_cam/config/camera_info.yaml"
+      camera_name: "test_camera_right"
+      camera_info_url: "package://usb_cam/config/camera_right_info.yaml"
       brightness: -1
       contrast: -1
       saturation: -1
