@@ -156,6 +156,13 @@ def generate_launch_description():
         }.items(),
     )
 
+    foxglove_server = Node(
+        package='foxglove_bridge',
+        executable='foxglove_bridge',
+        emulate_tty=True,
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+    )
+
     # --- Add Actions to Launch Description ---
 
     # Add the argument declarations
@@ -175,5 +182,6 @@ def generate_launch_description():
     ld.add_action(rf2o_laser_odometry_node)
     #ld.add_action(robot_localization_node)
     ld.add_action(slam_toolbox_launch_file)
+    ld.add_action(foxglove_server)
 
     return ld
