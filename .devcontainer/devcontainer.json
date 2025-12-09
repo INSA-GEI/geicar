@@ -24,7 +24,7 @@
     },
     "containerEnv": {
         "DISPLAY": "unix:0",
-        "ROS_DOMAIN_ID": "16"
+        "ROS_DOMAIN_ID": "3"
     },
     "runArgs": [
         "--net=host",
