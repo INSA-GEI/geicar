@@ -6,6 +6,7 @@
 #include <nav_msgs/msg/occupancy_grid.hpp>
 #include "interfaces/msg/joystick_order.hpp"
 #include "interfaces/msg/general_data.hpp"
+#include "interfaces/msg/control.hpp"
 
 #include "shared_client_info.hpp"
 #include "shared_vehicle_state.hpp"
@@ -40,6 +41,7 @@ private:
     std::string image_topic_;
     std::string general_data_topic_;
     std::string map_topic_;
+    std::string control_topic_;
 
     // --- ROS Interfaces ---
     rclcpp::Subscription<nav_msgs::msg::Odometry>::SharedPtr odom_sub_;
@@ -48,6 +50,7 @@ private:
     rclcpp::Subscription<nav_msgs::msg::OccupancyGrid>::SharedPtr map_sub_;
     // The UdpDataReceiver will publish to this, so it's not strictly "owned" by the node
     rclcpp::Publisher<interfaces::msg::JoystickOrder>::SharedPtr joystick_order_pub_;
+    rclcpp::Publisher<interfaces::msg::Control>::SharedPtr control_pub_;
 
     // --- Core Components ---
     std::shared_ptr<SharedVehicleState> vehicle_state_;
