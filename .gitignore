@@ -42,7 +42,6 @@ Release/
 
 # Kicad files
 *.lck
-*.zip
 *#
 *.kicad_prl
 fp-info-cache
@@ -56,3 +55,23 @@ log/
 
 # Freecad
 *.FCBak
+
+# Fichiers Divers
+*.pdf
+
+*.7z
+*.zip
+*.arc
+*.rar
+
+*.mov
+*.avi
+*.mp4
+*.mp3
+*.mkv
+
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.png

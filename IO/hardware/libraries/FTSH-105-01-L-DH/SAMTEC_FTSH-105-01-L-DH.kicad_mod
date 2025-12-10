@@ -1,0 +1,318 @@
+(footprint "SAMTEC_FTSH-105-01-L-DH"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at -1 -10.64 0)
+		(layer "F.SilkS")
+		(uuid "5635b978-d5c2-40c9-bade-2756d6aa524d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "SAMTEC_FTSH-105-01-L-DH"
+		(at 10.43 4.405 0)
+		(layer "F.Fab")
+		(uuid "15c99640-0ba2-43a7-bada-976cb23e4df2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "bb2295e6-235d-48cd-97f5-aba7df0a4814")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ef4f87f4-1277-4360-9f16-338ac400aa3c")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "e8835f82-75f3-47c7-ab58-199d4933e16b")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_line
+		(start -3.175 -3.195)
+		(end -3.175 -5.705)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4e70a752-880c-4794-9fc5-e2372af6fe86")
+	)
+	(fp_line
+		(start 3.175 -5.705)
+		(end -3.175 -5.705)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "e1b9bc30-2ec2-4dca-9c8e-a77e4d53ef86")
+	)
+	(fp_line
+		(start 3.175 -5.705)
+		(end 3.175 -3.195)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "4394d62d-0248-49bb-9a6f-360a0866b367")
+	)
+	(fp_line
+		(start 3.175 -3.195)
+		(end -3.175 -3.195)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "651d961c-fdcd-4af0-811c-d1e4d10db33d")
+	)
+	(fp_circle
+		(center 3.825 -1.525)
+		(end 3.925 -1.525)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "5efc0b74-9dcb-418d-bde4-7a3ad3c6b238")
+	)
+	(fp_line
+		(start -3.425 -9.005)
+		(end 3.425 -9.005)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "a1e6e89b-b3fa-426e-a4ce-a451d838a7ae")
+	)
+	(fp_line
+		(start -3.425 2.79)
+		(end -3.425 -9.005)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b68605fa-666a-4e2a-8eda-63e5a89ce0a2")
+	)
+	(fp_line
+		(start 3.425 -9.005)
+		(end 3.425 2.79)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "b3022adc-220e-45ce-acd5-7ec5425e3aa4")
+	)
+	(fp_line
+		(start 3.425 2.79)
+		(end -3.425 2.79)
+		(stroke
+			(width 0.05)
+			(type solid)
+		)
+		(layer "F.CrtYd")
+		(uuid "12f5686c-3621-4d68-ad3c-05291b35bd2f")
+	)
+	(fp_line
+		(start -3.175 -8.755)
+		(end 3.175 -8.755)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "c9b95500-f86b-42ee-a6e4-bb13bb984004")
+	)
+	(fp_line
+		(start -3.175 -5.705)
+		(end 3.175 -5.705)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "4d85c743-1249-45b9-b998-36c96cc7d41a")
+	)
+	(fp_line
+		(start -3.175 -3.195)
+		(end -3.175 -8.755)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "81fe1d7e-ff58-44aa-a5d2-57c4d39161c7")
+	)
+	(fp_line
+		(start -3.175 -3.195)
+		(end -3.175 -5.705)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b989ea32-836f-4d31-bc87-563dfac31792")
+	)
+	(fp_line
+		(start 3.175 -8.755)
+		(end 3.175 -3.195)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b1ea92af-6041-4344-81fe-827868fa9640")
+	)
+	(fp_line
+		(start 3.175 -5.705)
+		(end 3.175 -3.195)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "87273184-97e3-42fa-a3d5-196c12e04276")
+	)
+	(fp_line
+		(start 3.175 -3.195)
+		(end -3.175 -3.195)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(layer "F.Fab")
+		(uuid "b8c31043-1c96-4b02-a8a3-e8eb68353294")
+	)
+	(fp_circle
+		(center 3.825 -1.525)
+		(end 3.925 -1.525)
+		(stroke
+			(width 0.2)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "5ac99d9a-bccf-466c-a0db-f122b03f241d")
+	)
+	(pad "01" smd rect
+		(at 2.54 -1.525)
+		(size 0.76 2.03)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(solder_mask_margin 0.102)
+		(uuid "4af345cb-7668-4fa5-8abe-25875f69371b")
+	)
+	(pad "02" smd rect
+		(at 2.54 1.525)
+		(size 0.76 2.03)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(solder_mask_margin 0.102)
+		(uuid "d2f79572-172c-4890-8be1-bd604c8dd7bc")
+	)
+	(pad "03" smd rect
+		(at 1.27 -1.525)
+		(size 0.76 2.03)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(solder_mask_margin 0.102)
+		(uuid "b7db3e5c-7239-4fab-ac77-7ceb95defe82")
+	)
+	(pad "04" smd rect
+		(at 1.27 1.525)
+		(size 0.76 2.03)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(solder_mask_margin 0.102)
+		(uuid "f87f4237-84e1-4fda-b9b0-2bd4585f4ff1")
+	)
+	(pad "05" smd rect
+		(at 0 -1.525)
+		(size 0.76 2.03)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(solder_mask_margin 0.102)
+		(uuid "28575805-3b5b-49ae-a447-cea6a7742d88")
+	)
+	(pad "06" smd rect
+		(at 0 1.525)
+		(size 0.76 2.03)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(solder_mask_margin 0.102)
+		(uuid "0f1ee6d3-4a68-4fa7-8bf4-654a6698662b")
+	)
+	(pad "07" smd rect
+		(at -1.27 -1.525)
+		(size 0.76 2.03)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(solder_mask_margin 0.102)
+		(uuid "fb80536a-fc33-478a-a2f6-ca7f77c01b39")
+	)
+	(pad "08" smd rect
+		(at -1.27 1.525)
+		(size 0.76 2.03)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(solder_mask_margin 0.102)
+		(uuid "e4181816-82de-4d8d-8a73-f8b0691788a9")
+	)
+	(pad "09" smd rect
+		(at -2.54 -1.525)
+		(size 0.76 2.03)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(solder_mask_margin 0.102)
+		(uuid "72ee4131-59f7-4deb-8795-81b8d190be0a")
+	)
+	(pad "10" smd rect
+		(at -2.54 1.525)
+		(size 0.76 2.03)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(solder_mask_margin 0.102)
+		(uuid "c24c7d18-eee4-45ea-8fa5-7344b27cf869")
+	)
+	(model "/home-local/dimercur/Documents/Travail/Depots-Git/geicar/carte-io/hardware/libraries/FTSH-105-01-L-DH/FTSH-105-01-L-DH.step"
+		(offset
+			(xyz 0 3.2 1.7)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 180 0)
+		)
+	)
+)
