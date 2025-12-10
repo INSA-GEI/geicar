@@ -17,9 +17,18 @@
             "extensions":[
                 "mhutchie.git-graph",
                 "ms-python.vscode-python-envs",
+                "ms-python.python",
                 "ms-vscode.cpptools",
                 "ms-vscode.cpptools-extension-pack"
-            ]
+            ],
+            "settings": {
+                "python.analysis.extraPaths": [
+                    "/opt/ros/humble/lib/python3.10/site-packages"
+                ],
+                "C_Cpp.default.includePath": [
+                    "/opt/ros/humble/include/**"
+                ]
+            }
         }
     },
     "containerEnv": {

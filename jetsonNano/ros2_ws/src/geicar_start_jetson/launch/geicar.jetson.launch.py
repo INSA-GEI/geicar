@@ -3,7 +3,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
-from launch.substitutions import LaunchConfiguration
+from launch.substitutions import LaunchConfiguration, Command
 from launch.conditions import UnlessCondition # Use IfCondition for "enable" flags
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
@@ -12,11 +12,23 @@ def generate_launch_description():
 
     pkg_share = get_package_share_directory('geicar_start_jetson')
 
+    urdf_model_path = os.path.join(
+        get_package_share_directory('ecosense_description'),
+        'src',
+        'description',
+        'ecosense_description.urdf'
+    )
+
     # --- Declare Launch Arguments ---
     # We create a "disable" argument for each node. 
     # By default, they are 'false' (meaning the node IS launched).
     # Setting disable_camera:=true will skip launching the camera.
-
+    disable_robot_state_publisher_arg = DeclareLaunchArgument(
+        'disable_robot_state_publisher',
+        default_value='false',
+        description='Disable the robot state publisher node'
+    )
+    
     declare_disable_lidar_arg = DeclareLaunchArgument(
         'disable_lidar',
         default_value='false',
@@ -58,6 +70,16 @@ def generate_launch_description():
     # We add a 'condition' to each node.
     # UnlessCondition(LaunchConfiguration('disable_camera')) means:
     # "Launch this node UNLESS the 'disable_camera' argument is 'true'."
+
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        name='robot_state_publisher',
+        output='screen',
+        parameters=[{'robot_description': Command(['xacro ', str(urdf_model_path)])}, 
+                    {'use_sim_time': LaunchConfiguration('use_sim_time')}],
+        condition=UnlessCondition(LaunchConfiguration('disable_robot_state_publisher'))
+    )
 
     lidar_node = Node(
             package='rplidar_ros',
@@ -159,6 +181,7 @@ def generate_launch_description():
     # --- Add Actions to Launch Description ---
 
     # Add the argument declarations
+    ld.add_action(disable_robot_state_publisher_arg)
     ld.add_action(declare_disable_lidar_arg)
     ld.add_action(declare_disable_lio_arg)
     ld.add_action(declare_disable_camera_arg)
@@ -167,6 +190,7 @@ def generate_launch_description():
     ld.add_action(declare_use_sim_time_arg)
 
     # Add the nodes (they will only be executed if their condition is met)
+    ld.add_action(robot_state_publisher_node)
     ld.add_action(lidar_node)
     ld.add_action(camera_node_1)
     ld.add_action(camera_node_2)
