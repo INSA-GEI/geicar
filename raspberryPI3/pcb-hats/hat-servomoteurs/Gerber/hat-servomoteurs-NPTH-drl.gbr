@@ -1,0 +1,27 @@
+%TF.GenerationSoftware,KiCad,Pcbnew,8.0.9-8.0.9-0~ubuntu22.04.1*%
+%TF.CreationDate,2025-12-05T16:43:26+01:00*%
+%TF.ProjectId,hat-servomoteurs,6861742d-7365-4727-966f-6d6f74657572,rev?*%
+%TF.SameCoordinates,Original*%
+%TF.FileFunction,NonPlated,1,2,NPTH,Drill*%
+%TF.FilePolarity,Positive*%
+%FSLAX46Y46*%
+G04 Gerber Fmt 4.6, Leading zero omitted, Abs format (unit mm)*
+G04 Created by KiCad (PCBNEW 8.0.9-8.0.9-0~ubuntu22.04.1) date 2025-12-05 16:43:26*
+%MOMM*%
+%LPD*%
+G01*
+G04 APERTURE LIST*
+%TA.AperFunction,ComponentDrill*%
+%ADD10C,2.700000*%
+%TD*%
+G04 APERTURE END LIST*
+D10*
+%TO.C,MH1*%
+X103500000Y-47500000D03*
+%TO.C,MH3*%
+X103500000Y-96500000D03*
+%TO.C,MH2*%
+X161500000Y-47500000D03*
+%TO.C,MH4*%
+X161500000Y-96500000D03*
+M02*
