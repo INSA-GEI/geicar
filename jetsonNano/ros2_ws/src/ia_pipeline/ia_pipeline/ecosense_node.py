@@ -8,90 +8,57 @@ import struct
 import json
 import time
 
-class EcoSenseNode(Node):
-    def __init__(self):
-        super().__init__('ecosense_detector')
-
-        # --- PARAMETERS ---
-        self.declare_parameter('server_ip', '127.0.0.1') 
-        self.declare_parameter('server_port', 55001)
-        
-        self.server_ip = self.get_parameter('server_ip').value
-        self.server_port = self.get_parameter('server_port').value
-
-        self.bridge = CvBridge()
-        
-        # --- TCP CLIENT SETUP ---
+class InferenceClient:
+    """Helper class to manage a single socket connection per camera."""
+    def __init__(self, ip, port, logger, name="Generic"):
+        self.ip = ip
+        self.port = port
+        self.logger = logger
+        self.name = name
         self.sock = None
-        self.connect_to_server()
+        self.connect()
 
-        # --- ROS ---
-        self.sub = self.create_subscription(Image, '/usb_cam_right/image_raw', self.image_callback, 10)
-        self.pub = self.create_publisher(Image, '/usb_cam_right/image_processed', 10)
-        self.get_logger().info(f"Node started. Target: {self.server_ip}:{self.server_port}")
-
-    def connect_to_server(self):
-        """Persistent connection to save handshake time"""
+    def connect(self):
         try:
             if self.sock: self.sock.close()
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.sock.connect((self.server_ip, self.server_port))
-            self.get_logger().info("Connected to GPU Server.")
+            # Optional: Set a timeout so it doesn't hang forever if server crashes
+            self.sock.settimeout(5.0) 
+            self.sock.connect((self.ip, self.port))
+            self.logger.info(f"[{self.name}] Connected to GPU Server.")
         except Exception as e:
-            self.get_logger().error(f"Connection failed: {e}")
+            self.logger.warn(f"[{self.name}] Connection failed: {e}")
             self.sock = None
 
-    def image_callback(self, msg):
-        try:
-            cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
-        except Exception as e:
-            self.get_logger().error(f"CV Bridge error: {e}")
-            return
-
-        # Infer
-        detections = self.infer_remote(cv_image)
-        
-        # Draw & Publish
-        if detections is not None:
-            for det in detections:
-                x1, y1, x2, y2 = det['bbox']
-                label = f"{det['class_name']} {det['score']:.2f}"
-                cv2.rectangle(cv_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                cv2.putText(cv_image, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,0), 2)
-
-        out_msg = self.bridge.cv2_to_imgmsg(cv_image, "bgr8")
-        self.pub.publish(out_msg)
-
-    def infer_remote(self, img):
+    def infer(self, img):
         if self.sock is None:
-            self.connect_to_server()
+            self.connect()
             if self.sock is None: return []
 
         try:
-            # 1. Encode Image (JPG is faster over network than raw)
+            # 1. Encode
             _, img_encoded = cv2.imencode('.jpg', img, [int(cv2.IMWRITE_JPEG_QUALITY), 90])
             data = img_encoded.tobytes()
 
-            # 2. Send: Length (4 bytes) + Image Data
+            # 2. Send
             self.sock.sendall(struct.pack('>I', len(data)) + data)
 
-            # 3. Receive: Length (4 bytes)
+            # 3. Receive Length
             raw_len = self.recvall(4)
             if not raw_len: raise ConnectionError("Server closed")
             resp_len = struct.unpack('>I', raw_len)[0]
 
-            # 4. Receive: JSON Data
+            # 4. Receive Data
             resp_data = self.recvall(resp_len)
             response = json.loads(resp_data.decode('utf-8'))
-            
             return response.get('detections', [])
 
-        except (BrokenPipeError, ConnectionResetError, ConnectionError) as e:
-            self.get_logger().warn(f"Lost connection: {e}. Reconnecting...")
-            self.connect_to_server()
+        except (BrokenPipeError, ConnectionResetError, ConnectionError, socket.timeout) as e:
+            self.logger.warn(f"[{self.name}] Socket error: {e}. Reconnecting...")
+            self.connect()
             return []
         except Exception as e:
-            self.get_logger().error(f"Inference error: {e}")
+            self.logger.error(f"[{self.name}] Inference error: {e}")
             return []
 
     def recvall(self, n):
@@ -102,12 +69,82 @@ class EcoSenseNode(Node):
             data.extend(packet)
         return data
 
+
+class EcoSenseNode(Node):
+    def __init__(self):
+        super().__init__('ecosense_detector')
+
+        # --- PARAMETERS ---
+        self.declare_parameter('server_ip', '127.0.0.1') 
+        self.declare_parameter('server_port', 55001)
+        
+        server_ip = self.get_parameter('server_ip').value
+        server_port = self.get_parameter('server_port').value
+
+        self.bridge = CvBridge()
+
+        # --- DUAL CLIENTS ---
+        # We instantiate two separate clients. They act independently.
+        self.client_left = InferenceClient(server_ip, server_port, self.get_logger(), "Left_Cam")
+        self.client_right = InferenceClient(server_ip, server_port, self.get_logger(), "Right_Cam")
+
+        # --- ROS SUBSCRIPTIONS ---
+        self.sub_left = self.create_subscription(Image, '/usb_cam_left/image_raw', self.left_callback, 10)
+        self.pub_left = self.create_publisher(Image, '/usb_cam_left/image_processed', 10)
+
+        self.sub_right = self.create_subscription(Image, '/usb_cam_right/image_raw', self.right_callback, 10)
+        self.pub_right = self.create_publisher(Image, '/usb_cam_right/image_processed', 10)
+
+        self.get_logger().info(f"Node started. Target: {server_ip}:{server_port}")
+
+    def left_callback(self, msg):
+        # Pass the specific LEFT client
+        self.process_image(msg, self.pub_left, self.client_left)
+
+    def right_callback(self, msg):
+        # Pass the specific RIGHT client
+        self.process_image(msg, self.pub_right, self.client_right)
+
+    def process_image(self, msg, publisher, client):
+        """
+        Generic processing function.
+        It takes the 'client' object as an argument so it knows which socket to use.
+        """
+        try:
+            cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
+        except Exception as e:
+            self.get_logger().error(f"CV Bridge error: {e}")
+            return
+
+        # Use the passed client (Left or Right) to infer
+        detections = client.infer(cv_image)
+        
+        if detections:
+            for det in detections:
+                x1, y1, x2, y2 = det['bbox']
+                label = f"{det['class_name']} {det['score']:.2f}"
+                cv2.rectangle(cv_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                cv2.putText(cv_image, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,0), 2)
+
+        out_msg = self.bridge.cv2_to_imgmsg(cv_image, "bgr8")
+        publisher.publish(out_msg)
+
 def main(args=None):
     rclpy.init(args=args)
     node = EcoSenseNode()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    
+    # RECOMMENDED: Use MultiThreadedExecutor so callbacks can run in parallel
+    from rclpy.executors import MultiThreadedExecutor
+    executor = MultiThreadedExecutor()
+    executor.add_node(node)
+    
+    try:
+        executor.spin()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
 
 if __name__ == '__main__':
     main()
