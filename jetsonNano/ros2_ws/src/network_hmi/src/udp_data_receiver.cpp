@@ -103,7 +103,7 @@ void UdpDataReceiver::process_packet(const char* buffer, ssize_t len)
                 joystick_order->throttle = linear_x;
                 joystick_order->reverse = false;
             }
-            joystick_order->steer = angular_z;
+            joystick_order->steer = - angular_z;
 
             // Safely read shared state
             SharedVehicleState::State state = vehicle_state_->get_state();
