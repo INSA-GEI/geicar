@@ -18,11 +18,11 @@ def generate_launch_description():
 
     # --- Declare Launch Arguments ---
 
-    disable_robot_state_publisher_arg = DeclareLaunchArgument(
-        'disable_robot_state_publisher',
-        default_value='false',
-        description='Disable the robot state publisher node'
-    )
+    # disable_robot_state_publisher_arg = DeclareLaunchArgument(
+    #     'disable_robot_state_publisher',
+    #     default_value='false',
+    #     description='Disable the robot state publisher node'
+    # )
 
     disable_car_control_arg = DeclareLaunchArgument(
         'disable_car_control',
@@ -142,7 +142,7 @@ def generate_launch_description():
                                 output='screen')
 
     # Arguments Actions
-    ld.add_action(disable_robot_state_publisher_arg)
+    # ld.add_action(disable_robot_state_publisher_arg)
     ld.add_action(disable_car_control_arg)
     ld.add_action(disable_can_arg)
     ld.add_action(disable_joystick_arg)
@@ -158,7 +158,7 @@ def generate_launch_description():
     # ld.add_action(imu_filter_madgwick_node)   # Not needed because not using Magnetometer
     ld.add_action(imu_calibration_node)
     ld.add_action(system_check_node)
-    ld.add_action(robot_state_publisher_node)
+    #ld.add_action(robot_state_publisher_node)
     ld.add_action(vehicle_controller_node)
 
 
