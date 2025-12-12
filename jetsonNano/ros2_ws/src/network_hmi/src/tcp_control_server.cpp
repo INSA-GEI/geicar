@@ -7,15 +7,20 @@
 #include <errno.h>
 
 TcpControlServer::TcpControlServer(
+    rclcpp::Node* node,
     rclcpp::Logger logger,
     int port,
     std::shared_ptr<SharedClientInfo> client_info,
-    std::shared_ptr<SharedVehicleState> vehicle_state)
+    std::shared_ptr<SharedVehicleState> vehicle_state,
+    std::string control_topic)
 : logger_(logger.get_child("tcp_server")),
   port_(port),
   client_info_(client_info),
-  vehicle_state_(vehicle_state)
-{}
+  vehicle_state_(vehicle_state),
+  control_topic_(control_topic)
+{
+    control_pub_ = node->create_publisher<interfaces::msg::Control>(control_topic_, 1);
+}
 
 TcpControlServer::~TcpControlServer()
 {
@@ -86,10 +91,16 @@ void TcpControlServer::accept_loop()
             new_socket,
             client_ip,
             client_info_,
-            vehicle_state_
+            vehicle_state_,
+            this
         );
         std::thread(&ClientSession::run, session).detach();
     }
     close(server_fd_);
     server_fd_ = -1;
+}
+
+void TcpControlServer::send_control_message(const interfaces::msg::Control & msg)
+{
+    control_pub_->publish(msg);
 }

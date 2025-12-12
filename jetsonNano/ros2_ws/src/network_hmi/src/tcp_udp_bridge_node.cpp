@@ -21,12 +21,14 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
     this->declare_parameter<std::string>("image_topic", "/usb_cam_left/image_raw/compressed");
     this->declare_parameter<std::string>("general_data_topic", "/general_data");
     this->declare_parameter<std::string>("map_topic", "/map");
+    this->declare_parameter<std::string>("control_topic", "/control_msg");
 
     tcp_control_port_ = this->get_parameter("tcp_control_port").as_int();
     udp_data_port_ = this->get_parameter("udp_data_port").as_int();
     image_topic_ = this->get_parameter("image_topic").as_string();
     general_data_topic_ = this->get_parameter("general_data_topic").as_string();
     map_topic_ = this->get_parameter("map_topic").as_string();
+    control_topic_ = this->get_parameter("control_topic").as_string();
 
     RCLCPP_INFO(this->get_logger(), "Starting bridge node...");
     RCLCPP_INFO(this->get_logger(), " - TCP Control Port: %d", tcp_control_port_);
@@ -34,6 +36,7 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
     RCLCPP_INFO(this->get_logger(), " - Image Topic: %s", image_topic_.c_str());
     RCLCPP_INFO(this->get_logger(), " - General Data Topic: %s", general_data_topic_.c_str());
     RCLCPP_INFO(this->get_logger(), " - Map Topic: %s", map_topic_.c_str());
+    RCLCPP_INFO(this->get_logger(), " - Control Topic: %s", control_topic_.c_str());
 
     // --- Create core components ---
     vehicle_state_ = std::make_shared<SharedVehicleState>();
@@ -50,10 +53,12 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
     
     // The server needs the shared state objects to pass to new sessions
     tcp_server_ = std::make_unique<TcpControlServer>(
+        this,
         this->get_logger(),
         tcp_control_port_,
         client_info_,
-        vehicle_state_
+        vehicle_state_,
+        control_topic_
     );
 
     // --- Create ROS subscribers ---

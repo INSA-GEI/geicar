@@ -11,12 +11,14 @@ ClientSession::ClientSession(
     int client_socket,
     std::string client_ip,
     std::shared_ptr<SharedClientInfo> client_info,
-    std::shared_ptr<SharedVehicleState> vehicle_state)
+    std::shared_ptr<SharedVehicleState> vehicle_state,
+    TcpControlServer * tcp_server)
 : logger_(logger),
   socket_(client_socket),
   ip_(client_ip),
   client_info_(client_info),
-  vehicle_state_(vehicle_state)
+  vehicle_state_(vehicle_state),
+  tcp_server_(tcp_server)
 {
     last_activity_ms_.store(std::chrono::duration_cast<std::chrono::milliseconds>(
         std::chrono::steady_clock::now().time_since_epoch()).count());
@@ -161,6 +163,10 @@ void ClientSession::on_emergency_stop()
 {
     RCLCPP_WARN(logger_, "Emergency stop received!");
     vehicle_state_->emergency_stop();
+    interfaces::msg::Control control_msg;
+    control_msg.command = "stop";
+    control_msg.sender = "network_hmi";
+    tcp_server_->send_control_message(control_msg);
     json response = {{"ok", true}, {"message", "Emergency stop acknowledged"}};
     send_tcp_message(response.dump());
 }
@@ -177,6 +183,10 @@ void ClientSession::on_start()
 {
     RCLCPP_INFO(logger_, "Start command received");
     vehicle_state_->set_start(true);
+    interfaces::msg::Control control_msg;
+    control_msg.command = "start";
+    control_msg.sender = "network_hmi";
+    tcp_server_->send_control_message(control_msg);
     json response = {{"ok", true}, {"message", "Start command acknowledged"}};
     send_tcp_message(response.dump());
 }
@@ -186,6 +196,21 @@ void ClientSession::on_set_mode(const nlohmann::json& msg)
     int new_mode = msg.value("mode", 0);
     RCLCPP_INFO(logger_, "Set mode received: %d", new_mode);
     vehicle_state_->set_mode(new_mode);
+    interfaces::msg::Control control_msg;
+    if (new_mode == 0) {
+        control_msg.command = "manual";
+    } else if (new_mode == 1) {
+        control_msg.command = "autonomous";
+    } else if (new_mode == 2) {
+        control_msg.command = "calibration";
+    } else {
+        RCLCPP_WARN(logger_, "Unknown mode: %d", new_mode);
+        json response = {{"ok", false}, {"error", "Unknown mode"}};
+        send_tcp_message(response.dump());
+        return;
+    }
+    control_msg.sender = "network_hmi";
+    tcp_server_->send_control_message(control_msg);
     json response = {{"ok", true}, {"message", "Mode change acknowledged"}};
     send_tcp_message(response.dump());
 }

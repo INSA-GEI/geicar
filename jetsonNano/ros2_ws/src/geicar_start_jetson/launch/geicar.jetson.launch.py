@@ -59,6 +59,12 @@ def generate_launch_description():
         description='Disable the bridge node'
     )
 
+    declare_disable_ai_arg = DeclareLaunchArgument(
+        'disable_ai',
+        default_value='false',
+        description='Disable the AI node'
+    )
+
     declare_use_sim_time_arg = DeclareLaunchArgument(
         'use_sim_time',
         default_value='false',
@@ -185,6 +191,15 @@ def generate_launch_description():
         parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
     )
 
+    ai_node = Node(
+        package='ia_pipeline',
+        executable='ecosense_node',   
+        name='ecosense_ai_node',
+        output='screen',
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+        condition=UnlessCondition(LaunchConfiguration('disable_ai'))
+    )     
+
     # --- Add Actions to Launch Description ---
 
     # Add the argument declarations
@@ -195,6 +210,7 @@ def generate_launch_description():
     ld.add_action(declare_disable_system_check_arg)
     ld.add_action(declare_disable_bridge_arg)
     ld.add_action(declare_use_sim_time_arg)
+    ld.add_action(declare_disable_ai_arg)
 
     # Add the nodes (they will only be executed if their condition is met)
     ld.add_action(robot_state_publisher_node)
@@ -208,5 +224,6 @@ def generate_launch_description():
     #ld.add_action(slam_toolbox_launch_file)
     ld.add_action(slam_toolbox_launch_file)
     ld.add_action(foxglove_server)
+    ld.add_action(ai_node)
 
     return ld
