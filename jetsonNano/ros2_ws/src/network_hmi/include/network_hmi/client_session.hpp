@@ -47,13 +47,12 @@ private:
     void on_set_mode(const nlohmann::json& msg);
     void on_heartbeat_ack();
 
-    TcpControlServer * tcp_server_; // <-- ADDED: Pointer to TCP server
-
     rclcpp::Logger logger_;
     int socket_;
     std::string ip_;
     std::shared_ptr<SharedClientInfo> client_info_;
     std::shared_ptr<SharedVehicleState> vehicle_state_;
+    TcpControlServer * tcp_server_; // <-- ADDED: Pointer to TCP server
 
     bool registered_this_session_ = false;
     std::atomic<bool> session_alive_{false};
