@@ -1,4 +1,5 @@
 #include "network_hmi/client_session.hpp" // <-- Renamed include
+#include "network_hmi/tcp_control_server.hpp"
 #include <sys/socket.h>
 #include <unistd.h>
 #include <errno.h>
@@ -104,6 +105,10 @@ void ClientSession::run()
     vehicle_state_->stop_if_not_autonomous();
 
     RCLCPP_INFO(logger_, "Client session terminated");
+
+    if (tcp_server_ != nullptr) {
+        tcp_server_->remove_client_session(socket_);
+    }
 }
 
 void ClientSession::handle_message(const nlohmann::json& msg)
@@ -275,4 +280,14 @@ bool ClientSession::send_tcp_message(const std::string &msg)
         total_sent += static_cast<size_t>(sent);
     }
     return true;
+}
+
+void ClientSession::public_send_tcp_message(const std::string& msg)
+{
+    send_tcp_message(msg);
+}
+
+int ClientSession::get_socket() const
+{
+    return socket_;
 }

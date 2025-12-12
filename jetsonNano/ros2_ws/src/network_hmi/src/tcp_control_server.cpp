@@ -20,6 +20,7 @@ TcpControlServer::TcpControlServer(
   control_topic_(control_topic)
 {
     control_pub_ = node->create_publisher<interfaces::msg::Control>(control_topic_, 1);
+    control_sub_ = node->create_subscription<interfaces::msg::Control>(control_topic_, 1, std::bind(&TcpControlServer::handle_control_message, this, std::placeholders::_1));
 }
 
 TcpControlServer::~TcpControlServer()
@@ -94,13 +95,75 @@ void TcpControlServer::accept_loop()
             vehicle_state_,
             this
         );
+        {
+            std::lock_guard<std::mutex> lock(sessions_mutex_);
+            client_sessions_.push_back(session);
+        }
         std::thread(&ClientSession::run, session).detach();
     }
     close(server_fd_);
     server_fd_ = -1;
 }
 
+void TcpControlServer::remove_client_session(int socket)
+{
+    std::lock_guard<std::mutex> lock(sessions_mutex_);
+    auto it = std::remove_if(
+        client_sessions_.begin(),
+        client_sessions_.end(),
+        [socket](const std::shared_ptr<ClientSession>& session) {
+            return session->get_socket() == socket;
+        });
+    if (it != client_sessions_.end()) {
+        client_sessions_.erase(it, client_sessions_.end());
+        RCLCPP_INFO(logger_, "Removed client session for socket %d", socket);
+    }
+}
+
 void TcpControlServer::send_control_message(const interfaces::msg::Control & msg)
 {
     control_pub_->publish(msg);
+}
+
+void TcpControlServer::handle_control_message(const interfaces::msg::Control::SharedPtr msg)
+{
+    // Only forward messages not sent by network_hmi itself
+    if (msg->sender != "network_hmi") {
+        // copy pointers while holding lock
+        std::vector<std::shared_ptr<ClientSession>> sessions_copy;
+        {
+            std::lock_guard<std::mutex> lock(sessions_mutex_);
+            sessions_copy = client_sessions_;
+        }
+
+        for (auto& session : sessions_copy) {
+            nlohmann::json json_msg = {
+                // TODO: fill in message
+            };
+            
+            if (msg->command == "start") {
+                json_msg["type"] = "cmd";
+                json_msg["cmd"] = "start";
+            } else if (msg->command == "stop") {
+                json_msg["type"] = "cmd";
+                json_msg["cmd"] = "stop";
+            } else if (msg->command == "manual") {
+                json_msg["type"] = "cmd";
+                json_msg["cmd"] = "set_mode";
+                json_msg["mode"] = 0;
+            } else if (msg->command == "autonomous") {
+                json_msg["type"] = "cmd";
+                json_msg["cmd"] = "set_mode";
+                json_msg["mode"] = 1;
+            } else if (msg->command == "calibration") {
+                json_msg["type"] = "cmd";
+                json_msg["cmd"] = "set_mode";
+                json_msg["mode"] = 2;
+            } else {
+                continue; // Unknown command
+            }
+
+            session->public_send_tcp_message(json_msg.dump());
+        }
+    }
 }
