@@ -4,13 +4,16 @@
 #include <string>
 #include <atomic>
 #include <thread> // <-- Make sure <thread> is included
+#include <memory>
 #include <chrono>
 #include <nlohmann/json.hpp>
 #include "network_hmi/shared_client_info.hpp"   // <-- Renamed include
 #include "network_hmi/shared_vehicle_state.hpp" // <-- Renamed include
 #include "network_hmi/h264_streamer.hpp"
-#include "network_hmi/tcp_control_server.hpp"
 #include "interfaces/msg/control.hpp"
+
+// Forward declaration to avoid circular include
+class TcpControlServer;
 
 // Manages the complete lifecycle of a single connected TCP client
 class ClientSession
@@ -27,6 +30,8 @@ public:
     
     // Main function to be run in a new thread
     void run();
+    void public_send_tcp_message(const std::string& msg);
+    int get_socket() const;
 
 private:
     void handle_message(const nlohmann::json& msg);
