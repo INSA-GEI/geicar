@@ -163,7 +163,7 @@ private:
             start = false;
         } else if (buttonStart && mode !=2){   // Start button -> Start the car 
             auto controlMsg = interfaces::msg::Control();
-            controlMsg.command = "stop";
+            controlMsg.command = "start";
             controlMsg.sender = "xbox";
             publisher_control_msg_->publish(controlMsg);               
             start = true;
