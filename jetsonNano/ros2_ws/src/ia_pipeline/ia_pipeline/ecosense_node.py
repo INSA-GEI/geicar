@@ -123,8 +123,11 @@ class EcoSenseNode(Node):
             for det in detections:
                 x1, y1, x2, y2 = det['bbox']
                 label = f"{det['class_name']} {det['score']:.2f}"
-                cv2.rectangle(cv_image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-                cv2.putText(cv_image, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,0), 2)
+                color_ = (0,255,0)
+                if (det['score'] < 0.8):
+                    color_ = (0,0,255)
+                cv2.rectangle(cv_image, (x1, y1), (x2, y2), color_, 2)
+                cv2.putText(cv_image, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color_, 2)
 
         out_msg = self.bridge.cv2_to_imgmsg(cv_image, "bgr8")
         publisher.publish(out_msg)
