@@ -184,6 +184,18 @@ def generate_launch_description():
         }.items(),
     )
 
+    nav2_launch_file = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory('nav2_bringup'),
+                'launch',
+                'bringup_launch.py')),
+        launch_arguments={
+            'use_sim_time': LaunchConfiguration('use_sim_time'),
+            'params_file': os.path.join(pkg_share, 'config', 'nav2_mppi.yaml')
+        }.items(),
+    )
+
     foxglove_server = Node(
         package='foxglove_bridge',
         executable='foxglove_bridge',
@@ -221,7 +233,8 @@ def generate_launch_description():
     ld.add_action(bridge_node)
     ld.add_action(rf2o_laser_odometry_node)
     #ld.add_action(robot_localization_node)
-    #ld.add_action(slam_toolbox_launch_file)
+    ld.add_action(slam_toolbox_launch_file)
+    ld.add_action(nav2_launch_file)
     ld.add_action(foxglove_server)
     ld.add_action(ai_node)
 
