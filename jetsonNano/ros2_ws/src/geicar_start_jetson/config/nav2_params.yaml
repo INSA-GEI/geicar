@@ -35,7 +35,7 @@ planner_server:
       plugin: "nav2_smac_planner/SmacPlannerHybrid"
       allow_unknown: true
       max_iterations: 1000000
-      minimum_turning_radius: 0.2
+      minimum_turning_radius: 1.522
       cache_obstacle_heuristic: true
       reverse_penalty: 2.0
       change_penalty: 0.3

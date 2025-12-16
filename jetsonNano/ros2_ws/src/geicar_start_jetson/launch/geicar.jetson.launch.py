@@ -71,6 +71,18 @@ def generate_launch_description():
         description='Use simulation time (Gazebo/Bag) if true'
     )
 
+    declare_disable_slam_arg = DeclareLaunchArgument(
+        'disable_slam',
+        default_value='false',
+        description='Disable the SLAM Toolbox node'
+    )
+
+    declare_disable_nav2_arg = DeclareLaunchArgument(
+        'disable_nav2',
+        default_value='false',
+        description='Disable the Nav2 node'
+    ) 
+
     # --- Define Nodes with Conditions ---
 
     # We add a 'condition' to each node.
@@ -150,8 +162,8 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'laser_scan_topic' : '/scan',
-            'odom_topic' : '/odom',
-            'publish_tf' : True,
+            'odom_topic' : '/odom/laser_odom',
+            'publish_tf' : False,
             'base_frame_id' : 'base_link',
             'odom_frame_id' : 'odom',
             'init_pose_from_topic' : '',
@@ -182,6 +194,7 @@ def generate_launch_description():
             'slam_params_file': os.path.join(pkg_share, 'config', 'slam_params.yaml'),
             'use_sim_time': LaunchConfiguration('use_sim_time')
         }.items(),
+        condition=UnlessCondition(LaunchConfiguration('disable_slam')
     )
 
     nav2_launch_file = IncludeLaunchDescription(
@@ -194,6 +207,7 @@ def generate_launch_description():
             'use_sim_time': LaunchConfiguration('use_sim_time'),
             'params_file': os.path.join(pkg_share, 'config', 'nav2_mppi.yaml'),
         }.items(),
+        condition=UnlessCondition(LaunchConfiguration('disable_nav2')
     )
 
     foxglove_server = Node(
@@ -223,6 +237,8 @@ def generate_launch_description():
     ld.add_action(declare_disable_bridge_arg)
     ld.add_action(declare_use_sim_time_arg)
     ld.add_action(declare_disable_ai_arg)
+    ld.add_action(declare_disable_slam_arg)
+    ld.add_action(declare_disable_nav2_arg)
 
     # Add the nodes (they will only be executed if their condition is met)
     ld.add_action(robot_state_publisher_node)
@@ -232,7 +248,7 @@ def generate_launch_description():
     ld.add_action(system_check_ack_node)
     ld.add_action(bridge_node)
     ld.add_action(rf2o_laser_odometry_node)
-    #ld.add_action(robot_localization_node)
+    ld.add_action(robot_localization_node)
     ld.add_action(slam_toolbox_launch_file)
     ld.add_action(nav2_launch_file)
     ld.add_action(foxglove_server)
