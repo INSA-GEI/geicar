@@ -24,7 +24,7 @@
   <exec_depend>foxglove_bridge</exec_depend>
   <exec_depend>ia_pipeline</exec_depend>
   <exec_depend>nav2_bringup</exec_depend>
-  <exec_depend>navigqtion2</exec_depend>
+  <exec_depend>navigation2</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
