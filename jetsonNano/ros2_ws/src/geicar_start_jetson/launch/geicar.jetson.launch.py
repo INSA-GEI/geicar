@@ -194,20 +194,20 @@ def generate_launch_description():
             'slam_params_file': os.path.join(pkg_share, 'config', 'slam_params.yaml'),
             'use_sim_time': LaunchConfiguration('use_sim_time')
         }.items(),
-        condition=UnlessCondition(LaunchConfiguration('disable_slam')
+        condition=UnlessCondition(LaunchConfiguration('disable_slam'))
     )
 
     nav2_launch_file = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            os.path.join(
-                get_package_share_directory('nav2_bringup'),
-                'launch',
-                'navigation_launch.py')),
-        launch_arguments={
-            'use_sim_time': LaunchConfiguration('use_sim_time'),
-            'params_file': os.path.join(pkg_share, 'config', 'nav2_mppi.yaml'),
-        }.items(),
-        condition=UnlessCondition(LaunchConfiguration('disable_nav2')
+            PythonLaunchDescriptionSource(
+                os.path.join(
+                    get_package_share_directory('nav2_bringup'),
+                    'launch',
+                    'navigation_launch.py')),
+            launch_arguments={
+                'use_sim_time': LaunchConfiguration('use_sim_time'),
+                'params_file': os.path.join(pkg_share, 'config', 'nav2_mppi.yaml'),
+            }.items(),
+            condition=UnlessCondition(LaunchConfiguration('disable_nav2')),
     )
 
     foxglove_server = Node(
