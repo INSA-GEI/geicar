@@ -94,9 +94,26 @@ TcpUdpBridgeNode::TcpUdpBridgeNode()
 TcpUdpBridgeNode::~TcpUdpBridgeNode()
 {
     RCLCPP_INFO(this->get_logger(), "Shutting down bridge node...");
-    // Stop threads in reverse order
-    tcp_server_->stop();
-    udp_receiver_->stop();
+
+    // Stop threads in reverse order with timing logs to diagnose hangs
+    {
+        auto t0 = std::chrono::steady_clock::now();
+        RCLCPP_INFO(this->get_logger(), "Stopping TcpControlServer...");
+        tcp_server_->stop();
+        auto t1 = std::chrono::steady_clock::now();
+        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(t1 - t0).count();
+        RCLCPP_INFO(this->get_logger(), "TcpControlServer stopped (%.1f ms)", static_cast<double>(ms));
+    }
+
+    {
+        auto t0 = std::chrono::steady_clock::now();
+        RCLCPP_INFO(this->get_logger(), "Stopping UdpDataReceiver...");
+        udp_receiver_->stop();
+        auto t1 = std::chrono::steady_clock::now();
+        auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(t1 - t0).count();
+        RCLCPP_INFO(this->get_logger(), "UdpDataReceiver stopped (%.1f ms)", static_cast<double>(ms));
+    }
+
     // udp_sender_ and state objects are auto-destroyed
     RCLCPP_INFO(this->get_logger(), "Bridge node shut down complete.");
 }
