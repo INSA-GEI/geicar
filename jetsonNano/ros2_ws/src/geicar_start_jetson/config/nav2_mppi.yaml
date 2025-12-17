@@ -18,7 +18,7 @@ controller_server:
         
       PreferForward:
         cost_weight: 1.0 
-        threshold_to_consider: 0.5
+        threshold_to_consider: 0.2
 
       
 
@@ -46,7 +46,7 @@ global_costmap:
       publish_frequency: 1.0
       global_frame: map
       robot_base_frame: base_footprint
-      footprint: "[ [0.66, 0.40], [0.66, -0.40], [-0.66, -0.40], [-0.66, 0.40] ]"
+      footprint: "[ [0.66, 0.30], [0.66, -0.30], [-0.66, -0.30], [-0.66, 0.30] ]"
       resolution: 0.05
       track_unknown_space: false
       rolling_window: false
@@ -78,14 +78,14 @@ local_costmap:
   local_costmap:
     ros__parameters:
       update_frequency: 5.0
-      publish_frequency: 2.0
+      publish_frequency: 5.0
       global_frame: odom
       robot_base_frame: base_footprint
       rolling_window: true
       width: 3
       height: 3
       resolution: 0.05
-      footprint: "[ [0.66, 0.26], [0.66, -0.26], [-0.66, -0.26], [-0.66, 0.26] ]"
+      footprint: "[ [0.66, 0.30], [0.66, -0.30], [-0.66, -0.30], [-0.66, 0.30] ]"
       plugins: ["obstacle_layer", "inflation_layer"]
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
