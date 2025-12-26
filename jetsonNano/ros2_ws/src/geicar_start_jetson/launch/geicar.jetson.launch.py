@@ -167,7 +167,7 @@ def generate_launch_description():
             'base_frame_id' : 'base_link',
             'odom_frame_id' : 'odom',
             'init_pose_from_topic' : '',
-            'freq' : 15.0},
+            'freq' : 8.0},
             {'use_sim_time': LaunchConfiguration('use_sim_time')}],
         condition=UnlessCondition(LaunchConfiguration('disable_lio'))
     )
