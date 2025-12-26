@@ -145,7 +145,7 @@ void VehicleController::cmd_vel_callback(const geometry_msgs::msg::Twist ::Share
   }else if (msg->linear.x  < min_velocity_ && msg->linear.x >0 ) {
     velocity_ = min_velocity_ + msg->linear.x;
   } else if (msg->linear.x  > -min_velocity_ && msg->linear.x <0) {
-    velocity_ = -min_velocity_ - msg->linear.x;
+    velocity_ = -min_velocity_ + msg->linear.x;
   } else {
     velocity_ = msg->linear.x ;
   }
