@@ -25,7 +25,13 @@ TcpControlServer::TcpControlServer(
 
 TcpControlServer::~TcpControlServer()
 {
-    stop();
+    try {
+        stop();
+    } catch (const std::exception & e) {
+        RCLCPP_ERROR(logger_, "Exception in ~TcpControlServer: %s", e.what());
+    } catch (...) {
+        RCLCPP_ERROR(logger_, "Unknown exception in ~TcpControlServer");
+    }
 }
 
 void TcpControlServer::start()
@@ -36,7 +42,7 @@ void TcpControlServer::start()
 
 void TcpControlServer::stop()
 {
-    RCLCPP_INFO(logger_, "TcpControlServer::stop() entry");
+    //RCLCPP_INFO(logger_, "TcpControlServer::stop() entry");
     running_ = false;
 
     // Close the listening socket first to unblock accept()
@@ -68,7 +74,7 @@ void TcpControlServer::stop()
     if (thread_.joinable()) {
         thread_.join();
     }
-    RCLCPP_INFO(logger_, "TcpControlServer::stop() exit");
+    //RCLCPP_INFO(logger_, "TcpControlServer::stop() exit");
 }
 
 void TcpControlServer::accept_loop()

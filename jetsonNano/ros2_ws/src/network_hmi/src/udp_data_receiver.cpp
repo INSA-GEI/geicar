@@ -35,7 +35,7 @@ void UdpDataReceiver::start()
 
 void UdpDataReceiver::stop()
 {
-    RCLCPP_INFO(logger_, "UdpDataReceiver::stop() entry");
+    //RCLCPP_INFO(logger_, "UdpDataReceiver::stop() entry");
     running_ = false;
     if (data_socket_ != -1) {
         close(data_socket_); // This unblocks recvfrom()
@@ -44,7 +44,7 @@ void UdpDataReceiver::stop()
     if (thread_.joinable()) {
         thread_.join();
     }
-    RCLCPP_INFO(logger_, "UdpDataReceiver::stop() exit");
+    //RCLCPP_INFO(logger_, "UdpDataReceiver::stop() exit");
 }
 
 void UdpDataReceiver::receive_loop()
