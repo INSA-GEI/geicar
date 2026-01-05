@@ -22,9 +22,9 @@ public:
         std::vector<std::pair<moveit::planning_interface::MoveGroupInterface*, std::string>> sequence = {
             {&arm_group, "home"},
             {&gripper_group, "close_gripper"},
-            {&arm_group, "demo_pickup_ready"},
+            {&arm_group, "default_pickup_ready"},
             {&gripper_group, "open_gripper"},
-            {&arm_group, "demo_pickup"},
+            {&arm_group, "default_pickup"},
             {&gripper_group, "close_gripper"},
             {&arm_group, "dropping"},
             {&gripper_group, "open_gripper"},

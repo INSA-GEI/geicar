@@ -41,14 +41,14 @@
     <group_state name="open_gripper" group="gripper">
         <joint name="Gripper" value="0.781"/>
     </group_state>
-    <group_state name="demo_pickup_ready" group="arm">
+    <group_state name="default_pickup_ready" group="arm">
         <joint name="Shoulder_Rotation" value="0.0"/>
         <joint name="Shoulder_Pitch" value="0.8159"/>
         <joint name="Elbow" value="0.7329"/>
         <joint name="Wrist_Pitch" value="-3.1309"/>
         <joint name="Wrist_Roll" value="0"/>
     </group_state>
-    <group_state name="demo_pickup" group="arm">
+    <group_state name="default_pickup" group="arm">
         <joint name="Shoulder_Rotation" value="0.0"/>
         <joint name="Shoulder_Pitch" value="1.0695"/>
         <joint name="Elbow" value="-0.1207"/>
@@ -58,7 +58,7 @@
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="gripper" parent_link="Wrist_Pitch_Roll" group="gripper" parent_group="arm"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-    <disable_collisions link1="Base" link2="Shoulder_Rotation_Pitch" reason="Adjacent"/>
+    <disable_collisions link1="Arm_Base" link2="Shoulder_Rotation_Pitch" reason="Adjacent"/>
     <disable_collisions link1="Fixed_Gripper" link2="Moving_Jaw" reason="Adjacent"/>
     <disable_collisions link1="Fixed_Gripper" link2="Wrist_Pitch_Roll" reason="Adjacent"/>
     <disable_collisions link1="Lower_Arm" link2="Upper_Arm" reason="Adjacent"/>

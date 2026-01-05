@@ -7,7 +7,7 @@ Panels:
         - /MotionPlanning1
         - /MotionPlanning1/Planned Path1
       Splitter Ratio: 0.5
-    Tree Height: 160
+    Tree Height: 174
   - Class: rviz_common/Help
     Name: Help
   - Class: rviz_common/Views
@@ -63,11 +63,6 @@ Visualization Manager:
         Interrupt Display: false
         Links:
           All Links Enabled: true
-          Base:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
           Expand Joint Details: false
           Expand Link Details: false
           Expand Tree: false
@@ -98,6 +93,11 @@ Visualization Manager:
             Show Trail: false
             Value: true
           Wrist_Pitch_Roll:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          Arm_Base:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -148,11 +148,6 @@ Visualization Manager:
         Attached Body Color: 150; 50; 150
         Links:
           All Links Enabled: true
-          Base:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
           Expand Joint Details: false
           Expand Link Details: false
           Expand Tree: false
@@ -187,6 +182,11 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          Arm_Base:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           base_link:
             Alpha: 1
             Show Axes: false
@@ -196,6 +196,44 @@ Visualization Manager:
         Show Robot Visual: true
       Value: true
       Velocity_Scaling_Factor: 0.1
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        Fixed_Gripper:
+          Value: true
+        Lower_Arm:
+          Value: true
+        Moving_Jaw:
+          Value: true
+        Shoulder_Rotation_Pitch:
+          Value: true
+        Upper_Arm:
+          Value: true
+        Wrist_Pitch_Roll:
+          Value: true
+        Arm_Base:
+          Value: true
+        base_link:
+          Value: true
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: false
+      Tree:
+        base_link:
+          Arm_Base:
+            Shoulder_Rotation_Pitch:
+              Upper_Arm:
+                Lower_Arm:
+                  Wrist_Pitch_Roll:
+                    Fixed_Gripper:
+                      Moving_Jaw:
+                        {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -214,30 +252,30 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 2
+      Distance: 1.0554639101028442
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.10000000149011612
-        Y: 0.25
-        Z: 0.30000001192092896
+        X: 0.18364444375038147
+        Y: 0.05781533569097519
+        Z: 0.11375489830970764
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.5
+      Pitch: 0.16500014066696167
       Target Frame: base_link
       Value: Orbit (rviz_default_plugins)
-      Yaw: -0.6230000257492065
+      Yaw: 1.5569988489151
     Saved: ~
 Window Geometry:
   Displays:
     collapsed: false
-  Height: 975
+  Height: 1016
   Help:
     collapsed: false
   Hide Left Dock: false
@@ -246,9 +284,9 @@ Window Geometry:
     collapsed: false
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002b400000375fc0200000005fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb000000100044006900730070006c006100790073010000003d00000123000000c900fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000166000001910000017d00fffffffb0000000800480065006c0070000000029a0000006e0000006e00fffffffb0000000a0056006900650077007301000002fd000000b5000000a400ffffff000001f60000037500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000002b40000039efc0200000005fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004100fffffffb000000100044006900730070006c006100790073010000003d00000131000000c900fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e00670100000174000001a30000017d00fffffffb0000000800480065006c0070000000029a0000006e0000006e00fffffffb0000000a00560069006500770073010000031d000000be000000a400ffffff000004c60000039e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Views:
     collapsed: false
-  Width: 1200
-  X: 623
+  Width: 1920
+  X: 0
   Y: 27

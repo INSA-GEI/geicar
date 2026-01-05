@@ -21,15 +21,15 @@
 
   <joint name="base_link_joint" type="fixed">
     <parent link="base_link"/>
-    <child link="Base"/>
+    <child link="Arm_Base"/>
     <origin xyz="0 0 0" rpy="0 0 0"/>
   </joint>
   <link
-    name="Base">
+    name="Arm_Base">
     <inertial>
       <origin
         xyz="-2.45960666746703E-07 0.0311418169687909 0.0175746661003382"
-        rpy="0 0 0" />
+        rpy="0 0 1.5708" />
       <mass
         value="0.193184127927598" />
       <inertia
@@ -43,7 +43,7 @@
     <visual>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 0 1.5708" />
       <geometry>
         <mesh
           filename="package://ecosense_arm/models/so_100_arm_5dof/meshes/Base.STL" />
@@ -57,7 +57,7 @@
     <collision>
       <origin
         xyz="0 0 0"
-        rpy="0 0 0" />
+        rpy="0 0 1.5708" />
       <geometry>
         <mesh
           filename="package://ecosense_arm/models/so_100_arm_5dof/meshes/Base.STL" />
@@ -107,16 +107,17 @@
   </link>
   <joint
     name="Shoulder_Rotation"
-    type="continuous">
+    type="revolute">
     <origin
-      xyz="0 -0.0452 0.0165"
-      rpy="1.5708 0 0" />
+      xyz="0.0452 0 0.0165"
+      rpy="1.5708 0 1.5708" />
     <parent
-      link="Base" />
+      link="Arm_Base" />
     <child
       link="Shoulder_Rotation_Pitch" />
     <axis
       xyz="0 1 0" />
+    <limit lower="-1.5708" upper="1.5708" effort="10.0" velocity="3.14"/>
   </joint>
   <link
     name="Upper_Arm">
@@ -160,7 +161,7 @@
   </link>
   <joint
     name="Shoulder_Pitch"
-    type="continuous">
+    type="revolute">
     <origin
       xyz="0 0.1025 0.0306"
       rpy="0 0 0" />
@@ -170,6 +171,7 @@
       link="Upper_Arm" />
     <axis
       xyz="1 0 0" />
+    <limit lower="-1.74532925199" upper="1.5708" effort="10.0" velocity="3.14"/>
   </joint>
   <link
     name="Lower_Arm">
@@ -213,7 +215,7 @@
   </link>
   <joint
     name="Elbow"
-    type="continuous">
+    type="revolute">
     <origin
       xyz="0 0.11257 0.028"
       rpy="0 0 0" />
@@ -223,6 +225,7 @@
       link="Lower_Arm" />
     <axis
       xyz="1 0 0" />
+    <limit lower="-1.5708" upper="1.5708" effort="10.0" velocity="3.14"/>
   </joint>
   <link
     name="Wrist_Pitch_Roll">
@@ -266,7 +269,7 @@
   </link>
   <joint
     name="Wrist_Pitch"
-    type="continuous">
+    type="revolute">
     <origin
       xyz="0 0.0052 0.1349"
       rpy="0 0 0" />
@@ -276,6 +279,7 @@
       link="Wrist_Pitch_Roll" />
     <axis
       xyz="1 0 0" />
+    <limit lower="-3.1416" upper="0" effort="10.0" velocity="3.14"/>
   </joint>
   <link
     name="Fixed_Gripper">
@@ -319,7 +323,7 @@
   </link>
   <joint
     name="Wrist_Roll"
-    type="continuous">
+    type="revolute">
     <origin
       xyz="0 -0.0601 0"
       rpy="0 0 0" />
@@ -329,6 +333,7 @@
       link="Fixed_Gripper" />
     <axis
       xyz="0 1 0" />
+    <limit lower="-1.5708" upper="1.5708" effort="10.0" velocity="3.14"/>
   </joint>
   <link
     name="Moving_Jaw">
@@ -372,7 +377,7 @@
   </link>
   <joint
     name="Gripper"
-    type="continuous">
+    type="revolute">
     <origin
       xyz="-0.0202 -0.0244 0"
       rpy="3.1416 0 3.1416" />
@@ -382,5 +387,6 @@
       link="Moving_Jaw" />
     <axis
       xyz="0 0 1" />
+    <limit lower="-0.17453292519" upper="1.5708" effort="10.0" velocity="3.14"/>
   </joint>
 </robot>
