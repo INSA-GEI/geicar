@@ -214,7 +214,8 @@ def generate_launch_description():
         package='foxglove_bridge',
         executable='foxglove_bridge',
         emulate_tty=True,
-        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
+        parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')},
+                    {'max_qos_depth': 200}],
     )
 
     ai_node = Node(
@@ -224,7 +225,24 @@ def generate_launch_description():
         output='screen',
         parameters=[{'use_sim_time': LaunchConfiguration('use_sim_time')}],
         condition=UnlessCondition(LaunchConfiguration('disable_ai'))
-    )     
+    )
+
+    arm_moveit_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory('ecosense_arm'),
+                'launch',
+                'move_group.launch.py')),
+    )
+
+    arm_hardware_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(
+                get_package_share_directory('ecosense_arm'),
+                'launch',
+                'hardware.launch.py')),
+                launch_arguments={'robot_urdf_path': urdf_model_path}.items(),
+    )
 
     # --- Add Actions to Launch Description ---
 
@@ -242,16 +260,18 @@ def generate_launch_description():
 
     # Add the nodes (they will only be executed if their condition is met)
     ld.add_action(robot_state_publisher_node)
-    ld.add_action(lidar_node)
-    ld.add_action(camera_node_1)
-    ld.add_action(camera_node_2)
-    ld.add_action(system_check_ack_node)
-    ld.add_action(bridge_node)
-    ld.add_action(rf2o_laser_odometry_node)
-    ld.add_action(robot_localization_node)
-    ld.add_action(slam_toolbox_launch_file)
-    ld.add_action(nav2_launch_file)
+    # ld.add_action(lidar_node)
+    # ld.add_action(camera_node_1)
+    # ld.add_action(camera_node_2)
+    # ld.add_action(system_check_ack_node)
+    # ld.add_action(bridge_node)
+    # ld.add_action(rf2o_laser_odometry_node)
+    # ld.add_action(robot_localization_node)
+    # ld.add_action(slam_toolbox_launch_file)
+    # ld.add_action(nav2_launch_file)
     ld.add_action(foxglove_server)
-    ld.add_action(ai_node)
+    # ld.add_action(ai_node)
+    ld.add_action(arm_hardware_launch)
+    ld.add_action(arm_moveit_launch)
 
     return ld

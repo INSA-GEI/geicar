@@ -16,14 +16,20 @@ def generate_launch_description():
         description='Visualize the robot in RViz'
     )
 
+    robot_urdf_path_arg = DeclareLaunchArgument(
+        'robot_urdf_path',
+        default_value=PathJoinSubstitution(
+            [FindPackageShare('ecosense_arm'), 'config', 'ecosense_arm.urdf.xacro']
+        ),
+        description='Path to the robot URDF file'
+    )
+
     # Get URDF via xacro
     robot_description_content = ParameterValue(
         Command(
             [
                 FindExecutable(name='xacro'), ' ',
-                PathJoinSubstitution(
-                    [FindPackageShare('ecosense_arm'), 'config', 'ecosense_arm.urdf.xacro']
-                ),
+                LaunchConfiguration('robot_urdf_path'),
                 ' ',
                 'use_fake_hardware:=false'
             ]
@@ -33,12 +39,12 @@ def generate_launch_description():
 
     robot_description = {'robot_description': robot_description_content}
 
-    robot_state_pub_node = Node(
-        package='robot_state_publisher',
-        executable='robot_state_publisher',
-        output='screen',
-        parameters=[robot_description]
-    )
+    # robot_state_pub_node = Node(
+    #     package='robot_state_publisher',
+    #     executable='robot_state_publisher',
+    #     output='screen',
+    #     parameters=[robot_description]
+    # )
 
     controller_manager = Node(
         package="controller_manager",
@@ -91,12 +97,12 @@ def generate_launch_description():
     )
 
     nodes = [
-        robot_state_pub_node,
+        # robot_state_pub_node,
         controller_manager,
         joint_state_broadcaster_spawner,
         delay_robot_controller_spawner_after_joint_state_broadcaster_spawner,
         gripper_controller_spawner,
-        rviz_node,
+        # rviz_node,
     ]
 
-    return LaunchDescription([rviz_arg] + nodes) 
+    return LaunchDescription([rviz_arg, robot_urdf_path_arg] + nodes) 

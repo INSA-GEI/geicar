@@ -115,7 +115,7 @@ class MockTargetBroadcaster : public rclcpp::Node {
             target_point.y = y;
             target_point.z = z;
             transformStamped.header.stamp = this->get_clock()->now();
-            transformStamped.header.frame_id = "base_link";
+            transformStamped.header.frame_id = "Arm_Base";
             transformStamped.child_frame_id = "target_trash";
             transformStamped.transform.translation.x = x;
             transformStamped.transform.translation.y = y;

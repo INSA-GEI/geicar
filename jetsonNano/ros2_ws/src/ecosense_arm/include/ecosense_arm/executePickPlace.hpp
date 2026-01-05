@@ -25,7 +25,8 @@ class ExecutePickPlace : public StatefulActionNode {
             using moveit::planning_interface::MoveGroupInterface;
             arm_group_ = std::make_shared<MoveGroupInterface>(node_, "arm");
             gripper_group_ = std::make_shared<MoveGroupInterface>(node_, "gripper");
-
+            arm_group_->setPoseReferenceFrame("Arm_Base");
+            gripper_group_->setPoseReferenceFrame("Arm_Base");
             // Initialize TF2 buffer and listener
             tf_target_buffer_ = std::make_unique<tf2_ros::Buffer>(node_->get_clock());
             tf_target_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_target_buffer_);
