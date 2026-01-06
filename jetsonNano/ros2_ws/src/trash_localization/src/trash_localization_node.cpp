@@ -26,14 +26,14 @@ class TrashLocalizationNode : public rclcpp::Node
         TrashLocalizationNode() : Node("trash_localization_node"){
             // Declare parameters with default values
             this->declare_parameter<std::double_t>("update_period_in_s", 200.0);
-            this->declare_parameter<std::string>("camera_left_target_topic", "/camera_left/object_target");
-            this->declare_parameter<std::string>("camera_right_target_topic", "/camera_right/object_target");
-            this->declare_parameter<std::string>("camera_left_info_topic", "/camera_left/camera_info");
-            this->declare_parameter<std::string>("camera_right_info_topic", "/camera_right/camera_info");
-            this->declare_parameter<std::string>("lidar_scan_topic", "/lidar/scan");
-            this->declare_parameter<std::string>("left_camera_frame", "camera_left");
-            this->declare_parameter<std::string>("right_camera_frame", "camera_right");
-            this->declare_parameter<std::string>("lidar_frame", "lidar");
+            this->declare_parameter<std::string>("camera_left_target_topic", "/usb_cam_left/object_target");
+            this->declare_parameter<std::string>("camera_right_target_topic", "/usb_cam_right/object_target");
+            this->declare_parameter<std::string>("camera_left_info_topic", "/usb_cam_left/camera_info");
+            this->declare_parameter<std::string>("camera_right_info_topic", "/usb_cam_right/camera_info");
+            this->declare_parameter<std::string>("lidar_scan_topic", "/ld_lidar/scan");
+            this->declare_parameter<std::string>("left_camera_frame", "camera_left_link");
+            this->declare_parameter<std::string>("right_camera_frame", "camera_right_link");
+            this->declare_parameter<std::string>("lidar_frame", "ld_lidar_link");
             this->declare_parameter<std::double_t>("tf_timeout", 0.5);
 
             // Get parameters
