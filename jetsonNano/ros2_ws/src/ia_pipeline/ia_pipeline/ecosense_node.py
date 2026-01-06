@@ -124,6 +124,9 @@ class EcoSenseNode(Node):
         # Use the passed client (Left or Right) to infer
         detections = client.infer(cv_image)
         
+        best_det = None
+        max_area = -1.0
+
         if detections:
             for det in detections:
                 x1, y1, x2, y2 = det['bbox']
@@ -134,6 +137,16 @@ class EcoSenseNode(Node):
                 cv2.rectangle(cv_image, (x1, y1), (x2, y2), color_, 2)
                 cv2.putText(cv_image, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color_, 2)
 
+                # Calculate area to find biggest box
+                area = (x2 - x1) * (y2 - y1)
+                if area > max_area:
+                    max_area = area
+                    best_det = det
+
+            # If we found at least one detection, publish the biggest one
+            if best_det is not None:
+                x1, y1, x2, y2 = best_det['bbox']
+                
                 # Publish detection msg
                 det_msg = Detection2D()
                 det_msg.header = msg.header
@@ -146,8 +159,8 @@ class EcoSenseNode(Node):
                 
                 # Hypotheses
                 hyp = ObjectHypothesisWithPose()
-                hyp.hypothesis.class_id = det['class_name']
-                hyp.hypothesis.score = float(det['score'])
+                hyp.hypothesis.class_id = best_det['class_name']
+                hyp.hypothesis.score = float(best_det['score'])
                 
                 det_msg.results.append(hyp)
                 
