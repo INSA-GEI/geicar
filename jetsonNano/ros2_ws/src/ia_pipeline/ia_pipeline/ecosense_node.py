@@ -97,8 +97,8 @@ class EcoSenseNode(Node):
         self.pub_right = self.create_publisher(Image, '/usb_cam_right/image_processed', 10)
 
         # --- DETECTION PUBLISHERS ---
-        self.pub_left_det = self.create_publisher(Detection2D, '/camera_left/object_target', 10)
-        self.pub_right_det = self.create_publisher(Detection2D, '/camera_right/object_target', 10)
+        self.pub_left_det = self.create_publisher(Detection2D, '/usb_cam_left/object_target', 10)
+        self.pub_right_det = self.create_publisher(Detection2D, '/usb_cam_right/object_target', 10)
 
         self.get_logger().info(f"Node started. Target: {server_ip}:{server_port}")
 
@@ -152,8 +152,9 @@ class EcoSenseNode(Node):
                 det_msg.header = msg.header
                 
                 # Bounding Box
-                det_msg.bbox.center.x = (x1 + x2) / 2.0
-                det_msg.bbox.center.y = (y1 + y2) / 2.0
+                # vision_msgs Pose2D has 'position' field which contains x, y
+                det_msg.bbox.center.position.x = (x1 + x2) / 2.0
+                det_msg.bbox.center.position.y = (y1 + y2) / 2.0
                 det_msg.bbox.size_x = float(x2 - x1)
                 det_msg.bbox.size_y = float(y2 - y1)
                 
