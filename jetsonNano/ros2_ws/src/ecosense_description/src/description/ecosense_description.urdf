@@ -5,11 +5,12 @@
     <xacro:include filename="$(find ecosense_arm)/urdf/ecosense_arm.urdf"/>
 
     <!-- Import control_xacro -->
+    <xacro:arg name="use_fake_hardware" default="false" />
     <xacro:include filename="$(find ecosense_arm)/config/ecosense_arm.ros2_control.xacro" />
 
     <xacro:ecosense_arm_ros2_control name="ECOSenseArm" 
         initial_positions_file="$(find ecosense_arm)/config/initial_positions.yaml"
-        use_fake_hardware="false"/>
+        use_fake_hardware="$(arg use_fake_hardware)"/>
 
     <!-- Robot Base -->
     <link name="base_link">
