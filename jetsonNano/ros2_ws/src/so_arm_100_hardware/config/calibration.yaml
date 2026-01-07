@@ -66,18 +66,18 @@ joints:
       load: 0
   Wrist_Roll:
     min:
-      pos: 0.0
-      ticks: 0
+      pos: -1.57079632679489661923
+      ticks: 1500
       speed: 0
       load: 0
     center:
-      pos: 1.57079632679489661923
-      ticks: 1010
+      pos: 0.0
+      ticks: 1800
       speed: 0
       load: 0
     max:
-      pos: 3.14159265358979323846
-      ticks: 3990
+      pos: 1.57079632679489661923
+      ticks: 3090
       speed: 0
       load: -918
   Gripper:

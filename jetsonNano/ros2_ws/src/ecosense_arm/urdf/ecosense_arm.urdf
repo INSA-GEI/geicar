@@ -232,7 +232,7 @@
       <visual>
         <origin
           xyz="0 0 0"
-          rpy="0 0 0" />
+          rpy="0 3.1415926539 0" />
         <geometry>
           <mesh
             filename="package://ecosense_arm/models/so_100_arm_5dof/meshes/Wrist_Pitch_Roll.STL" />
@@ -246,7 +246,7 @@
       <collision>
         <origin
           xyz="0 0 0"
-          rpy="0 0 0" />
+          rpy="0 3.1415926539 0" />
         <geometry>
           <mesh
             filename="package://ecosense_arm/models/so_100_arm_5dof/meshes/Wrist_Pitch_Roll.STL" />

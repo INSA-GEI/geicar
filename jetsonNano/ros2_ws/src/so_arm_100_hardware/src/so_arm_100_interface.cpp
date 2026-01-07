@@ -372,9 +372,9 @@ int SOARM100Interface::radians_to_ticks(double radians, size_t servo_idx)
         } else {
             normalized = (radians - calib.min_pos) / calib.range_pos;
         }
-        // if (servo_idx == 3){
+        // if (servo_idx == 4){
         //     RCLCPP_INFO(rclcpp::get_logger("SOARM100Interface"), 
-        //                 "Normalized value for joint %s with ID %ld: %.4f", joint_name.c_str(), servo_idx+1, normalized);
+        //                 "Normalized value for joint %s with ID %ld: %.4f", joint_name.c_str(), servo_idx+1, calib.min_ticks + (int)(normalized * calib.range_ticks));
         //     RCLCPP_INFO(rclcpp::get_logger("SOARM100Interface"), 
         //         "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         // }
