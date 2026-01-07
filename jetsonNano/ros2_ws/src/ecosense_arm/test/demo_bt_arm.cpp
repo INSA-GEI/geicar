@@ -17,6 +17,7 @@
 #include "behaviortree_ros2/bt_topic_sub_node.hpp"
 
 #include "ecosense_arm/bt_arm_nodes.hpp"
+#include "ament_index_cpp/get_package_share_directory.hpp"
 
 #include "tf2_ros/transform_broadcaster.h"
 #include <tf2/LinearMath/Quaternion.h>
@@ -47,7 +48,8 @@ class BehaviorTreeExecutor : public rclcpp::Node {
 
             // Register Nodes
             factory_->registerNodeType<ExecutePickPlace>("ExecutePickPlace", node);
-
+            factory_->registerNodeType<CheckTargetInRange>("CheckTargetInRange", node);
+            factory_->registerNodeType<RetractArm>("RetractArm", node);
             // Register Behavior Trees
             for (auto const& entry :
                 std::filesystem::directory_iterator(tree_folder_path_)) {
@@ -88,7 +90,9 @@ class BehaviorTreeExecutor : public rclcpp::Node {
          */
         rclcpp::TimerBase::SharedPtr timer_bt_tick_;
 
-        std::string tree_folder_path_ = "/home/tree/geicar/jetsonNano/ros2_ws/src/ecosense_arm/tree/";
+        // std::string tree_folder_path_ = "/home/tree/geicar/jetsonNano/ros2_ws/src/ecosense_arm/tree/";
+        // Get tree from package share directory
+        std::string tree_folder_path_ = ament_index_cpp::get_package_share_directory("ecosense_arm") + "/tree/";        
         /**
          * @brief Callback Group One
          */
@@ -108,9 +112,9 @@ class MockTargetBroadcaster : public rclcpp::Node {
         void broadcastTarget() {
             geometry_msgs::msg::TransformStamped transformStamped;
             geometry_msgs::msg::Point target_point;
-            double x = 0.35;
+            double x = 0.25;
             double y = 0.1;
-            double z = 0.2;
+            double z = -0.2;
             target_point.x = x;
             target_point.y = y;
             target_point.z = z;

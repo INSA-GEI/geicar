@@ -3,13 +3,25 @@
       main_tree_to_execute="main">
     <BehaviorTree ID="main">
         <Delay delay_msec="3000">
-            <ExecutePickPlace   name="pick_place_action"/>
+            <Sequence>
+                <CheckTargetInRange   name="check_target_in_range"/>
+                <Fallback>
+                    <ExecutePickPlace   name="pick_place_action"/>
+                    <RetractArm   name="retract_arm_action"/>
+                </Fallback>
+            </Sequence>
         </Delay>
     </BehaviorTree>
 
     <!-- Description of Node Models (used by Groot) -->
     <TreeNodesModel>
         <Action ID="ExecutePickPlace"
+                editable="true">
+        </Action>
+        <Action ID="CheckTargetInRange"
+                editable="true">
+        </Action>
+        <Action ID="RetractArm"
                 editable="true">
         </Action>
     </TreeNodesModel>
