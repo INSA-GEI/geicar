@@ -25,7 +25,7 @@ class TrashLocalizationNode : public rclcpp::Node
     public:
         TrashLocalizationNode() : Node("trash_localization_node"){
             // Declare parameters with default values
-            this->declare_parameter<std::double_t>("update_period_in_s", 200.0);
+            this->declare_parameter<std::double_t>("update_period_in_s", 0.2);
             this->declare_parameter<std::string>("camera_left_target_topic", "/usb_cam_left/object_target");
             this->declare_parameter<std::string>("camera_right_target_topic", "/usb_cam_right/object_target");
             this->declare_parameter<std::string>("camera_left_info_topic", "/usb_cam_left/camera_info");
@@ -34,7 +34,7 @@ class TrashLocalizationNode : public rclcpp::Node
             this->declare_parameter<std::string>("left_camera_frame", "camera_left_link");
             this->declare_parameter<std::string>("right_camera_frame", "camera_right_link");
             this->declare_parameter<std::string>("lidar_frame", "ld_lidar_link");
-            this->declare_parameter<std::double_t>("tf_timeout", 0.5);
+            this->declare_parameter<std::double_t>("tf_timeout", 2.0);
 
             // Get parameters
             auto update_period_ = std::chrono::duration<double>(this->get_parameter("update_period_in_s").as_double()); 
@@ -96,8 +96,10 @@ class TrashLocalizationNode : public rclcpp::Node
         void camera_target_callback(const vision_msgs::msg::Detection2D::SharedPtr msg) {
             if (msg->header.frame_id == left_camera_frame_) {
                 left_camera_target_ = *msg;
+                // RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Received left target stamped at %f seconds.", msg->header.stamp.sec + msg->header.stamp.nanosec * 1e-9);
             } else if (msg->header.frame_id == right_camera_frame_) {
                 right_camera_target_ = *msg;
+                // RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Received right target stamped at %f seconds.", msg->header.stamp.sec + msg->header.stamp.nanosec * 1e-9);
             } else {
                 RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] Received target from unknown camera frame: %s", msg->header.frame_id.c_str());
             }
@@ -124,6 +126,7 @@ class TrashLocalizationNode : public rclcpp::Node
          * 
          */
         void process_data() {
+            RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Processing data to localize target...");
             if (left_camera_target_.header.stamp.sec == 0) {
                 RCLCPP_INFO_ONCE(this->get_logger(), "Waiting for camera to detect targets...");
                 return;
@@ -134,6 +137,8 @@ class TrashLocalizationNode : public rclcpp::Node
             }
             // Ignore old data
             auto now = this->now();
+            // RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Current time: %f seconds.", now.nanoseconds()/1000000000.0);
+            // RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Left camera target time: %f seconds.", rclcpp::Time(left_camera_target_.header.stamp).seconds());
             if ((now - rclcpp::Time(left_camera_target_.header.stamp)).seconds() > tf_timeout_) {
                 RCLCPP_WARN(this->get_logger(), "[TRASH_LOCALIZATION] Left camera target data is too old.");
                 return;
@@ -145,13 +150,14 @@ class TrashLocalizationNode : public rclcpp::Node
             // Transform camera target to LIDAR frame
             double target_angle = compute_angle_from_camera(left_camera_target_, left_camera_info_);
             target_angle = transform_angle_to_lidar_frame(target_angle, left_camera_frame_, lidar_frame_);
+            RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Transformed target angle to LIDAR frame: %.3f radians", target_angle);
             if (std::isnan(target_angle)) {
                 RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] Failed to transform target angle to LIDAR frame.");
                 return;
             }
             int target_index = find_target_in_lidar_scan(target_angle, latest_lidar_scan_);
             if (target_index >= 0) {
-                broadcast_target_tf(target_angle, latest_lidar_scan_.ranges[target_index], lidar_frame_);
+                broadcast_target_tf(latest_lidar_scan_.angle_min + target_index * latest_lidar_scan_.angle_increment, latest_lidar_scan_.ranges[target_index], lidar_frame_);
             } else {
                 RCLCPP_WARN(this->get_logger(), "[TRASH_LOCALIZATION] Target not found in LIDAR scan.");
             }
@@ -190,7 +196,7 @@ class TrashLocalizationNode : public rclcpp::Node
                     RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] Unknown camera frame for angle transformation: %s", camera_frame.c_str());
                     return NAN;
                 }
-                double angle_in_lidar = atan2(vec_in_lidar.vector.y, vec_in_lidar.vector.x);
+                double angle_in_lidar = atan2(vec_in_lidar.vector.x, vec_in_lidar.vector.y);
                 return angle_in_lidar;          
             } catch (tf2::TransformException & ex) {
                 RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] TF2 Transform Error in angle transformation: %s", ex.what());
@@ -252,10 +258,11 @@ class TrashLocalizationNode : public rclcpp::Node
          * @return int The index of the target in the LIDAR scan ranges, or -1 if not found.
          */
         int find_target_in_lidar_scan(double angle, sensor_msgs::msg::LaserScan & scan) {
-            const double search_angle_tolerance_ = 5*3.141592654/180.0; // 5 degrees in radians
+            const double search_angle_tolerance_ = 10*3.141592654/180.0; // 5 degrees in radians
             const int min_valid_lidar_points_ = 3;      // Minimum pixel needed to confirm target detection
             const int max_valid_lidar_points_ = 10;   // Maximum pixel to avoid false positives
             const double max_lidar_distance_m_ = 5.0;    // Maximum distance to consider LIDAR points valid
+            const double min_lidar_distance_m_ = 0.1;    // Minimum distance to consider LIDAR points valid
 
             int index_min = std::round((angle - search_angle_tolerance_ - scan.angle_min) / scan.angle_increment);
             int index_max = std::round((angle+search_angle_tolerance_ - scan.angle_min) / scan.angle_increment);
@@ -275,14 +282,14 @@ class TrashLocalizationNode : public rclcpp::Node
             // Perform sweep in LIDAR scan data within the angle range
             for (int i = index_min; i <= index_max; ++i){
                 double distance = scan.ranges[i];
-                if (distance >= scan.range_min && distance <= max_lidar_distance_m_){
+                if (distance >= min_lidar_distance_m_ && distance <= max_lidar_distance_m_){
                     if (pixel_detected < max_valid_lidar_points_){
                         index_detected[pixel_detected] = i;
+                        pixel_detected++;
                     }
-                    pixel_detected++;
                 }
             }
-            
+            RCLCPP_WARN(this->get_logger(), "[TRASH_LOCALIZATION] Detected %d valid LIDAR points for target search.", pixel_detected);
             if (pixel_detected >= min_valid_lidar_points_){
                 // Find minimum distance index among detected points
                 double min_distance = scan.range_max + 1.0;
