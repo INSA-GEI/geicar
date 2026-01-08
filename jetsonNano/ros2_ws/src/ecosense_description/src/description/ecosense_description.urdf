@@ -217,4 +217,12 @@
         <origin xyz="${camera_right_xoff} ${camera_right_yoff} ${camera_right_zoff}" rpy="0 0 0"/>
     </joint>
 
+    <link name="ld_lidar_link">
+    </link>
+    <joint name="ld_lidar_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="ld_lidar_link"/>
+        <origin xyz="${ld_lidar_xoff} ${ld_lidar_yoff} ${ld_lidar_zoff}" rpy="0 0 0"/>
+    </joint>
+
 </robot>

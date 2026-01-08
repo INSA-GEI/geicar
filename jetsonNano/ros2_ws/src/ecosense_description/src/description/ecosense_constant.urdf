@@ -65,4 +65,8 @@
     <xacro:property name="camera_right_yoff" value="0.0"/>
     <xacro:property name="camera_right_zoff" value="0.0"/>
 
+    <!-- LD Lidar -->
+    <xacro:property name="ld_lidar_xoff" value="0.68"/>
+    <xacro:property name="ld_lidar_yoff" value="0.0"/>
+    <xacro:property name="ld_lidar_zoff" value="0.0"/>
 </robot>   
