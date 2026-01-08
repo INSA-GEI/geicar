@@ -222,7 +222,7 @@
     <joint name="ld_lidar_joint" type="fixed">
         <parent link="base_link"/>
         <child link="ld_lidar_link"/>
-        <origin xyz="${ld_lidar_xoff} ${ld_lidar_yoff} ${ld_lidar_zoff}" rpy="0 0 0"/>
+        <origin xyz="${ld_lidar_xoff} ${ld_lidar_yoff} ${ld_lidar_zoff}" rpy="${ld_lidar_rotx} ${ld_lidar_roty} ${ld_lidar_rotz}"/>
     </joint>
 
 </robot>
