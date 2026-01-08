@@ -77,4 +77,7 @@
     <xacro:property name="ld_lidar_xoff" value="0.68"/>
     <xacro:property name="ld_lidar_yoff" value="0.0"/>
     <xacro:property name="ld_lidar_zoff" value="0.0"/>
+    <xacro:property name="ld_lidar_rotx" value="0.0"/>
+    <xacro:property name="ld_lidar_roty" value="0.0"/>
+    <xacro:property name="ld_lidar_rotz" value="${-pi/2}"/>
 </robot>   
