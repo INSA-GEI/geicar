@@ -34,7 +34,7 @@ class TrashLocalizationNode : public rclcpp::Node
             this->declare_parameter<std::string>("left_camera_frame", "camera_left_link");
             this->declare_parameter<std::string>("right_camera_frame", "camera_right_link");
             this->declare_parameter<std::string>("lidar_frame", "ld_lidar_link");
-            this->declare_parameter<std::double_t>("tf_timeout", 2.0);
+            this->declare_parameter<std::double_t>("tf_timeout", 3.0);
 
             // Get parameters
             auto update_period_ = std::chrono::duration<double>(this->get_parameter("update_period_in_s").as_double()); 
@@ -137,8 +137,8 @@ class TrashLocalizationNode : public rclcpp::Node
             }
             // Ignore old data
             auto now = this->now();
-            // RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Current time: %f seconds.", now.nanoseconds()/1000000000.0);
-            // RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Left camera target time: %f seconds.", rclcpp::Time(left_camera_target_.header.stamp).seconds());
+            RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Current time: %f seconds.", now.nanoseconds()/1000000000.0);
+            RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Left camera target time: %f seconds.", rclcpp::Time(left_camera_target_.header.stamp).seconds());
             if ((now - rclcpp::Time(left_camera_target_.header.stamp)).seconds() > tf_timeout_) {
                 RCLCPP_WARN(this->get_logger(), "[TRASH_LOCALIZATION] Left camera target data is too old.");
                 return;
@@ -148,8 +148,8 @@ class TrashLocalizationNode : public rclcpp::Node
                 return;
             }
             // Transform camera target to LIDAR frame
-            double target_angle = compute_angle_from_camera(left_camera_target_, left_camera_info_);
-            target_angle = transform_angle_to_lidar_frame(target_angle, left_camera_frame_, lidar_frame_);
+            double target_angle = compute_angle_from_camera(right_camera_target_, right_camera_info_);
+            target_angle = transform_angle_to_lidar_frame(target_angle, right_camera_frame_, lidar_frame_);
             RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Transformed target angle to LIDAR frame: %.3f radians", target_angle);
             if (std::isnan(target_angle)) {
                 RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] Failed to transform target angle to LIDAR frame.");
@@ -177,9 +177,9 @@ class TrashLocalizationNode : public rclcpp::Node
             geometry_msgs::msg::Vector3Stamped vec_in_camera, vec_in_lidar;
             vec_in_camera.header.frame_id = camera_frame;
             vec_in_camera.header.stamp = this->now();
-            vec_in_camera.vector.x = cos(angle_in_camera);
+            vec_in_camera.vector.x = sin(angle_in_camera);
             vec_in_camera.vector.y = 0.0;
-            vec_in_camera.vector.z = sin(angle_in_camera);
+            vec_in_camera.vector.z = cos(angle_in_camera);
 
             try {
                 if (camera_frame == left_camera_frame_) {
@@ -196,7 +196,7 @@ class TrashLocalizationNode : public rclcpp::Node
                     RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] Unknown camera frame for angle transformation: %s", camera_frame.c_str());
                     return NAN;
                 }
-                double angle_in_lidar = atan2(vec_in_lidar.vector.x, vec_in_lidar.vector.y);
+                double angle_in_lidar = atan2(vec_in_lidar.vector.x, vec_in_lidar.vector.y) + M_PI/2;
                 return angle_in_lidar;          
             } catch (tf2::TransformException & ex) {
                 RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] TF2 Transform Error in angle transformation: %s", ex.what());
@@ -314,7 +314,7 @@ class TrashLocalizationNode : public rclcpp::Node
             target_tf.child_frame_id = "target_trash";
             target_tf.transform.translation.x = distance * cos(angle);
             target_tf.transform.translation.y = distance * sin(angle);
-            target_tf.transform.translation.z = 0.0;
+            target_tf.transform.translation.z = 0.05;
             target_tf.transform.rotation.x = 0.0;
             target_tf.transform.rotation.y = 0.0;
             target_tf.transform.rotation.z = 0.0;
