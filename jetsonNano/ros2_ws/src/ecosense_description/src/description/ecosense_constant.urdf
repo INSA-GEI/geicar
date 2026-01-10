@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="tartinator" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="ecosense" xmlns:xacro="http://www.ros.org/wiki/xacro">
     <!-- Define chassis constants -->
     <xacro:property name="base_width" value="0.523"/> <!-- Meters -->
     <xacro:property name="base_length" value="0.985"/>
@@ -18,6 +18,9 @@
     <xacro:property name="wheel_right_steer_limit_left" value="0.471238898038"/> <!-- 27 degrees -->
     <xacro:property name="wheel_right_steer_limit_right" value="0.453785605519"/> <!-- 26 degrees -->
 
+    <xacro:property name="arm_mount_xoff" value="0.6"/>
+    <xacro:property name="arm_mount_yoff" value="0.05"/>
+    <xacro:property name="arm_mount_zoff" value="0.0"/>
     <!-- Define sensors constants -->
     <!-- RPLidar -->
     <xacro:property name="rplidar_xoff" value="-0.34"/>
