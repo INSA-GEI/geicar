@@ -93,21 +93,37 @@ class ExecutePickPlace : public StatefulActionNode {
             geometry_msgs::msg::PoseStamped ready_pose;
             geometry_msgs::msg::PoseStamped target_pose;
             // Compute ready pose
-            if (getTargetPose(ready_pose, 0.15) == -1) {
+            if (setReadyPose() == -1) {
                 RCLCPP_WARN(node_->get_logger(), "Failed to compute ready pose.");
                 execSuccess = false;
                 isRunning = false;
                 return;
             }
 
-            // Move to ready pose
-            arm_group_->setPoseTarget(ready_pose.pose);
-            if (arm_group_->move() != moveit::core::MoveItErrorCode::SUCCESS) {
-                RCLCPP_WARN(node_->get_logger(), "Failed to move to ready pose.");
+            moveit::planning_interface::MoveGroupInterface::Plan my_plan;
+            if (arm_group_->plan(my_plan) != moveit::core::MoveItErrorCode::SUCCESS){
+                RCLCPP_WARN(node_->get_logger(), "Failed to plan to ready pose.");
                 execSuccess = false;
                 isRunning = false;
                 return;
             }
+
+            // Execute plan to ready pose
+            if (arm_group_->execute(my_plan) != moveit::core::MoveItErrorCode::SUCCESS){
+                RCLCPP_WARN(node_->get_logger(), "Failed to execute plan to ready pose.");
+                execSuccess = false;
+                isRunning = false;
+                return;
+            }
+
+            // Move to ready pose
+            // arm_group_->setPoseTarget(ready_pose.pose);
+            // if (arm_group_->move() != moveit::core::MoveItErrorCode::SUCCESS) {
+            //     RCLCPP_WARN(node_->get_logger(), "Failed to move to ready pose.");
+            //     execSuccess = false;
+            //     isRunning = false;
+            //     return;
+            // }
 
             gripper_group_->setNamedTarget("open_gripper");
             gripper_group_->move();
@@ -180,6 +196,29 @@ class ExecutePickPlace : public StatefulActionNode {
         //     }
         //     return 0;
         // }
+
+        int setReadyPose(){
+            geometry_msgs::msg::PoseStamped pose = geometry_msgs::msg::PoseStamped();
+            // Set target pose at the origin of the "target_trash" frame
+            pose.header.frame_id = "target_trash";  
+            pose.header.stamp = rclcpp::Time(0);
+            pose.pose.orientation.w = 1.0;
+            
+            try {
+                // Transform the target pose to the Arm_Base frame using TF2
+                pose = tf_target_buffer_->transform(pose, "Arm_Base");
+            } catch (tf2::TransformException &ex) {
+                RCLCPP_WARN(node_->get_logger(), "Could not transform pose: %s", ex.what());
+                return -1;
+            }
+            // Compute angle from Arm_Base origin to target in XY plane
+            double target_angle = atan2(pose.pose.position.y, pose.pose.position.x);
+            // Get default ready pose
+            std::map<std::string, double> target_joints = arm_group_->getNamedTargetValues("home");
+            target_joints["Shoulder_Rotation"] = target_angle;
+            arm_group_->setJointValueTarget(target_joints);
+            return 0;
+        }
 
         int getTargetPose(geometry_msgs::msg::PoseStamped& pose, const double standoff_dist = 0.15){
             pose = geometry_msgs::msg::PoseStamped();
@@ -284,5 +323,5 @@ class ExecutePickPlace : public StatefulActionNode {
 
         // Constants
         const double gripper_asym_offset_ = 0.03;   // Meters
-        const double gripper_approach_offset_ = 0.065; // Meters
+        const double gripper_approach_offset_ = 0.05; // Meters
 };

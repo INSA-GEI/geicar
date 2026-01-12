@@ -86,7 +86,7 @@ class BehaviorTreeExecutor : public rclcpp::Node {
         std::shared_ptr<BT::StdCoutLogger> cout_logger_;
 
         /**
-         * @brief Thimer to syncronisly tick the behavior tree
+         * @brief Timer to synchronously tick the behavior tree
          */
         rclcpp::TimerBase::SharedPtr timer_bt_tick_;
 
@@ -106,7 +106,7 @@ class MockTargetBroadcaster : public rclcpp::Node {
             tf_broadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>(this);
 
             // Parameters
-            this->declare_parameter<bool>("broadcast_target_tf", true);
+            this->declare_parameter<bool>("broadcast_target_tf", false);
             this->declare_parameter<double>("target_x", 0.42);
             this->declare_parameter<double>("target_y", -0.1);
             this->declare_parameter<double>("target_z", 0.05);
