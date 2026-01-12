@@ -5,6 +5,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/string.hpp"
+#include "std_srvs/srv/trigger.hpp"
 #include "sensor_msgs/msg/laser_scan.hpp"
 #include "sensor_msgs/msg/camera_info.hpp"
 #include "geometry_msgs/msg/pose_stamped.hpp"
@@ -16,7 +17,7 @@
 #include "tf2_ros/transform_listener.h"
 #include "tf2_ros/buffer.h"
 #include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
-#include "tf2_ros/transform_broadcaster.h"
+#include "tf2_ros/static_transform_broadcaster.h"
 
 using namespace std::chrono_literals;
 
@@ -84,12 +85,24 @@ class TrashLocalizationNode : public rclcpp::Node
             tf_right_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_cam_right_buffer_);
 
             // TF2 broadcaster
-            tf_broadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>(*this);
+            tf_static_broadcaster_ = std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
 
-            timer_ = this->create_wall_timer(
-                update_period_, 
-                std::bind(&TrashLocalizationNode::process_data, this)
+            // Service to publish target TF when called
+            publish_target_tf_service_ = this->create_service<std_srvs::srv::Trigger>(
+                "trash_localization_node/publish_target_tf",
+                std::bind(&TrashLocalizationNode::process_data, this, std::placeholders::_1, std::placeholders::_2)
             );
+
+            clear_target_tf_service_ = this->create_service<std_srvs::srv::Trigger>(
+                "trash_localization_node/clear_target_tf",
+                std::bind(&TrashLocalizationNode::clear_target_tf, this, std::placeholders::_1, std::placeholders::_2)
+            );
+
+            // RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Trash Localization Node has been started.");
+            // timer_ = this->create_wall_timer(
+            //     update_period_, 
+            //     std::bind(&TrashLocalizationNode::update_target_tf, this)
+            // );
         }
 
     private:
@@ -125,26 +138,36 @@ class TrashLocalizationNode : public rclcpp::Node
          * @note Broadcast the closest valid point in LIDAR scan as target position.
          * 
          */
-        void process_data() {
+        void process_data(const std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                       std::shared_ptr<std_srvs::srv::Trigger::Response> response) {
+            (void)request;
             RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Processing data to localize target...");
-            if (left_camera_target_.header.stamp.sec == 0) {
+            if (right_camera_target_.header.stamp.sec == 0) {
                 RCLCPP_INFO_ONCE(this->get_logger(), "Waiting for camera to detect targets...");
+                response->success = false;
+                response->message = "No right camera target data.";
                 return;
             }
             if (latest_lidar_scan_.header.stamp.sec == 0) {
                 RCLCPP_INFO_ONCE(this->get_logger(), "Waiting for LIDAR scan data...");
+                response->success = false;
+                response->message = "No LIDAR scan data.";
                 return;
             }
             // Ignore old data
             auto now = this->now();
-            RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Current time: %f seconds.", now.nanoseconds()/1000000000.0);
-            RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Left camera target time: %f seconds.", rclcpp::Time(left_camera_target_.header.stamp).seconds());
-            if ((now - rclcpp::Time(left_camera_target_.header.stamp)).seconds() > tf_timeout_) {
-                RCLCPP_WARN(this->get_logger(), "[TRASH_LOCALIZATION] Left camera target data is too old.");
+            // RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Current time: %f seconds.", now.nanoseconds()/1000000000.0);
+            // RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Right camera target time: %f seconds.", rclcpp::Time(right_camera_target_.header.stamp).seconds());
+            if ((now - rclcpp::Time(right_camera_target_.header.stamp)).seconds() > tf_timeout_) {
+                RCLCPP_WARN(this->get_logger(), "[TRASH_LOCALIZATION] Right camera target data is too old.");
+                response->success = false;
+                response->message = "Right camera target data is too old.";
                 return;
             }
             if ((now - rclcpp::Time(latest_lidar_scan_.header.stamp)).seconds() > tf_timeout_) {
                 RCLCPP_WARN(this->get_logger(), "[TRASH_LOCALIZATION] LIDAR scan data is too old.");
+                response->success = false;
+                response->message = "LIDAR scan data is too old.";
                 return;
             }
             // Transform camera target to LIDAR frame
@@ -153,13 +176,19 @@ class TrashLocalizationNode : public rclcpp::Node
             RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Transformed target angle to LIDAR frame: %.3f radians", target_angle);
             if (std::isnan(target_angle)) {
                 RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] Failed to transform target angle to LIDAR frame.");
+                response->success = false;
+                response->message = "Failed to transform target angle to LIDAR frame.";
                 return;
             }
             int target_index = find_target_in_lidar_scan(target_angle, latest_lidar_scan_);
             if (target_index >= 0) {
                 broadcast_target_tf(latest_lidar_scan_.angle_min + target_index * latest_lidar_scan_.angle_increment, latest_lidar_scan_.ranges[target_index], lidar_frame_);
+                response->success = true;
+                response->message = "Target localized and TF broadcasted.";
             } else {
                 RCLCPP_WARN(this->get_logger(), "[TRASH_LOCALIZATION] Target not found in LIDAR scan.");
+                response->success = false;
+                response->message = "Target not found in LIDAR scan.";
             }
         }
 
@@ -266,7 +295,7 @@ class TrashLocalizationNode : public rclcpp::Node
 
             int index_min = std::round((angle - search_angle_tolerance_ - scan.angle_min) / scan.angle_increment);
             int index_max = std::round((angle+search_angle_tolerance_ - scan.angle_min) / scan.angle_increment);
-
+            int index_center = std::round((angle - scan.angle_min) / scan.angle_increment);
             if (index_min < 0){
                 index_min = 0;
             }
@@ -279,16 +308,41 @@ class TrashLocalizationNode : public rclcpp::Node
             std::array<int, max_valid_lidar_points_> index_detected = {0};
             int target_index = 0;
 
-            // Perform sweep in LIDAR scan data within the angle range
-            for (int i = index_min; i <= index_max; ++i){
-                double distance = scan.ranges[i];
-                if (distance >= min_lidar_distance_m_ && distance <= max_lidar_distance_m_){
-                    if (pixel_detected < max_valid_lidar_points_){
-                        index_detected[pixel_detected] = i;
-                        pixel_detected++;
+            // Perform sweep in LIDAR scan data within the angle range from the middle outwards
+            // Perform sweep in LIDAR scan data within the angle range from the middle outwards
+            for (int offset = 0; offset <= (index_max - index_min)/2; ++offset){
+                // Check right side
+                int i_right = index_center + offset;
+                if (i_right <= index_max){
+                    double distance = scan.ranges[i_right];
+                    if (distance >= min_lidar_distance_m_ && distance <= max_lidar_distance_m_){
+                        if (pixel_detected < max_valid_lidar_points_){
+                            index_detected[pixel_detected] = i_right;
+                            pixel_detected++;
+                        }
+                    }
+                }
+                // Check left side
+                int i_left = index_center - offset;
+                if (i_left >= index_min){
+                    double distance = scan.ranges[i_left];
+                    if (distance >= min_lidar_distance_m_ && distance <= max_lidar_distance_m_){
+                        if (pixel_detected < max_valid_lidar_points_){
+                            index_detected[pixel_detected] = i_left;
+                            pixel_detected++;
+                        }
                     }
                 }
             }
+            // for (int i = index_min; i <= index_max; ++i){
+            //     double distance = scan.ranges[i];
+            //     if (distance >= min_lidar_distance_m_ && distance <= max_lidar_distance_m_){
+            //         if (pixel_detected < max_valid_lidar_points_){
+            //             index_detected[pixel_detected] = i;
+            //             pixel_detected++;
+            //         }
+            //     }
+            // }
             RCLCPP_WARN(this->get_logger(), "[TRASH_LOCALIZATION] Detected %d valid LIDAR points for target search.", pixel_detected);
             if (pixel_detected >= min_valid_lidar_points_){
                 // Find minimum distance index among detected points
@@ -320,7 +374,27 @@ class TrashLocalizationNode : public rclcpp::Node
             target_tf.transform.rotation.z = 0.0;
             target_tf.transform.rotation.w = 1.0;
 
-            tf_broadcaster_->sendTransform(target_tf);
+            tf_static_broadcaster_->sendTransform(target_tf);
+        }
+
+        void clear_target_tf(const std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                       std::shared_ptr<std_srvs::srv::Trigger::Response> response) {
+            (void)request;
+            geometry_msgs::msg::TransformStamped target_tf;
+            target_tf.header.stamp = this->now();
+            target_tf.header.frame_id = lidar_frame_;
+            target_tf.child_frame_id = "target_trash";
+            target_tf.transform.translation.x = 0.0;
+            target_tf.transform.translation.y = 0.0;
+            target_tf.transform.translation.z = 0.0;
+            target_tf.transform.rotation.x = 0.0;
+            target_tf.transform.rotation.y = 0.0;
+            target_tf.transform.rotation.z = 0.0;
+            target_tf.transform.rotation.w = 1.0;
+
+            tf_static_broadcaster_->sendTransform(target_tf);
+            response->success = true;
+            response->message = "Target TF cleared.";
         }
 
         rclcpp::Subscription<vision_msgs::msg::Detection2D>::SharedPtr camera_left_target_subscriber_;
@@ -328,7 +402,7 @@ class TrashLocalizationNode : public rclcpp::Node
         rclcpp::Subscription<vision_msgs::msg::Detection2D>::SharedPtr camera_right_target_subscriber_;
         rclcpp::Subscription<sensor_msgs::msg::CameraInfo>::SharedPtr camera_right_info_subscriber_;
 
-        std::unique_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
+        std::shared_ptr<tf2_ros::StaticTransformBroadcaster> tf_static_broadcaster_;
 
         rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr lidar_scan_subscriber_;
         rclcpp::TimerBase::SharedPtr timer_;
@@ -336,6 +410,12 @@ class TrashLocalizationNode : public rclcpp::Node
         vision_msgs::msg::Detection2D left_camera_target_;
         vision_msgs::msg::Detection2D right_camera_target_;
         sensor_msgs::msg::LaserScan latest_lidar_scan_;
+        double latest_target_distance_ = 0.0;
+        double latest_target_angle_ = 0.0;
+
+        // Services to publish and clear target TF
+        rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr publish_target_tf_service_;
+        rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr clear_target_tf_service_;
 
         std::string left_camera_frame_;
         std::string right_camera_frame_;
