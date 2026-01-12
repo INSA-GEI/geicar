@@ -41,7 +41,6 @@ install(
 
 install(
   DIRECTORY
-    launch
     tree
   DESTINATION 
     share/${PROJECT_NAME}

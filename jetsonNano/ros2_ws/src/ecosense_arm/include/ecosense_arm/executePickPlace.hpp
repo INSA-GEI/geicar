@@ -214,7 +214,7 @@ class ExecutePickPlace : public StatefulActionNode {
             // Compute angle from Arm_Base origin to target in XY plane
             double target_angle = atan2(pose.pose.position.y, pose.pose.position.x);
             // Get default ready pose
-            std::map<std::string, double> target_joints = arm_group_->getNamedTargetValues("home");
+            std::map<std::string, double> target_joints = arm_group_->getNamedTargetValues("default_pickup_ready");
             target_joints["Shoulder_Rotation"] = target_angle;
             arm_group_->setJointValueTarget(target_joints);
             return 0;
@@ -323,5 +323,5 @@ class ExecutePickPlace : public StatefulActionNode {
 
         // Constants
         const double gripper_asym_offset_ = 0.03;   // Meters
-        const double gripper_approach_offset_ = 0.05; // Meters
+        const double gripper_approach_offset_ = 0.0; // Meters
 };

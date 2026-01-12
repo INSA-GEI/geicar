@@ -18,7 +18,7 @@ class BehaviorTreeExecutor : public rclcpp::Node {
             // Reuse the bt tick timer to get out of the Constructor for initialization
             // the this->shared_from_this() only works out of constructor and is needed
             // for Node init
-            timer_bt_tick_ = create_wall_timer(std::chrono::milliseconds(10), std::bind(&BehaviorTreeExecutor::init, this));
+            timer_bt_tick_ = create_wall_timer(std::chrono::milliseconds(bt_tick_period_ms_), std::bind(&BehaviorTreeExecutor::init, this));
         }
         ~BehaviorTreeExecutor(){}
     private:
@@ -75,6 +75,7 @@ class BehaviorTreeExecutor : public rclcpp::Node {
          * @brief Timer to synchronously tick the behavior tree
          */
         rclcpp::TimerBase::SharedPtr timer_bt_tick_;
+        int64_t bt_tick_period_ms_ = 50;
 
         // Get tree from package share directory
         std::string tree_folder_path_ = ament_index_cpp::get_package_share_directory("bt_ecosense") + "/tree/";
