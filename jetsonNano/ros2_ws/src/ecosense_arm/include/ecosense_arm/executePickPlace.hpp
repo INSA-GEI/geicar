@@ -322,6 +322,6 @@ class ExecutePickPlace : public StatefulActionNode {
         std::shared_ptr<tf2_ros::TransformListener> tf_target_listener_{nullptr};
 
         // Constants
-        const double gripper_asym_offset_ = 0.03;   // Meters
-        const double gripper_approach_offset_ = 0.0; // Meters
+        const double gripper_asym_offset_ = 0.04;   // Meters
+        const double gripper_approach_offset_ = 0.04; // Meters
 };
