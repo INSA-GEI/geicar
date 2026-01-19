@@ -180,8 +180,8 @@ class TrashLocalizationNode : public rclcpp::Node
         bool perform_localization(std::string & message) {
             // RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Processing data to localize target...");
             // Perform localization using both cameras if available
-            bool left_valid = true;
-            bool right_valid = true;
+            bool left_valid = false;
+            bool right_valid = false;
             double now_s = this->now().seconds();
 
             if (left_camera_target_.header.stamp.sec != 0) {
@@ -232,7 +232,10 @@ class TrashLocalizationNode : public rclcpp::Node
             }
 
             if (!use_intersection) {
-                if (left_valid) {
+                if (right_valid) {
+                    double angle_cam = compute_angle_from_camera(right_camera_target_, right_camera_info_, right_camera_frame_);
+                    target_angle = transform_angle_to_lidar_frame(angle_cam, right_camera_frame_, lidar_frame_, right_camera_target_.header.stamp);
+                } else if (left_valid) {
                      double angle_cam = compute_angle_from_camera(left_camera_target_, left_camera_info_, left_camera_frame_);
                      target_angle = transform_angle_to_lidar_frame(angle_cam, left_camera_frame_, lidar_frame_, left_camera_target_.header.stamp);
                 } else {
@@ -632,7 +635,7 @@ class TrashLocalizationNode : public rclcpp::Node
          * @return int The index of the target in the LIDAR scan ranges, or -1 if not found.
          */
         int find_target_in_lidar_scan(double angle, sensor_msgs::msg::LaserScan & scan) {
-            const double search_angle_tolerance_ = 10*3.141592654/180.0; // 5 degrees in radians
+            const double search_angle_tolerance_ = 5*3.141592654/180.0; // 5 degrees in radians
             const int min_valid_lidar_points_ = 3;      // Minimum pixel needed to confirm target detection
             const int max_valid_lidar_points_ = 20;   // Maximum pixel to avoid false positives
             const double max_lidar_distance_m_ = 1.5;    // Maximum distance to consider LIDAR points valid
