@@ -48,6 +48,7 @@ class TrashLocalizationNode : public rclcpp::Node
             this->declare_parameter<std::double_t>("tf_timeout", 3.0);
             this->declare_parameter<std::double_t>("left_angle_offset_deg", -1.0);
             this->declare_parameter<std::double_t>("right_angle_offset_deg",5.0);
+            this->declare_parameter<bool>("auto_publish", false);
 
             // Get parameters
             auto update_period_ = std::chrono::duration<double>(this->get_parameter("update_period_in_s").as_double()); 
@@ -57,6 +58,7 @@ class TrashLocalizationNode : public rclcpp::Node
             lidar_frame_ = this->get_parameter("lidar_frame").as_string();
             left_angle_offset_deg_ = this->get_parameter("left_angle_offset_deg").as_double();
             right_angle_offset_deg_ = this->get_parameter("right_angle_offset_deg").as_double();
+            auto_publish_ = this->get_parameter("auto_publish").as_bool();
 
             // Subscribers from both cameras
             rclcpp::SensorDataQoS qos;
@@ -116,10 +118,14 @@ class TrashLocalizationNode : public rclcpp::Node
             marker_publisher_ = this->create_publisher<visualization_msgs::msg::Marker>("trash_localization_node/search_zone", 10);
 
             RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Trash Localization Node has been started.");
-            //timer_ = this->create_wall_timer(
-            //    update_period_, 
-            //    std::bind(&TrashLocalizationNode::update_target_tf, this)
-            //);
+            if (auto_publish_) {
+                RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Auto-publishing is enabled. Computing every %f seconds.", update_period_.count());
+                timer_ = this->create_wall_timer(
+                    update_period_, 
+                    std::bind(&TrashLocalizationNode::update_target_tf, this)
+                );
+            }
+            
         }
 
     private:
@@ -234,10 +240,16 @@ class TrashLocalizationNode : public rclcpp::Node
             if (!use_intersection) {
                 if (right_valid) {
                     double angle_cam = compute_angle_from_camera(right_camera_target_, right_camera_info_, right_camera_frame_);
-                    target_angle = transform_angle_to_lidar_frame(angle_cam, right_camera_frame_, lidar_frame_, right_camera_target_.header.stamp);
+                    auto target_pose = compute_pose_from_camera_angle(right_camera_target_, right_camera_info_, angle_cam, right_camera_frame_);
+                    target_angle = compute_lidar_angle_from_camera_pose(target_pose, right_camera_frame_);
+                    RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Target angle: %f", target_angle);
+                    //target_angle = transform_angle_to_lidar_frame(angle_cam, right_camera_frame_, lidar_frame_, right_camera_target_.header.stamp);
                 } else if (left_valid) {
-                     double angle_cam = compute_angle_from_camera(left_camera_target_, left_camera_info_, left_camera_frame_);
-                     target_angle = transform_angle_to_lidar_frame(angle_cam, left_camera_frame_, lidar_frame_, left_camera_target_.header.stamp);
+                    double angle_cam = compute_angle_from_camera(left_camera_target_, left_camera_info_, left_camera_frame_);
+                    auto target_pose = compute_pose_from_camera_angle(left_camera_target_, left_camera_info_, angle_cam, left_camera_frame_);
+                    target_angle = compute_lidar_angle_from_camera_pose(target_pose, left_camera_frame_);
+                    RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Target angle: %f", target_angle);
+                    //target_angle = transform_angle_to_lidar_frame(angle_cam, left_camera_frame_, lidar_frame_, left_camera_target_.header.stamp);
                 } else {
                      // Calculate delays for logging
                      double left_diff = (left_camera_target_.header.stamp.sec != 0) ? (now_s - rclcpp::Time(left_camera_target_.header.stamp).seconds()) : -1.0;
@@ -458,6 +470,20 @@ class TrashLocalizationNode : public rclcpp::Node
                     RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] Unknown camera frame for angle transformation: %s", camera_frame.c_str());
                     return NAN;
                 }
+                //make the distance egal 0.5
+                vec_in_lidar.vector.x = vec_in_lidar.vector.x;
+                vec_in_lidar.vector.y = vec_in_lidar.vector.y;
+                vec_in_lidar.vector.z = vec_in_lidar.vector.z;
+
+                geometry_msgs::msg::PoseStamped target_pose;
+                target_pose.header = vec_in_lidar.header;
+                target_pose.pose.position.x = vec_in_lidar.vector.x;
+                target_pose.pose.position.y = vec_in_lidar.vector.y;
+                target_pose.pose.position.z = vec_in_lidar.vector.z;
+
+                //publish_search_zone_marker(target_pose, 0.1);
+
+                RCLCPP_INFO(this->get_logger(), "[TRASH_LOCALIZATION] Vector in LIDAR frame: (%.2f, %.2f, %.2f)", vec_in_lidar.vector.x, vec_in_lidar.vector.y, vec_in_lidar.vector.z);
                 double angle_in_lidar = atan2(vec_in_lidar.vector.y, vec_in_lidar.vector.x);
                 
                 // Add the tuning offset
@@ -480,13 +506,50 @@ class TrashLocalizationNode : public rclcpp::Node
             // Compute direction vector from camera to target
             double angle = atan2((target.bbox.center.position.x - cx), fx);
             // Compute distance from camera
-            double distance = target_width_m_ * fx *2 / (target.bbox.size_x);
+            double distance = target_width_m_ * fx / (target.bbox.size_x);
 
             // Set pose position
             pose.pose.position.x = distance * sin(angle);
             pose.pose.position.y = 0.0;
             pose.pose.position.z = distance * cos(angle);
+
+            //publish search zone marker
+            //publish_search_zone_marker(pose, 0.1);
+
             return pose;
+        }
+
+        geometry_msgs::msg::PoseStamped compute_pose_from_camera_angle(vision_msgs::msg::Detection2D & target, sensor_msgs::msg::CameraInfo & cam_info, double angle_from_cam, const std::string & frame_id){
+            geometry_msgs::msg::PoseStamped pose;
+            pose.header = target.header;
+
+            double cx = cam_info.k[2]; // Center point x
+            double fx = cam_info.k[0]; // Focal length x
+            // Compute direction vector from camera to target
+            double angle = angle_from_cam;
+            // Compute distance from camera
+            double distance = 0.9 * target_width_m_ * fx / (target.bbox.size_x);
+
+            // Set pose position
+            pose.pose.position.x = distance * sin(angle);
+            pose.pose.position.y = 0.0;
+            pose.pose.position.z = distance * cos(angle);
+
+            //publish search zone marker
+            publish_estimate_cam_pose(pose, 0.1, frame_id);
+
+            return pose;
+        }
+
+        double compute_lidar_angle_from_camera_pose(geometry_msgs::msg::PoseStamped & pose, const std::string & frame_id){
+            geometry_msgs::msg::PoseStamped pose_in_lidar = transform_pose_to_lidar_frame(pose, lidar_frame_);
+
+            if (pose_in_lidar.header.frame_id != lidar_frame_) {
+                RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] Invalid frame_id %s for pose in lidar frame", pose_in_lidar.header.frame_id.c_str());
+                return NAN;
+            }
+            
+            return atan2(pose_in_lidar.pose.position.y, pose_in_lidar.pose.position.x);
         }
 
         geometry_msgs::msg::PoseStamped compute_intersection(double angle_left_lidar, double angle_right_lidar, 
@@ -556,6 +619,7 @@ class TrashLocalizationNode : public rclcpp::Node
             return result;
         }
 
+        //TODO : FIX THIS
         geometry_msgs::msg::PoseStamped transform_pose_to_lidar_frame(geometry_msgs::msg::PoseStamped & cam_pose, const std::string & lidar_frame) {
             // Transform pose from camera frame to LIDAR frame using TF2
             geometry_msgs::msg::PoseStamped pose_in_lidar;
@@ -574,6 +638,9 @@ class TrashLocalizationNode : public rclcpp::Node
                     RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] Unknown camera frame for pose transformation: %s", cam_pose.header.frame_id.c_str());
                     return cam_pose;
                 }
+                pose_in_lidar.header.stamp = this->now();
+                pose_in_lidar.header.frame_id = lidar_frame_;
+                //publish_search_zone_marker(pose_in_lidar, 0.05);
                 return pose_in_lidar;          
             } catch (tf2::TransformException & ex) {
                 RCLCPP_ERROR(this->get_logger(), "[TRASH_LOCALIZATION] TF2 Transform Error in pose transformation: %s", ex.what());
@@ -869,6 +936,26 @@ class TrashLocalizationNode : public rclcpp::Node
             marker_publisher_->publish(marker);
         }
 
+        void publish_estimate_cam_pose(geometry_msgs::msg::PoseStamped target_pose, double radius, const std::string & frame_id) {
+            visualization_msgs::msg::Marker marker;
+            marker.header.frame_id = frame_id;
+            marker.header.stamp = this->now();
+            marker.ns = "estimate_cam_pose";
+            marker.id = 1;
+            marker.type = visualization_msgs::msg::Marker::CYLINDER;
+            marker.action = visualization_msgs::msg::Marker::ADD;
+            marker.pose = target_pose.pose;
+            marker.scale.x = radius * 2;
+            marker.scale.y = radius * 2;
+            marker.scale.z = 0.01;
+            marker.color.a = 0.5;
+            marker.color.r = 1.0;
+            marker.color.g = 0.0;
+            marker.color.b = 0.0;
+
+            marker_publisher_->publish(marker);
+        }
+
         void publish_camera_line(double angle, const std::string & frame_id) {
             visualization_msgs::msg::Marker marker;
             marker.header.frame_id = frame_id;
@@ -949,6 +1036,8 @@ class TrashLocalizationNode : public rclcpp::Node
         double tf_timeout_;
         double left_angle_offset_deg_;
         double right_angle_offset_deg_;
+
+        bool auto_publish_;
 
 };
 
