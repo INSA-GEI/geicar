@@ -114,6 +114,12 @@ class TrashLocalizationNode : public rclcpp::Node
                 std::bind(&TrashLocalizationNode::clear_target_tf, this, std::placeholders::_1, std::placeholders::_2)
             );
 
+            // Service to get the latest computed target angle (radians)
+            get_target_angle_service_ = this->create_service<std_srvs::srv::Trigger>(
+                "trash_localization_node/get_target_angle",
+                std::bind(&TrashLocalizationNode::get_target_angle, this, std::placeholders::_1, std::placeholders::_2)
+            );
+
             // Publisher for search zone markers
             marker_publisher_ = this->create_publisher<visualization_msgs::msg::Marker>("trash_localization_node/search_zone", 10);
 
@@ -283,6 +289,8 @@ class TrashLocalizationNode : public rclcpp::Node
 
             // Always use angular search (Cone) based on the best estimated angle.
             // This avoids "too close" distance issues from poor triangulation depth.
+            // store latest estimated angle for external queries
+            latest_target_angle_ = target_angle;
             int target_index = find_target_in_lidar_scan(target_angle, latest_lidar_scan_);
 
             if (target_index >= 0) {
@@ -299,6 +307,22 @@ class TrashLocalizationNode : public rclcpp::Node
         void update_target_tf() {
             std::string message;
             perform_localization(message);
+        }
+
+        void get_target_angle(const std::shared_ptr<std_srvs::srv::Trigger::Request> request,
+                       std::shared_ptr<std_srvs::srv::Trigger::Response> response) {
+            (void)request;
+            std::string message;
+            // Use the same localization routine to compute angle (this may broadcast TF as well)
+            bool ok = perform_localization(message);
+            if (!ok) {
+                response->success = false;
+                response->message = message;
+                return;
+            }
+            // Return the latest computed angle in radians as the message
+            response->success = true;
+            response->message = std::to_string(latest_target_angle_);
         }
 
         void process_data(const std::shared_ptr<std_srvs::srv::Trigger::Request> request,
@@ -1019,6 +1043,7 @@ class TrashLocalizationNode : public rclcpp::Node
         // Services to publish and clear target TF
         rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr publish_target_tf_service_;
         rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr clear_target_tf_service_;
+        rclcpp::Service<std_srvs::srv::Trigger>::SharedPtr get_target_angle_service_;
 
         std::string left_camera_frame_;
         std::string right_camera_frame_;
