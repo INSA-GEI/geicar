@@ -726,7 +726,7 @@ class TrashLocalizationNode : public rclcpp::Node
          * @return int The index of the target in the LIDAR scan ranges, or -1 if not found.
          */
         int find_target_in_lidar_scan(double angle, sensor_msgs::msg::LaserScan & scan) {
-            const double search_angle_tolerance_ = 5*3.141592654/180.0; // 5 degrees in radians
+            const double search_angle_tolerance_ = 10*3.141592654/180.0; // 10 degrees in radians
             const int min_valid_lidar_points_ = 3;      // Minimum pixel needed to confirm target detection
             const int max_valid_lidar_points_ = 20;   // Maximum pixel to avoid false positives
             const double max_lidar_distance_m_ = 1.5;    // Maximum distance to consider LIDAR points valid
