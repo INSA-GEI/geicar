@@ -1,0 +1,9 @@
+Manufacturer=Keystone Electronics
+PartNumber=3557
+PartCategory=Undefined or Miscellaneous
+PackageCategory=Other
+PinCount=2
+Version=2.2
+Released=2019-04-27 23:13:55
+Downloaded=2026-02-12 10:18:27
+3D=Y
