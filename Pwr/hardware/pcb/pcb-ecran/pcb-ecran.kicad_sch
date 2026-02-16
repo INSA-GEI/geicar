@@ -2,14 +2,8 @@
 	(version 20231120)
 	(generator "eeschema")
 	(generator_version "8.0")
-	(uuid "d58b6697-86dd-4507-a8d2-2a095a0827b1")
+	(uuid "0ac106c3-2fee-4c2a-aca5-939c535578e0")
 	(paper "A4")
-	(title_block
-		(title "Carte Energie - I/O")
-		(date "2026-02-12")
-		(rev "1.0")
-		(company "INSA - GEI")
-	)
 	(lib_symbols
 		(symbol "DM-OLED096-636:DM-OLED096-636"
 			(pin_names
@@ -1200,361 +1194,361 @@
 		)
 	)
 	(junction
-		(at 203.2 62.23)
+		(at 233.68 78.74)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "4d2c917a-71fa-4074-b863-a77a122f1400")
+		(uuid "d56f6af0-ec42-4854-bc3b-9552295d27a2")
 	)
 	(no_connect
-		(at 207.01 67.31)
-		(uuid "3451df3a-b820-43f4-80c4-b3edc9f14a76")
+		(at 237.49 91.44)
+		(uuid "0d39d58d-c09a-49eb-af59-42c8b208a091")
 	)
 	(no_connect
-		(at 232.41 52.07)
-		(uuid "51fac920-c0d9-40ff-b1ab-7a945e706b04")
+		(at 262.89 71.12)
+		(uuid "40861659-c0f0-4c89-91a1-374903384e22")
 	)
 	(no_connect
-		(at 207.01 74.93)
-		(uuid "58049a03-e998-46b0-a3e6-68e95e9f2b5f")
+		(at 237.49 83.82)
+		(uuid "4444cc35-57b5-48ff-9bb1-0d707bfc3cd5")
 	)
 	(no_connect
-		(at 207.01 69.85)
-		(uuid "83e40439-559f-47c5-b5ad-47929abc6158")
+		(at 237.49 86.36)
+		(uuid "4c658617-cfe8-4798-b628-52b1bf3af978")
 	)
 	(no_connect
-		(at 232.41 54.61)
-		(uuid "9a49ded6-9d65-49c7-b2be-165f7db9d832")
+		(at 237.49 88.9)
+		(uuid "6949d15e-dd86-478a-be3b-a938e97f9ee5")
 	)
 	(no_connect
-		(at 207.01 72.39)
-		(uuid "f052a4da-66f3-489b-a900-2ab6d9d8be60")
+		(at 262.89 68.58)
+		(uuid "a91de56e-5096-4cb6-9e56-487c6c05d9f6")
 	)
 	(wire
 		(pts
-			(xy 180.34 59.69) (xy 207.01 59.69)
+			(xy 233.68 73.66) (xy 233.68 78.74)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "389e0e42-fe04-4b85-9aa4-76bbb642c9a0")
+		(uuid "2986c6d4-9378-4e1f-bfc5-5aa755860960")
 	)
 	(wire
 		(pts
-			(xy 203.2 52.07) (xy 207.01 52.07)
+			(xy 156.21 66.04) (xy 156.21 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "427d3dd2-78ce-4794-9165-d4e48bdb7d3f")
+		(uuid "2b36e1bd-f222-4450-bfe6-1df1824c51f7")
 	)
 	(wire
 		(pts
-			(xy 123.19 62.23) (xy 138.43 62.23)
+			(xy 153.67 71.12) (xy 156.21 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "46a58745-872e-4073-8edc-6a379a7d5da0")
+		(uuid "417edb6b-f432-4d9c-b8d2-9ed1e32ce186")
 	)
 	(wire
 		(pts
-			(xy 203.2 57.15) (xy 203.2 62.23)
+			(xy 237.49 73.66) (xy 233.68 73.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "55ad674b-e769-4693-a9b0-b67f25a77912")
+		(uuid "51a99037-9eca-49fb-8c0d-5270a8b99573")
 	)
 	(wire
 		(pts
-			(xy 125.73 67.31) (xy 125.73 71.12)
+			(xy 210.82 71.12) (xy 237.49 71.12)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6c01984f-f39b-47b8-913f-3cf334194be3")
+		(uuid "522a05a6-788c-449d-9d39-1c8cf67edf08")
 	)
 	(wire
 		(pts
-			(xy 207.01 57.15) (xy 203.2 57.15)
+			(xy 210.82 81.28) (xy 237.49 81.28)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "6f9ddd44-b7ab-4b2d-987f-3442e6d9b7aa")
+		(uuid "5f60a11d-b4e0-4170-96a7-b603b94d74e0")
 	)
 	(wire
 		(pts
-			(xy 180.34 67.31) (xy 207.01 67.31)
+			(xy 210.82 83.82) (xy 237.49 83.82)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "73b01141-5aa8-460c-a92d-d7f5cf9a5f1e")
+		(uuid "60ddcebf-eedf-44e0-bdc0-85c0de15a552")
 	)
 	(wire
 		(pts
-			(xy 125.73 49.53) (xy 125.73 54.61)
+			(xy 153.67 83.82) (xy 156.21 83.82)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a4c5d7f1-ea9c-443c-9ff5-0afb28f82cf4")
+		(uuid "6fffa049-c887-4504-8c66-268596609c6c")
 	)
 	(wire
 		(pts
-			(xy 123.19 67.31) (xy 125.73 67.31)
+			(xy 119.38 66.04) (xy 107.95 66.04)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a5b32c9a-89ff-44dc-b05c-348a8f46f066")
+		(uuid "7b3d14ba-bd3f-44b9-9657-3ddc4bcd509b")
 	)
 	(wire
 		(pts
-			(xy 203.2 48.26) (xy 203.2 52.07)
+			(xy 156.21 83.82) (xy 156.21 87.63)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a7078f69-967d-45d5-9e32-3491a3da368e")
+		(uuid "7cb898e2-15a5-4a20-b9f6-a6be21330cdb")
 	)
 	(wire
 		(pts
-			(xy 123.19 59.69) (xy 138.43 59.69)
+			(xy 233.68 68.58) (xy 237.49 68.58)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a755e98d-6ec2-442e-bb19-1f95798761e5")
+		(uuid "9c0c8f8b-08ef-443e-87d5-af07ec4e9900")
 	)
 	(wire
 		(pts
-			(xy 77.47 72.39) (xy 77.47 76.2)
+			(xy 107.95 69.85) (xy 107.95 66.04)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "a8eed4f6-7ccb-45cf-a84c-37d68dddbdce")
+		(uuid "b1e379bc-8652-4264-b61d-dbad8e06d129")
 	)
 	(wire
 		(pts
-			(xy 203.2 62.23) (xy 203.2 81.28)
+			(xy 107.95 88.9) (xy 107.95 92.71)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b61d1317-a30f-49be-8b8d-79f8383253b9")
+		(uuid "b59498c8-5899-47d7-9b41-ddb69faf82a2")
 	)
 	(wire
 		(pts
-			(xy 77.47 60.96) (xy 77.47 64.77)
+			(xy 107.95 77.47) (xy 107.95 81.28)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b7a4fd35-4d77-4712-b905-a44f74649d43")
+		(uuid "b8a671c8-aff9-4496-b5f8-5fe4d1d55d79")
 	)
 	(wire
 		(pts
-			(xy 123.19 54.61) (xy 125.73 54.61)
+			(xy 233.68 78.74) (xy 233.68 97.79)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ba18053d-6987-4139-aad1-0799f36f80b8")
+		(uuid "ba678494-71f5-469e-84a2-6c0c43e7d731")
 	)
 	(wire
 		(pts
-			(xy 180.34 64.77) (xy 207.01 64.77)
+			(xy 233.68 64.77) (xy 233.68 68.58)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c5c30e00-a62c-47d1-a0d0-51c433c094e0")
+		(uuid "c01c5b33-8416-4e83-aa55-9bbbab2352be")
 	)
 	(wire
 		(pts
-			(xy 88.9 49.53) (xy 77.47 49.53)
+			(xy 153.67 78.74) (xy 168.91 78.74)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "c8a3f645-6a99-4005-ab7b-de940eeccf92")
+		(uuid "cd07601a-6f09-42eb-9159-a26140483858")
 	)
 	(wire
 		(pts
-			(xy 203.2 62.23) (xy 207.01 62.23)
+			(xy 233.68 78.74) (xy 237.49 78.74)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d9e3e872-5619-4878-9db6-cf0164e21034")
+		(uuid "da71bde9-75c4-487a-90d2-a4a5250c6f22")
 	)
 	(wire
 		(pts
-			(xy 180.34 54.61) (xy 207.01 54.61)
+			(xy 153.67 76.2) (xy 168.91 76.2)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "e0cd1c13-b9bc-4801-8ab3-0d0a96d1479a")
+		(uuid "f2129c32-9bfe-4a22-b137-d86bdad57f82")
 	)
 	(wire
 		(pts
-			(xy 77.47 53.34) (xy 77.47 49.53)
+			(xy 210.82 76.2) (xy 237.49 76.2)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ec7483ae-f65a-4a61-ba5f-415e9ade0f77")
+		(uuid "fa93db97-6396-4960-9001-b09d85eacefd")
+	)
+	(label "RED_LED"
+		(at 119.38 66.04 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "008a821b-fda1-4171-9358-5d85619e2bc0")
 	)
 	(label "~{SPI_CS}"
-		(at 182.88 64.77 0)
+		(at 213.36 81.28 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left bottom)
 		)
-		(uuid "0f56a541-16e8-438e-8ee3-e545e8152819")
-	)
-	(label "SPI_DATA"
-		(at 182.88 59.69 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "2e13652b-ba9d-4c30-b5de-12c657c73418")
-	)
-	(label "SPI_DATA"
-		(at 138.43 62.23 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "4c05a2ac-bd6f-41aa-af37-2387387a4677")
+		(uuid "185d9ef9-47a0-40d0-88d2-066371586a5c")
 	)
 	(label "SPI_SCK"
-		(at 138.43 59.69 180)
+		(at 213.36 71.12 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "65fc4bb7-35c2-479e-b922-4dab3bb2f4d7")
+		(uuid "8d8dcb10-2cee-4dcb-9ee7-c53dd29233e7")
+	)
+	(label "SPI_DATA"
+		(at 213.36 76.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "959b341d-d41d-485b-87a0-ce4aa3f33a77")
 	)
 	(label "RED_LED"
-		(at 88.9 49.53 180)
+		(at 213.36 83.82 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "9987dd1b-7ed5-46ec-acdc-dc20361246dd")
+	)
+	(label "SPI_DATA"
+		(at 168.91 78.74 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right bottom)
 		)
-		(uuid "b96fb87c-0e7f-455e-a9e5-19b89c388653")
+		(uuid "9f23a57e-41a7-4418-8d1d-ed4898eaafb2")
 	)
 	(label "SPI_SCK"
-		(at 182.88 54.61 0)
+		(at 168.91 76.2 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
-		(uuid "bb5d26e7-aa57-432c-8118-4f06860bb45d")
-	)
-	(label "RED_LED"
-		(at 182.88 67.31 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "ce527bdd-4f78-4e40-80c3-8b9a6b106ec0")
+		(uuid "b7486648-985b-4593-aa55-bd81ce81fce9")
 	)
 	(hierarchical_label "RED_LED"
 		(shape input)
-		(at 180.34 67.31 180)
+		(at 210.82 83.82 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "0cae071e-76fb-4f1e-ab81-e4bd9d95ab85")
-	)
-	(hierarchical_label "SPI_DATA"
-		(shape input)
-		(at 180.34 59.69 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "3015bd49-4c8c-4a1f-871f-15c3a93eccb7")
-	)
-	(hierarchical_label "~{SPI_CS}"
-		(shape input)
-		(at 180.34 64.77 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "57b23fc0-3071-41ee-bd7d-695fcfbf97a2")
+		(uuid "2ed2e13c-0b00-43f0-9f87-422b5630177a")
 	)
 	(hierarchical_label "SPI_SCK"
 		(shape input)
-		(at 180.34 54.61 180)
+		(at 210.82 71.12 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "d8377cf5-a539-48ee-b08c-b598275df7b2")
+		(uuid "33213799-9b12-41a1-b100-bb62797f2327")
+	)
+	(hierarchical_label "SPI_DATA"
+		(shape input)
+		(at 210.82 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "3e4ea5f5-0a01-4e04-8b52-9c65fc49585e")
+	)
+	(hierarchical_label "~{SPI_CS}"
+		(shape input)
+		(at 210.82 81.28 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c0253ce7-dd01-4ef0-8a75-7bbffb23305c")
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 19.05 20.32 0)
+		(at 71.12 46.99 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "130e8a51-d6b4-41e1-89f2-cddd3203a756")
-		(property "Reference" "H5"
-			(at 21.59 19.0499 0)
+		(uuid "35ca0608-2cc6-45d1-ae0b-1c3e439304d4")
+		(property "Reference" "H4"
+			(at 73.66 45.7199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1563,7 +1557,7 @@
 			)
 		)
 		(property "Value" "MountingHole"
-			(at 21.59 21.5899 0)
+			(at 73.66 48.2599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1573,7 +1567,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 19.05 20.32 0)
+			(at 71.12 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1582,7 +1576,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 19.05 20.32 0)
+			(at 71.12 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1591,7 +1585,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 19.05 20.32 0)
+			(at 71.12 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1600,688 +1594,9 @@
 			)
 		)
 		(instances
-			(project ""
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "H5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "DM-OLED096-636:DM-OLED096-636")
-		(at 110.49 62.23 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "2e0c54a2-86c2-4d44-808b-ec7b4d4d646f")
-		(property "Reference" "U3"
-			(at 110.49 46.99 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "DM-OLED096-636"
-			(at 110.49 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "oled-0.96:MODULE_DM-OLED096-636"
-			(at 109.22 88.138 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 110.49 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 110.49 62.23 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MF" "Display Module"
-			(at 109.474 84.582 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MAXIMUM_PACKAGE_HEIGHT" "11.3 mm"
-			(at 107.188 99.568 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Package" "Package"
-			(at 110.236 47.498 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Price" "None"
-			(at 111.252 111.506 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Check_prices" "https://www.snapeda.com/parts/DM-OLED096-636/Display+Module/view-part/?ref=eda"
-			(at 109.474 91.948 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "STANDARD" "Manufacturer Recommendations"
-			(at 108.712 98.044 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "PARTREV" "2018-09-10"
-			(at 111.76 104.394 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/DM-OLED096-636/Display+Module/view-part/?ref=snap"
-			(at 109.22 78.486 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "DM-OLED096-636"
-			(at 109.982 94.996 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "\n                        \n                            0.96” 128 X 64 MONOCHROME GRAPHIC OLED DISPLAY MODULE - I2C\n                        \n"
-			(at 109.474 76.454 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "Not in stock"
-			(at 114.808 106.934 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MANUFACTURER" "Displaymodule"
-			(at 110.49 76.454 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer ref" "DM-OLED096-636"
-			(at 110.49 81.026 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "059a47c7-c968-42d7-a27a-22e68e8ae5a6")
-		)
-		(pin "2"
-			(uuid "d019bbc0-a780-435b-9669-dacca44ffc07")
-		)
-		(pin "1"
-			(uuid "93383b1e-207e-4a9e-b585-5ce644f3a3dd")
-		)
-		(pin "3"
-			(uuid "504894d8-3637-4d99-a903-32f5616c0bdd")
-		)
-		(instances
-			(project ""
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "U3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:LED")
-		(at 77.47 57.15 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "507d24c9-0c1f-4cc6-a439-1413dc094cb2")
-		(property "Reference" "D2"
-			(at 71.12 58.7375 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "APT2012LSECK/J3-PRV"
-			(at 73.66 58.7375 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
-			(at 77.47 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.fr/datasheet/3/308/1/APT2012LSECK_J3_PRV.pdf"
-			(at 77.47 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Red led, 2mA"
-			(at 77.47 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer ref" "APT2012LSECK/J3-PRV"
-			(at 77.47 57.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "29edce5d-8f7d-4394-ba2d-2712d0c76263")
-		)
-		(pin "2"
-			(uuid "51ceb0ea-6f76-47dc-9527-3ccada0a85a7")
-		)
-		(instances
-			(project ""
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "D2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 203.2 48.26 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "57077089-813b-4baf-bea0-3e551b23e0e5")
-		(property "Reference" "#PWR39"
-			(at 203.2 52.07 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V_Ecran"
-			(at 197.104 43.434 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 203.2 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 203.2 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 203.2 48.26 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "309a5cc8-36d6-42ce-b651-2a2c0f71f01e")
-		)
-		(instances
-			(project "pwr"
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "#PWR39")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 77.47 76.2 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "63ddab03-cf66-4529-9ecd-94bfbeb3c9c5")
-		(property "Reference" "#PWR35"
-			(at 77.47 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 77.47 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 77.47 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 77.47 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 77.47 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6b39bb13-72f4-49d7-a835-a630cd0b88de")
-		)
-		(instances
-			(project "pwr"
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "#PWR35")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 125.73 71.12 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "659a2f1e-97de-40cc-9da7-ba9756e385d9")
-		(property "Reference" "#PWR37"
-			(at 125.73 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 125.73 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 125.73 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 125.73 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 125.73 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "42959f1f-7f4b-4b82-ba2c-713cf1491fb8")
-		)
-		(instances
-			(project "pwr"
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "#PWR37")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 125.73 49.53 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "769eaf68-9765-44f3-b043-dd1dd4ea4679")
-		(property "Reference" "#PWR30"
-			(at 125.73 53.34 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+3.3V_Ecran"
-			(at 119.634 44.704 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 125.73 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 125.73 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 125.73 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5b40b84f-54d5-4c5c-8364-9293d4b973fb")
-		)
-		(instances
-			(project "pwr"
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "#PWR30")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R")
-		(at 77.47 68.58 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8b3d807f-7636-4ba7-a90c-2f4162064335")
-		(property "Reference" "R5"
-			(at 80.01 67.3099 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1K"
-			(at 80.01 69.8499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 75.692 68.58 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 77.47 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor"
-			(at 77.47 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "73f00ce7-efce-4d0b-9804-e15c34a46b05")
-		)
-		(pin "1"
-			(uuid "5d3f1ea2-fd71-471b-b3f8-ba40c8117a40")
-		)
-		(instances
-			(project ""
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "R5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole")
-		(at 19.05 30.48 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "91103140-8820-4496-bffc-608846c07711")
-		(property "Reference" "H7"
-			(at 21.59 29.2099 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 21.59 31.7499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 19.05 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 19.05 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole without connection"
-			(at 19.05 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(instances
-			(project ""
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "H7")
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "H4")
 					(unit 1)
 				)
 			)
@@ -2289,7 +1604,7 @@
 	)
 	(symbol
 		(lib_id "FFC2B35-10-T:FFC2B35-10-T")
-		(at 232.41 52.07 0)
+		(at 262.89 68.58 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2297,9 +1612,9 @@
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "bb934aa6-2aba-44b9-9e11-13f3ed48da23")
-		(property "Reference" "J2"
-			(at 219.71 44.45 0)
+		(uuid "394d5f79-d9bc-4a58-9db4-2ddd59c8149d")
+		(property "Reference" "J1"
+			(at 250.19 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2307,7 +1622,7 @@
 			)
 		)
 		(property "Value" "FFC2B35-10-T"
-			(at 219.71 46.99 0)
+			(at 250.19 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2315,7 +1630,7 @@
 			)
 		)
 		(property "Footprint" "FFC2B3510T"
-			(at 210.82 146.99 0)
+			(at 241.3 163.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2325,7 +1640,7 @@
 			)
 		)
 		(property "Datasheet" "https://gct.co/files/drawings/ffc2b35.pdf"
-			(at 210.82 246.99 0)
+			(at 241.3 263.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2335,7 +1650,7 @@
 			)
 		)
 		(property "Description" "10 Position FFC, FPC Connector Contacts, Bottom 0.020\" (0.50mm) Surface Mount, Right Angle"
-			(at 232.41 52.07 0)
+			(at 262.89 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2344,7 +1659,7 @@
 			)
 		)
 		(property "Height" "2.2"
-			(at 210.82 446.99 0)
+			(at 241.3 463.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2354,7 +1669,7 @@
 			)
 		)
 		(property "Mouser Part Number" "640-FFC2B35-10-T"
-			(at 210.82 546.99 0)
+			(at 241.3 563.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2364,7 +1679,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/GCT/FFC2B35-10-T?qs=Li%252BoUPsLEnvL34Nnr1m37A%3D%3D"
-			(at 210.82 646.99 0)
+			(at 241.3 663.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2374,7 +1689,7 @@
 			)
 		)
 		(property "Manufacturer_Name" "GCT (GLOBAL CONNECTOR TECHNOLOGY)"
-			(at 210.82 746.99 0)
+			(at 241.3 763.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2384,7 +1699,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "FFC2B35-10-T"
-			(at 210.82 846.99 0)
+			(at 241.3 863.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2394,192 +1709,88 @@
 			)
 		)
 		(pin "5"
-			(uuid "29af5972-51af-4b34-a4cf-f2be312c3af5")
+			(uuid "7985c1af-d498-4b92-b757-bbd2a86cb1c8")
 		)
 		(pin "4"
-			(uuid "bc3e0288-7d7a-47fc-9ae1-cba3ab3e8b5d")
+			(uuid "d4ce5681-68a0-4cfb-aba8-ea34d7f1ab11")
 		)
 		(pin "12"
-			(uuid "834c34c8-cda6-455c-ab63-02ae81377631")
+			(uuid "769fda7a-d140-46b3-9175-44621dfb2d1f")
 		)
 		(pin "2"
-			(uuid "20c38e1a-2e49-418b-8bd5-b9755eb75245")
+			(uuid "7a43c3aa-c164-4474-b775-f5534b216d70")
 		)
 		(pin "10"
-			(uuid "2dba438f-d599-4404-8313-94f3c1a7032f")
+			(uuid "2faa547e-a138-47b6-a03b-25b11b9ab866")
 		)
 		(pin "1"
-			(uuid "2ca0052e-63ca-4e83-ab4f-b7c996180f78")
+			(uuid "5c38d663-f4ae-4c4a-8000-ef592e0ca502")
 		)
 		(pin "6"
-			(uuid "00994c1e-d6fd-48bd-87d4-5b963816e4f4")
+			(uuid "b586bd31-d30c-43d7-91e1-c35d765b95de")
 		)
 		(pin "8"
-			(uuid "1de809a4-2f8c-4711-b957-83a4a8aee381")
+			(uuid "3b898680-c41f-477c-8628-972d2e61e624")
 		)
 		(pin "7"
-			(uuid "8ba3e993-a129-4e6b-8907-0afa974bd8a5")
+			(uuid "b446092f-735a-4e76-9fa0-1c075f60974b")
 		)
 		(pin "9"
-			(uuid "bc160182-a681-4eb3-8027-5416eaebebcc")
+			(uuid "38660768-97c7-4420-8aed-d01295cf9db5")
 		)
 		(pin "11"
-			(uuid "5047516c-6d56-44d7-907a-3b1915dd74c4")
+			(uuid "69df4980-ffbe-4509-9df3-34643dfd0b58")
 		)
 		(pin "3"
-			(uuid "2042be93-1a6f-421b-a588-e19cf81a39e9")
+			(uuid "57d560b0-ede3-4855-945b-c7066f4d6758")
 		)
 		(instances
-			(project ""
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "J2")
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "J1")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_id "Mechanical:MountingHole")
-		(at 40.64 30.48 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "cdcf390e-a2af-40d7-b523-3de168a93b00")
-		(property "Reference" "H8"
-			(at 43.18 29.2099 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 43.18 31.7499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 40.64 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 40.64 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole without connection"
-			(at 40.64 30.48 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(instances
-			(project ""
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "H8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Mechanical:MountingHole")
-		(at 40.64 20.32 0)
-		(unit 1)
-		(exclude_from_sim yes)
-		(in_bom no)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "dfb673a5-d1fb-4cb3-95b3-348d26d7e3d8")
-		(property "Reference" "H6"
-			(at 43.18 19.0499 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "MountingHole"
-			(at 43.18 21.5899 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
-			(at 40.64 20.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 40.64 20.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Mounting Hole without connection"
-			(at 40.64 20.32 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(instances
-			(project ""
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "H6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 203.2 81.28 0)
+		(lib_id "DM-OLED096-636:DM-OLED096-636")
+		(at 140.97 78.74 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "f93b658b-7688-422c-851a-4ae8b8ff718e")
-		(property "Reference" "#PWR6"
-			(at 203.2 87.63 0)
+		(uuid "4a5bad8e-09b0-491a-b0f8-e09e65e565ec")
+		(property "Reference" "U1"
+			(at 140.97 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "DM-OLED096-636"
+			(at 140.97 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "oled-0.96:MODULE_DM-OLED096-636"
+			(at 139.7 104.648 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 140.97 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2587,16 +1798,194 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "GND"
-			(at 203.2 86.36 0)
+		(property "Description" ""
+			(at 140.97 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "MF" "Display Module"
+			(at 139.954 101.092 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "11.3 mm"
+			(at 137.668 116.078 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "Package"
+			(at 140.716 64.008 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 141.732 128.016 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/DM-OLED096-636/Display+Module/view-part/?ref=eda"
+			(at 139.954 108.458 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 139.192 114.554 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "2018-09-10"
+			(at 142.24 120.904 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/DM-OLED096-636/Display+Module/view-part/?ref=snap"
+			(at 139.7 94.996 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "DM-OLED096-636"
+			(at 140.462 111.506 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "\n                        \n                            0.96” 128 X 64 MONOCHROME GRAPHIC OLED DISPLAY MODULE - I2C\n                        \n"
+			(at 139.954 92.964 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "Not in stock"
+			(at 145.288 123.444 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Displaymodule"
+			(at 140.97 92.964 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer ref" "DM-OLED096-636"
+			(at 140.97 97.536 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "4"
+			(uuid "c2cac783-4947-4ddf-8243-dfd592fe1732")
+		)
+		(pin "2"
+			(uuid "4a054f84-04e2-49f4-a348-becb539ed105")
+		)
+		(pin "1"
+			(uuid "e7b9c7af-cc6b-4ef1-b69c-ffe4438af493")
+		)
+		(pin "3"
+			(uuid "64032244-b257-4b42-bc89-5835e00522b1")
+		)
+		(instances
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "U1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 156.21 66.04 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "4b58fdd9-ece9-4039-ab80-5689b791d9db")
+		(property "Reference" "#PWR2"
+			(at 156.21 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V_Ecran"
+			(at 150.114 61.214 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
-			(at 203.2 81.28 0)
+			(at 156.21 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2605,7 +1994,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 203.2 81.28 0)
+			(at 156.21 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2613,8 +2002,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 203.2 81.28 0)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 156.21 66.04 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2623,15 +2012,625 @@
 			)
 		)
 		(pin "1"
-			(uuid "67847373-1139-4b00-a8cf-89319837343c")
+			(uuid "7313b76a-a2e0-4143-acac-388a363edd9f")
 		)
 		(instances
-			(project "pwr"
-				(path "/f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16/c5254b07-71db-4aec-8059-82eb0bcb5243"
-					(reference "#PWR6")
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "#PWR2")
 					(unit 1)
 				)
 			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 71.12 36.83 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "4bfafa5e-b7a0-4367-8863-f2922aaa9b1a")
+		(property "Reference" "H3"
+			(at 73.66 35.5599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 73.66 38.0999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+			(at 71.12 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 71.12 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 71.12 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "H3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:LED")
+		(at 107.95 73.66 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "50241694-2750-4e3a-8aed-31521929a4bb")
+		(property "Reference" "D1"
+			(at 101.6 75.2475 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "APT2012LSECK/J3-PRV"
+			(at 104.14 75.2475 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "LED_SMD:LED_0805_2012Metric"
+			(at 107.95 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://www.mouser.fr/datasheet/3/308/1/APT2012LSECK_J3_PRV.pdf"
+			(at 107.95 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Red led, 2mA"
+			(at 107.95 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer ref" "APT2012LSECK/J3-PRV"
+			(at 107.95 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9096df0d-d019-4998-8868-d0bd8261baf1")
+		)
+		(pin "2"
+			(uuid "f969ccc7-13b4-491e-8491-805a40650a94")
+		)
+		(instances
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "D1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 107.95 85.09 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5409b326-a5fb-4131-8bd1-31bafa208a50")
+		(property "Reference" "R1"
+			(at 110.49 83.8199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1K"
+			(at 110.49 86.3599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
+			(at 106.172 85.09 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 107.95 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 107.95 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "c9edffec-5ea8-488c-883e-b12f018d2032")
+		)
+		(pin "1"
+			(uuid "9542f2a7-391c-4518-b970-f18c946130b7")
+		)
+		(instances
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "R1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 233.68 64.77 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "54da8dc7-0265-4323-b3d6-63ef4a99d5e1")
+		(property "Reference" "#PWR4"
+			(at 233.68 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "+3.3V_Ecran"
+			(at 227.584 59.944 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 233.68 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 233.68 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 233.68 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "18b03e93-8473-40ee-8c54-fdd47f134798")
+		)
+		(instances
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "#PWR4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 233.68 97.79 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "623e4d4e-5b6e-40a7-a85c-2bceb614d698")
+		(property "Reference" "#PWR5"
+			(at 233.68 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 233.68 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 233.68 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 233.68 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 233.68 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a5431c05-2edf-4390-8dd9-dc82d494e527")
+		)
+		(instances
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "#PWR5")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 49.53 46.99 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7ba9758e-d34c-4532-943b-a4e517f496a1")
+		(property "Reference" "H2"
+			(at 52.07 45.7199 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 52.07 48.2599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+			(at 49.53 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 49.53 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 49.53 46.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "H2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 107.95 92.71 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "7c9b822f-80ac-431f-bb4d-d24809e8eaf3")
+		(property "Reference" "#PWR1"
+			(at 107.95 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 107.95 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 107.95 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 107.95 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 107.95 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "a7900b9a-274e-4494-b97e-5311785937aa")
+		)
+		(instances
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "#PWR1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Mechanical:MountingHole")
+		(at 49.53 36.83 0)
+		(unit 1)
+		(exclude_from_sim yes)
+		(in_bom no)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "80f1e190-829f-48fd-87e3-3dfda878e2e4")
+		(property "Reference" "H1"
+			(at 52.07 35.5599 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "MountingHole"
+			(at 52.07 38.0999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "MountingHole:MountingHole_3.2mm_M3"
+			(at 49.53 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 49.53 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Mounting Hole without connection"
+			(at 49.53 36.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(instances
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "H1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 156.21 87.63 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ee27dfe5-8772-4322-9136-aac3d21dc825")
+		(property "Reference" "#PWR3"
+			(at 156.21 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "GND"
+			(at 156.21 92.71 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 156.21 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 156.21 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 156.21 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "4355d6f4-a3a9-4ec4-ae9f-91513f14778d")
+		)
+		(instances
+			(project "pcb-ecran"
+				(path "/0ac106c3-2fee-4c2a-aca5-939c535578e0"
+					(reference "#PWR3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
 		)
 	)
 )

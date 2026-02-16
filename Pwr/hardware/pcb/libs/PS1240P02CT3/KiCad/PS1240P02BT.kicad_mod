@@ -1,0 +1,147 @@
+(footprint "PS1240P02BT"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(descr "PS1240P02BT")
+	(tags "Loudspeaker or Buzzer")
+	(property "Reference" "LS**"
+		(at -4.75 -6.75 0)
+		(layer "F.SilkS")
+		(uuid "291d90e4-f86f-4924-8901-67103be4bfe4")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Value" "PS1240P02BT"
+		(at -0.25 7.5 0)
+		(layer "F.SilkS")
+		(hide yes)
+		(uuid "a6f0b2bb-2de5-4f43-a6ea-629050c06ed1")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7b51c651-dce5-402e-b1d6-0079806b9e05")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7d3c04e1-4084-42af-9544-b557034de642")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "38e66f38-b59d-4cef-bc65-2a1891938a68")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_circle
+		(center -0.228 -6.861)
+		(end -0.228 -6.81091)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "9f191adc-436e-4fa5-a564-d409c195aa81")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 0 6.1)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "4570a515-cbc0-4470-b43e-c6b19ccb2925")
+	)
+	(fp_circle
+		(center 0 0)
+		(end 0 6.1)
+		(stroke
+			(width 0.254)
+			(type solid)
+		)
+		(fill none)
+		(layer "F.Fab")
+		(uuid "e7547b5d-7fe3-4c2f-beb4-b58ed3ae11e2")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -0.25 9.25 0)
+		(layer "F.Fab")
+		(uuid "b1fd246b-bfad-4303-9a4c-33e238214fbd")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.254)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at 0 -2.5)
+		(size 1.35 1.35)
+		(drill 0.85)
+		(layers "*.Cu" "*.Mask" "In3.Cu" "In4.Cu" "In5.Cu" "In6.Cu" "In7.Cu" "In8.Cu"
+			"In9.Cu" "In10.Cu" "In11.Cu" "In12.Cu" "In13.Cu" "In14.Cu" "In15.Cu" "In16.Cu"
+			"In17.Cu" "In18.Cu" "In19.Cu" "In20.Cu" "In21.Cu" "In22.Cu" "In23.Cu"
+			"In24.Cu" "In25.Cu" "In26.Cu" "In27.Cu" "In28.Cu" "In29.Cu" "In30.Cu"
+		)
+		(remove_unused_layers no)
+		(uuid "5913990e-5e6e-43be-bc4b-2948137bb589")
+	)
+	(pad "2" thru_hole circle
+		(at 0 2.5)
+		(size 1.35 1.35)
+		(drill 0.85)
+		(layers "*.Cu" "*.Mask" "In3.Cu" "In4.Cu" "In5.Cu" "In6.Cu" "In7.Cu" "In8.Cu"
+			"In9.Cu" "In10.Cu" "In11.Cu" "In12.Cu" "In13.Cu" "In14.Cu" "In15.Cu" "In16.Cu"
+			"In17.Cu" "In18.Cu" "In19.Cu" "In20.Cu" "In21.Cu" "In22.Cu" "In23.Cu"
+			"In24.Cu" "In25.Cu" "In26.Cu" "In27.Cu" "In28.Cu" "In29.Cu" "In30.Cu"
+		)
+		(remove_unused_layers no)
+		(uuid "3b492826-66ac-4576-883f-39b4cc71105f")
+	)
+	(model "${KIPRJMOD}/libs/PS1240P02CT3/3D/PS1240P02CT3.stp"
+		(offset
+			(xyz 0 0 3.7)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 90)
+		)
+	)
+)

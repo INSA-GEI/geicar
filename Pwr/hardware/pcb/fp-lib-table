@@ -11,4 +11,6 @@
   (lib (name "KEYSTONE")(type "KiCad")(uri "${KIPRJMOD}/libs/3557/KiCad")(options "")(descr ""))
   (lib (name "Multiplex MPX 6")(type "KiCad")(uri "${KIPRJMOD}/libs/Multiplex MPX 6")(options "")(descr ""))
   (lib (name "Pololu S13VxFx")(type "KiCad")(uri "${KIPRJMOD}/libs/Pololu S13VxFx")(options "")(descr ""))
+  (lib (name "oled-0.96")(type "KiCad")(uri "${KIPRJMOD}/libs/oled-0.96")(options "")(descr ""))
+  (lib (name "Buzzer_TDK")(type "KiCad")(uri "${KIPRJMOD}/libs/PS1240P02CT3/KiCad")(options "")(descr ""))
 )

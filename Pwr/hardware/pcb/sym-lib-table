@@ -8,4 +8,6 @@
   (lib (name "Grove 114020164")(type "KiCad")(uri "${KIPRJMOD}/libs/Grove 114020164/114020164.kicad_sym")(options "")(descr ""))
   (lib (name "FFC2B35-10-T")(type "KiCad")(uri "${KIPRJMOD}/libs/FFC2B35-10-T/KiCad/FFC2B35-10-T.kicad_sym")(options "")(descr ""))
   (lib (name "3557")(type "KiCad")(uri "${KIPRJMOD}/libs/3557/KiCad/3557.kicad_sym")(options "")(descr ""))
+  (lib (name "DM-OLED096-636")(type "KiCad")(uri "${KIPRJMOD}/libs/oled-0.96/DM-OLED096-636.kicad_sym")(options "")(descr ""))
+  (lib (name "PS1240P02CT3")(type "KiCad")(uri "${KIPRJMOD}/libs/PS1240P02CT3/KiCad/PS1240P02CT3.kicad_sym")(options "")(descr ""))
 )

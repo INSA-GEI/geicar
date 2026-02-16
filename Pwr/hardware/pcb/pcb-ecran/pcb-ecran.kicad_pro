@@ -48,10 +48,16 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.6
         }
       },
-      "diff_pair_dimensions": [],
+      "diff_pair_dimensions": [
+        {
+          "gap": 0.0,
+          "via_gap": 0.0,
+          "width": 0.0
+        }
+      ],
       "drc_exclusions": [],
       "meta": {
         "version": 2
@@ -171,7 +177,15 @@
           "td_width_to_size_filter_ratio": 0.9
         }
       ],
-      "track_widths": [],
+      "track_widths": [
+        0.0,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.5
+      ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
           "corner_radius_percentage": 80,
@@ -198,7 +212,16 @@
           "spacing": 0.6
         }
       },
-      "via_dimensions": [],
+      "via_dimensions": [
+        {
+          "diameter": 0.0,
+          "drill": 0.0
+        },
+        {
+          "diameter": 0.7,
+          "drill": 0.4
+        }
+      ],
       "zones_allow_external_fillets": false
     },
     "ipc2581": {
@@ -431,7 +454,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "pwr.kicad_pro",
+    "filename": "pcb-ecran.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -469,7 +492,7 @@
       "plot": "",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "../meca/pwr.step",
+      "step": "pcb-ecran.step",
       "svg": "",
       "vrml": ""
     },
@@ -576,20 +599,8 @@
   },
   "sheets": [
     [
-      "f6dabf7a-ae53-43d1-82d9-7c9d5f42ea16",
+      "0ac106c3-2fee-4c2a-aca5-939c535578e0",
       "Root"
-    ],
-    [
-      "ae4dbc9d-2cf3-49f5-bc69-0adcfdf3c282",
-      "Puissance"
-    ],
-    [
-      "15498852-fcb4-4bab-848c-9a17c84d0607",
-      "CPU - Debug"
-    ],
-    [
-      "58bd02ef-40e4-4782-ad45-2b323e235376",
-      "Connecteurs"
     ]
   ],
   "text_variables": {}
