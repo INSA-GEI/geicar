@@ -46,6 +46,7 @@ Release/
 *.kicad_prl
 fp-info-cache
 _autosave*
+GERBER/
 
 # ROS2
 *.pyc
@@ -55,6 +56,9 @@ log/
 
 # Freecad
 *.FCBak
+*.step
+*.stl
+*.bak
 
 # Fichiers Divers
 *.pdf
