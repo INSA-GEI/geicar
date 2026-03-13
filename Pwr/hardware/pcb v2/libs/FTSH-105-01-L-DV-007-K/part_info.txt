@@ -1,0 +1,9 @@
+Manufacturer=SAMTEC
+PartNumber=FTSH-105-01-L-DV-007-K
+PartCategory=Connector
+PackageCategory=Other
+PinCount=9
+Version=1.1
+Released=2019-05-15 22:47:19
+Downloaded=2026-02-11 17:39:52
+3D=Y

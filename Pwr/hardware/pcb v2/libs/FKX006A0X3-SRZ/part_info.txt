@@ -1,0 +1,9 @@
+Manufacturer=OmniOn Power
+PartNumber=FKX006A0X3-SRZ
+PartCategory=Power Supply
+PackageCategory=Other
+PinCount=7
+Version=2.1
+Released=2023-09-27 10:48:58
+Downloaded=2026-02-09 15:11:52
+3D=Y

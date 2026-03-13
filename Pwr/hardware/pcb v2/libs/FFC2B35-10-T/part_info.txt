@@ -1,0 +1,9 @@
+Manufacturer=GCT (GLOBAL CONNECTOR TECHNOLOGY)
+PartNumber=FFC2B35-10-T
+PartCategory=Connector
+PackageCategory=Other
+PinCount=12
+Version=1.2
+Released=2024-07-05 05:50:35
+Downloaded=2026-02-11 17:11:48
+3D=Y

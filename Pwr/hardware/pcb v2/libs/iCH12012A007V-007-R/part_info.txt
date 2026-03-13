@@ -1,0 +1,9 @@
+Manufacturer=TDK Lambda
+PartNumber=iCH12012A007V-007-R
+PartCategory=Power Supply
+PackageCategory=Other
+PinCount=10
+Version=7.3
+Released=2021-02-19 10:54:57
+Downloaded=2026-02-11 14:10:00
+3D=Y
