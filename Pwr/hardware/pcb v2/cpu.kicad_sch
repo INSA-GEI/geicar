@@ -3017,24 +3017,12 @@
 		(uuid "05693cba-4365-4c8a-88ed-30f278b4debc")
 	)
 	(no_connect
-		(at 129.54 167.64)
-		(uuid "1fb9550e-b491-4222-8c0f-820a75ed34ee")
-	)
-	(no_connect
 		(at 236.22 50.8)
 		(uuid "25c35f7d-222a-4327-bea1-ecce22955149")
 	)
 	(no_connect
-		(at 109.22 82.55)
-		(uuid "495026bd-b1ee-491b-a1ac-f264daff2827")
-	)
-	(no_connect
 		(at 154.94 152.4)
 		(uuid "4953fcbb-1546-44a2-8f98-bd5f9d79cc0c")
-	)
-	(no_connect
-		(at 129.54 170.18)
-		(uuid "a2e84d70-a108-4ed7-b3a3-4063b4a4061e")
 	)
 	(no_connect
 		(at 236.22 53.34)
@@ -3043,10 +3031,6 @@
 	(no_connect
 		(at 154.94 154.94)
 		(uuid "a41e9c1e-b05f-452c-aaf0-4653caeef665")
-	)
-	(no_connect
-		(at 109.22 80.01)
-		(uuid "e94db06f-c9de-4bb7-a073-3754b732d286")
 	)
 	(wire
 		(pts
@@ -3097,6 +3081,26 @@
 			(type default)
 		)
 		(uuid "05be40d8-b901-439c-b821-11f56f229288")
+	)
+	(wire
+		(pts
+			(xy 107.95 167.64) (xy 129.54 167.64)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0a0bc123-c183-40fb-ac5c-188f109004a6")
+	)
+	(wire
+		(pts
+			(xy 88.9 82.55) (xy 109.22 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0f0ce95e-a903-498e-902b-68a81fc59ae2")
 	)
 	(wire
 		(pts
@@ -3317,6 +3321,16 @@
 			(type default)
 		)
 		(uuid "59a42986-3a10-4838-a4df-377e2e08537c")
+	)
+	(wire
+		(pts
+			(xy 88.9 80.01) (xy 109.22 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5b6b5b65-233d-4bb3-9061-4d0effbb2b1f")
 	)
 	(wire
 		(pts
@@ -3617,6 +3631,16 @@
 			(type default)
 		)
 		(uuid "bc55556b-c801-4721-b5ee-ec10e54fb081")
+	)
+	(wire
+		(pts
+			(xy 107.95 170.18) (xy 129.54 170.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bc7ec9a1-d267-4be9-ae9e-fbed4f30b3c7")
 	)
 	(wire
 		(pts
@@ -4030,6 +4054,16 @@
 		)
 		(uuid "4a549e21-2025-4551-a46e-867a1e68bb95")
 	)
+	(label "DISPLAY_RESET"
+		(at 88.9 82.55 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "4b3f011e-380c-431d-9469-af247d6c43e8")
+	)
 	(label "SCREEN_PMOS_ENABLE"
 		(at 184.15 95.25 180)
 		(effects
@@ -4069,6 +4103,16 @@
 			(justify right bottom)
 		)
 		(uuid "5ee85d94-7fbe-4b40-8e5c-e2d6f75f8521")
+	)
+	(label "DISPLAY_CD"
+		(at 107.95 170.18 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "63648d57-102c-4aa1-9161-0ad1aff95cfd")
 	)
 	(label "DEBUG_SWCLK"
 		(at 180.34 105.41 180)
@@ -4200,6 +4244,16 @@
 		)
 		(uuid "a4c1fb18-aef2-4068-b43e-7c883f50d1da")
 	)
+	(label "DISPLAY_CD"
+		(at 88.9 80.01 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "c4d4b18a-cc4c-4d3a-9204-2959e0455f66")
+	)
 	(label "~{nRESET}"
 		(at 88.9 74.93 0)
 		(effects
@@ -4239,6 +4293,16 @@
 			(justify right bottom)
 		)
 		(uuid "ee024db5-c88c-4288-addc-32f39765e137")
+	)
+	(label "DISPLAY_RESET"
+		(at 107.95 167.64 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "f667e9fe-7f83-4c8a-8fd2-30cffd369d36")
 	)
 	(label "ADC_IN5"
 		(at 52.07 172.72 0)
