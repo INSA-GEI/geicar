@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "DM-OLED096-636")(type "KiCad")(uri "/home-local/dimercur/Documents/Travail/Depots-Git/geicar/Pwr/hardware/pcb/libs/oled-0.96/DM-OLED096-636.kicad_sym")(options "")(descr ""))
+  (lib (name "FFC2B35-10-T")(type "KiCad")(uri "/home-local/dimercur/Documents/Travail/Depots-Git/geicar/Pwr/hardware/pcb/libs/FFC2B35-10-T/KiCad/FFC2B35-10-T.kicad_sym")(options "")(descr ""))
+)
