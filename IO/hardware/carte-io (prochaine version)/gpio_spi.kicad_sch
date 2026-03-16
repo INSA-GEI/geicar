@@ -105,24 +105,6 @@
 					)
 				)
 				(pin bidirectional line
-					(at 27.94 -6.35 180)
-					(length 5.08)
-					(name "VN"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
 					(at 11.43 -15.24 90)
 					(length 5.08)
 					(name "CH2"
@@ -159,24 +141,6 @@
 					)
 				)
 				(pin bidirectional line
-					(at 27.94 1.27 180)
-					(length 5.08)
-					(name "VP"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "5"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-				)
-				(pin bidirectional line
 					(at 16.51 -15.24 90)
 					(length 5.08)
 					(name "CH4"
@@ -187,6 +151,44 @@
 						)
 					)
 					(number "6"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(symbol "CM1293A-04SO_1_0"
+				(pin power_in line
+					(at 27.94 -6.35 180)
+					(length 5.08)
+					(name "VN"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 27.94 1.27 180)
+					(length 5.08)
+					(name "VP"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "5"
 						(effects
 							(font
 								(size 1.016 1.016)
@@ -2586,7 +2588,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "30ade427-b977-4cde-b6fd-edae3c0c8a97")
 		(property "Reference" "#PWR106"
 			(at 215.9 57.15 0)
@@ -2597,12 +2598,13 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3.3V"
-			(at 215.9 48.26 0)
+		(property "Value" "+3.3V_PWR"
+			(at 210.566 47.752 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -2718,7 +2720,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "3b234192-a7d0-4af7-8d95-170053a51f2a")
 		(property "Reference" "#PWR0104"
 			(at 71.12 82.55 0)
@@ -2729,12 +2730,13 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3.3V"
-			(at 71.12 73.66 0)
+		(property "Value" "+3.3V_PWR"
+			(at 65.278 74.168 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""
@@ -3993,7 +3995,6 @@
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "9cb5f314-d909-4c59-a46b-416eb7784e1c")
 		(property "Reference" "#PWR0103"
 			(at 31.75 83.82 0)
@@ -4004,12 +4005,13 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "+3.3V"
-			(at 31.75 74.93 0)
+		(property "Value" "+3.3V_PWR"
+			(at 26.162 75.184 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
 		(property "Footprint" ""

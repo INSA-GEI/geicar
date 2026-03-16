@@ -310,7 +310,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Digital Humidity and Temperature Sensor, +/-1%RH, +/-0.1degC, I2C, 1.08-3.6V, 16bit, DFN-4"
+			(property "Description" "Digital Humidity and Temperature Sensor, ±1%RH, ±0.1°C, I2C, 1.08-3.6V, 16bit, DFN-4"
 				(at 0 0 0)
 				(effects
 					(font
@@ -2594,6 +2594,29 @@
 		)
 		(uuid "fe95592d-fdf6-43a2-abd2-b60d43e9dbd2")
 	)
+	(rectangle
+		(start 43.18 27.94)
+		(end 68.58 38.1)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 4f181d74-99f2-4ef3-a6e3-1b34e2e3480e)
+	)
+	(text "A installer. Ce bus I2C vient du MCU\net aucune resitance n'est presente"
+		(exclude_from_sim no)
+		(at 69.596 33.274 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "01e7efd5-2880-44a0-ab84-4e6279a7df19")
+	)
 	(hierarchical_label "INT_PRESSURE"
 		(shape output)
 		(at 48.26 162.56 180)
@@ -2818,7 +2841,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Digital Humidity and Temperature Sensor, +/-1%RH, +/-0.1degC, I2C, 1.08-3.6V, 16bit, DFN-4"
+		(property "Description" "Digital Humidity and Temperature Sensor, ±1%RH, ±0.1°C, I2C, 1.08-3.6V, 16bit, DFN-4"
 			(at 67.31 80.01 0)
 			(effects
 				(font
